@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>yeuchimse &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/author/yeuchimse/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Tue, 24 Jul 2018 16:29:01 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>MEEPWN CTF 2018 - XSS</title>
+		<link>https://babyphd.net/2018/07/17/meepwn-ctf-2018-xss/</link>
+				<pubDate>Tue, 17 Jul 2018 16:55:34 +0000</pubDate>
+		<dc:creator><![CDATA[yeuchimse]]></dc:creator>
+				<category><![CDATA[re]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=751</guid>
+				<description><![CDATA[Lúc đầu nhìn tên bài mình cứ nghĩ là dạng binary .Net chứa mấy đề XSS giống ở SECCON, nên còn không buồn đọc đề. Đến lúc làm thì thấy là cũng liên quan thật. File binary khi được chạy sẽ fork thêm 1 process nữa, rồi process mới này lại fork một process khác, &#8230; <a href="https://babyphd.net/2018/07/17/meepwn-ctf-2018-xss/" class="more-link">Continue reading <span class="screen-reader-text">MEEPWN CTF 2018 - XSS</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?ssl=1"><img data-attachment-id="752" data-permalink="https://babyphd.net/2018/07/17/meepwn-ctf-2018-xss/2018-07-17_20-57-55/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?fit=683%2C317&amp;ssl=1" data-orig-size="683,317" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="2018-07-17_20-57-55" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?fit=300%2C139&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?fit=604%2C280&amp;ssl=1" class="aligncenter wp-image-752 size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?resize=604%2C280&#038;ssl=1" alt="" width="604" height="280" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?w=683&amp;ssl=1 683w, https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?resize=300%2C139&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a>Lúc đầu nhìn tên bài mình cứ nghĩ là dạng binary .Net chứa mấy đề XSS giống ở SECCON, nên còn không buồn đọc đề. Đến lúc làm thì thấy là cũng liên quan thật.</p>
+<p>File binary khi được chạy sẽ fork thêm 1 process nữa, rồi process mới này lại fork một process khác, tổng là 3 process. Mỗi process này sẽ dựa theo số lượng tham số truyền vào để xử lý theo nhánh riêng của nó (process đầu không có tham số, process thứ hai có 1 tham số là <code>1</code>, process thứ ba có 2 tham số là <code>1</code> và <code>2</code>). Mình debug bằng cách attach 3 cửa sổ IDA vào lần lượt 3 process.<span id="more-751"></span></p>
+<p>Nếu cứ diễn giải lần lượt từng bước thì khá dài dòng, về cơ bản là các process sẽ tương tác với nhau bằng cách inject code và thực thi thông qua các hàm: <code>OpenProcess</code>, <code>VirtualAllocEx</code>, <code>ReadProcessMemory</code>, <code>WriteProcessMemory</code>, <code>WaitForSingleObject</code>, <code>ReleaseSemaphore</code>,  và <code>CreateRemoteThread</code>. Các code được inject tương đối giống nhau, có dạng thế này (đây là code đọc input từ người chơi):</p>
+<pre>    v11 = 0;
+    hObject = 0;
+    while ( WaitForSingleObject(*(&amp;dword_4F4FFC + (_DWORD)lpParameter), 1u) == 258 )
+        ;
+    arr1[0] = 97;
+    arr1[1] = 98;
+    arr1[2] = 99;
+    arr1[3] = 100;
+    arr1[4] = 97;
+    arr1[5] = 98;
+    arr1[6] = 99;
+    arr1[7] = 100;
+    arr1[8] = 97;
+    arr1[9] = 98;
+    arr1[10] = 99;
+    arr1[11] = 100;
+    arr1[12] = 97;
+    arr1[13] = 98;
+    arr1[14] = 99;
+    arr1[15] = 100;
+    arr2[0] = 106;
+    arr2[1] = 21;
+    arr2[2] = 109;
+    arr2[3] = 11;
+    arr2[4] = -99;
+    arr2[5] = -16;
+    arr2[6] = -62;
+    arr2[7] = 52;
+    arr2[8] = 116;
+    arr2[9] = -118;
+    arr2[10] = -44;
+    arr2[11] = 79;
+    arr2[12] = 80;
+    arr2[13] = -124;
+    arr2[14] = -96;
+    arr2[15] = 127;
+    for ( i = 0; i &lt; 16; ++i )
+    {
+        v8 = getchar();
+        arr1[i] = v8 ^ arr2[i];
+    }
+    while ( WaitForSingleObject(*(&amp;hHandle + (_DWORD)lpParameter), 1u) == 258 )
+        ;
+    hProcess = OpenProcess(dwDesiredAccess, 0, *(&amp;BaseAddress + (_DWORD)lpParameter));
+    if ( !hProcess )
+        exit(0);
+    v13 = 0;
+    lpBaseAddress = (LPCVOID)BaseAddress;
+    Buffer = 0;
+    while ( 1 )
+    {
+        v13 = ReadProcessMemory(hProcess, lpBaseAddress, &amp;Buffer, 1u, 0);
+        if ( !v13 )
+            exit(0);
+        if ( Buffer == 198 )
+            break;
+        lpBaseAddress = (char *)lpBaseAddress + 1;
+    }
+    lpBaseAddress = (char *)lpBaseAddress - 1;
+    for ( j = 0; j &lt; 16; ++j )
+    {
+        v13 = WriteProcessMemory(hProcess, (char *)lpBaseAddress + 4, &amp;arr1[j], 1u, 0);
+        if ( !v13 )
+            exit(0);
+        lpBaseAddress = (char *)lpBaseAddress + 4;
+    }
+    CloseHandle(hProcess);
+    hObject = OpenProcess(dwDesiredAccess, 0, dword_4F502C[2]);
+    if ( !hObject )
+        exit(0);
+    dwSize = 43632;
+    v10 = VirtualAllocEx(hObject, 0, 0xAA70u, 0x1000u, 0x40u);
+    if ( !v10 )
+        exit(0);
+    v6 = v10;
+    lpBuffer = byte_4FFAA8;
+    v11 = WriteProcessMemory(hObject, &amp;BaseAddress, &amp;v10, 4u, 0);
+    if ( !v11 )
+        exit(0);
+    for ( k = 0; k &lt; dwSize; ++k )
+        byte_4FFAA8[k] ^= 0x66u;
+    v11 = WriteProcessMemory(hObject, v6, lpBuffer, dwSize, 0);
+    if ( !v11 )
+        exit(0);
+    lpStartAddress = (LPTHREAD_START_ROUTINE)v10;
+    v4 = CreateRemoteThread(hObject, 0, 0, (LPTHREAD_START_ROUTINE)v10, lpParameter, 0, 0);
+    if ( !v4 )
+        exit(0);
+    CloseHandle(hObject);
+    return ReleaseSemaphore(*(&amp;hSemaphore + (_DWORD)lpParameter), 1, 0);
+}</pre>
+<p>Mình sẽ không nói chi tiết về việc binary dùng <code>Semaphore</code> và <code>CreateRemoteThread</code> như thế nào để điều khiển luồng thực thi cho đúng, vì nói thật nó loằng ngoằng và mình cũng không cố note lại. Tuy nhiên, để làm được bài thì vẫn cần biết chương trình làm những gì, nên sau khi F8 tỉ mỉ một vài lượt inject code đầu tiên, nhận thấy có sự tương đồng như đã nói khi nãy, mình đẩy nhanh tiến độ bằng cách đặt breakpoint ở hàm <code>kernel32_CreateRemoteThread</code>(trong cả 3 process) và cứ thế chạy, mỗi khi dừng ở breakpoint, mình dựa vào tham số <code>lpStartAddress</code> để biết địa chỉ phần code chuẩn bị được thực thi ở đâu, rồi mở xem code đó nó làm gì (đáng lẽ cần phải xem tham số <code>hProcess</code> để biết là process nào nữa, nhưng mình lười nên cứ Alt+Tab lần lượt 3 cửa sổ IDA để thử thôi). Cũng có một chút anti-decompile nhưng có thể fix bằng tay được. Nhìn chung chương trình hoạt động như thế này:</p>
+<p>Các đoạn code giống nhau về cấu trúc, có sẵn hai mảng 16 ký tự là <code>arr1</code> và <code>arr2</code>, trong đó mảng <code>arr1</code> luôn là <code>abcdabcdabcdabcd</code>. Khi được thực thi bằng hàm <code>CreateRemoteThread</code>, code sẽ xử lý 2 mảng <code>arr1</code> và <code>arr2</code> (bằng một trong các thao tác xor, <a href="https://www.felixcloutier.com/x86/AESENC.html" target="_blank" rel="noopener">aesenc</a>, <a href="https://www.felixcloutier.com/x86/AESENCLAST.html" target="_blank" rel="noopener">aesenclast</a> hoặc so sánh), sau đó, ghi đè output  vào mảng <code>arr1</code> của đoạn code thực thi sau đó thông qua hàm <code>WriteProcessMemory</code> (đoạn code này vốn cũng đã thực thi rồi, nhưng đang bị dừng bởi Semaphore). Bên cạnh việc xử lý input thì mỗi thread cũng kiêm thêm việc ghi code cho các thread sau. Để dễ hình dung (vì nếu nói chính xác thì các đoạn code không chạy một mạch từ đầu đến cuối mà sẽ bị gián đoạn bởi Semaphore), có thể tưởng tượng với đầu vào là input mà ta nhập, chương trình cho nó đi qua một dây chuyền sản xuất, ở mỗi bước giá trị của input lại bị thay đổi một tí, xong được đẩy sang bước tiếp theo. Có tất cả là 1 bước xor, 9 bước <code>aesenc</code>, 1 bước <code>aesenclast</code> (<a href="https://www.cosic.esat.kuleuven.be/ecrypt/AESday/slides/Use_of_the_AES_Instruction_Set.pdf" target="_blank" rel="noopener">AES128</a>) và cuối cùng là 1 bước so sánh (để hiện thông báo <code>Correct!</code> hoặc <code>Try Again!</code>). Chúng ta có toàn bộ hardcoded key được dùng trong các bước này và tất nhiên là cả giá trị so sánh cuối cùng.</p>
+<pre>xor_key = '6A156D0B9DF0C234748AD44F5084A07F'
+
+aes_keys = [
+'609D4731B5DD367EEF997AD8495C4523',
+'FAECDBBB93B23AEF68E4BE6D2FF66B4C',
+'3E43953C69D073672297D1B1A361FD4A',
+'45337E3CF07F2DAC33443B75482AC546',
+'4DF0EC1A3D04A9DBF5D5081A80709306',
+'BAF0AB1FAC2F5881F125B159F979DE03',
+'34AFFF57513A0FEC8BA0E65F8C986078',
+'2EEBCF4605AE3D94BA8CCCF44CA11D4C',
+'74F9C5427F7A6EE2B11F2CC21804B8F7',
+'0A98631D8469820807CA31F71D335629',
+]
+
+target = '68CEDFDD586C37E4C4E1ACB4097F97A4'</pre>
+<p>Đến đây thì phần RE đã xong, phần còn lại là Crypto, mình hỏi một chuyên gia mật mã đầu ngành của team và nhận lại flag vài phút sau đó.</p>
+<p>P.S: Có một bí ẩn xung quanh challenge này, nhưng bây giờ cảm giác tội lỗi với Linh Ka khiến mình không tập trung làm được việc gì cả. Nếu sau này có thời gian tìm hiểu thêm thì mình sẽ bổ sung vào bài viết sau.</p>
+<p>Quên mất, cá nhân mình đánh giá đây là một đề mất không ít thời gian để xây dựng, nên kudos to người ra đề!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">751</post-id>	</item>
+		<item>
+		<title>MEEPWN CTF 2018 - PyCalx2</title>
+		<link>https://babyphd.net/2018/07/17/meepwn-ctf-2018-pycalx2/</link>
+				<pubDate>Tue, 17 Jul 2018 13:39:52 +0000</pubDate>
+		<dc:creator><![CDATA[yeuchimse]]></dc:creator>
+				<category><![CDATA[web]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=734</guid>
+				<description><![CDATA[Bài này code giống hệt bài 1, khác mỗi cái là biến op bây giờ cũng không được chứa các ký tự trong mảng ['(',')','[',']','\'','"'] nữa, do đó không thể dùng kiểu +' để break giá trị của value2 ra ngoài chuỗi. Nói cách khác, value1 và value2 đều sẽ chỉ là các string đơn thuần. Mình search thử thì thấy &#8230; <a href="https://babyphd.net/2018/07/17/meepwn-ctf-2018-pycalx2/" class="more-link">Continue reading <span class="screen-reader-text">MEEPWN CTF 2018 - PyCalx2</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?ssl=1"><img data-attachment-id="735" data-permalink="https://babyphd.net/2018/07/17/meepwn-ctf-2018-pycalx2/2018-07-17_19-46-56/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?fit=818%2C331&amp;ssl=1" data-orig-size="818,331" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="2018-07-17_19-46-56" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?fit=300%2C121&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?fit=604%2C244&amp;ssl=1" class="aligncenter wp-image-735 size-full" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?resize=604%2C244&#038;ssl=1" alt="" width="604" height="244" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?w=818&amp;ssl=1 818w, https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?resize=300%2C121&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?resize=768%2C311&amp;ssl=1 768w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Bài này code giống hệt bài 1, khác mỗi cái là biến <code>op</code> bây giờ cũng không được chứa các ký tự trong mảng <code>['(',')','[',']','\'','"']</code> nữa, do đó không thể dùng kiểu <code>+'</code> để break giá trị của <code>value2</code> ra ngoài chuỗi. Nói cách khác, <code>value1</code> và <code>value2</code> đều sẽ chỉ là các string đơn thuần.<span id="more-734"></span></p>
+<p>Mình search thử thì thấy Python3.6 có một tính năng mới là <a href="https://docs.python.org/3/whatsnew/3.6.html" target="_blank" rel="noopener">Formatted string literals</a>, hoạt động như sau:</p>
+<pre>Python 3.6.1 (v3.6.1:69c0db5, Mar 21 2017, 17:54:52) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; a = 'xxx'
+&gt;&gt;&gt; f'{a}'
+'xxx'
+&gt;&gt;&gt; f'{0 if 2 &gt; 3 else 1}'
+'1'</pre>
+<p>Có thể thấy đây gần như là hướng duy nhất của bài này.</p>
+<p>Nếu <code>op = +f</code>, chuỗi được eval sẽ có dạng  <span style="color: #222222; font-family: monospace, serif;"><span style="font-size: 14px; background-color: #e9ebec;"><code>calc_eval = 'value1'+f'value2'</code></span></span>. Tương tự bài 1, chúng ta muốn dựa vào output của hàm eval để leak flag, mà output chỉ được in ra khi kết quả eval là số, là <code>'True'</code> hoặc <code>'False'</code>. Như thế dẫn đến một số suy luận sau:</p>
+<ol>
+<li>Vì <code>value1</code> kiểu gì cũng chỉ là chuỗi đơn thuần, nên sau khi eval nó sẽ vẫn là chính nó. Mặt khác, <code>value1</code> không thể là số vì nếu thế, <code>value2</code> cũng phải là số, chẳng có tác dụng gì. Vậy, <code>value1</code> là chữ.</li>
+<li>Nếu <code>value1</code> là chữ, thì kết quả sau khi eval không thể là số, nghĩa là chúng ta chỉ có thể thấy được output nếu eval ra <code>True</code> hoặc <code>False</code>, thì <code>value1</code> cần là một phần của <code>True</code> hoặc <code>False</code> (ví dụ <code>Tr</code> hoặc <code>Fals</code>, để sau khi kết hợp với <code>value2</code> sẽ ra giá trị hoàn chỉnh). Về lý thuyết chúng ta có thể để <code>value2</code> trả về đầy đủ chuỗi <code>True</code> hoặc <code>False</code>, tuy nhiên đề bài không cho phép <code>value1</code> là một chuỗi rỗng.</li>
+<li>Dạng biểu thức <code>f'{0 if 2 &gt; 3 else 1}'</code> có thể cho phép chúng ta leak flag giống bài 1, kiểu như <code>f'{'e' if 'MeePwn' in FLAG else 'x'}'</code>. Với biểu thức này, kết hợp với <code>value1 = Tru</code> thì khi nhận được output là <code>True</code>, chúng ta kết luận được FLAG có chứa chuỗi <code>MeePwn</code>, và ngược lại.</li>
+</ol>
+<p>Tất nhiên ở trên chỉ là ví dụ thôi, vì thực tế đề bài không cho dùng <code>'</code> trong <code>value2</code>. Sau một hồi ngồi nhìn màn hình, mình nghĩ ra một hướng khá là cần cù bù thông minh.</p>
+<pre>Content-Disposition: form-data; name="value1"
+
+Tru
+----------954427002
+Content-Disposition: form-data; name="op"
+
++f
+----------954427002
+Content-Disposition: form-data; name="value2"
+
+{source % 101 if source % 77 in FLAG else x}
+----------954427002
+Content-Disposition: form-data; name="source"
+
+%c</pre>
+<p>Output nhận được là <code>True</code> (hợp lý vì FLAG có chứa chữ <code>M</code> trong từ <code>MeePwn</code>).</p>
+<p>Nhưng check từng ký tự thì chỉ có thể tìm được charset của FLAG mà thôi, mình cần check được nhiều hơn. Do <code>value2</code> dài tối đa 64 ký tự, mình cố gắng xóa bớt mấy khoảng trắng, được như sau:</p>
+<pre>Content-Disposition: form-data; name="value1"
+
+Tru
+----------954427002
+Content-Disposition: form-data; name="op"
+
++f
+----------954427002
+Content-Disposition: form-data; name="value2"
+
+{source%101 if source%77+source%101+source%101 in FLAG else x}
+----------954427002
+Content-Disposition: form-data; name="source"
+
+%c</pre>
+<p>3 ký tự một lúc là khá ổn, đủ để mình tìm được đến <code>MeePwnCTF{python3.6[_strikes_backk</code>. Sau đó thì phát sinh một vấn đề, đó là với 2 ký tự <code>kk</code>, mình tìm được 2 chuỗi thỏa mãn là <code>kkk</code> và <code>kk}</code>. Cái sau chắc là phần kết của FLAG rồi, nhưng cái đầu thì khá là bế tắc, do không biết cần chính xác bao nhiêu chữ <code>k</code>. Mình có thể thử submit dần luôn trên scoreboard, nhưng ngại nhỡ bị ban thì mang tội với team, còn nếu clone một nick mới để thử thì lại làm tăng số đội giải được, điểm của mình cũng bị ảnh hưởng. Đều không vẹn toàn.</p>
+<p>Tự nhiên mình nghĩ đến một hướng, mặc dù đoán là không được nhưng vẫn quyết định thử:</p>
+<pre>&gt;&gt;&gt; '%c' % 49 * 3
+'111'</pre>
+<p>Kỳ diệu. Mình cứ sợ là nó sẽ thành <code>'%c' % 147</code>.</p>
+<p>FLAG: <code>MeePwnCTF{python3.6[_strikes_backkkkkkkkkkkk)}</code></p>
+<p>P.S: Bài này Jinmo làm theo một cách thực sự rất đẹp và đáng được ngợi ca, mọi người có thể đọc tại <a href="https://github.com/Jinmo/ctfs/blob/master/2018/meepwn/pycalx_both.py" target="_blank" rel="noopener">đây</a>. Kudos to him!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">734</post-id>	</item>
+	</channel>
+</rss>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Introduction to Threshold signature scheme | BabyPhD CTF Team</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://babyphd.net/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://babyphd.net/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<script type='text/javascript'>function ctSetCookie(c_name, value, def_value){document.cookie = c_name + '=' + escape(value) + '; path=/';}ctSetCookie('ct_checkjs', '1181016728', '0');</script><link rel='dns-prefetch' href='https://s0.wp.com/' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/babyphd.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.2"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='../../../wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css%3Fver=3.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='../../../wp-content/themes/twentythirteen/style.css%3Fver=2013-07-18.css' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='https://babyphd.net/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='../../../wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css%3Fver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='../../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=7.5.2.css' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js%3Fver=20190204'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctPublic = {"_ajax_nonce":"a204603c59","_ajax_url":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../wp-content/plugins/cleantalk-spam-protect/js/apbct-public.min.js%3Fver=5.122'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctNocache = {"ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","info_flag":"","set_cookies_flag":"","blog_home":"https:\/\/babyphd.net\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../wp-content/plugins/cleantalk-spam-protect/js/cleantalk_nocache.min.js%3Fver=5.122'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Deciphering Ceasar basic concept' href='../08/deciphering-ceasar-basic-concept/index.html' />
+<link rel='next' title='Basic concepts of Chinese Remainder Theorem with respect of RSA/AES' href='../11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/index.html' />
+<meta name="generator" content="WordPress 5.2.2" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='https://wp.me/p72HMd-6r' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2016%252F03%252F10%252Fintroduction-to-threshold-signature-scheme%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2016%252F03%252F10%252Fintroduction-to-threshold-signature-scheme%252F&amp;format=xml" />
+
+<link rel='dns-prefetch' href='https://v0.wordpress.com/'/>
+<link rel='dns-prefetch' href='https://i0.wp.com/'/>
+<link rel='dns-prefetch' href='https://i1.wp.com/'/>
+<link rel='dns-prefetch' href='https://i2.wp.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+			<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(../../../wp-content/themes/twentythirteen/images/headers/star.png) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+		@media (max-width: 767px) {
+			.site-header {
+				background-size: 768px auto;
+			}
+		}
+		@media (max-width: 359px) {
+			.site-header {
+				background-size: 360px auto;
+			}
+		}
+		</style>
+	
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Introduction to Threshold signature scheme" />
+<meta property="og:url" content="https://babyphd.net/2016/03/10/introduction-to-threshold-signature-scheme/" />
+<meta property="og:description" content="THRESHOLD SIGNATURE SCHEME Introduction Assuming there are 20 employees in a company, and if each employee has his or her own copy of the secret key then it is hard to assure on individuals due to …" />
+<meta property="article:published_time" content="2016-03-10T03:07:10+00:00" />
+<meta property="article:modified_time" content="2016-03-11T10:49:56+00:00" />
+<meta property="og:site_name" content="BabyPhD CTF Team" />
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="Introduction to Threshold signature scheme" />
+<meta name="twitter:card" content="summary" />
+
+<!-- End Jetpack Open Graph Tags -->
+			<style type="text/css" id="wp-custom-css">
+				code {
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 2px;
+    color: #222;
+    background: #f2f4f5;
+}			</style>
+		</head>
+
+<body class="post-template-default single single-post postid-399 single-format-standard sidebar">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="../../../index.html" title="BabyPhD CTF Team" rel="home">
+				<h1 class="site-title">BabyPhD CTF Team</h1>
+				<h2 class="site-description">Nói chung đây là một khái niệm vô cùng trừu tượng</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<button class="menu-toggle">Menu</button>
+					<a class="screen-reader-text skip-link" href="index.html#content" title="Skip to content">Skip to content</a>
+					<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-2"><a href="../../../ctf-wtf/index.html">CTF</a></li>
+</ul></div>
+					<form role="search" method="get" class="search-form" action="../../../index.html">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+						
+				
+<article id="post-399" class="post-399 post type-post status-publish format-standard hentry category-crypto tag-crypto">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">Introduction to Threshold signature scheme</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="index.html" title="Permalink to Introduction to Threshold signature scheme" rel="bookmark"><time class="entry-date" datetime="2016-03-10T03:07:10+00:00">March 10, 2016</time></a></span><span class="categories-links"><a href="../../../category/crypto/index.html" rel="category tag">crypto</a></span><span class="tags-links"><a href="../../../tag/crypto/index.html" rel="tag">crypto</a></span><span class="author vcard"><a class="url fn n" href="../../../author/chuymichxinhdep/index.html" title="View all posts by chuymichxinhdep" rel="author">chuymichxinhdep</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p><strong>THRESHOLD SIGNATURE SCHEME</strong></p>
+<ol>
+<li><strong>Introduction</strong></li>
+</ol>
+<p>Assuming there are 20 employees in a company, and if each employee has his or her own copy of the secret key then it is hard to assure on individuals due to compromise and machine break down. In the other hand, if there is a valid signature requires all 20 employees’ signature in the company then it will be very secure but not be easy to use. Therefore we can implement a scheme which requires only sign 5 or more out of 20 employees then it will be valid and that is exactly what a (5,20) threshold signature scheme tries to achieve. In addition, if a threat agent wants to compromise the system and obtain a message, he must compromise at least 5 people in the scheme and that is a harder thing to do compared to a traditional public scheme.</p>
+<p><span id="more-399"></span></p>
+<p><strong>2. Threshold signature scheme</strong></p>
+<p>Threshold signature scheme is a branch of public key cryptography and multi-party computation particularly. In a k-out-of-n threshold crypto-system (k, n) where 1 &lt; k ≤ n, we generate and split the secret decryption exponent d into n different pieces D<sub>1</sub>,…,D<sub>n</sub>, which are then distributed privately to n parties. This enables:</p>
+<p>• Knowledge of any k or more D<sub>i</sub> pieces makes D easily computable.</p>
+<p>• Knowledge of any k- 1 or fewer D<sub>i</sub> pieces leaves D completely undetermined (in the sense that all its possible values are equally likely) [1]</p>
+<p><strong>2.1. Shared RSA Threshold Scheme</strong></p>
+<p>Similarly to traditional RSA, in shared RSA scheme, we have the public components are moduli N= pq and the encryption exponent e where e is co-prime to N. Additionally, both Boyd [2] and Frankel [3] independently proposed a simple and solution for distributed RSA. The decryption key d is additively shared amongst n parties where d = d<sub>1</sub> + d<sub>2</sub> + · · · + d<sub>n</sub>, and signing is simply calculated as follows:</p>
+<p>s = m<sup>d</sup>= m<sup>d</sup><sub>1</sub>· · · m<sup>d</sup><sub>n </sub>(mod N), and each s<sub>i</sub> = m<sup>di</sup> (mod N) is called the partial signature or signature share.</p>
+<p>Decryption is more complicated as there are more parties who get involved in the scheme. Assuming there are n parties and the prime factors of N remain unknown to every person. Each party Pi now only knows the tuple &lt; p<sub>i</sub>, q<sub>i</sub>, d<sub>i</sub> &gt; and keeps it secret to any other parties, and they are also required to satisfy the four following conditions:</p>
+<p>1. p is an unknown big prime number and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-1.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>2. q is an unknown big prime number and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-2.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>3. The unknown decryption exponent <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-3.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>4. And ed = 1 (mod φ(N )).</p>
+<p>I am going to show a way to encrypt a message and decrypt a cipher text based on Discrete Logarithm Problem presented in [4].</p>
+<ul>
+<li><strong>Encryption: </strong>is similar to RSA : <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-4.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></li>
+<li><strong>Decryption: </strong>each party computes <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-5.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and then sends <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-6.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> to all other parties. Each party knows all <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-7.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and then can recovers the original message (m) [5] as follow:</li>
+</ul>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-8.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<ul>
+<li><strong><em>Advantages</em>: </strong>Simple and easy to deploy.</li>
+<li><strong><em>Disadvantages</em>: </strong>requires a trusted party and there is no verification process to avoid compromised party.</li>
+</ul>
+<p><strong>Proof</strong>:</p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-9.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><strong>Example:</strong></p>
+<p>Let p=47 and q=59, then N=pq=2773 and (p-1)(q-1)=2668. Assume e=17, we can calculate the value for d with 17d=1(mod 2668) or d=157. Each party Pi knows the tuple &lt; p<sub>i</sub>, q<sub>i</sub>, d<sub>i </sub>&gt; : &lt;13,19,61&gt;, &lt;11,23,53&gt;, &lt;23,17,43&gt; respectively where p = 47 =13+11+23 ; q=59=19+23+17; and d=157=61+53+43. If the message is ready for the encryption is represent by m=9, then calculation of the ciphertext yields: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-10.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</p>
+<p>Decipherment of the text requires knowledge of <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-11.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> from all parties then it follows that:</p>
+<p>M <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-12.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-13.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-14.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-15.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> =9, which is the original message.</p>
+<p><strong>2.2. Shamir’s Secret Sharing Scheme and Lagrange Coefficient</strong></p>
+<p>A trusted dealer has a secret s and chooses a large prime number p &gt; n, the number of parties. Unless otherwise stated, all arithmetic operations are done modulo p. The dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P(x) = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-16.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi gets share s<sub>i</sub>= P(i) privately from the dealer. To reconstruct the secret <em>s</em>, any <em>t</em> parties come together. They can recover the secret by solving the system of linear equations: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-17.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . We can also denote <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-18.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</p>
+<p><strong>Proof</strong>:</p>
+<p>Larrange interpolation over <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-19.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> with <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-20.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><strong>Example</strong>:</p>
+<p>Shamir’s threshold (3,4) over Z<sub>7</sub>:</p>
+<p><em>Distribution: </em>Dealer has secret s=4 and picks <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-21.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Hence, polynomial <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-22.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Dealer sends s<sub>1</sub>=4 to P<sub>1</sub>, s<sub>2</sub>=0 to P<sub>2</sub>, s<sub>3</sub>=6 to P<sub>1</sub>, s<sub>4</sub>=1 to P<sub>4</sub>.</p>
+<p><em>Reconstruction: </em>When P<sub>1</sub>, P<sub>3</sub> and P<sub>4</sub> come together, we have:</p>
+<p><em>s</em> = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-23.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-24.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-25.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> 4</p>
+<p><strong>2.3. Threshold ElGamal based on Shamir’s Secret Sharing Scheme </strong></p>
+<p>2.3.1 Threshold ElGamal scheme</p>
+<p>Similarly to traditional ElGamal encryption scheme, in threshold ElGamal, we have the public components are (p,g,h) and private key <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-26.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> in threshold environment. The dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P(x) = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-27.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi gets share s<sub>i</sub>= P(i) privately from the dealer. This scheme of both construction and reconstruction of the secret is similar to the previous scheme based on Shamir’s Lagrange.</p>
+<p><strong>Example</strong>: public key (23, 5, 8) and private key = 6 in a (3,5)-threshold scheme [6].</p>
+<ul>
+<li><em>Standard ElGamal encryption</em> with message m and public key.</li>
+</ul>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-28.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<ul>
+<li><em>Decryption</em></li>
+</ul>
+<p>Trusted dealer and every party can receive cipher = (B, c). Assume 3 parties {2,4,5} meet together to compute decryption share:</p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-29.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-30.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-31.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-32.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-33.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>Trusted dealer computes <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-34.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> using Shamir’s Lagrange: <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-35.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Then compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-36.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>However, this scheme still requires a trusted third party (dealer) which is the most disadvantage when being compromised. Broadcasting partial secret information is used to avoid this problem using distributed key generation (DKG) as follow:</p>
+<ul>
+<li>Each party acts as dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P<sub>i</sub>(x) = <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-37.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi sends s<sub>i,j</sub>= P<sub>i</sub>(j) privately to party P<sub>j</sub>. All parties compute their secret key share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-38.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . And secret key <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-39.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</li>
+<li>To decrypt a given ciphertext (c<sub>1</sub>,c<sub>2</sub>). Let <em>Q </em>be any subgroup of size <em>t</em>, for example {P<sub>1</sub>,…,P<sub>t</sub>}. Each party P<sub>j</sub> of Q broadcast <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-40.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> then compute <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-41.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Thereafter, compute <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-42.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</li>
+</ul>
+<p>It is easy to prove that nobody can gain information about <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-43.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> , however there is no verification if parties deviate from this scheme. In general, verifiable secret sharing ensures that even if the dealer is malicious there is a well-defined secret that the players can later reconstruct while in standard secret sharing, the dealer is assumed to be trusted. The concept of verifiable secret sharing (VSS) was first introduced in [7]. Therefore, I am going to show you two schemes to verify secret sharing: Feldman’s VSS scheme.</p>
+<p>2.3.2 Threshold El-Gamal based on DKG and Feldman’s Verifiable Secret Sharing</p>
+<p>Each party <em>P<sub>i</sub></em> picks a<sub>i,1</sub>, …, a<sub>i,t−1 </sub>uniformly random from Z𝑝 in given group <em>G = &lt;g&gt; </em>of order <em>p </em>and defines P<sub>i</sub>(x) = <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-44.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi shares s<sub>i,j</sub>= P<sub>i</sub>(j) privately to party P<sub>j</sub> and broadcasts <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-45.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-46.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Hence all parties P<sub>j</sub> can check own share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-47.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> , compute key share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-48.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and compute verification key of P<sub>i </sub>: <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-49.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>To decrypt a given ciphertext (c<sub>1</sub>,c<sub>2</sub>). Let <em>Q </em>be any subgroup of size <em>t</em>, for example {P<sub>1</sub>,…,P<sub>t</sub>}. Each party P<sub>j</sub> of Q broadcast <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-50.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> similar to DKG scheme then compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-51.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Use Zero knowledge proof to prove <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-52.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> Thereafter, compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-53.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .[8]</p>
+<ul>
+<li><strong><em>Advantages</em></strong>: It does not require any trusted dealer and still can generate the public/private key pair efficiently with verification process.</li>
+<li><strong><em>Disadvantage</em></strong><em>s</em>: All parties’ identity need to be known to all other parties through every step.</li>
+</ul>
+<p><strong>4.Conclusion</strong></p>
+<p>Different applied schemes using threshold signature scheme is proposed in this report that includes: RSA shared secret, Shamir’s secret sharing, Elgamal threshold scheme, distributed key generation and verification as well as advantages and disadvantages of each scheme.</p>
+<p>-cmxd</p>
+<p><strong>REFERENCES</strong></p>
+<p>[1] A. Shamir. How to share a secret. Communications of the ACM, 22, 612–613, 1979</p>
+<p>[2] C. Boyd. Digital Multisignatures. Cryptography and Coding 1989. Institute of Mathematics and its application, IMA. 241–246, Clarendon Press, 1989</p>
+<p>[3] Y. Frankel. A practical protocol for large group oriented networks. Advances in Cryptology – EUROCRYPT ’89, Springer-Verlag LNCS 434, 56–61, 1989.</p>
+<p>[4] P. Paillier. Public key crypto-systems based on composite residue classes. Advances in Cryptography - EIROCRYPT ’99. Springer-Verlag LNCS 1070, pp. 72-83, 1996.</p>
+<p>[5] H.L. Nguyen, RSA Threshold Cryptograph. University of Bristol, 2005.</p>
+<p>[6] Björn Groneberg, Threshold Cryptography slides. University of Potsdam, 2013.</p>
+<p>[7] Benny Chor, Shafi Goldwasser, Silvio Micali, Baruch Awerbuch. Verifiable secret sharing and achieving simultaneity in the presence of faults, SFCS '85 Proceedings of the 26th Annual Symposium on Foundations of Computer Science p. 383-395,1985.</p>
+<p>[8] Dr. S.J.A. de Hoogh, Threshold Cryptography slides. TU/D, 2014.</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-399" class="share-twitter sd-button share-icon no-text" href="../10/introduction-to-threshold-signature-scheme/index.html%3Fshare=twitter.html" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-399" class="share-facebook sd-button share-icon no-text" href="../10/introduction-to-threshold-signature-scheme/index.html%3Fshare=facebook.html" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+					<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+
+			<a href="../08/deciphering-ceasar-basic-concept/index.html" rel="prev"><span class="meta-nav">&larr;</span> Deciphering Ceasar basic concept</a>			<a href="../11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/index.html" rel="next">Basic concepts of Chinese Remainder Theorem with respect of RSA/AES <span class="meta-nav">&rarr;</span></a>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+					
+<div id="comments" class="comments-area">
+
+	
+	
+</div><!-- #comments -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+	<div id="tertiary" class="sidebar-container" role="complementary">
+		<div class="sidebar-inner">
+			<div class="widget-area">
+						<aside id="recent-posts-6" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="../../../2018/08/01/meepwn-ctf-2018-meepwn-contract/index.html">MEEPWN CTF 2018 - meepwn contract</a>
+									</li>
+											<li>
+					<a href="../../../2018/07/17/meepwn-ctf-2018-xss/index.html">MEEPWN CTF 2018 - XSS</a>
+									</li>
+											<li>
+					<a href="../../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html">MEEPWN CTF 2018 - PyCalx2</a>
+									</li>
+											<li>
+					<a href="../../../2017/08/10/wtf-is-safefinderoperatormac-campaign/index.html">What is SafeFinder/OperatorMac campaign?</a>
+									</li>
+											<li>
+					<a href="../../../2017/07/27/meepwnctf-2017-injection/index.html">MeepwnCTF 2017 - injection</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">justcallmedude</span> on <a href="../../11/24/hackyou-ctf-su-2016/index.html#comment-8120">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">zun</span> on <a href="../../11/24/hackyou-ctf-su-2016/index.html#comment-7474">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">Tony</span> on <a href="../12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html#comment-7218">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</a></li><li class="recentcomments"><span class="comment-author-link">john</span> on <a href="../../09/11/whitehat-contest-11-pwn400/index.html#comment-7211">Whitehat Contest 12 - Pwn400</a></li><li class="recentcomments"><span class="comment-author-link"><a href='../../../index.html' rel='external nofollow' class='url'>chuymichxinhdep</a></span> on <a href="../../09/11/whitehat-contest-11-pwn400/index.html#comment-7210">Whitehat Contest 12 - Pwn400</a></li></ul></aside><aside id="archives-3" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+				<li><a href='../../../2018/08/index.html'>August 2018</a></li>
+	<li><a href='../../../2018/07/index.html'>July 2018</a></li>
+	<li><a href='../../../2017/08/index.html'>August 2017</a></li>
+	<li><a href='../../../2017/07/index.html'>July 2017</a></li>
+	<li><a href='../../../2017/05/index.html'>May 2017</a></li>
+	<li><a href='../../11/index.html'>November 2016</a></li>
+	<li><a href='../../09/index.html'>September 2016</a></li>
+	<li><a href='../../07/index.html'>July 2016</a></li>
+	<li><a href='../../04/index.html'>April 2016</a></li>
+	<li><a href='../index.html'>March 2016</a></li>
+	<li><a href='../../../2015/10/index.html'>October 2015</a></li>
+	<li><a href='../../../2015/09/index.html'>September 2015</a></li>
+	<li><a href='../../../2015/05/index.html'>May 2015</a></li>
+	<li><a href='../../../2015/04/index.html'>April 2015</a></li>
+	<li><a href='../../../2015/02/index.html'>February 2015</a></li>
+	<li><a href='../../../2015/01/index.html'>January 2015</a></li>
+		</ul>
+			</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+				<li class="cat-item cat-item-32"><a href="../../../category/chuymich/index.html">chuymich</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../../category/crypto/index.html">crypto</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="../../../category/forensic/index.html">forensic</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../../category/misc/index.html">misc</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../../category/pwn/index.html">pwn</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../../category/re/index.html">re</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="../../../category/research/index.html">research</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="../../../category/smartcontract/index.html">smartcontract</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../../category/uncategorized/index.html">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../../category/vietnamese/index.html">vietnamese</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../../category/web/index.html">web</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="../../../category/whitehat/index.html">whitehat</a>
+</li>
+		</ul>
+			</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="../../../tag/2015/index.html" class="tag-cloud-link tag-link-36 tag-link-position-1" style="font-size: 8pt;" aria-label="2015 (1 item)">2015</a>
+<a href="../../../tag/babyphd/index.html" class="tag-cloud-link tag-link-35 tag-link-position-2" style="font-size: 8pt;" aria-label="babyphd (1 item)">babyphd</a>
+<a href="../../../tag/backdoorctf/index.html" class="tag-cloud-link tag-link-33 tag-link-position-3" style="font-size: 8pt;" aria-label="backdoorCTF (1 item)">backdoorCTF</a>
+<a href="../../../tag/crypto/index.html" class="tag-cloud-link tag-link-14 tag-link-position-4" style="font-size: 22pt;" aria-label="crypto (3 items)">crypto</a>
+<a href="../../../tag/css/index.html" class="tag-cloud-link tag-link-42 tag-link-position-5" style="font-size: 8pt;" aria-label="css (1 item)">css</a>
+<a href="../../../tag/gaylord/index.html" class="tag-cloud-link tag-link-34 tag-link-position-6" style="font-size: 8pt;" aria-label="gaylord (1 item)">gaylord</a>
+<a href="../../../tag/heap/index.html" class="tag-cloud-link tag-link-37 tag-link-position-7" style="font-size: 8pt;" aria-label="heap (1 item)">heap</a>
+<a href="../../../tag/list-linked/index.html" class="tag-cloud-link tag-link-28 tag-link-position-8" style="font-size: 8pt;" aria-label="list-linked (1 item)">list-linked</a>
+<a href="../../../tag/malware/index.html" class="tag-cloud-link tag-link-43 tag-link-position-9" style="font-size: 8pt;" aria-label="malware (1 item)">malware</a>
+<a href="../../../tag/mughthesec/index.html" class="tag-cloud-link tag-link-45 tag-link-position-10" style="font-size: 8pt;" aria-label="Mughthesec (1 item)">Mughthesec</a>
+<a href="../../../tag/operatormac/index.html" class="tag-cloud-link tag-link-44 tag-link-position-11" style="font-size: 8pt;" aria-label="OperatorMac (1 item)">OperatorMac</a>
+<a href="../../../tag/pwn/index.html" class="tag-cloud-link tag-link-27 tag-link-position-12" style="font-size: 8pt;" aria-label="pwn (1 item)">pwn</a>
+<a href="../../../tag/re/index.html" class="tag-cloud-link tag-link-26 tag-link-position-13" style="font-size: 8pt;" aria-label="re (1 item)">re</a>
+<a href="../../../tag/side-channel/index.html" class="tag-cloud-link tag-link-29 tag-link-position-14" style="font-size: 8pt;" aria-label="side-channel (1 item)">side-channel</a>
+<a href="../../../tag/sqli/index.html" class="tag-cloud-link tag-link-41 tag-link-position-15" style="font-size: 8pt;" aria-label="sqli (1 item)">sqli</a>
+<a href="../../../tag/unserialize/index.html" class="tag-cloud-link tag-link-40 tag-link-position-16" style="font-size: 8pt;" aria-label="unserialize (1 item)">unserialize</a>
+<a href="../../../tag/xss/index.html" class="tag-cloud-link tag-link-39 tag-link-position-17" style="font-size: 8pt;" aria-label="xss (1 item)">xss</a></div>
+</aside>			</div><!-- .widget-area -->
+		</div><!-- .sidebar-inner -->
+	</div><!-- #tertiary -->
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			
+			<div class="site-info">
+								<a href="https://wordpress.org/">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+		<div style="display:none">
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/babyphd.net\/2016\/03\/10\/introduction-to-threshold-signature-scheme\/":399};
+	</script>
+				<script type='text/javascript' src='../../../wp-content/plugins/jetpack/_inc/build/photon/photon.min.js%3Fver=20190201'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202333'></script>
+<script type='text/javascript' src='../../../wp-content/themes/twentythirteen/js/functions.js%3Fver=20160717'></script>
+<script type='text/javascript' src='../../../wp-includes/js/wp-embed.min.js%3Fver=5.2.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js%3Fver=7.5.2'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+<script type='text/javascript' src='https://stats.wp.com/e-202333.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.5.2',blog:'104079289',post:'399',tz:'0',srv:'babyphd.net'} ]);
+	_stq.push([ 'clickTrackerInit', '104079289', '399' ]);
+</script>
+</body>
+</html>

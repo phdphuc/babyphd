@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Deciphering Ceasar basic concept | BabyPhD CTF Team</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://babyphd.net/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://babyphd.net/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<script type='text/javascript'>function ctSetCookie(c_name, value, def_value){document.cookie = c_name + '=' + escape(value) + '; path=/';}ctSetCookie('ct_checkjs', '1181016728', '0');</script><link rel='dns-prefetch' href='https://s0.wp.com/' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/babyphd.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.2"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='../../../../wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css%3Fver=3.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='../../../../wp-content/themes/twentythirteen/style.css%3Fver=2013-07-18.css' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='https://babyphd.net/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='../../../../wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css%3Fver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='../../../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=7.5.2.css' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js%3Fver=20190204'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctPublic = {"_ajax_nonce":"a204603c59","_ajax_url":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/cleantalk-spam-protect/js/apbct-public.min.js%3Fver=5.122'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctNocache = {"ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","info_flag":"","set_cookies_flag":"","blog_home":"https:\/\/babyphd.net\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/cleantalk-spam-protect/js/cleantalk_nocache.min.js%3Fver=5.122'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='[Whitehat GrandPrix 2015] Writeup' href='../../../../2015/10/28/whitehat-grandprix-2015-writeup/index.html' />
+<link rel='next' title='Introduction to Threshold signature scheme' href='../../introduction-to-threshold-signature-scheme/index.html' />
+<meta name="generator" content="WordPress 5.2.2" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='https://wp.me/p72HMd-67' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2016%252F03%252F08%252Fdeciphering-ceasar-basic-concept%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2016%252F03%252F08%252Fdeciphering-ceasar-basic-concept%252F&amp;format=xml" />
+
+<link rel='dns-prefetch' href='https://v0.wordpress.com/'/>
+<link rel='dns-prefetch' href='https://i0.wp.com/'/>
+<link rel='dns-prefetch' href='https://i1.wp.com/'/>
+<link rel='dns-prefetch' href='https://i2.wp.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+			<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(../../../../wp-content/themes/twentythirteen/images/headers/star.png) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+		@media (max-width: 767px) {
+			.site-header {
+				background-size: 768px auto;
+			}
+		}
+		@media (max-width: 359px) {
+			.site-header {
+				background-size: 360px auto;
+			}
+		}
+		</style>
+	
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Deciphering Ceasar basic concept" />
+<meta property="og:url" content="https://babyphd.net/2016/03/08/deciphering-ceasar-basic-concept/" />
+<meta property="og:description" content="Deciphering &nbsp; Ciphertext: “VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganne NzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbzn oyvwiraBznmnyurgzbrvyvwxuroorabzNaa…" />
+<meta property="article:published_time" content="2016-03-08T17:15:10+00:00" />
+<meta property="article:modified_time" content="2016-03-11T10:50:26+00:00" />
+<meta property="og:site_name" content="BabyPhD CTF Team" />
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="Deciphering Ceasar basic concept" />
+<meta name="twitter:card" content="summary" />
+
+<!-- End Jetpack Open Graph Tags -->
+			<style type="text/css" id="wp-custom-css">
+				code {
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 2px;
+    color: #222;
+    background: #f2f4f5;
+}			</style>
+		</head>
+
+<body class="post-template-default single single-post postid-379 single-format-standard sidebar">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="../../../../index.html" title="BabyPhD CTF Team" rel="home">
+				<h1 class="site-title">BabyPhD CTF Team</h1>
+				<h2 class="site-description">Nói chung đây là một khái niệm vô cùng trừu tượng</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<button class="menu-toggle">Menu</button>
+					<a class="screen-reader-text skip-link" href="index.html#content" title="Skip to content">Skip to content</a>
+					<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-2"><a href="../../../../ctf-wtf/index.html">CTF</a></li>
+</ul></div>
+					<form role="search" method="get" class="search-form" action="../../../../index.html">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+						
+				
+<article id="post-379" class="post-379 post type-post status-publish format-standard hentry category-crypto tag-crypto">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">Deciphering Ceasar basic concept</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="index.html" title="Permalink to Deciphering Ceasar basic concept" rel="bookmark"><time class="entry-date" datetime="2016-03-08T17:15:10+00:00">March 8, 2016</time></a></span><span class="categories-links"><a href="../../../../category/crypto/index.html" rel="category tag">crypto</a></span><span class="tags-links"><a href="../../../../tag/crypto/index.html" rel="tag">crypto</a></span><span class="author vcard"><a class="url fn n" href="../../../../author/chuymichxinhdep/index.html" title="View all posts by chuymichxinhdep" rel="author">chuymichxinhdep</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p><strong>Deciphering</strong></p>
+<p>&nbsp;</p>
+<table>
+<tbody>
+<tr>
+<td>Ciphertext: “<em>VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganne</em></p>
+<p><em>NzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbzn </em></p>
+<p><em>oyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuev</em></p>
+<p><em>wsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxs</em></p>
+<p><em>hegnzZnva</em>”</td>
+</tr>
+</tbody>
+</table>
+<p>The given ciphertext has only letters without space, punctuation or separated key, there are two classic cipher systems such as substitution cipher and transposition cipher which are known to be easy to attack by using frequency analysis or bruteforce techniques.<span id="more-379"></span></p>
+<p><strong>1. Bruteforce</strong></p>
+<p>Firstly, it is suggested that some sorts of simple substitution cipher has been used and Ceasar cipher is one of the most popular and simplest known encryption techniques. This encryption can be represented by aligning two alphabets; the ciphertext is the plain alphabet rotated left or right by some numbers of positions. It can be represented using modular arithmetic as well by first converting the letters into numbers such as A = 0, B = 1,..., Z = 25. Encryption of a letter <em>x</em> by a shift <em>n</em> can be described as E(x)=(x+n)mod 26 and the decryption is similarly D(x)=(x-n) mod 26. One way to break this is printing out all results with possible shifts of ciphertext by using bruteforce where the shift ranges from 1 to 26 (assuming they are only lower/uppercase letters in ASCII table). By using the Python program [1], there is a readable output as follow:</p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>This result is in Dutch language and it means: “<em>In December, bringing Juliusen Walter Hollander's two brothers Edith Margot to Amsterdam Anne would like to come but it must no be zero in some time with Grandma Omazal have tired of hard-to for Anne no no few weeks to keep writes Edith Frank Smash letter to Gertrud Naumann, their former neighbor in Frankfurtam Main</em>”.</p>
+<p><strong>2. Frequency analysis</strong></p>
+<p>By analysing the frequency of ciphertext’s letters, and by knowing the expected distribution of letters in the original language of the plaintext, we can easily decipher substitution ciphertext by trying several combinations of mappings between ciphertext and plaintext letters based on the statistic. The letter frequency of the given ciphertext was derived by using the script [2] which shows the most frequently used letter: “R”. Given that the plaintext is in English, Dutch, German or Turkish, and there are many published frequency result extracted from common books such as: “<em>etaoinsrhldcumfpgwybvkxjqz</em>”, “<em>enatirodslghvkmubpwjczfxy(ëéó)q</em>”, “<em>enisratdhulcgmobw fkzvüpäßjöyqx</em>”, and “<em>aeinrlıdkmuytsboüşzgçhğvcöpfjwxq</em>” respectively<sup><a id="post-379-footnote-ref-1" href="index.html#post-379-footnote-1">[1]</a></sup>.</p>
+<p>In substituting the letters appeared the most in ciphertext by letters from those result above, I recognize the language of plaintext must be in Dutch. Because after replacing 2 most frequently used Dutch letter R, A in ciphertext with E, N respectively, I found out that the 3-letter-word “<em>een</em>” <em>(</em>means “<em>a</em>” in English) appeared with high frequency and this word is one of the most popular Dutch words<sup><a id="post-379-footnote-ref-2" href="index.html#post-379-footnote-2">[2]</a></sup>. Keep replacing others based on the popular Dutch frequency letter with some guessing as described in [3], we get the final text which is similar to the first result.</p>
+<p><strong>3.Encryption algorithm improvements</strong></p>
+<p><strong>Method 1:</strong></p>
+<p>This encryption can be improved by rotating left or right each letters by different numbers of positions. Firstly we convert the letters into numbers such as A = 0, B = 1,.., Z = 25. Encryption of a letter <em>x<sub>i</sub></em> can be described as E(x_i )=(x_i+n*i)mod 26 and the decryption is similarly D(x_i )=(x_i-n*i) mod 26 where <em>i</em> is the letter’s position in plaintext or ciphertext. It will be difficult for attackers to use frequency analysis without knowing the encipher method and number n. An example of n=2 is described in [4].</p>
+<p><strong>Method 2:</strong></p>
+<p>This encryption can be improved by substituting each letters with a pseudo-random generated array of letters. Given an alphabet array consisting of uppercase and lowercase letters:</p>
+<p>[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]</p>
+<p>We shuffle this array by initializing a basic random generator with a <em>seed</em> number which can be the key or the time when this text was enciphered, then we have a Pseudo-random Array (PRA). We convert the letters into numbers such as A = 0, B = 1,.., Z = 25. Encryption of a letter <em>x</em> can be described as and the decryption is similarly where <em>index</em> is a function shows the letter’s position in array. The result consists of random uppercase or lowercase letters independent of plaintext. It will be difficult for attacker to use frequency analysis despite knowing the encipher method, however attackers can still bruteforce the <em>seed</em> if they know initial array’s order and a small value of <em>seed</em> was implemented. An example of <em>seed</em>=0xFFFFFFF is described in [5].</p>
+<p><strong>However, I've got a question for viewers: <em>Do you think this kind of encryption seems tobe complex but it can still be beaten by simple substitution cipher analysis?</em></strong></p>
+<p><strong>4. Conclusion</strong></p>
+<p>ROT13 is used in this encipher method with replaces a letter with other 13 letters after it in the alphabet. It can be easily broken even in a ciphertext-only scenario by using bruteforce and frequency analysis.</p>
+<p>&nbsp;</p>
+<p>-cmxd</p>
+<p><strong>APPENDIX</strong></p>
+<p><strong>[1]</strong></p>
+<pre class="lang:default decode:true ">import string
+ciphertext = 'VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganneNzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbznoyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuevwsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxshegnzZnva'
+for i in range(0,26):
+    plaintext = ''
+    for c in ciphertext:
+        if c in string.uppercase:
+            newpos = string.uppercase.find(c)+i
+            if newpos&gt;25 : newpos -= 26
+            plaintext += string.uppercase[newpos]
+        if c in string.lowercase:
+            newpos = string.lowercase.find(c)+i
+            if newpos&gt;25 : newpos -= 26
+            plaintext += string.lowercase[newpos]
+    print "Shift:"+str(i)+" : "+plaintext</pre>
+<p>&nbsp;</p>
+<p><strong>[2]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true "># -*- coding: utf-8 -*-
+import collections, string
+cipher = 'VAQRPRZOREOERATRAWHYVHFRAJNYGREUBYYNAQREQRGJRROEBREFINARQVGUZNETBGANNENZFGREQNZNAARJVYTENNTZRRXBZRAZNNEZBRGABTRRARRAGVWQWROVWBZNOYVWIRABZNMNYURGZBRVYVWXUROORABZNAARABTRRACNNEJRXRAQNNEGRUBHQRAFPUEVWSGRQVGUSENAXVARRAOEVRSNNATREGEHQANHZNAAUHAIEBRTREROHHEZRVFWRVASENAXSHEGNZZNVA'
+dem = [[0, chr(i + ord('A'))] for i in range(26)]
+for ch in cipher:
+    if ch not in string.uppercase:
+        continue
+    dem[ord(ch) - ord('A')][0] += 1
+count = {}
+dem.sort()
+dem = dem[::-1]
+print "Letter Frequency: ", dem
+for ch in [cipher[i:i+2] for i in xrange(0, len(cipher)-1)]:
+    if (not count.get(ch)):
+        count[ch]=1
+    else:
+        count[ch]+=1
+print "2 letters Frequency: ", collections.OrderedDict(sorted(count.items(), key=lambda t: t[1]))
+count = {}
+for ch in [cipher[i:i+3] for i in xrange(0, len(cipher)-2)]:
+    if (not count.get(ch)):
+        count[ch]=1
+    else:
+        count[ch]+=1
+print "3 letters Frequency: ",  collections.OrderedDict(sorted(count.items(), key=lambda t: t[1]))</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[3]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">a = {}
+# #e n a t i r o d s l g h v k m u b p w j c z f x y (e e o) q DUTCH
+#e n a r m i t o d u b l j h g s k f w v c z p y x q
+a['R'] = 'E'
+a['A'] = 'N'
+a['N'] = 'A'
+a['E'] = 'R'
+a['Z'] = 'M'
+a['V'] = 'I'
+a['G'] = 'T'
+a['B'] = 'O'
+a['Q'] = 'D'
+a['O'] = 'B'
+a['H'] = 'U'
+a['Y'] = 'L'
+a['W'] = 'J'
+a['U'] = 'K'
+a['T'] = 'G'
+a['X'] = 'U'
+a['S'] = 'F'
+a['F'] = 'S'
+a['J'] = 'W'
+a['I'] = 'V'
+a['P'] = 'C'
+a['M'] = 'Z'
+a['C'] = 'P'
+plaintext = ''
+for ch in cipher:
+    if ch in a.keys():
+        plaintext = plaintext + a[ch]
+    else:
+        plaintext = plaintext + '*'
+print plaintext</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[4]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">import string
+plaintext="IndecemberbrengenJuliusenWalterHollanderdetweebroersvanEdithMargotnaarAmsterdamAnnewilgraagmeekomenmaarmoetnogeeneentijdjebijomablijvenOmazalhetmoeilijkhebbenomAnnenogeenpaarwekendaartehoudenschrijftEdithFrankineenbriefaanGertrudNaumannhunvroegerebuurmeisjeinFrankfurtamMain"
+ciphertext=""
+for i in range(1,len(plaintext)+1):
+    shift = (2*i%26)
+    if plaintext[i-1] in string.uppercase:
+        newpos = string.uppercase.find(plaintext[i-1])+shift
+        if newpos&gt;25 : newpos -= 26
+        ciphertext += string.uppercase[newpos]
+    elif plaintext[i-1] in string.lowercase:
+        newpos = string.lowercase.find(plaintext[i-1])+shift
+        if newpos&gt;25 : newpos -= 26
+        ciphertext += string.lowercase[newpos]
+print "Ciphertext: ", ciphertext
+#Decipher
+plaintext=""
+for i in range(1,len(ciphertext)+1):
+    shift = (2*i%26)
+    if ciphertext[i-1] in string.uppercase:
+        newpos = string.uppercase.find(ciphertext[i-1])-shift
+        if newpos&lt;0 : newpos += 26
+        plaintext += string.uppercase[newpos]
+    elif ciphertext[i-1] in string.lowercase:
+        newpos = string.lowercase.find(ciphertext[i-1])-shift
+        if newpos&lt;0 : newpos += 26
+        plaintext += string.lowercase[newpos]
+print "Plaintext: ", plaintext</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[5]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">import random
+def random_encipher(string,seed):
+   random.seed(seed)
+   alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+   random.shuffle(alphabet)
+   ciphers = ""
+   for letter in string:
+    if ord(letter) &gt;=97:
+       index = ord(letter)-97
+       cipher = alphabet[index]
+       ciphers+=cipher
+    else:
+       index = ord(letter)-65
+       cipher = alphabet[26+index]
+       ciphers+=cipher
+   return ciphers
+def random_decipher(string,seed):
+   random.seed(seed)
+   alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+   random.shuffle(alphabet)
+   plaintext = ""
+   for letter in string:
+    index=alphabet.index(letter)
+    if index &gt;=26:
+       plaintext += chr(65+index-26)
+    else:
+       plaintext += chr(97+index)
+   return plaintext
+ciphertext= random_encipher("IndecemberbrengenJuliusenWalterHollanderdetweebroersvanEdithMargotnaarAmsterdamAnnewilgraagmeekomenmaarmoetnogeeneentijdjebijomablijvenOmazalhetmoeilijkhebbenomAnnenogeenpaarwekendaartehoudenschrijftEdithFrankineenbriefaanGertrudNaumannhunvroegerebuurmeisjeinFrankfurtamMain",0xFFFFFFF )
+print "Ciphertext: ", ciphertext
+print "Plaintext: ",random_decipher(ciphertext, 0xFFFFFFF )</pre>
+<p>&nbsp;</li>
+</ol>
+<ol>
+<li id="post-379-footnote-1">http://www.letterfrequency.org <a href="index.html#post-379-footnote-ref-1">↑</a></li>
+<li id="post-379-footnote-2">https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#Dutch <a href="index.html#post-379-footnote-ref-2">↑</a></li>
+</ol>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-379" class="share-twitter sd-button share-icon no-text" href="index.html%3Fshare=twitter.html" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-379" class="share-facebook sd-button share-icon no-text" href="index.html%3Fshare=facebook.html" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+					<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+
+			<a href="../../../../2015/10/28/whitehat-grandprix-2015-writeup/index.html" rel="prev"><span class="meta-nav">&larr;</span> [Whitehat GrandPrix 2015] Writeup</a>			<a href="../../introduction-to-threshold-signature-scheme/index.html" rel="next">Introduction to Threshold signature scheme <span class="meta-nav">&rarr;</span></a>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+					
+<div id="comments" class="comments-area">
+
+	
+	
+</div><!-- #comments -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+	<div id="tertiary" class="sidebar-container" role="complementary">
+		<div class="sidebar-inner">
+			<div class="widget-area">
+						<aside id="recent-posts-6" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="../../../../2018/08/01/meepwn-ctf-2018-meepwn-contract/index.html">MEEPWN CTF 2018 - meepwn contract</a>
+									</li>
+											<li>
+					<a href="../../../../2018/07/17/meepwn-ctf-2018-xss/index.html">MEEPWN CTF 2018 - XSS</a>
+									</li>
+											<li>
+					<a href="../../../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html">MEEPWN CTF 2018 - PyCalx2</a>
+									</li>
+											<li>
+					<a href="../../../../2017/08/10/wtf-is-safefinderoperatormac-campaign/index.html">What is SafeFinder/OperatorMac campaign?</a>
+									</li>
+											<li>
+					<a href="../../../../2017/07/27/meepwnctf-2017-injection/index.html">MeepwnCTF 2017 - injection</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">justcallmedude</span> on <a href="../../../11/24/hackyou-ctf-su-2016/index.html#comment-8120">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">zun</span> on <a href="../../../11/24/hackyou-ctf-su-2016/index.html#comment-7474">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">Tony</span> on <a href="../../12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html#comment-7218">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</a></li><li class="recentcomments"><span class="comment-author-link">john</span> on <a href="../../../09/11/whitehat-contest-11-pwn400/index.html#comment-7211">Whitehat Contest 12 - Pwn400</a></li><li class="recentcomments"><span class="comment-author-link"><a href='../../../../index.html' rel='external nofollow' class='url'>chuymichxinhdep</a></span> on <a href="../../../09/11/whitehat-contest-11-pwn400/index.html#comment-7210">Whitehat Contest 12 - Pwn400</a></li></ul></aside><aside id="archives-3" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+				<li><a href='../../../../2018/08/index.html'>August 2018</a></li>
+	<li><a href='../../../../2018/07/index.html'>July 2018</a></li>
+	<li><a href='../../../../2017/08/index.html'>August 2017</a></li>
+	<li><a href='../../../../2017/07/index.html'>July 2017</a></li>
+	<li><a href='../../../../2017/05/index.html'>May 2017</a></li>
+	<li><a href='../../../11/index.html'>November 2016</a></li>
+	<li><a href='../../../09/index.html'>September 2016</a></li>
+	<li><a href='../../../07/index.html'>July 2016</a></li>
+	<li><a href='../../../04/index.html'>April 2016</a></li>
+	<li><a href='../../index.html'>March 2016</a></li>
+	<li><a href='../../../../2015/10/index.html'>October 2015</a></li>
+	<li><a href='../../../../2015/09/index.html'>September 2015</a></li>
+	<li><a href='../../../../2015/05/index.html'>May 2015</a></li>
+	<li><a href='../../../../2015/04/index.html'>April 2015</a></li>
+	<li><a href='../../../../2015/02/index.html'>February 2015</a></li>
+	<li><a href='../../../../2015/01/index.html'>January 2015</a></li>
+		</ul>
+			</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+				<li class="cat-item cat-item-32"><a href="../../../../category/chuymich/index.html">chuymich</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../../../category/crypto/index.html">crypto</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="../../../../category/forensic/index.html">forensic</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../../../category/misc/index.html">misc</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../../../category/pwn/index.html">pwn</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../../../category/re/index.html">re</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="../../../../category/research/index.html">research</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="../../../../category/smartcontract/index.html">smartcontract</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../../../category/uncategorized/index.html">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../../../category/vietnamese/index.html">vietnamese</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../../../category/web/index.html">web</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="../../../../category/whitehat/index.html">whitehat</a>
+</li>
+		</ul>
+			</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="../../../../tag/2015/index.html" class="tag-cloud-link tag-link-36 tag-link-position-1" style="font-size: 8pt;" aria-label="2015 (1 item)">2015</a>
+<a href="../../../../tag/babyphd/index.html" class="tag-cloud-link tag-link-35 tag-link-position-2" style="font-size: 8pt;" aria-label="babyphd (1 item)">babyphd</a>
+<a href="../../../../tag/backdoorctf/index.html" class="tag-cloud-link tag-link-33 tag-link-position-3" style="font-size: 8pt;" aria-label="backdoorCTF (1 item)">backdoorCTF</a>
+<a href="../../../../tag/crypto/index.html" class="tag-cloud-link tag-link-14 tag-link-position-4" style="font-size: 22pt;" aria-label="crypto (3 items)">crypto</a>
+<a href="../../../../tag/css/index.html" class="tag-cloud-link tag-link-42 tag-link-position-5" style="font-size: 8pt;" aria-label="css (1 item)">css</a>
+<a href="../../../../tag/gaylord/index.html" class="tag-cloud-link tag-link-34 tag-link-position-6" style="font-size: 8pt;" aria-label="gaylord (1 item)">gaylord</a>
+<a href="../../../../tag/heap/index.html" class="tag-cloud-link tag-link-37 tag-link-position-7" style="font-size: 8pt;" aria-label="heap (1 item)">heap</a>
+<a href="../../../../tag/list-linked/index.html" class="tag-cloud-link tag-link-28 tag-link-position-8" style="font-size: 8pt;" aria-label="list-linked (1 item)">list-linked</a>
+<a href="../../../../tag/malware/index.html" class="tag-cloud-link tag-link-43 tag-link-position-9" style="font-size: 8pt;" aria-label="malware (1 item)">malware</a>
+<a href="../../../../tag/mughthesec/index.html" class="tag-cloud-link tag-link-45 tag-link-position-10" style="font-size: 8pt;" aria-label="Mughthesec (1 item)">Mughthesec</a>
+<a href="../../../../tag/operatormac/index.html" class="tag-cloud-link tag-link-44 tag-link-position-11" style="font-size: 8pt;" aria-label="OperatorMac (1 item)">OperatorMac</a>
+<a href="../../../../tag/pwn/index.html" class="tag-cloud-link tag-link-27 tag-link-position-12" style="font-size: 8pt;" aria-label="pwn (1 item)">pwn</a>
+<a href="../../../../tag/re/index.html" class="tag-cloud-link tag-link-26 tag-link-position-13" style="font-size: 8pt;" aria-label="re (1 item)">re</a>
+<a href="../../../../tag/side-channel/index.html" class="tag-cloud-link tag-link-29 tag-link-position-14" style="font-size: 8pt;" aria-label="side-channel (1 item)">side-channel</a>
+<a href="../../../../tag/sqli/index.html" class="tag-cloud-link tag-link-41 tag-link-position-15" style="font-size: 8pt;" aria-label="sqli (1 item)">sqli</a>
+<a href="../../../../tag/unserialize/index.html" class="tag-cloud-link tag-link-40 tag-link-position-16" style="font-size: 8pt;" aria-label="unserialize (1 item)">unserialize</a>
+<a href="../../../../tag/xss/index.html" class="tag-cloud-link tag-link-39 tag-link-position-17" style="font-size: 8pt;" aria-label="xss (1 item)">xss</a></div>
+</aside>			</div><!-- .widget-area -->
+		</div><!-- .sidebar-inner -->
+	</div><!-- #tertiary -->
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			
+			<div class="site-info">
+								<a href="https://wordpress.org/">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+		<div style="display:none">
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/babyphd.net\/2016\/03\/08\/deciphering-ceasar-basic-concept\/":379};
+	</script>
+				<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/photon/photon.min.js%3Fver=20190201'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202333'></script>
+<script type='text/javascript' src='../../../../wp-content/themes/twentythirteen/js/functions.js%3Fver=20160717'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/wp-embed.min.js%3Fver=5.2.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js%3Fver=7.5.2'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+<script type='text/javascript' src='https://stats.wp.com/e-202333.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.5.2',blog:'104079289',post:'379',tz:'0',srv:'babyphd.net'} ]);
+	_stq.push([ 'clickTrackerInit', '104079289', '379' ]);
+</script>
+</body>
+</html>

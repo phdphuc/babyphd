@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>March | 2016 | BabyPhD CTF Team</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://babyphd.net/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://babyphd.net/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<script type='text/javascript'>function ctSetCookie(c_name, value, def_value){document.cookie = c_name + '=' + escape(value) + '; path=/';}ctSetCookie('ct_checkjs', '1181016728', '0');</script><link rel='dns-prefetch' href='https://s0.wp.com/' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Feed" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Comments Feed" href="../../comments/feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/babyphd.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.2"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='../../wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css%3Fver=3.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='../../wp-content/themes/twentythirteen/style.css%3Fver=2013-07-18.css' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='https://babyphd.net/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='jetpack_css-css'  href='../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=7.5.2.css' type='text/css' media='all' />
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctPublic = {"_ajax_nonce":"a204603c59","_ajax_url":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../wp-content/plugins/cleantalk-spam-protect/js/apbct-public.min.js%3Fver=5.122'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctNocache = {"ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","info_flag":"","set_cookies_flag":"","blog_home":"https:\/\/babyphd.net\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../wp-content/plugins/cleantalk-spam-protect/js/cleantalk_nocache.min.js%3Fver=5.122'></script>
+<link rel='https://api.w.org/' href='../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.2" />
+
+<link rel='dns-prefetch' href='https://v0.wordpress.com/'/>
+<link rel='dns-prefetch' href='https://i0.wp.com/'/>
+<link rel='dns-prefetch' href='https://i1.wp.com/'/>
+<link rel='dns-prefetch' href='https://i2.wp.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+			<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(../../wp-content/themes/twentythirteen/images/headers/star.png) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+		@media (max-width: 767px) {
+			.site-header {
+				background-size: 768px auto;
+			}
+		}
+		@media (max-width: 359px) {
+			.site-header {
+				background-size: 360px auto;
+			}
+		}
+		</style>
+				<style type="text/css" id="wp-custom-css">
+				code {
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 2px;
+    color: #222;
+    background: #f2f4f5;
+}			</style>
+		</head>
+
+<body class="archive date sidebar">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="../../index.html" title="BabyPhD CTF Team" rel="home">
+				<h1 class="site-title">BabyPhD CTF Team</h1>
+				<h2 class="site-description">Nói chung đây là một khái niệm vô cùng trừu tượng</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<button class="menu-toggle">Menu</button>
+					<a class="screen-reader-text skip-link" href="index.html#content" title="Skip to content">Skip to content</a>
+					<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-2"><a href="../../ctf-wtf/index.html">CTF</a></li>
+</ul></div>
+					<form role="search" method="get" class="search-form" action="../../index.html">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+					<header class="archive-header">
+				<h1 class="archive-title">Monthly Archives: March 2016</h1>
+			</header><!-- .archive-header -->
+
+										
+<article id="post-486" class="post-486 post type-post status-publish format-standard hentry category-uncategorized">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html" rel="bookmark">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html" title="Permalink to Writeup for beginners - BoF Vulnerability Lab (Syracuse University)" rel="bookmark"><time class="entry-date" datetime="2016-03-12T16:02:46+00:00">March 12, 2016</time></a></span><span class="categories-links"><a href="../../category/uncategorized/index.html" rel="category tag">Uncategorized</a></span><span class="author vcard"><a class="url fn n" href="../../author/chuymichxinhdep/index.html" title="View all posts by chuymichxinhdep" rel="author">chuymichxinhdep</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>Visitors sometimes feel bored with our web blog because of too many boring stuffs which not often appear in their casual work/study. I just want to post such a simple tutorial for beginners and if you are experienced in CTF's pwn then just skip it. Enjoy!</p>
+<p> <a href="12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html#more-486" class="more-link">Continue reading <span class="screen-reader-text">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</span> <span class="meta-nav">&rarr;</span></a></p>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+							
+<article id="post-465" class="post-465 post type-post status-publish format-standard hentry category-crypto tag-crypto">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/index.html" rel="bookmark">Basic concepts of Chinese Remainder Theorem with respect of RSA/AES</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/index.html" title="Permalink to Basic concepts of Chinese Remainder Theorem with respect of RSA/AES" rel="bookmark"><time class="entry-date" datetime="2016-03-11T07:29:37+00:00">March 11, 2016</time></a></span><span class="categories-links"><a href="../../category/crypto/index.html" rel="category tag">crypto</a></span><span class="tags-links"><a href="../../tag/crypto/index.html" rel="tag">crypto</a></span><span class="author vcard"><a class="url fn n" href="../../author/chuymichxinhdep/index.html" title="View all posts by chuymichxinhdep" rel="author">chuymichxinhdep</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>&nbsp;</p>
+<p><strong>Chinese Remainder Theorem</strong><br />
+=========================</p>
+<p>Suppose <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_6f65815f75a5b0addfb2fcbf314e7448.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> are positive integers and coprime in pair. For any sequence of integers <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_2e6af3c4b843457fb8f92cab80c4becd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span>, there exists an integer x solving the following system of congruence equations:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_c08ae2e6f46d3cc4c6048c8c6efff3bd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span><br />
+There exists an unique modulo solution of the system of simultaneous congruences above:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_4a53df5368873e5db4c21d41fb345815.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>in which:<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_efdc335c017fa207c76d2e89a3ada645.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:2px;' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p> <a href="11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/index.html#more-465" class="more-link">Continue reading <span class="screen-reader-text">Basic concepts of Chinese Remainder Theorem with respect of RSA/AES</span> <span class="meta-nav">&rarr;</span></a></p>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+							
+<article id="post-399" class="post-399 post type-post status-publish format-standard hentry category-crypto tag-crypto">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="introduction-to-threshold-signature-scheme/index.html" rel="bookmark">Introduction to Threshold signature scheme</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="introduction-to-threshold-signature-scheme/index.html" title="Permalink to Introduction to Threshold signature scheme" rel="bookmark"><time class="entry-date" datetime="2016-03-10T03:07:10+00:00">March 10, 2016</time></a></span><span class="categories-links"><a href="../../category/crypto/index.html" rel="category tag">crypto</a></span><span class="tags-links"><a href="../../tag/crypto/index.html" rel="tag">crypto</a></span><span class="author vcard"><a class="url fn n" href="../../author/chuymichxinhdep/index.html" title="View all posts by chuymichxinhdep" rel="author">chuymichxinhdep</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p><strong>THRESHOLD SIGNATURE SCHEME</strong></p>
+<ol>
+<li><strong>Introduction</strong></li>
+</ol>
+<p>Assuming there are 20 employees in a company, and if each employee has his or her own copy of the secret key then it is hard to assure on individuals due to compromise and machine break down. In the other hand, if there is a valid signature requires all 20 employees’ signature in the company then it will be very secure but not be easy to use. Therefore we can implement a scheme which requires only sign 5 or more out of 20 employees then it will be valid and that is exactly what a (5,20) threshold signature scheme tries to achieve. In addition, if a threat agent wants to compromise the system and obtain a message, he must compromise at least 5 people in the scheme and that is a harder thing to do compared to a traditional public scheme.</p>
+<p> <a href="introduction-to-threshold-signature-scheme/index.html#more-399" class="more-link">Continue reading <span class="screen-reader-text">Introduction to Threshold signature scheme</span> <span class="meta-nav">&rarr;</span></a></p>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+							
+<article id="post-379" class="post-379 post type-post status-publish format-standard hentry category-crypto tag-crypto">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="08/deciphering-ceasar-basic-concept/index.html" rel="bookmark">Deciphering Ceasar basic concept</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="08/deciphering-ceasar-basic-concept/index.html" title="Permalink to Deciphering Ceasar basic concept" rel="bookmark"><time class="entry-date" datetime="2016-03-08T17:15:10+00:00">March 8, 2016</time></a></span><span class="categories-links"><a href="../../category/crypto/index.html" rel="category tag">crypto</a></span><span class="tags-links"><a href="../../tag/crypto/index.html" rel="tag">crypto</a></span><span class="author vcard"><a class="url fn n" href="../../author/chuymichxinhdep/index.html" title="View all posts by chuymichxinhdep" rel="author">chuymichxinhdep</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p><strong>Deciphering</strong></p>
+<p>&nbsp;</p>
+<table>
+<tbody>
+<tr>
+<td>Ciphertext: “<em>VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganne</em></p>
+<p><em>NzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbzn </em></p>
+<p><em>oyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuev</em></p>
+<p><em>wsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxs</em></p>
+<p><em>hegnzZnva</em>”</td>
+</tr>
+</tbody>
+</table>
+<p>The given ciphertext has only letters without space, punctuation or separated key, there are two classic cipher systems such as substitution cipher and transposition cipher which are known to be easy to attack by using frequency analysis or bruteforce techniques. <a href="08/deciphering-ceasar-basic-concept/index.html#more-379" class="more-link">Continue reading <span class="screen-reader-text">Deciphering Ceasar basic concept</span> <span class="meta-nav">&rarr;</span></a></p>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+			
+			
+		
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+	<div id="tertiary" class="sidebar-container" role="complementary">
+		<div class="sidebar-inner">
+			<div class="widget-area">
+						<aside id="recent-posts-6" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="../../2018/08/01/meepwn-ctf-2018-meepwn-contract/index.html">MEEPWN CTF 2018 - meepwn contract</a>
+									</li>
+											<li>
+					<a href="../../2018/07/17/meepwn-ctf-2018-xss/index.html">MEEPWN CTF 2018 - XSS</a>
+									</li>
+											<li>
+					<a href="../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html">MEEPWN CTF 2018 - PyCalx2</a>
+									</li>
+											<li>
+					<a href="../../2017/08/10/wtf-is-safefinderoperatormac-campaign/index.html">What is SafeFinder/OperatorMac campaign?</a>
+									</li>
+											<li>
+					<a href="../../2017/07/27/meepwnctf-2017-injection/index.html">MeepwnCTF 2017 - injection</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">justcallmedude</span> on <a href="../11/24/hackyou-ctf-su-2016/index.html#comment-8120">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">zun</span> on <a href="../11/24/hackyou-ctf-su-2016/index.html#comment-7474">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">Tony</span> on <a href="12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html#comment-7218">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</a></li><li class="recentcomments"><span class="comment-author-link">john</span> on <a href="../09/11/whitehat-contest-11-pwn400/index.html#comment-7211">Whitehat Contest 12 - Pwn400</a></li><li class="recentcomments"><span class="comment-author-link"><a href='../../index.html' rel='external nofollow' class='url'>chuymichxinhdep</a></span> on <a href="../09/11/whitehat-contest-11-pwn400/index.html#comment-7210">Whitehat Contest 12 - Pwn400</a></li></ul></aside><aside id="archives-3" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+				<li><a href='../../2018/08/index.html'>August 2018</a></li>
+	<li><a href='../../2018/07/index.html'>July 2018</a></li>
+	<li><a href='../../2017/08/index.html'>August 2017</a></li>
+	<li><a href='../../2017/07/index.html'>July 2017</a></li>
+	<li><a href='../../2017/05/index.html'>May 2017</a></li>
+	<li><a href='../11/index.html'>November 2016</a></li>
+	<li><a href='../09/index.html'>September 2016</a></li>
+	<li><a href='../07/index.html'>July 2016</a></li>
+	<li><a href='../04/index.html'>April 2016</a></li>
+	<li><a href='index.html'>March 2016</a></li>
+	<li><a href='../../2015/10/index.html'>October 2015</a></li>
+	<li><a href='../../2015/09/index.html'>September 2015</a></li>
+	<li><a href='../../2015/05/index.html'>May 2015</a></li>
+	<li><a href='../../2015/04/index.html'>April 2015</a></li>
+	<li><a href='../../2015/02/index.html'>February 2015</a></li>
+	<li><a href='../../2015/01/index.html'>January 2015</a></li>
+		</ul>
+			</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+				<li class="cat-item cat-item-32"><a href="../../category/chuymich/index.html">chuymich</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../category/crypto/index.html">crypto</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="../../category/forensic/index.html">forensic</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../category/misc/index.html">misc</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../category/pwn/index.html">pwn</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../category/re/index.html">re</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="../../category/research/index.html">research</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="../../category/smartcontract/index.html">smartcontract</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../category/uncategorized/index.html">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../category/vietnamese/index.html">vietnamese</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../category/web/index.html">web</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="../../category/whitehat/index.html">whitehat</a>
+</li>
+		</ul>
+			</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="../../tag/2015/index.html" class="tag-cloud-link tag-link-36 tag-link-position-1" style="font-size: 8pt;" aria-label="2015 (1 item)">2015</a>
+<a href="../../tag/babyphd/index.html" class="tag-cloud-link tag-link-35 tag-link-position-2" style="font-size: 8pt;" aria-label="babyphd (1 item)">babyphd</a>
+<a href="../../tag/backdoorctf/index.html" class="tag-cloud-link tag-link-33 tag-link-position-3" style="font-size: 8pt;" aria-label="backdoorCTF (1 item)">backdoorCTF</a>
+<a href="../../tag/crypto/index.html" class="tag-cloud-link tag-link-14 tag-link-position-4" style="font-size: 22pt;" aria-label="crypto (3 items)">crypto</a>
+<a href="../../tag/css/index.html" class="tag-cloud-link tag-link-42 tag-link-position-5" style="font-size: 8pt;" aria-label="css (1 item)">css</a>
+<a href="../../tag/gaylord/index.html" class="tag-cloud-link tag-link-34 tag-link-position-6" style="font-size: 8pt;" aria-label="gaylord (1 item)">gaylord</a>
+<a href="../../tag/heap/index.html" class="tag-cloud-link tag-link-37 tag-link-position-7" style="font-size: 8pt;" aria-label="heap (1 item)">heap</a>
+<a href="../../tag/list-linked/index.html" class="tag-cloud-link tag-link-28 tag-link-position-8" style="font-size: 8pt;" aria-label="list-linked (1 item)">list-linked</a>
+<a href="../../tag/malware/index.html" class="tag-cloud-link tag-link-43 tag-link-position-9" style="font-size: 8pt;" aria-label="malware (1 item)">malware</a>
+<a href="../../tag/mughthesec/index.html" class="tag-cloud-link tag-link-45 tag-link-position-10" style="font-size: 8pt;" aria-label="Mughthesec (1 item)">Mughthesec</a>
+<a href="../../tag/operatormac/index.html" class="tag-cloud-link tag-link-44 tag-link-position-11" style="font-size: 8pt;" aria-label="OperatorMac (1 item)">OperatorMac</a>
+<a href="../../tag/pwn/index.html" class="tag-cloud-link tag-link-27 tag-link-position-12" style="font-size: 8pt;" aria-label="pwn (1 item)">pwn</a>
+<a href="../../tag/re/index.html" class="tag-cloud-link tag-link-26 tag-link-position-13" style="font-size: 8pt;" aria-label="re (1 item)">re</a>
+<a href="../../tag/side-channel/index.html" class="tag-cloud-link tag-link-29 tag-link-position-14" style="font-size: 8pt;" aria-label="side-channel (1 item)">side-channel</a>
+<a href="../../tag/sqli/index.html" class="tag-cloud-link tag-link-41 tag-link-position-15" style="font-size: 8pt;" aria-label="sqli (1 item)">sqli</a>
+<a href="../../tag/unserialize/index.html" class="tag-cloud-link tag-link-40 tag-link-position-16" style="font-size: 8pt;" aria-label="unserialize (1 item)">unserialize</a>
+<a href="../../tag/xss/index.html" class="tag-cloud-link tag-link-39 tag-link-position-17" style="font-size: 8pt;" aria-label="xss (1 item)">xss</a></div>
+</aside>			</div><!-- .widget-area -->
+		</div><!-- .sidebar-inner -->
+	</div><!-- #tertiary -->
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			
+			<div class="site-info">
+								<a href="https://wordpress.org/">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+		<div style="display:none">
+	</div>
+<script type='text/javascript' src='../../wp-content/plugins/jetpack/_inc/build/photon/photon.min.js%3Fver=20190201'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202333'></script>
+<script type='text/javascript' src='../../wp-content/themes/twentythirteen/js/functions.js%3Fver=20160717'></script>
+<script type='text/javascript' src='../../wp-includes/js/wp-embed.min.js%3Fver=5.2.2'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-202333.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.5.2',blog:'104079289',post:'0',tz:'0',srv:'babyphd.net'} ]);
+	_stq.push([ 'clickTrackerInit', '104079289', '0' ]);
+</script>
+</body>
+</html>

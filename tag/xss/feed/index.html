@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>xss &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/tag/xss/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Thu, 27 Jul 2017 19:00:17 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>MeepwnCTF 2017 - injection</title>
+		<link>https://babyphd.net/2017/07/27/meepwnctf-2017-injection/</link>
+				<pubDate>Thu, 27 Jul 2017 18:47:24 +0000</pubDate>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+				<category><![CDATA[web]]></category>
+		<category><![CDATA[xss]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=659</guid>
+				<description><![CDATA[Another injection? Awesome, another ART I want to learn so much. Learning *injection*-fu is hard, keep learning, practicing, ctf all the time. According to Saitama, after a year and half of 100 daily push-ups, sit-ups, and squats, plus 10 km daily running, he had achieved some level of superhuman strength. Sourcecode (base64) Spoiler alert: In the previous &#8230; <a href="https://babyphd.net/2017/07/27/meepwnctf-2017-injection/" class="more-link">Continue reading <span class="screen-reader-text">MeepwnCTF 2017 - injection</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Another injection? Awesome, another ART I want to learn so much. Learning *injection*-fu is hard, keep learning, practicing, <a href="https://ctftime.org/">ctf all the time</a>.</p>
+<blockquote><p>According to <a href="http://onepunchman.wikia.com/wiki/Saitama">Saitama</a>, after a year and half of 100 daily push-ups, sit-ups, and squats, plus 10 km daily running, he had achieved some level of superhuman strength.</p></blockquote>
+<p><a href="https://pastebin.com/hnvvVhW9">Sourcecode</a> (base64)</p>
+<p><span id="more-659"></span></p>
+<p>Spoiler alert: <span style="color: #ffffff;">In the previous post, I once said something about SQLi (aka SQL injection) and XSS.</span><br />
+I will write up as my timeline trying to solve this task.<br />
+I have sourcecode, yay, at least I known what the heck i'm facing with. At this time, I could use <a href="http://rips-scanner.sourceforge.net/">RIPS</a> but I already have experience in source code audit, so, kill the bear with bare hand, why not (<strong>I'm not support killing wild animals</strong>).<br />
+Exploring source code is just time-comsuming task, after that, I have some notes:</p>
+<ul>
+<li>Database structure:
+<ul>
+<li>The flag is the <code>links</code> table</li>
+<li>charset LATIN1</li>
+<li>all string field is varchar(500) - that's mean only 500 char stored in that column. I have some ideas about SQL truncate attack</li>
+</ul>
+</li>
+<li>The BOT:
+<ul>
+<li>chim.js is a file used in phantomjs (a headless browser), very familar with XSS problem.</li>
+<li>the <code>secret</code> cookie is HTTPOnly (i'm not very it yet, blind trust), can't easy inject javascript code to steal cookie.</li>
+</ul>
+</li>
+<li>The php code:
+<ul>
+<li>every input entry has been <code>mysqli_real_escape_string</code></li>
+<li>every output has been <code>htmlentities</code> - the problem is this function by design/default didn't escape single quote '</li>
+<li>CSRF, not have any CSRF check, likely XSS.</li>
+<li>
+<div>
+<div>SET sql_mode=ANSI ?</div>
+</div>
+</li>
+<li>
+<div>
+<div>function `filterLink` remove single quote ', double quote ", backtick `</div>
+</div>
+</li>
+<li>
+<div>
+<div>`mysqli_error` for debug only?</div>
+</div>
+<div></div>
+</li>
+</ul>
+</li>
+</ul>
+<p>The very likely exploitable for a XSS vuln is <a href="http://php.net/manual/en/function.htmlentities.php">htmlentities</a><br />
+<span class="type">string</span> <span class="methodname"><strong>htmlentities</strong></span> ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$string</code></span> [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = ENT_COMPAT | ENT_HTML401</span></span> [, <span class="methodparam"><span class="type">string</span><code class="parameter">$encoding</code><span class="initializer"> = ini_get("default_charset")</span></span> [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$double_encode</code><span class="initializer"> = true</span></span> ]]] )</p>
+<p>Default flag is ENT_COMPAT | ENT_HTML401, but if I want to convert ', look at the flag table</p>
+<table class="doctable table">
+<thead>
+<tr>
+<th>Constant Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td><strong><code>ENT_COMPAT</code></strong></td>
+<td>Will convert double-quotes and leave single-quotes alone.</td>
+</tr>
+<tr>
+<td><strong><code>ENT_QUOTES</code></strong></td>
+<td>Will convert both double and single quotes.</td>
+</tr>
+<tr>
+<td><strong><code>ENT_NOQUOTES</code></strong></td>
+<td>Will leave both double and single quotes unconverted.</td>
+</tr>
+<tr>
+<td><span style="font-family: monospace, serif;"><b>...</b></span></td>
+<td>...</td>
+</tr>
+<tr>
+<td><strong><code>ENT_HTML401</code></strong></td>
+<td>Handle code as HTML 4.01.</td>
+</tr>
+</tbody>
+</table>
+<p>Not bad, expected by design <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f600.png" alt="😀" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>In a CTF challenge, most of task are solvable or exploitable. From my point of view, everything echo-ed back to us is something useful. such as `mysqli_error`.<br />
+In some point, I had tried to exploit the register function to make a new Admin but UNIQUE KEY (`user`) in table structure prevented it.</p>
+<p>Luckily, when I try to insert a duplicated user into table, it warn me, with the most beautiful char, a single quote.<br />
+Example Database, notice the  space at user column.</p>
+<pre><code>CREATE DATABASE inj_1;
+USE inj_1;
+CREATE TABLE `users` (
+`uid` int(11) NOT NULL AUTO_INCREMENT,
+`user` varchar(50) NOT NULL,
+`passwd` varchar(50) NOT NULL,
+PRIMARY KEY (`uid`),
+UNIQUE KEY (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `users` AUTO_INCREMENT=1;
+INSERT INTO `users` VALUES (0, 'admin', 'a');
+INSERT INTO `users` VALUES (0, 'admin ', 'a');
+INSERT INTO `users` VALUES (0, 'admin onerror=aaa', 'a');
+INSERT INTO `users` VALUES (0, 'admin onerror=aaa ', 'a');</code></pre>
+<p><a href="https://i1.wp.com/imgur.com/pXZmlmX.png"><img class="alignnone size-full" src="https://i1.wp.com/imgur.com/pXZmlmX.png?w=604" alt="" data-recalc-dims="1" /></a></p>
+<p>One more thing with SELECT is, it didn't do bound check on input, look at this example</p>
+<pre>mysql&gt; select * from users;
++-----+-------------------+--------+
+| uid | user | passwd |
++-----+-------------------+--------+
+| 1 | admin | a |
+| 3 | admin onerror=aaa | a |
++-----+-------------------+--------+
+2 rows in set (0,00 sec)
+
+mysql&gt; select * from users where user = 'admin'
+-&gt; ;
++-----+-------+--------+
+| uid | user | passwd |
++-----+-------+--------+
+| 1 | admin | a |
++-----+-------+--------+
+1 row in set (0,01 sec)
+
+mysql&gt; select * from users where user = 'admin      ';
++-----+-------+--------+
+| uid | user | passwd |
++-----+-------+--------+
+| 1 | admin | a |
++-----+-------+--------+
+1 row in set (0,00 sec)
+
+mysql&gt; select * from users where user = 'admin                    ';
++-----+-------+--------+
+| uid | user | passwd |
++-----+-------+--------+
+| 1 | admin | a |
++-----+-------+--------+
+1 row in set (0,00 sec)
+
+mysql&gt; select * from users where user = 'admin                                                 1';
+Empty set (0,00 sec)
+
+</pre>
+<p>With <code>SET sql_mode=ANSI</code> , I can bypass SELECT, also able trigger error in INSERT.<br />
+If you test in your db; make sure you have change your sql_mode,</p>
+<p>by default (mysqld --verbose --help | grep mode) give ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</p>
+<p>STRICT_TRANS_TABLES will give  error <code>1406 (22001): Data too long for column</code></p>
+<p>In the code, there is a lot of space content <code>$msg = mysqli_error($con);</code> but I look the register function first. Then a lot of time trying to finger out how can I bypass the disable tag to have a functional onfocus tag (line 61 file login.php)</p>
+<p><code>echo "&lt;input type='text' value='$msg' class='form-control' disabled&gt;";</code></p>
+<p>After mysql return error string, I may have the following text:</p>
+<div>
+<div>&lt;input type='text' value='Duplicate entry 'admin onerror=aaa   ' for key 'user'' class='form-control' disabled&gt;</div>
+<div>
+<p>Now <code>onerror</code> has been escaped from the single quote, it is a event and can be develop with real payload such as onfocus, but it is disabled in this input form.</p>
+</div>
+<div>Example: &lt;input autofocus onfocus=alert(1)&gt; will pop an alert box</div>
+<div>But not this one &lt;input autofocus onfocus=alert(1) disabled&gt;</div>
+</div>
+<div></div>
+<div>Another place that I haven't notice is the links table. It also have uniq key is link, type of varchar(500)</div>
+<div>
+<p>Line 29 of index.php, the manual check did the same thing with register, both have</p>
+<div>
+<div><code>$msg = mysqli_error($con);</code></div>
+<div>but this time, it is</div>
+<div>
+<div>
+<div>echo "&lt;input type='text' value='$msg' class='form-control' readonly&gt;";</div>
+</div>
+<div>Yeah, readonly is better than <a href="https://www.w3.org/TR/html4/interact/forms.html#h-17.12">disabled</a>, I can use my favarite autofocus</div>
+<div></div>
+</div>
+</div>
+</div>
+<div> The final exploit flow could be (assume this is a XSS challenge):</div>
+<div></div>
+<ol>
+<li>register</li>
+<li>login</li>
+<li>send a link that trigger a CSRF exploit to make bot create manual exploit link</li>
+<li>resubmit that trigger link</li>
+<li>waiting for flag, <a href="https://www.youtube.com/watch?v=pRpeEdMmmQ0">waka waka</a></li>
+</ol>
+<p>Now this is time for trial error, <a href="https://pastebin.com/mFCzmSN5">here</a><br />
+or the original <a href="https://pastebin.com/jnCKtVi0">here</a><br />
+Ref:</p>
+<ul>
+<li>https://ctftime.org/</li>
+<li>http://onepunchman.wikia.com/wiki/Saitama</li>
+<li>https://pastebin.com/hnvvVhW9</li>
+<li>http://rips-scanner.sourceforge.net/</li>
+<li>http://php.net/manual/en/function.htmlentities.php</li>
+<li>https://www.w3.org/TR/html4/interact/forms.html#h-17.12</li>
+<li>https://www.youtube.com/watch?v=pRpeEdMmmQ0</li>
+<li>https://pastebin.com/mFCzmSN5</li>
+<li>https://pastebin.com/jnCKtVi0</li>
+</ul>
+<p>PS: WordPress SUCK!!!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">659</post-id>	</item>
+	</channel>
+</rss>

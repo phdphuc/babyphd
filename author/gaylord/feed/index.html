@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>gaylord &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/author/gaylord/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Tue, 12 May 2015 09:57:45 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>ASIS Quals CTF 2015 - grids, keka-bomb, dump Writeup</title>
+		<link>https://babyphd.net/2015/05/12/asis-quals-ctf-2015-grids-writeup/</link>
+				<pubDate>Tue, 12 May 2015 09:57:45 +0000</pubDate>
+		<dc:creator><![CDATA[gaylord]]></dc:creator>
+				<category><![CDATA[forensic]]></category>
+		<category><![CDATA[misc]]></category>
+		<category><![CDATA[vietnamese]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=334</guid>
+				<description><![CDATA[Programming 300 - grids Đề bài nhận được là cho 1 tập hợp điểm trên mặt phẳng 2D, cần tìm diện tích đa giác lớn nhất tạo được mà các đỉnh của đa giác được lấy từ tập hợp điểm đã cho. Dễ thấy là đa giác cần tìm cần bao trọn toàn bộ tập &#8230; <a href="https://babyphd.net/2015/05/12/asis-quals-ctf-2015-grids-writeup/" class="more-link">Continue reading <span class="screen-reader-text">ASIS Quals CTF 2015 - grids, keka-bomb, dump Writeup</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><strong>Programming 300 - grids</strong></p>
+<p>Đề bài nhận được là cho 1 tập hợp điểm trên mặt phẳng 2D, cần tìm diện tích đa giác lớn nhất tạo được mà các đỉnh của đa giác được lấy từ tập hợp điểm đã cho. Dễ thấy là đa giác cần tìm cần bao trọn toàn bộ tập điểm, nên bài toán quy về việc tính diện tích <a href="http://en.wikipedia.org/wiki/Convex_hull">bao lồi</a> của tập điểm này.</p>
+<p>Có thể dùng <a href="http://en.wikipedia.org/wiki/Graham_scan">thuật toán quét Graham</a> để tìm bao lồi sau đó dùng <a href="http://en.wikipedia.org/wiki/Shoelace_formula">công thức tính diện tích của Gauss</a> để tính diện tích đa giác vừa tìm được. Nhưng trong SciPy đã có <a href="http://docs.scipy.org/doc/scipy-dev/reference/generated/scipy.spatial.ConvexHull.html">code tìm bao lồi</a> nên mình không cần phải code lại phần bao lồi nữa :))</p>
+<p>Code của mình (mình k biết chèn gist vào đây như thế nào :&lt;):</p>
+<pre class="font:consolas lang:python decode:true" title="asisctf_grids">from scipy.spatial import ConvexHull
+import numpy as np
+import ast
+import telnetlib
+import re
+ 
+class Telnet(telnetlib.Telnet):
+    # inherit from Telnetlib and add new method
+    def __init__(self,host,port):
+        telnetlib.Telnet.__init__(self,host,port)
+    # make easier when you want to send raw data to server
+    def writeRawData(self,data):
+        return self.get_socket().send(data)
+ 
+    def recvRawData(self,size):
+        return self.get_socket().recv(size)
+ 
+# Calculate algebraic area of a polygon using shoelace formula
+def area(vertices):
+    n = len(vertices)
+    area = 0.0
+    for i in range(n):
+        j = (i + 1) % n
+        area += vertices[i][0] * vertices[j][1]
+        area -= vertices[j][0] * vertices[i][1]
+    area /= 2.0
+    return area
+ 
+host = '217.218.48.84'
+port = 12432
+ 
+# connect
+tel = Telnet(host, port)
+s = tel.read_until('Are you ready for this challenge?\n')
+print s,
+# reply
+print 'yes'
+tel.writeRawData('yes\n')
+s = tel.read_until('OK, OK, lets start\n')
+print s,
+# solve
+for i in range(99):
+    print '[*] %d-th round' % i
+    s = tel.read_until("What's the area?")
+    print s,
+    l = np.array(ast.literal_eval(re.findall(r'\n(<p style='text-align:center;'><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_4fd4a56c435d5c26b3c3c366f51b074e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none;' class='tex' alt="" data-recalc-dims="1" /></span></p>)\n', s)[0]))
+    hull = ConvexHull(l)
+    vertices = l[hull.vertices]
+    res = abs(area(vertices))
+    print res
+    tel.writeRawData(str(res)+'\n')
+# get flag
+tel.interact()</pre>
+<p>Flag là</p>
+<pre>ASIS{f3a8369f4194c5e44c03e5fcefb8ddf6}</pre>
+<p><strong>Forensics 75 - Keka Bomb</strong></p>
+<p>File đã cho là một file 7z và bên trong nó gồm nhiều file 7z con với dung lượng mỗi file khoảng 4GB : 0009.7z -&gt; 0000007.7z -&gt; 0000000008.7z -&gt; bomb_8, mở file này bằng HxD, tìm chuỗi "ASIS" sẽ thấy flag:</p>
+<pre>ASIS{f974da3203d155826974f4a66735a20b}</pre>
+<p><strong> Forensics 250 - Dump</strong><br />
+File trong đề là 1 file .sav của VirtualBox nhận được khi tạo snapshot hoặc suspend máy ảo. File chỉ chứa một phần RAM đã được sử dụng và được sắp xếp theo một trật tự không nhất định nên (theo quá trình Google của mình) không thể lấy trực tiếp thông tin trên đây được :&lt;, mà cần phải chạy file .sav trên VirtualBox rồi tạo core dump hoặc memdump sau đấy mới phân tích được.</p>
+<p>Mình đã tạo một máy ảo VirtualBox với hệ điều hành là Ubuntu x64, để ổ cứng kết nối ở IDE Primary Master, card mạng là Am79C973, RAM là 128MB. Sau đó mình boot máy ảo này, suspend nó, rồi ghi đè file đã cho vào file .sav được VirtualBox tạo ra. Sau đó khi khởi động lại, mình vào được trạng thái đang lưu trong file .sav với hệ điều hành là Tiny Core Linux:</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?ssl=1"><img data-attachment-id="345" data-permalink="https://babyphd.net/2015/05/12/asis-quals-ctf-2015-grids-writeup/asis_dump/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?fit=1024%2C768&amp;ssl=1" data-orig-size="1024,768" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="asis_dump" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?fit=300%2C225&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?fit=604%2C453&amp;ssl=1" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?resize=300%2C225&#038;ssl=1" alt="asis_dump" width="300" height="225" class="alignnone size-medium wp-image-345" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?resize=300%2C225&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?w=1024&amp;ssl=1 1024w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Ở trong lịch sử dòng lệnh, có một lệnh là </p>
+<pre>python -c "$(curl -fSsL http://a.asis.io/0QnqZU9F)"</pre>
+<p>Lệnh này down 1 file .py từ server và thực hiện file này. Mình đã không quan tâm đến nó trong khi đây chính là mấu chốt của bài toán :&lt; (cảm ơn anh @yeuchimse đã chỉ cho em đoạn này :3).</p>
+<p>Như vậy có khả năng file Python kia vẫn còn được lưu đâu đó ở trong RAM của máy ảo, vì vậy cần phải đọc được RAM và tìm kiếm đoạn &#039;Please enter the access key&#039; vì khi chương trình được chạy có in ra dòng này. Trong quá trình thi, mình đã chạy VirtualBox trong một máy ảo VMware và dump RAM của máy ảo VMware để tìm trong đó :&lt;. Tuy vậy có một cách đơn giản hơn là dùng HxD hoặc Cheat Engine. Sau khi tìm kiếm với chuỗi: </p>
+<pre>'Please enter the access key</pre>
+<p>, ta tìm được đoạn code:</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?ssl=1"><img data-attachment-id="346" data-permalink="https://babyphd.net/2015/05/12/asis-quals-ctf-2015-grids-writeup/memview/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?fit=732%2C626&amp;ssl=1" data-orig-size="732,626" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="memview" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?fit=300%2C257&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?fit=604%2C517&amp;ssl=1" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?resize=300%2C257&#038;ssl=1" alt="memview" width="300" height="257" class="alignnone size-medium wp-image-346" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?resize=300%2C257&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?w=732&amp;ssl=1 732w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Đoạn code này yêu cầu nhập 1 chuỗi là key, và nếu key đúng sẽ in ra thứ gì đó. Thử xây dựng lại key từ file code tìm được, sau đó dùng key này để tìm chuỗi in ra:</p>
+<pre class="font:consolas lang:python decode:true">import hashlib
+ 
+# calculate key
+key_ar = [0 for i in range(5)]
+key_ar[0] = hex(58559604012647)[2:].decode('hex')
+key_ar[1] = hex(27697077611219024)[2:].decode('hex')
+key_ar[2] = hex(28839576914310229)[2:].decode('hex')
+key_ar[3] = hex(14469853439423811)[2:].decode('hex')
+key_ar[4] = hex(21189029315236706)[2:].decode('hex')
+key = '-'.join(key_ar)
+ 
+# original code
+# key = raw_input('Please enter the access key: ').strip()
+if len(key) == 38:
+    key_ar = key.split('-')
+    if len(key_ar) == 5:
+        if int(key_ar[0].encode('hex'), 16) ==  58559604012647:
+            if int(key_ar[1].encode('hex'), 16) == 27697077611219024:
+                if int(key_ar[2].encode('hex'), 16) == 28839576914310229:
+                    if int(key_ar[3].encode('hex'), 16) == 14469853439423811:
+                        if int(key_ar[4].encode('hex'), 16) == 21189029315236706:
+                            print key[18] + key[-2] + chr(ord(key[26]) - 1) + key[-2] + '{' + hashlib.md5(key).hexdigest() + '}'
+                        else:
+                             print 'You access key is not correct! Banned!!'
+                    else:
+                        print 'You access key is not correct! Banned!!'
+                else:
+                    print 'You access key is not correct! Banned!!'
+            else:
+                print 'You access key is not correct! Banned!!'
+        else:
+            print 'You access key is not correct! Banned!!'
+    else:
+        print 'You access key is not correct! Banned!!'
+else:
+    print 'You access key is not correct! Banned!!'</pre>
+<p>Sau khi chạy file trên, ta được flag: </p>
+<pre>ASIS{632253c69a6049594bc303f0af0042b8}</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">334</post-id>	</item>
+	</channel>
+</rss>

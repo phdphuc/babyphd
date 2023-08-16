@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+
+	>
+<channel>
+	<title>
+	Comments on: hackyou.ctf.su 2016	</title>
+	<atom:link href="https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Thu, 27 Jul 2017 19:02:33 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+			<item>
+				<title>
+				By: justcallmedude				</title>
+				<link>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/#comment-8120</link>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+		<pubDate>Thu, 27 Jul 2017 13:39:55 +0000</pubDate>
+		<guid isPermaLink="false">https://babyphd.net/?p=627#comment-8120</guid>
+					<description><![CDATA[nice, I&#039;ll try KLEE next time :D]]></description>
+		<content:encoded><![CDATA[<p>nice, I'll try KLEE next time 😀</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: zun				</title>
+				<link>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/#comment-7474</link>
+		<dc:creator><![CDATA[zun]]></dc:creator>
+		<pubDate>Mon, 26 Dec 2016 07:42:40 +0000</pubDate>
+		<guid isPermaLink="false">https://babyphd.net/?p=627#comment-7474</guid>
+					<description><![CDATA[in [Reverse 100] problem, other simple way is to use Klee to solve
+
+#include 
+#include 
+#include 
+
+#define ITERS 12
+int main() {
+	char buf[ITERS];
+	klee_make_symbolic(buf, ITERS, &quot;012345&quot;);
+	unsigned int a = buf[0] &#124; (buf[4] &#060;&#060; 8) &#124; (buf[8] &#060;&#060; 16);
+	unsigned int b = buf[1] &#124; (buf[5] &#060;&#060; 8) &#124; (buf[9] &#060;&#060; 16);
+	unsigned int c = buf[2] &#124; (buf[6] &#060;&#060; 8) &#124; (buf[10] &#060;&#060; 16);
+	unsigned int d = buf[3] &#124; (buf[7] &#060;&#060; 8) &#124; (buf[11] &#060;&#060; 16);
+	if (!(((a % 3571) == 2963) &#038;&#038; (((a % 2843) == 215)) &#038;&#038; (((a % 30243) == 13059))))
+		return 2;
+	if (!(((b % 80735) == 51964) &#038;&#038; (((b % 8681) == 2552)) &#038;&#038; (((b % 40624) == 30931))))
+		return 3;
+	if (!(((c % 99892) == 92228) &#038;&#038; (((c % 45629) == 1080)) &#038;&#038; (((c % 24497) == 12651))))
+		return 4;
+	if (!(((d % 54750) == 26981) &#038;&#038; (((d % 99627) == 79040)) &#038;&#038; (((d % 84339) == 77510))))
+		return 5;
+	// printf(&#034;Congratulations %s is flag\n&#034;,buf);
+	klee_assert(0); 
+	return 0;
+}]]></description>
+		<content:encoded><![CDATA[<p>in [Reverse 100] problem, other simple way is to use Klee to solve</p>
+<p>#include<br />
+#include<br />
+#include </p>
+<p>#define ITERS 12<br />
+int main() {<br />
+	char buf[ITERS];<br />
+	klee_make_symbolic(buf, ITERS, "012345");<br />
+	unsigned int a = buf[0] | (buf[4] &lt;&lt; 8) | (buf[8] &lt;&lt; 16);<br />
+	unsigned int b = buf[1] | (buf[5] &lt;&lt; 8) | (buf[9] &lt;&lt; 16);<br />
+	unsigned int c = buf[2] | (buf[6] &lt;&lt; 8) | (buf[10] &lt;&lt; 16);<br />
+	unsigned int d = buf[3] | (buf[7] &lt;&lt; 8) | (buf[11] &lt;&lt; 16);<br />
+	if (!(((a % 3571) == 2963) &amp;&amp; (((a % 2843) == 215)) &amp;&amp; (((a % 30243) == 13059))))<br />
+		return 2;<br />
+	if (!(((b % 80735) == 51964) &amp;&amp; (((b % 8681) == 2552)) &amp;&amp; (((b % 40624) == 30931))))<br />
+		return 3;<br />
+	if (!(((c % 99892) == 92228) &amp;&amp; (((c % 45629) == 1080)) &amp;&amp; (((c % 24497) == 12651))))<br />
+		return 4;<br />
+	if (!(((d % 54750) == 26981) &amp;&amp; (((d % 99627) == 79040)) &amp;&amp; (((d % 84339) == 77510))))<br />
+		return 5;<br />
+	// printf(&quot;Congratulations %s is flag\n&quot;,buf);<br />
+	klee_assert(0);<br />
+	return 0;<br />
+}</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

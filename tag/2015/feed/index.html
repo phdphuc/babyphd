@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>2015 &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/tag/2015/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Fri, 03 Apr 2015 07:00:35 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>BackdoorCTF Writeup</title>
+		<link>https://babyphd.net/2015/04/03/backdoorctf-writeup/</link>
+				<comments>https://babyphd.net/2015/04/03/backdoorctf-writeup/#comments</comments>
+				<pubDate>Fri, 03 Apr 2015 06:50:03 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[chuymich]]></category>
+		<category><![CDATA[2015]]></category>
+		<category><![CDATA[babyphd]]></category>
+		<category><![CDATA[backdoorCTF]]></category>
+		<category><![CDATA[gaylord]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=324</guid>
+				<description><![CDATA[backdoor CTF 2015: NONAME Category: Exploit Points: 200 Author: Amanpreet Singh Difficulty: Solves: 25 Description: https://backdoor.sdslabs.co/challenges/NONAME Intrestingly enough, even though it was not expected, Chintu found a cool website to play with, though he can't get the flag. Can you? Visit this. Submit the SHA-256 hash of the flag obtained. Gaylord : At first, (str (all-ns)) to &#8230; <a href="https://babyphd.net/2015/04/03/backdoorctf-writeup/" class="more-link">Continue reading <span class="screen-reader-text">BackdoorCTF Writeup</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<h1>backdoor CTF 2015: <a href="https://backdoor.sdslabs.co/challenges/NONAME">NONAME</a></h1>
+<p><strong>Category:</strong> Exploit <strong>Points:</strong> 200 <strong>Author:</strong> <a href="https://backdoor.sdslabs.co/users/apsdehal">Amanpreet Singh</a> <strong>Difficulty:</strong> <strong>Solves:</strong> 25 <strong>Description:</strong></p>
+<ul class="task-list">
+<li><a href="https://backdoor.sdslabs.co/challenges/NONAME">https://backdoor.sdslabs.co/challenges/NONAME</a></li>
+</ul>
+<blockquote><p>Intrestingly enough, even though it was not expected, Chintu found a cool website to play with, though he can't get the flag. Can you? Visit <a href="https://agile-garden-1672.herokuapp.com/">this</a>. Submit the SHA-256 hash of the flag obtained.</p>
+<p style="text-align: left;">
+</blockquote>
+<p>Gaylord : At first, (str (all-ns)) to get all namespaces. And then (clojure.repl/dir noname.people.admin) to see what inside. There is including flag and secret. Used (noname.people.admin/flag) to get the  a half of the flag.</p>
+<p>Chuymichxinhdep: However secret is a private variable variable, I used ((noname.people.admin/secret)) to obtain the other half of the flag. Problem solved.</p>
+<h1>backdoor CTF 2015: <a href="https://backdoor.sdslabs.co/challenges/QR">QR</a></h1>
+<p><strong>Category:</strong> Misc <strong>Points:</strong> 70 <strong>Author:</strong> <a href="https://backdoor.sdslabs.co/users/nemo">Abhay Bir Singh Rana</a> <strong>Difficulty:</strong> Easy <strong>Solves:</strong> 84 <strong>Description:</strong></p>
+<ul class="task-list">
+<li><a href="https://backdoor.sdslabs.co/challenges/QR">https://backdoor.sdslabs.co/challenges/QR</a></li>
+</ul>
+<blockquote><p>Decode some QR codes at <code>nc hack.bckdr.in 8010</code></p>
+<p>&nbsp;</p></blockquote>
+<p>chuymichxinhdep:</p>
+<pre class="lang:python decode:true">from subprocess import Popen, PIPE
+i = 0
+import socket
+
+sock = socket.socket()
+sock.connect(("hack.bckdr.in", 8010))
+s= sock.recv(1024)
+print(s)
+while True:
+	i=i+1
+	string = ""
+	s= sock.recv(65535)
+	data= s.replace("\x20\x20","0").replace("\xe2\x96\x88\xe2\x96\x88","1")
+	file = open('qr','w')
+	for line in data.split("\n"):
+		string = string+line[1:len(line)-1]+"0"*(47-len(line))+"\n"
+	file.write(string[46:len(string)-1-46])
+	file.close()
+	output = Popen(["python", "sqrd.py", "qr"], stdout=PIPE).communicate()[0]
+	print i, output.strip()
+	sock.send(output.strip())</pre>
+<p>Convert the QR to binary only and use Strong QR to decode. After 50 submissions we've got the flag.</p>
+<h1>backdoor CTF 2015: <a href="https://backdoor.sdslabs.co/challenges/RAPIDFIRE">RAPIDFIRE</a></h1>
+<p><strong>Category:</strong> Misc <strong>Points:</strong> 500 <strong>Author:</strong> <a href="https://backdoor.sdslabs.co/users/apsdehal">Amanpreet Singh</a> <strong>Difficulty:</strong> TODO <strong>Solves:</strong> 0 <strong>Description:</strong></p>
+<ul class="task-list">
+<li><a href="https://backdoor.sdslabs.co/challenges/RAPIDFIRE">https://backdoor.sdslabs.co/challenges/RAPIDFIRE</a></li>
+</ul>
+<blockquote><p>I am enjoying it really. Are you? <code>nc hack.bckdr.in 8007</code>. Submit the SHA-256 hash of the flag obtained.</p></blockquote>
+<p>Chuymichxinhdep: Just use a brilliant source code from gaylord.</p>
+<pre class="lang:python decode:true ">import socket, hashlib, time, requests
+from geopy import GoogleV3
+import re
+import shelve
+import omdb
+
+host = '128.199.107.60'
+port = 8008
+rep_countrycode = False
+
+def fib(n):
+    i = h = 1
+    j = k = 0
+    while (n &gt; 0) :
+        if (n%2 == 1) : # when n is odd
+            t = j*h
+            j = i*h + j*k + t
+            i = i*k + t
+        t = h*h
+        h = 2*k*h + t
+        k = k*k + t
+        n = int(n/2)
+    return j
+
+def get_country(place_name):
+    gapi = shelve.open('googly_cache', writeback=True)
+    try:
+        wat = place_name.encode('base64')
+    except UnicodeEncodeError:
+        wat = u' '.join(place_name).encode('utf-8').strip().encode('base64')
+    if (wat in gapi):
+        print('[*] Found in shelf')
+        loc = gapi[wat]
+    else:
+        print('[*] Request from GGAPI')
+        loc = geolocator.geocode(place_name).raw
+        gapi[wat] = loc
+        gapi.sync()
+    gapi.close()
+    for comp in loc['address_components']:
+        if 'country' in comp['types']:
+            if rep_countrycode:
+                return comp['short_name'] # TODO: not short_name but something else
+            else:
+                return comp['long_name']
+
+def get_release(movie_name):
+    gapi = shelve.open('moviee_cache', writeback=True)
+    try:
+        wat = movie_name.encode('base64')
+    except UnicodeEncodeError:
+        wat = u' '.join(movie_name).encode('utf-8').strip().encode('base64')
+    if (wat in gapi):
+        print('[*] Found in shelf')
+        loc = gapi[wat]
+    else:
+        print('[*] Request from OMDB')
+        s = omdb.title(movie_name)
+        loc = s['year']
+        gapi[wat] = loc
+        gapi.sync()
+    gapi.close()
+    return loc
+    
+def read_until(wat):
+    buf = ''
+    while not (wat in buf):
+        buf += sock.recv(1)
+    return buf
+    
+def read_for_fun(sz):
+    d = ''
+    while (sz &gt; 0):
+        tmp = sock.recv(sz)
+        sz -= len(tmp)
+        d += tmp
+    return d
+
+# init connection
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect((host, port))
+geolocator = GoogleV3()
+pii = requests.get('http://www.angio.net/pi/digits/pi1000000.txt').text
+# read &amp; answer
+while True:
+    s = sock.recv(8192)
+    if ('code is in CAPS' in s): rep_countrycode = True
+    if (s == ''): sleep(10)
+    print(s)
+    n = 'wat'
+    res = n
+    if ('sum' in s):
+        n = int(re.findall(r'first\ (\d+)\ ', s)[0])
+        if ('odd' in s):
+            res = n * n
+        elif ('fibonacci' in s):
+            res = fib(n+2) - 1
+        elif ('natural number' in s):
+            res = (n * (n + 1) // 2)
+        res = str(res)
+    elif ('prime' in s):
+        n = int(re.findall(r'the\ (\d+)(st|nd|rd|th)', s)[0][0]) + 1
+        n = str(n)
+        page = requests.get('http://numbersofprime.com/prime/' + n)
+        res = re.findall(r'<p style='text-align:center;'><span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7d2876bab7cecac2e7cfb6f0c86dd091.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none;' class='tex' alt="" data-recalc-dims="1" /></span></p>', page.text)[1]
+        res = res.replace(',', '')
+        res = res.strip()
+    elif ('md5' in s):
+        n = re.findall(r'of\ (.*)\n', s)[0]
+        res = hashlib.md5(n).hexdigest()
+    elif ('pi' in s):
+        n = int(re.findall(r'the\ (\d+)(st|nd|rd|th)', s)[0][0])
+        res = pii[n+1]
+    elif ('fibonacci' in s):
+        n = int(re.findall(r'the\ (\d+)(st|nd|rd|th)', s)[0][0])
+        res = str(fib(n))
+    elif ('binary' in s):
+        n = int(re.findall(r'of\ (\d+)\ in', s)[0])
+        res = bin(n)[2:]
+    elif ('country' in s):
+        n = re.findall(r'of\ (.*)\n', s)[0]
+        res = get_country(n)
+    elif ('release year' in s):
+        n = re.findall(r'of\ (.*)\n', s)[0]
+        res = get_release(n)
+    print '[*] n = ', n
+    print '[*] res = ', res
+    sock.sendall(res+'\n')</pre>
+<p>&nbsp;</p>
+<p>I added pycountry to get the alpha-2 code of country. After 199 submissions we will get the flag. Not a fun challange because of slow server and too many stupid questions.</p>
+<p>-chuymichxinhdep.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?ssl=1"><img data-attachment-id="326" data-permalink="https://babyphd.net/2015/04/03/backdoorctf-writeup/phd/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?fit=1350%2C696&amp;ssl=1" data-orig-size="1350,696" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="phd" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?fit=300%2C155&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?fit=604%2C311&amp;ssl=1" class="aligncenter wp-image-326 size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?resize=604%2C311&#038;ssl=1" alt="phd" width="604" height="311" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?w=1350&amp;ssl=1 1350w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?resize=300%2C155&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?resize=1024%2C528&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/04/phd.png?w=1208&amp;ssl=1 1208w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>BabyPhD.</p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2015/04/03/backdoorctf-writeup/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">324</post-id>	</item>
+	</channel>
+</rss>

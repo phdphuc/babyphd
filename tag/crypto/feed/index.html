@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>crypto &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/tag/crypto/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Fri, 11 Mar 2016 10:50:26 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>Basic concepts of Chinese Remainder Theorem with respect of RSA/AES</title>
+		<link>https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/</link>
+				<pubDate>Fri, 11 Mar 2016 07:29:37 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[crypto]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=465</guid>
+				<description><![CDATA[&#160; Chinese Remainder Theorem ========================= Suppose are positive integers and coprime in pair. For any sequence of integers , there exists an integer x solving the following system of congruence equations: There exists an unique modulo solution of the system of simultaneous congruences above: in which: **Example**: Solve: Therefore, Hence, the solution of this simultaneous congruences is for all k &#8230; <a href="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/" class="more-link">Continue reading <span class="screen-reader-text">Basic concepts of Chinese Remainder Theorem with respect of RSA/AES</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p><strong>Chinese Remainder Theorem</strong><br />
+=========================</p>
+<p>Suppose <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_6f65815f75a5b0addfb2fcbf314e7448.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> are positive integers and coprime in pair. For any sequence of integers <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_2e6af3c4b843457fb8f92cab80c4becd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span>, there exists an integer x solving the following system of congruence equations:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_c08ae2e6f46d3cc4c6048c8c6efff3bd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span><br />
+There exists an unique modulo solution of the system of simultaneous congruences above:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_4a53df5368873e5db4c21d41fb345815.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>in which:<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_efdc335c017fa207c76d2e89a3ada645.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:2px;' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><span id="more-465"></span></p>
+<p>**<em>Example</em>**:<br />
+<span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_d05fe06da4390a753c6a6356e2982f58.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span><br />
+<strong>Solve</strong>: <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_81285716f0e377a469ca3e2cd13d41cb.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:2px;' class='tex' alt="" data-recalc-dims="1" /></span><br />
+Therefore, <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_ba8bcb0646f18f216e41f1c03b1a0c0e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Hence, the solution of this simultaneous congruences is <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_15fce7133b87887b7aa927c811d53610.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> for all k are integers.</p>
+<p><strong>RSA using the Chinese remainder theorem</strong><br />
+=======================================</p>
+<p>In RSA scheme using the Chinese remainder theorem, the following values are precomputed and stored as a public key:<br />
+<span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_e1d860acb91450876d8d51909bada477.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Therefore, we can compute the message from given ciphertext more effienctly as follow:<br />
+<span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_ac7d1b7d1b40bf96431cd9823a05db12.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>This scheme is more efficient than computing <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_83b1bf433207a854fe45f0f9d3a7fc39.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> because these two modular exponentiations both use a smaller exponent and a smaller modulus.</p>
+<p>**<strong>Proof</strong>:**</p>
+<p>We know that: <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_f813d35f5f2190daea17180b7be9c472.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Note that the exponents are reduced module p-1 and q-1. This can be done using Fermat’s little theorem because p and q.Then, we recombine the; that is, we find a number m such that:<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_cd40e72c60749fa4e52e75a7d22e6caf.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Because of the Chinese Remainder Theorem (and because p and q are relatively prime), we can immediately deduce that: <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_097d34979b961d61d42d5b78d4cbc04e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> which is exactly what we were trying to compute.</p>
+<p>Now, the questions in your comments appear to be asking about the details of this recombination step. It is actually fairly easy to see the correctness of the algorithm. To make the last step work, we need to show that we have come up with a value m such that: <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_43164028cde5a60697cdc129964fba81.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>As for the the first criteria <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_480651f75f21f7373d026bcbfcd45722.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, well, that’s straight-forward; we know that <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_86a63a6f1b4f2486377299139782d7de.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_9a529af765aed258f237f010b45d22dd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and so the smallest that m can be is <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_5484bf1b2d0764fb22c27a39acd860f7.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and the largest it can be is <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_608f1da7ae2749e00acd8a950385ced9.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>As for the third criteria, that’s also straight-forward;<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7bb612d443085a1083671478c8a79e1f.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_8d0decc190b4b6070ec037760abae463.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Now, <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_654e1be0a27e48ef9b02cf0a297e4d1b.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> is defined to be the number that, when multiplied by q modulo p, results in 1, or <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_332063c27de33f547fdbe84757a46440.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>. Now, because the above equation is, in fact, computed modulo p, we can replace <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_14bc04d33d047d6ed75ac3d318815d82.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> with 1, which gives us:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_f22a0c1c2fc0c3366866af37d07bd368.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><strong>Program for secure communication</strong><br />
+================================</p>
+<p>My following program was written using Python language. It includes 4 main parts:</p>
+<p>- Take user text input from the console and encrypt it using AES-128 using built-in library Crypto.Cipher</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?ssl=1" rel="attachment wp-att-475"><img data-attachment-id="475" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/aes_encrypt/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" data-orig-size="257,28" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="aes_encrypt" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" class="alignnone size-full wp-image-475" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?resize=257%2C28&#038;ssl=1" alt="aes_encrypt" width="257" height="28" data-recalc-dims="1" /></a></p>
+<p>- Encrypt the AES key using RSA where prime p,q were generated<br />
+randomly with the length of 1024 bits</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?ssl=1" rel="attachment wp-att-476"><img data-attachment-id="476" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/rsa_encrypt/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=641%2C112&amp;ssl=1" data-orig-size="641,112" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="rsa_encrypt" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=300%2C52&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=604%2C106&amp;ssl=1" class="alignnone size-medium wp-image-476" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?resize=300%2C52&#038;ssl=1" alt="rsa_encrypt" width="300" height="52" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?resize=300%2C52&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?w=641&amp;ssl=1 641w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>- Decrypt the key</p>
+<p>- Using the normal RSA function</p>
+<pre class="lang:default decode:true">def decrypt(self, c,d,n):
+return pow(c,d,n)
+</pre>
+<p>&nbsp;</p>
+<p>- Using the CRT approach</p>
+<pre class="lang:default decode:true"> {frame="single"}
+def decryptCRT(self,c,p,q,d,dp,dq,qi):
+m1 = pow(c,dp,p)
+m2 = pow(c,dq,q)
+h = (qi*(m1-m2))%p
+m = m2+ h*q
+return m</pre>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?ssl=1" rel="attachment wp-att-477"><img data-attachment-id="477" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/rsa_decrypt/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" data-orig-size="256,14" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="rsa_decrypt" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" class="alignnone size-full wp-image-477" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?resize=256%2C14&#038;ssl=1" alt="rsa_decrypt" width="256" height="14" data-recalc-dims="1" /></a></p>
+<p>- Decrypt the message using AES128 decryption and print it on<br />
+the screen.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?ssl=1" rel="attachment wp-att-478"><img data-attachment-id="478" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/aes_decrypt/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" data-orig-size="194,14" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="aes_decrypt" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" class="alignnone size-full wp-image-478" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?resize=194%2C14&#038;ssl=1" alt="aes_decrypt" width="194" height="14" data-recalc-dims="1" /></a></p>
+<p><strong>Report of execution time</strong><br />
+========================</p>
+<p>Each execution of the encryption and decryption functions is too short. Therefore, I measure the average time of total 1000 executions to compare between each method. To ensure that the time measurement does not affect the process execution, this program used an external call based on Python’s ’timer’ library to calculate the difference between start and end of each run in milliseconds.</p>
+<p>&nbsp;</p>
+<pre class="lang:default decode:true">self.end = time.time()
+self.secs = self.end - self.start
+self.msecs = self.secs * 1000 # millisecs
+if self.verbose:
+print 'Elapsed time: %f ms' % self.msecs</pre>
+<p>**Functions** **1000 times (second)** **Average (second)**<br />
+-------------------- ------------------------- ----------------------<br />
+AES128 encryption                 0.015999794                 0.000016<br />
+AES128 decryption                 0.014999866                 0.000015<br />
+RSA encryption                       0.254999876                 0.000255<br />
+RSA decryption                       39.37100005                 0.039371<br />
+RSA CRT decryption                 12.02799988                 0.012028<br />
+Total                                          51.68499947                 0.051685</p>
+<p>Table <strong>time</strong> shows the execution time of RSA scheme is much larger than AES128 scheme. This result explains why RSA should being used in key exchange while parties encrypt their information using AES cryptosystem. Another significant result is that the RSA-CRT decryption method is approximately 3 times faster than normal RSA decryption.</p>
+<p><em>Hope this article can bring cryptography motivation to some Math/IT students and players who were exhausted in enjoying CTF challenges, or at least it can be a good reference for somebody.</em></p>
+<p><em>-chuymichxinhdep</em></p>
+<p><strong>Ref:</strong></p>
+<p>1&lt;https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29&gt;</p>
+<p>2 &lt;http://crypto.stackexchange.com/questions/2575/chinese-remainder-theorem-and-rsa&gt;</p>
+<p><strong>**APPENDIX**</strong></p>
+<pre class="lang:default decode:true">from Crypto.Cipher import AES
+import math,random
+from fractions import gcd
+from random import randrange
+from collections import namedtuple
+from math import log
+from binascii import hexlify, unhexlify
+from timer import Timer
+
+class RSA():
+def __init__(self):
+self.KeyPair = namedtuple('KeyPair', 'public private CRT')
+self.Key = namedtuple('Key', 'exponent modulus')
+self.KeyCRT = namedtuple('KeyCRT', 'p q')
+def is_prime(self,n, k=30):
+# Miller-Rabin Test
+if n &lt;= 3:
+return n == 2 or n == 3
+neg_one = n - 1
+
+# write n-1 as 2^s*d where d is odd
+s, d = 0, neg_one
+while not d &amp; 1:
+s, d = s+1, d&gt;&gt;1
+assert 2 ** s * d == neg_one and d &amp; 1
+
+for i in xrange(k):
+a = randrange(2, neg_one)
+x = pow(a, d, n)
+if x in (1, neg_one):
+continue
+for r in xrange(1, s):
+x = x ** 2 % n
+if x == 1:
+return False
+if x == neg_one:
+break
+else:
+return False
+return True
+
+def randprime(self,N=10**8):
+p = 1
+while not self.is_prime(p):
+p = randrange(N)
+return p
+
+def multinv(self,modulus, value):
+'''Multiplicative inverse in a given modulus
+'''
+# http://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
+x, lastx = 0, 1
+a, b = modulus, value
+while b:
+a, q, b = b, a // b, a % b
+x, lastx = lastx - q * x, x
+result = (1 - lastx * modulus) // value
+if result &lt; 0:
+result += modulus
+assert 0 &lt;= result &lt; modulus and value * result % modulus == 1
+return result
+
+def keygen(self,N, public=None):
+''' Generate public and private keys from primes up to N.
+Optionally, specify the public key exponent (65537 is popular choice).
+'''
+
+# http://en.wikipedia.org/wiki/RSA
+p = self.randprime(N)
+q = self.randprime(N)
+composite = p * q
+totient = (p - 1) * (q - 1)
+if public is None:
+while True:
+private = randrange(totient)
+if gcd(private, totient) == 1:
+break
+public = self.multinv(totient, private)
+else:
+private = self.multinv(totient, public)
+assert public * private % totient == gcd(public, totient) == gcd(private, totient) == 1
+return self.KeyPair(self.Key(public, composite), self.Key(private, composite), self.KeyCRT(p, q))
+def encrypt(self, m,e,n):
+return pow(m,e,n)
+def decrypt(self, c,d,n):
+return pow(c,d,n)
+def decryptCRT(self, c,p,q,d,dp,dq,qi):
+m1 = pow(c,dp,p)
+m2 = pow(c,dq,q)
+h = (qi*(m1-m2))%p
+m = m2+ h*q
+return m
+class PKCS7Encoder():
+"""
+Technique for padding a string as defined in RFC 2315, section 10.3,
+note #2
+"""
+class InvalidBlockSizeError(Exception):
+"""Raised for invalid block sizes"""
+pass
+
+def __init__(self, block_size=16):
+if block_size &lt; 2 or block_size &gt; 255:
+raise PKCS7Encoder.InvalidBlockSizeError('The block size must be ' \
+'between 2 and 255, inclusive')
+self.block_size = block_size
+
+def encode(self, text):
+text_length = len(text)
+amount_to_pad = self.block_size - (text_length % self.block_size)
+if amount_to_pad == 0:
+amount_to_pad = self.block_size
+pad = chr(amount_to_pad)
+return text + pad * amount_to_pad
+
+def decode(self, text):
+pad = ord(text[-1])
+return text[:-pad]
+iv = "this is iv123456"
+key = "this mus be a 16"
+
+def AES_encrypt(iv,key,message):
+obj = AES.new(key, AES.MODE_CBC, iv)
+pkcs7 = PKCS7Encoder()
+return obj.encrypt(pkcs7.encode(message)).encode("hex")
+
+def AES_decrypt(iv,key,cipherText):
+obj = AES.new(key, AES.MODE_CBC, iv)
+pkcs7 = PKCS7Encoder()
+return pkcs7.decode(obj.decrypt(cipherText.decode('hex')))
+
+message = raw_input("Input message:")
+with Timer() as t:
+cipherText = AES_encrypt(iv,key,message)
+
+print cipherText
+print "AES encrypt: %s s" % t.secs
+
+rsa = RSA()
+pk,sk,primes = rsa.keygen(2**1024, 65537)
+
+message = int(cipherText.encode("hex"),16)
+
+with Timer() as t:
+
+rsacipher = rsa.encrypt(message,pk.exponent, pk.modulus)
+
+print rsacipher
+
+print "RSA Encrypt: %s s" % t.secs
+with Timer() as t:
+
+messagersa = hex(rsa.decrypt(rsacipher, sk.exponent,sk.modulus)).replace("0x","").replace("L","").decode('hex')
+print "RSA Decrypt: %s s" % t.secs
+print messagersa
+#Pre compute RSA CRT
+p = primes.p
+q = primes.q
+dp = sk.exponent % (p-1)
+dq = sk.exponent % (q-1)
+qi = rsa.multinv(p,q)
+#RSA-CRT Decryption
+
+with Timer() as t:
+for i in xrange(1):
+messagersacrt = hex(rsa.decryptCRT(rsacipher,p,q,sk.exponent,dp,dq,qi)).replace("0x","").replace("L","").decode('hex')
+print "RSA Decrypt CRT : %s s" % t.secs
+print messagersacrt
+
+with Timer() as t:
+plainText = AES_decrypt(iv,key,messagersa)
+print "Decrypted message:", plainText
+print "AES decrypt: %s s" % t.secs
+```</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">465</post-id>	</item>
+		<item>
+		<title>Introduction to Threshold signature scheme</title>
+		<link>https://babyphd.net/2016/03/10/introduction-to-threshold-signature-scheme/</link>
+				<pubDate>Thu, 10 Mar 2016 03:07:10 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[crypto]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=399</guid>
+				<description><![CDATA[THRESHOLD SIGNATURE SCHEME Introduction Assuming there are 20 employees in a company, and if each employee has his or her own copy of the secret key then it is hard to assure on individuals due to compromise and machine break down. In the other hand, if there is a valid signature requires all 20 employees’ &#8230; <a href="https://babyphd.net/2016/03/10/introduction-to-threshold-signature-scheme/" class="more-link">Continue reading <span class="screen-reader-text">Introduction to Threshold signature scheme</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><strong>THRESHOLD SIGNATURE SCHEME</strong></p>
+<ol>
+<li><strong>Introduction</strong></li>
+</ol>
+<p>Assuming there are 20 employees in a company, and if each employee has his or her own copy of the secret key then it is hard to assure on individuals due to compromise and machine break down. In the other hand, if there is a valid signature requires all 20 employees’ signature in the company then it will be very secure but not be easy to use. Therefore we can implement a scheme which requires only sign 5 or more out of 20 employees then it will be valid and that is exactly what a (5,20) threshold signature scheme tries to achieve. In addition, if a threat agent wants to compromise the system and obtain a message, he must compromise at least 5 people in the scheme and that is a harder thing to do compared to a traditional public scheme.</p>
+<p><span id="more-399"></span></p>
+<p><strong>2. Threshold signature scheme</strong></p>
+<p>Threshold signature scheme is a branch of public key cryptography and multi-party computation particularly. In a k-out-of-n threshold crypto-system (k, n) where 1 &lt; k ≤ n, we generate and split the secret decryption exponent d into n different pieces D<sub>1</sub>,…,D<sub>n</sub>, which are then distributed privately to n parties. This enables:</p>
+<p>• Knowledge of any k or more D<sub>i</sub> pieces makes D easily computable.</p>
+<p>• Knowledge of any k- 1 or fewer D<sub>i</sub> pieces leaves D completely undetermined (in the sense that all its possible values are equally likely) [1]</p>
+<p><strong>2.1. Shared RSA Threshold Scheme</strong></p>
+<p>Similarly to traditional RSA, in shared RSA scheme, we have the public components are moduli N= pq and the encryption exponent e where e is co-prime to N. Additionally, both Boyd [2] and Frankel [3] independently proposed a simple and solution for distributed RSA. The decryption key d is additively shared amongst n parties where d = d<sub>1</sub> + d<sub>2</sub> + · · · + d<sub>n</sub>, and signing is simply calculated as follows:</p>
+<p>s = m<sup>d</sup>= m<sup>d</sup><sub>1</sub>· · · m<sup>d</sup><sub>n </sub>(mod N), and each s<sub>i</sub> = m<sup>di</sup> (mod N) is called the partial signature or signature share.</p>
+<p>Decryption is more complicated as there are more parties who get involved in the scheme. Assuming there are n parties and the prime factors of N remain unknown to every person. Each party Pi now only knows the tuple &lt; p<sub>i</sub>, q<sub>i</sub>, d<sub>i</sub> &gt; and keeps it secret to any other parties, and they are also required to satisfy the four following conditions:</p>
+<p>1. p is an unknown big prime number and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-1.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>2. q is an unknown big prime number and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-2.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>3. The unknown decryption exponent <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-3.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>4. And ed = 1 (mod φ(N )).</p>
+<p>I am going to show a way to encrypt a message and decrypt a cipher text based on Discrete Logarithm Problem presented in [4].</p>
+<ul>
+<li><strong>Encryption: </strong>is similar to RSA : <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-4.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></li>
+<li><strong>Decryption: </strong>each party computes <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-5.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and then sends <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-6.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> to all other parties. Each party knows all <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-7.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and then can recovers the original message (m) [5] as follow:</li>
+</ul>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-8.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<ul>
+<li><strong><em>Advantages</em>: </strong>Simple and easy to deploy.</li>
+<li><strong><em>Disadvantages</em>: </strong>requires a trusted party and there is no verification process to avoid compromised party.</li>
+</ul>
+<p><strong>Proof</strong>:</p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-9.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><strong>Example:</strong></p>
+<p>Let p=47 and q=59, then N=pq=2773 and (p-1)(q-1)=2668. Assume e=17, we can calculate the value for d with 17d=1(mod 2668) or d=157. Each party Pi knows the tuple &lt; p<sub>i</sub>, q<sub>i</sub>, d<sub>i </sub>&gt; : &lt;13,19,61&gt;, &lt;11,23,53&gt;, &lt;23,17,43&gt; respectively where p = 47 =13+11+23 ; q=59=19+23+17; and d=157=61+53+43. If the message is ready for the encryption is represent by m=9, then calculation of the ciphertext yields: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-10.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</p>
+<p>Decipherment of the text requires knowledge of <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-11.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> from all parties then it follows that:</p>
+<p>M <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-12.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-13.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-14.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-15.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> =9, which is the original message.</p>
+<p><strong>2.2. Shamir’s Secret Sharing Scheme and Lagrange Coefficient</strong></p>
+<p>A trusted dealer has a secret s and chooses a large prime number p &gt; n, the number of parties. Unless otherwise stated, all arithmetic operations are done modulo p. The dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P(x) = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-16.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi gets share s<sub>i</sub>= P(i) privately from the dealer. To reconstruct the secret <em>s</em>, any <em>t</em> parties come together. They can recover the secret by solving the system of linear equations: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-17.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . We can also denote <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-18.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</p>
+<p><strong>Proof</strong>:</p>
+<p>Larrange interpolation over <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-19.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> with <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-20.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><strong>Example</strong>:</p>
+<p>Shamir’s threshold (3,4) over Z<sub>7</sub>:</p>
+<p><em>Distribution: </em>Dealer has secret s=4 and picks <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-21.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Hence, polynomial <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-22.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Dealer sends s<sub>1</sub>=4 to P<sub>1</sub>, s<sub>2</sub>=0 to P<sub>2</sub>, s<sub>3</sub>=6 to P<sub>1</sub>, s<sub>4</sub>=1 to P<sub>4</sub>.</p>
+<p><em>Reconstruction: </em>When P<sub>1</sub>, P<sub>3</sub> and P<sub>4</sub> come together, we have:</p>
+<p><em>s</em> = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-23.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-24.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-25.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> 4</p>
+<p><strong>2.3. Threshold ElGamal based on Shamir’s Secret Sharing Scheme </strong></p>
+<p>2.3.1 Threshold ElGamal scheme</p>
+<p>Similarly to traditional ElGamal encryption scheme, in threshold ElGamal, we have the public components are (p,g,h) and private key <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-26.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> in threshold environment. The dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P(x) = <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-27.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi gets share s<sub>i</sub>= P(i) privately from the dealer. This scheme of both construction and reconstruction of the secret is similar to the previous scheme based on Shamir’s Lagrange.</p>
+<p><strong>Example</strong>: public key (23, 5, 8) and private key = 6 in a (3,5)-threshold scheme [6].</p>
+<ul>
+<li><em>Standard ElGamal encryption</em> with message m and public key.</li>
+</ul>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-28.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<ul>
+<li><em>Decryption</em></li>
+</ul>
+<p>Trusted dealer and every party can receive cipher = (B, c). Assume 3 parties {2,4,5} meet together to compute decryption share:</p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-29.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-30.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-31.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p><img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-32.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-33.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>Trusted dealer computes <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-34.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> using Shamir’s Lagrange: <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-35.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Then compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-36.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>However, this scheme still requires a trusted third party (dealer) which is the most disadvantage when being compromised. Broadcasting partial secret information is used to avoid this problem using distributed key generation (DKG) as follow:</p>
+<ul>
+<li>Each party acts as dealer picks a<sub>1</sub>, …, a<sub>t−1 </sub>uniformly random from Z𝑝 and defines P<sub>i</sub>(x) = <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-37.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi sends s<sub>i,j</sub>= P<sub>i</sub>(j) privately to party P<sub>j</sub>. All parties compute their secret key share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-38.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . And secret key <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-39.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</li>
+<li>To decrypt a given ciphertext (c<sub>1</sub>,c<sub>2</sub>). Let <em>Q </em>be any subgroup of size <em>t</em>, for example {P<sub>1</sub>,…,P<sub>t</sub>}. Each party P<sub>j</sub> of Q broadcast <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-40.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> then compute <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-41.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Thereafter, compute <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-42.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .</li>
+</ul>
+<p>It is easy to prove that nobody can gain information about <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-43.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> , however there is no verification if parties deviate from this scheme. In general, verifiable secret sharing ensures that even if the dealer is malicious there is a well-defined secret that the players can later reconstruct while in standard secret sharing, the dealer is assumed to be trusted. The concept of verifiable secret sharing (VSS) was first introduced in [7]. Therefore, I am going to show you two schemes to verify secret sharing: Feldman’s VSS scheme.</p>
+<p>2.3.2 Threshold El-Gamal based on DKG and Feldman’s Verifiable Secret Sharing</p>
+<p>Each party <em>P<sub>i</sub></em> picks a<sub>i,1</sub>, …, a<sub>i,t−1 </sub>uniformly random from Z𝑝 in given group <em>G = &lt;g&gt; </em>of order <em>p </em>and defines P<sub>i</sub>(x) = <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-44.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Party Pi shares s<sub>i,j</sub>= P<sub>i</sub>(j) privately to party P<sub>j</sub> and broadcasts <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-45.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-46.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Hence all parties P<sub>j</sub> can check own share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-47.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> , compute key share: <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-48.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> and compute verification key of P<sub>i </sub>: <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-49.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>To decrypt a given ciphertext (c<sub>1</sub>,c<sub>2</sub>). Let <em>Q </em>be any subgroup of size <em>t</em>, for example {P<sub>1</sub>,…,P<sub>t</sub>}. Each party P<sub>j</sub> of Q broadcast <img src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-50.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> similar to DKG scheme then compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-51.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> . Use Zero knowledge proof to prove <img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-52.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> Thereafter, compute <img src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image-53.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /> .[8]</p>
+<ul>
+<li><strong><em>Advantages</em></strong>: It does not require any trusted dealer and still can generate the public/private key pair efficiently with verification process.</li>
+<li><strong><em>Disadvantage</em></strong><em>s</em>: All parties’ identity need to be known to all other parties through every step.</li>
+</ul>
+<p><strong>4.Conclusion</strong></p>
+<p>Different applied schemes using threshold signature scheme is proposed in this report that includes: RSA shared secret, Shamir’s secret sharing, Elgamal threshold scheme, distributed key generation and verification as well as advantages and disadvantages of each scheme.</p>
+<p>-cmxd</p>
+<p><strong>REFERENCES</strong></p>
+<p>[1] A. Shamir. How to share a secret. Communications of the ACM, 22, 612–613, 1979</p>
+<p>[2] C. Boyd. Digital Multisignatures. Cryptography and Coding 1989. Institute of Mathematics and its application, IMA. 241–246, Clarendon Press, 1989</p>
+<p>[3] Y. Frankel. A practical protocol for large group oriented networks. Advances in Cryptology – EUROCRYPT ’89, Springer-Verlag LNCS 434, 56–61, 1989.</p>
+<p>[4] P. Paillier. Public key crypto-systems based on composite residue classes. Advances in Cryptography - EIROCRYPT ’99. Springer-Verlag LNCS 1070, pp. 72-83, 1996.</p>
+<p>[5] H.L. Nguyen, RSA Threshold Cryptograph. University of Bristol, 2005.</p>
+<p>[6] Björn Groneberg, Threshold Cryptography slides. University of Potsdam, 2013.</p>
+<p>[7] Benny Chor, Shafi Goldwasser, Silvio Micali, Baruch Awerbuch. Verifiable secret sharing and achieving simultaneity in the presence of faults, SFCS '85 Proceedings of the 26th Annual Symposium on Foundations of Computer Science p. 383-395,1985.</p>
+<p>[8] Dr. S.J.A. de Hoogh, Threshold Cryptography slides. TU/D, 2014.</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">399</post-id>	</item>
+		<item>
+		<title>Deciphering Ceasar basic concept</title>
+		<link>https://babyphd.net/2016/03/08/deciphering-ceasar-basic-concept/</link>
+				<pubDate>Tue, 08 Mar 2016 17:15:10 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[crypto]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=379</guid>
+				<description><![CDATA[Deciphering &#160; Ciphertext: “VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganne NzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbzn oyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuev wsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxs hegnzZnva” The given ciphertext has only letters without space, punctuation or separated key, there are two classic cipher systems such as substitution cipher and transposition cipher which are known to be easy to attack by using frequency analysis or bruteforce techniques. 1. Bruteforce Firstly, it is suggested that &#8230; <a href="https://babyphd.net/2016/03/08/deciphering-ceasar-basic-concept/" class="more-link">Continue reading <span class="screen-reader-text">Deciphering Ceasar basic concept</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><strong>Deciphering</strong></p>
+<p>&nbsp;</p>
+<table>
+<tbody>
+<tr>
+<td>Ciphertext: “<em>VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganne</em></p>
+<p><em>NzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbzn </em></p>
+<p><em>oyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuev</em></p>
+<p><em>wsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxs</em></p>
+<p><em>hegnzZnva</em>”</td>
+</tr>
+</tbody>
+</table>
+<p>The given ciphertext has only letters without space, punctuation or separated key, there are two classic cipher systems such as substitution cipher and transposition cipher which are known to be easy to attack by using frequency analysis or bruteforce techniques.<span id="more-379"></span></p>
+<p><strong>1. Bruteforce</strong></p>
+<p>Firstly, it is suggested that some sorts of simple substitution cipher has been used and Ceasar cipher is one of the most popular and simplest known encryption techniques. This encryption can be represented by aligning two alphabets; the ciphertext is the plain alphabet rotated left or right by some numbers of positions. It can be represented using modular arithmetic as well by first converting the letters into numbers such as A = 0, B = 1,..., Z = 25. Encryption of a letter <em>x</em> by a shift <em>n</em> can be described as E(x)=(x+n)mod 26 and the decryption is similarly D(x)=(x-n) mod 26. One way to break this is printing out all results with possible shifts of ciphertext by using bruteforce where the shift ranges from 1 to 26 (assuming they are only lower/uppercase letters in ASCII table). By using the Python program [1], there is a readable output as follow:</p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/word-image.png?w=604&#038;ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>This result is in Dutch language and it means: “<em>In December, bringing Juliusen Walter Hollander's two brothers Edith Margot to Amsterdam Anne would like to come but it must no be zero in some time with Grandma Omazal have tired of hard-to for Anne no no few weeks to keep writes Edith Frank Smash letter to Gertrud Naumann, their former neighbor in Frankfurtam Main</em>”.</p>
+<p><strong>2. Frequency analysis</strong></p>
+<p>By analysing the frequency of ciphertext’s letters, and by knowing the expected distribution of letters in the original language of the plaintext, we can easily decipher substitution ciphertext by trying several combinations of mappings between ciphertext and plaintext letters based on the statistic. The letter frequency of the given ciphertext was derived by using the script [2] which shows the most frequently used letter: “R”. Given that the plaintext is in English, Dutch, German or Turkish, and there are many published frequency result extracted from common books such as: “<em>etaoinsrhldcumfpgwybvkxjqz</em>”, “<em>enatirodslghvkmubpwjczfxy(ëéó)q</em>”, “<em>enisratdhulcgmobw fkzvüpäßjöyqx</em>”, and “<em>aeinrlıdkmuytsboüşzgçhğvcöpfjwxq</em>” respectively<sup><a id="post-379-footnote-ref-1" href="#post-379-footnote-1">[1]</a></sup>.</p>
+<p>In substituting the letters appeared the most in ciphertext by letters from those result above, I recognize the language of plaintext must be in Dutch. Because after replacing 2 most frequently used Dutch letter R, A in ciphertext with E, N respectively, I found out that the 3-letter-word “<em>een</em>” <em>(</em>means “<em>a</em>” in English) appeared with high frequency and this word is one of the most popular Dutch words<sup><a id="post-379-footnote-ref-2" href="#post-379-footnote-2">[2]</a></sup>. Keep replacing others based on the popular Dutch frequency letter with some guessing as described in [3], we get the final text which is similar to the first result.</p>
+<p><strong>3.Encryption algorithm improvements</strong></p>
+<p><strong>Method 1:</strong></p>
+<p>This encryption can be improved by rotating left or right each letters by different numbers of positions. Firstly we convert the letters into numbers such as A = 0, B = 1,.., Z = 25. Encryption of a letter <em>x<sub>i</sub></em> can be described as E(x_i )=(x_i+n*i)mod 26 and the decryption is similarly D(x_i )=(x_i-n*i) mod 26 where <em>i</em> is the letter’s position in plaintext or ciphertext. It will be difficult for attackers to use frequency analysis without knowing the encipher method and number n. An example of n=2 is described in [4].</p>
+<p><strong>Method 2:</strong></p>
+<p>This encryption can be improved by substituting each letters with a pseudo-random generated array of letters. Given an alphabet array consisting of uppercase and lowercase letters:</p>
+<p>[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]</p>
+<p>We shuffle this array by initializing a basic random generator with a <em>seed</em> number which can be the key or the time when this text was enciphered, then we have a Pseudo-random Array (PRA). We convert the letters into numbers such as A = 0, B = 1,.., Z = 25. Encryption of a letter <em>x</em> can be described as and the decryption is similarly where <em>index</em> is a function shows the letter’s position in array. The result consists of random uppercase or lowercase letters independent of plaintext. It will be difficult for attacker to use frequency analysis despite knowing the encipher method, however attackers can still bruteforce the <em>seed</em> if they know initial array’s order and a small value of <em>seed</em> was implemented. An example of <em>seed</em>=0xFFFFFFF is described in [5].</p>
+<p><strong>However, I've got a question for viewers: <em>Do you think this kind of encryption seems tobe complex but it can still be beaten by simple substitution cipher analysis?</em></strong></p>
+<p><strong>4. Conclusion</strong></p>
+<p>ROT13 is used in this encipher method with replaces a letter with other 13 letters after it in the alphabet. It can be easily broken even in a ciphertext-only scenario by using bruteforce and frequency analysis.</p>
+<p>&nbsp;</p>
+<p>-cmxd</p>
+<p><strong>APPENDIX</strong></p>
+<p><strong>[1]</strong></p>
+<pre class="lang:default decode:true ">import string
+ciphertext = 'VaqrprzoreoeratraWhyvhfraJnygreUbyynaqreqrgjrroebrefinaRqvguZnetbganneNzfgreqnzNaarjvytenntzrrxbzraznnezbrgabtrrarragvwqwrovwbznoyvwiraBznmnyurgzbrvyvwxuroorabzNaarabtrracnnejrxraqnnegrubhqrafpuevwsgRqvguSenaxvarraoevrsnnaTregehqAnhznaauhaiebrtrerohhezrvfwrvaSenaxshegnzZnva'
+for i in range(0,26):
+    plaintext = ''
+    for c in ciphertext:
+        if c in string.uppercase:
+            newpos = string.uppercase.find(c)+i
+            if newpos&gt;25 : newpos -= 26
+            plaintext += string.uppercase[newpos]
+        if c in string.lowercase:
+            newpos = string.lowercase.find(c)+i
+            if newpos&gt;25 : newpos -= 26
+            plaintext += string.lowercase[newpos]
+    print "Shift:"+str(i)+" : "+plaintext</pre>
+<p>&nbsp;</p>
+<p><strong>[2]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true "># -*- coding: utf-8 -*-
+import collections, string
+cipher = 'VAQRPRZOREOERATRAWHYVHFRAJNYGREUBYYNAQREQRGJRROEBREFINARQVGUZNETBGANNENZFGREQNZNAARJVYTENNTZRRXBZRAZNNEZBRGABTRRARRAGVWQWROVWBZNOYVWIRABZNMNYURGZBRVYVWXUROORABZNAARABTRRACNNEJRXRAQNNEGRUBHQRAFPUEVWSGRQVGUSENAXVARRAOEVRSNNATREGEHQANHZNAAUHAIEBRTREROHHEZRVFWRVASENAXSHEGNZZNVA'
+dem = [[0, chr(i + ord('A'))] for i in range(26)]
+for ch in cipher:
+    if ch not in string.uppercase:
+        continue
+    dem[ord(ch) - ord('A')][0] += 1
+count = {}
+dem.sort()
+dem = dem[::-1]
+print "Letter Frequency: ", dem
+for ch in [cipher[i:i+2] for i in xrange(0, len(cipher)-1)]:
+    if (not count.get(ch)):
+        count[ch]=1
+    else:
+        count[ch]+=1
+print "2 letters Frequency: ", collections.OrderedDict(sorted(count.items(), key=lambda t: t[1]))
+count = {}
+for ch in [cipher[i:i+3] for i in xrange(0, len(cipher)-2)]:
+    if (not count.get(ch)):
+        count[ch]=1
+    else:
+        count[ch]+=1
+print "3 letters Frequency: ",  collections.OrderedDict(sorted(count.items(), key=lambda t: t[1]))</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[3]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">a = {}
+# #e n a t i r o d s l g h v k m u b p w j c z f x y (e e o) q DUTCH
+#e n a r m i t o d u b l j h g s k f w v c z p y x q
+a['R'] = 'E'
+a['A'] = 'N'
+a['N'] = 'A'
+a['E'] = 'R'
+a['Z'] = 'M'
+a['V'] = 'I'
+a['G'] = 'T'
+a['B'] = 'O'
+a['Q'] = 'D'
+a['O'] = 'B'
+a['H'] = 'U'
+a['Y'] = 'L'
+a['W'] = 'J'
+a['U'] = 'K'
+a['T'] = 'G'
+a['X'] = 'U'
+a['S'] = 'F'
+a['F'] = 'S'
+a['J'] = 'W'
+a['I'] = 'V'
+a['P'] = 'C'
+a['M'] = 'Z'
+a['C'] = 'P'
+plaintext = ''
+for ch in cipher:
+    if ch in a.keys():
+        plaintext = plaintext + a[ch]
+    else:
+        plaintext = plaintext + '*'
+print plaintext</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[4]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">import string
+plaintext="IndecemberbrengenJuliusenWalterHollanderdetweebroersvanEdithMargotnaarAmsterdamAnnewilgraagmeekomenmaarmoetnogeeneentijdjebijomablijvenOmazalhetmoeilijkhebbenomAnnenogeenpaarwekendaartehoudenschrijftEdithFrankineenbriefaanGertrudNaumannhunvroegerebuurmeisjeinFrankfurtamMain"
+ciphertext=""
+for i in range(1,len(plaintext)+1):
+    shift = (2*i%26)
+    if plaintext[i-1] in string.uppercase:
+        newpos = string.uppercase.find(plaintext[i-1])+shift
+        if newpos&gt;25 : newpos -= 26
+        ciphertext += string.uppercase[newpos]
+    elif plaintext[i-1] in string.lowercase:
+        newpos = string.lowercase.find(plaintext[i-1])+shift
+        if newpos&gt;25 : newpos -= 26
+        ciphertext += string.lowercase[newpos]
+print "Ciphertext: ", ciphertext
+#Decipher
+plaintext=""
+for i in range(1,len(ciphertext)+1):
+    shift = (2*i%26)
+    if ciphertext[i-1] in string.uppercase:
+        newpos = string.uppercase.find(ciphertext[i-1])-shift
+        if newpos&lt;0 : newpos += 26
+        plaintext += string.uppercase[newpos]
+    elif ciphertext[i-1] in string.lowercase:
+        newpos = string.lowercase.find(ciphertext[i-1])-shift
+        if newpos&lt;0 : newpos += 26
+        plaintext += string.lowercase[newpos]
+print "Plaintext: ", plaintext</pre>
+<p>&nbsp;</li>
+</ol>
+<p><strong>[5]</strong></p>
+<ol>
+<li>
+<pre class="lang:default decode:true ">import random
+def random_encipher(string,seed):
+   random.seed(seed)
+   alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+   random.shuffle(alphabet)
+   ciphers = ""
+   for letter in string:
+    if ord(letter) &gt;=97:
+       index = ord(letter)-97
+       cipher = alphabet[index]
+       ciphers+=cipher
+    else:
+       index = ord(letter)-65
+       cipher = alphabet[26+index]
+       ciphers+=cipher
+   return ciphers
+def random_decipher(string,seed):
+   random.seed(seed)
+   alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+   random.shuffle(alphabet)
+   plaintext = ""
+   for letter in string:
+    index=alphabet.index(letter)
+    if index &gt;=26:
+       plaintext += chr(65+index-26)
+    else:
+       plaintext += chr(97+index)
+   return plaintext
+ciphertext= random_encipher("IndecemberbrengenJuliusenWalterHollanderdetweebroersvanEdithMargotnaarAmsterdamAnnewilgraagmeekomenmaarmoetnogeeneentijdjebijomablijvenOmazalhetmoeilijkhebbenomAnnenogeenpaarwekendaartehoudenschrijftEdithFrankineenbriefaanGertrudNaumannhunvroegerebuurmeisjeinFrankfurtamMain",0xFFFFFFF )
+print "Ciphertext: ", ciphertext
+print "Plaintext: ",random_decipher(ciphertext, 0xFFFFFFF )</pre>
+<p>&nbsp;</li>
+</ol>
+<ol>
+<li id="post-379-footnote-1">http://www.letterfrequency.org <a href="#post-379-footnote-ref-1">↑</a></li>
+<li id="post-379-footnote-2">https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#Dutch <a href="#post-379-footnote-ref-2">↑</a></li>
+</ol>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">379</post-id>	</item>
+	</channel>
+</rss>

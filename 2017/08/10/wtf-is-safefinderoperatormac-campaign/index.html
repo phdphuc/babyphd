@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>What is SafeFinder/OperatorMac campaign? | BabyPhD CTF Team</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://babyphd.net/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://babyphd.net/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<script type='text/javascript'>function ctSetCookie(c_name, value, def_value){document.cookie = c_name + '=' + escape(value) + '; path=/';}ctSetCookie('ct_checkjs', '1181016728', '0');</script><link rel='dns-prefetch' href='https://s0.wp.com/' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/babyphd.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.2"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='../../../../wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css%3Fver=3.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='../../../../wp-content/themes/twentythirteen/style.css%3Fver=2013-07-18.css' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='https://babyphd.net/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='../../../../wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css%3Fver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='../../../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=7.5.2.css' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js%3Fver=20190204'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctPublic = {"_ajax_nonce":"a204603c59","_ajax_url":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/cleantalk-spam-protect/js/apbct-public.min.js%3Fver=5.122'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctNocache = {"ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","info_flag":"","set_cookies_flag":"","blog_home":"https:\/\/babyphd.net\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/cleantalk-spam-protect/js/cleantalk_nocache.min.js%3Fver=5.122'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='MeepwnCTF 2017 - injection' href='../../../07/27/meepwnctf-2017-injection/index.html' />
+<link rel='next' title='MEEPWN CTF 2018 - PyCalx2' href='../../../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html' />
+<meta name="generator" content="WordPress 5.2.2" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='https://wp.me/p72HMd-b5' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2017%252F08%252F10%252Fwtf-is-safefinderoperatormac-campaign%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2017%252F08%252F10%252Fwtf-is-safefinderoperatormac-campaign%252F&amp;format=xml" />
+
+<link rel='dns-prefetch' href='https://v0.wordpress.com/'/>
+<link rel='dns-prefetch' href='https://i0.wp.com/'/>
+<link rel='dns-prefetch' href='https://i1.wp.com/'/>
+<link rel='dns-prefetch' href='https://i2.wp.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+			<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(../../../../wp-content/themes/twentythirteen/images/headers/star.png) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+		@media (max-width: 767px) {
+			.site-header {
+				background-size: 768px auto;
+			}
+		}
+		@media (max-width: 359px) {
+			.site-header {
+				background-size: 360px auto;
+			}
+		}
+		</style>
+	
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="What is SafeFinder/OperatorMac campaign?" />
+<meta property="og:url" content="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/" />
+<meta property="og:description" content="&nbsp; A new variant of adware was just discovered yesterday. It’s going viral on Twitter and other media, since they use valid Apple developer certificate to sign all packed samples. I’m quite ove…" />
+<meta property="article:published_time" content="2017-08-10T15:35:08+00:00" />
+<meta property="article:modified_time" content="2017-09-07T08:22:09+00:00" />
+<meta property="og:site_name" content="BabyPhD CTF Team" />
+<meta property="og:image" content="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Untitled-1.jpg?fit=960%2C424&amp;ssl=1" />
+<meta property="og:image:width" content="960" />
+<meta property="og:image:height" content="424" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="What is SafeFinder/OperatorMac campaign?" />
+<meta name="twitter:image" content="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Untitled-1.jpg?fit=960%2C424&#038;ssl=1&#038;w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+			<style type="text/css" id="wp-custom-css">
+				code {
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 2px;
+    color: #222;
+    background: #f2f4f5;
+}			</style>
+		</head>
+
+<body class="post-template-default single single-post postid-687 single-format-standard sidebar">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="../../../../index.html" title="BabyPhD CTF Team" rel="home">
+				<h1 class="site-title">BabyPhD CTF Team</h1>
+				<h2 class="site-description">Nói chung đây là một khái niệm vô cùng trừu tượng</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<button class="menu-toggle">Menu</button>
+					<a class="screen-reader-text skip-link" href="index.html#content" title="Skip to content">Skip to content</a>
+					<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-2"><a href="../../../../ctf-wtf/index.html">CTF</a></li>
+</ul></div>
+					<form role="search" method="get" class="search-form" action="../../../../index.html">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+						
+				
+<article id="post-687" class="post-687 post type-post status-publish format-standard has-post-thumbnail hentry category-chuymich category-forensic category-uncategorized category-vietnamese tag-malware tag-mughthesec tag-operatormac">
+	<header class="entry-header">
+				<div class="entry-thumbnail">
+			<img width="604" height="270" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Untitled-1.jpg?resize=604%2C270&amp;ssl=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Untitled-1.jpg?resize=300%2C133&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Untitled-1.jpg?resize=604%2C270&amp;ssl=1 604w" sizes="(max-width: 604px) 100vw, 604px" data-attachment-id="708" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/untitled-1/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Untitled-1.jpg?fit=960%2C424&amp;ssl=1" data-orig-size="960,424" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Untitled-1" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Untitled-1.jpg?fit=300%2C133&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Untitled-1.jpg?fit=604%2C267&amp;ssl=1" />		</div>
+		
+				<h1 class="entry-title">What is SafeFinder/OperatorMac campaign?</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="index.html" title="Permalink to What is SafeFinder/OperatorMac campaign?" rel="bookmark"><time class="entry-date" datetime="2017-08-10T15:35:08+00:00">August 10, 2017</time></a></span><span class="categories-links"><a href="../../../../category/chuymich/index.html" rel="category tag">chuymich</a>, <a href="../../../../category/forensic/index.html" rel="category tag">forensic</a>, <a href="../../../../category/uncategorized/index.html" rel="category tag">Uncategorized</a>, <a href="../../../../category/vietnamese/index.html" rel="category tag">vietnamese</a></span><span class="tags-links"><a href="../../../../tag/malware/index.html" rel="tag">malware</a>, <a href="../../../../tag/mughthesec/index.html" rel="tag">Mughthesec</a>, <a href="../../../../tag/operatormac/index.html" rel="tag">OperatorMac</a></span><span class="author vcard"><a class="url fn n" href="../../../../author/phamus/index.html" title="View all posts by phamus" rel="author">phamus</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>&nbsp;</p>
+<p>A new variant of adware was just discovered yesterday. It’s going viral on Twitter and other media, since they use valid Apple developer certificate to sign all packed samples. I’m quite overbusy these days but it got my interest when seeing the name stated in that certificate: “Quoc Thinh”, quite a unique Vietnamese name. So why not take a break from desperate thesis, toss adware in my lame automated MacOS analysis framework and see what our ‘countryman’ doing?</p>
+<p><span id="more-687"></span>The sample was first noticed by <em>Gavriel State</em>‏ on Aug 7, then <em>Thomas A Reed</em> – the Mac malware boss hunter from Malwarebytes - confirmed it relates to OperatorMac on the next day. I think you all know the famous Mac free security tools’ author: <em>Patrick Wardle</em>, wrote an amazing report on <a href="https://objective-see.com/blog/blog_0x20.html">objective-see.com</a> in Aug 9. So I’m not going too deep in reverse engineering - static analysis, just throw in my Grey-cuckoo framework and grab results. In case somebody doesn’t know, it’s my thesis project and and soon to be released right after my judgment day - defense (hopefully).</p>
+<p>From Patrick’s report we understand it’s an adware which installs lots of crabs. By default, cuckoo sandbox timeout is 120 sec. Let’s extend it a bit, 300 sec (5 min) would be enough.</p>
+<p id="jztOQbU"><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?ssl=1"><img data-attachment-id="692" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c71a4b4bf1/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?fit=1892%2C1159&amp;ssl=1" data-orig-size="1892,1159" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c71a4b4bf1" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?fit=300%2C184&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?fit=604%2C370&amp;ssl=1" class="alignnone size-full wp-image-692 " src="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?w=604&#038;ssl=1" alt="" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?w=1892&amp;ssl=1 1892w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?resize=300%2C184&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?resize=768%2C470&amp;ssl=1 768w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?resize=1024%2C627&amp;ssl=1 1024w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?w=1208&amp;ssl=1 1208w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>First result we got, that Apple developer ID “Quoc Thinh”, and he got his certificate revoked from Apple today by the way 😄.</p>
+<p><code>spctl -avv "Mughthesec-Player(dmg).dmg"<br />
+Mughthesec-Player(dmg).dmg: <strong>CSSMERR_TP_CERT_REVOKED</strong></code></p>
+<p>From captured screenshots, we can see what this adware apparently executes: Install Adobe flash and offer you a bunch of PUA (potential unwanted applications) – Booking, Advanced Mac Cleaner, SafeFinder Safari extension, and AdBlock (in some relevant samples that will be discussed later).</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?ssl=1"><img data-attachment-id="696" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/webp-net-gifmaker/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?fit=1390%2C869&amp;ssl=1" data-orig-size="1390,869" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Webp.net-gifmaker" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?fit=300%2C188&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?fit=604%2C378&amp;ssl=1" class="alignnone wp-image-696" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?resize=571%2C358&#038;ssl=1" alt="" width="571" height="358" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?resize=300%2C188&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?resize=768%2C480&amp;ssl=1 768w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?resize=1024%2C640&amp;ssl=1 1024w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?w=1208&amp;ssl=1 1208w" sizes="(max-width: 571px) 100vw, 571px" data-recalc-dims="1" /></a></p>
+<p>Behavioral analysis shows the packed DMG sample invoked a ‘mac’ binary, thereafter ‘Mughthesec’ with a persistence ‘I’ binary. Screenshots below already included other analysis variant of this campaign.</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?ssl=1"><img data-attachment-id="693" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c722bde0a9/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?fit=726%2C863&amp;ssl=1" data-orig-size="726,863" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c722bde0a9" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?fit=252%2C300&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?fit=604%2C718&amp;ssl=1" class="alignnone wp-image-693 " src="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?resize=275%2C327&#038;ssl=1" alt="" width="275" height="327" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?w=726&amp;ssl=1 726w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?resize=252%2C300&amp;ssl=1 252w" sizes="(max-width: 275px) 100vw, 275px" data-recalc-dims="1" /></a><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?ssl=1"><img data-attachment-id="694" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c72309c103/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?fit=732%2C1051&amp;ssl=1" data-orig-size="732,1051" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c72309c103" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?fit=209%2C300&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?fit=604%2C867&amp;ssl=1" class="alignnone wp-image-694 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?resize=224%2C322&#038;ssl=1" alt="" width="224" height="322" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?w=732&amp;ssl=1 732w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?resize=209%2C300&amp;ssl=1 209w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?resize=713%2C1024&amp;ssl=1 713w" sizes="(max-width: 224px) 100vw, 224px" data-recalc-dims="1" /></a><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?ssl=1"><img data-attachment-id="695" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c7244ef84c/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?fit=917%2C1413&amp;ssl=1" data-orig-size="917,1413" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c7244ef84c" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?fit=195%2C300&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?fit=604%2C930&amp;ssl=1" class="alignnone wp-image-695 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?resize=297%2C458&#038;ssl=1" alt="" width="297" height="458" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?w=917&amp;ssl=1 917w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?resize=195%2C300&amp;ssl=1 195w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?resize=768%2C1183&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?resize=665%2C1024&amp;ssl=1 665w" sizes="(max-width: 297px) 100vw, 297px" data-recalc-dims="1" /></a></p>
+<p>Move on to the network DNS feature, we see a lot of queries and some domains look "suspicious". Their DNS servers mostly are pointed to Akamai so I suggest we rather use domain as IOC than IP address, which could be different from viewers location. Filtering system calls logs with some rules of mine, there is no evasion technique been found. It’s quite surprising because Virustotal behavioral analysis shows a shorter execution trace than mine, which usually means its environment was detected at some point and malware stop running. In Patrick’s report he said there might be MAC address verification to detect VM (VM MAC usually starts with ’00:xx’). Fortunately, my VM framework MAC address was modified long ago since my colleague Yorick Koster at Securify used same trick to abuse my lame framework (thanks Yorick). I should add new rule – “MAC address check” later.</p>
+<p id="zFlKkqi"><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?ssl=1" target="_blank" rel="noopener"><img data-attachment-id="698" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c755999974/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?fit=1949%2C1982&amp;ssl=1" data-orig-size="1949,1982" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c755999974" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?fit=295%2C300&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?fit=604%2C614&amp;ssl=1" class=" alignnone wp-image-698 " src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?resize=604%2C614&#038;ssl=1" alt="" width="604" height="614" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?w=1949&amp;ssl=1 1949w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?resize=295%2C300&amp;ssl=1 295w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?resize=768%2C781&amp;ssl=1 768w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?resize=1007%2C1024&amp;ssl=1 1007w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?w=1208&amp;ssl=1 1208w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Additionally instead of execve(), MacOS sandbox policy usually invokes processes using XPCProxy or launchd services. So we got several processes created with posix_spawn(): delete Safari, iBooks, Mail cache (likely Advanced Mac cleaner doing its job), install mentioned PUAs and we got some new IOCs.</p>
+<p id="daBSQQC"><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?ssl=1"><img data-attachment-id="699" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c75725dafc/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?fit=1950%2C755&amp;ssl=1" data-orig-size="1950,755" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c75725dafc" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?fit=300%2C116&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?fit=604%2C234&amp;ssl=1" class="alignnone wp-image-699 size-full" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?resize=604%2C234&#038;ssl=1" alt="" width="604" height="234" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?w=1950&amp;ssl=1 1950w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?resize=300%2C116&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?resize=768%2C297&amp;ssl=1 768w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?resize=1024%2C396&amp;ssl=1 1024w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?w=1208&amp;ssl=1 1208w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Other great things from Cuckoo sandbox are Network analysis and Dropped files. However previous report detailed it well enough, hence only some screenshots from these features will be showed:</p>
+<style>.gist table { margin-bottom: 0; }</style><div class="gist-oembed" data-gist="0f0a61788ffe53be1f1a08be33150962.json"></div>
+<style>.gist table { margin-bottom: 0; }</style><div class="gist-oembed" data-gist="1830a8eb98f5ba755f1947386f7f93a0.json"></div>
+<p>Some dropped binaries like AMCleaner (93dd0c34a4ec25a508cd6d5fb86d8ccc0c318238d9fee0c93342a20759bf9b7e) already marked as malicious on VirusTotal (VT) 7/56, which could be an indication for vigilant users.</p>
+<p>Also with some fancy nonsense statistic screenshots, intent to scare analyst (:p)</p>
+<p id="MQRWKqm"><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?ssl=1"><img data-attachment-id="702" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c7796efc07/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?fit=1950%2C987&amp;ssl=1" data-orig-size="1950,987" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c7796efc07" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?fit=300%2C152&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?fit=604%2C306&amp;ssl=1" class="alignnone size-full wp-image-702 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?w=604&#038;ssl=1" alt="" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?w=1950&amp;ssl=1 1950w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?resize=300%2C152&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?resize=768%2C389&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?resize=1024%2C518&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?w=1208&amp;ssl=1 1208w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p id="WVLWtXn"><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?ssl=1"><img data-attachment-id="703" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c779ebc535/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?fit=1950%2C880&amp;ssl=1" data-orig-size="1950,880" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c779ebc535" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?fit=300%2C135&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?fit=604%2C273&amp;ssl=1" class="alignnone size-full wp-image-703 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?w=604&#038;ssl=1" alt="" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?w=1950&amp;ssl=1 1950w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?resize=300%2C135&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?resize=768%2C347&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?resize=1024%2C462&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?w=1208&amp;ssl=1 1208w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>At this moment, we have got all indicators to make behavioral detection rule and go hunting for other similar adware samples. Reason why I call this blog post – “a campaign”: there are numerous similar packed DMG/Mac apps matched ‘my behavioral rule’: fake Adobe Flash installer, lots of PUAs from subdomain name [cdn, dl, api] and Vietnamese developer certificate ID.</p>
+<p>&nbsp;</p>
+<table width="470">
+<tbody>
+<tr>
+<td width="107"><strong>Developer ID</strong></td>
+<td width="75"><strong>Number of Samples</strong></td>
+<td width="95"><strong>Detected (VT)</strong></td>
+<td width="92"><strong>Apple status</strong></td>
+<td width="101"><strong>First seen</strong></td>
+</tr>
+<tr>
+<td width="107">Quoc Thinh</p>
+<p>9G2J3967H9</p>
+<p>&nbsp;</td>
+<td width="75">6</td>
+<td width="95">1/6 (Ikarus detected 1 sample)</td>
+<td width="92">Revoked ID</td>
+<td width="101">2017-08-05</p>
+<p>&nbsp;</td>
+</tr>
+<tr>
+<td width="107">Pham Huong</p>
+<p>2BS26F3ZCP</td>
+<td width="75">7</td>
+<td width="95">0</td>
+<td width="92">Revoked ID</td>
+<td width="101">2017-07-15</td>
+</tr>
+<tr>
+<td width="107">Phan Anh</p>
+<p>C7J9SJ95GX</td>
+<td width="75">24</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-04-13</td>
+</tr>
+<tr>
+<td width="107">Nhien Nguyen</td>
+<td width="75">3</td>
+<td width="95">1/3 (ESET-NOD32 detected 1 sample)</td>
+<td width="92">Valid</td>
+<td width="101">2017-08-09</p>
+<p>&nbsp;</td>
+</tr>
+<tr>
+<td width="107">Thanh Thuy WAA98JBA59</td>
+<td width="75">17</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-07-06</p>
+<p>&nbsp;</td>
+</tr>
+<tr>
+<td width="107">Tran Phong GMFY4TULB3</td>
+<td width="75">6</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-06-27</p>
+<p>&nbsp;</td>
+</tr>
+<tr>
+<td width="107">Minh Duc</p>
+<p>7CXE5FM69W</td>
+<td width="75">5</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-06-21</td>
+</tr>
+<tr>
+<td width="107">Mai Linh</p>
+<p>M3XXTCHY66</td>
+<td width="75">3</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-07-12</td>
+</tr>
+<tr>
+<td width="107"><strong><em>Total</em></strong></td>
+<td width="75"><em>71</em></td>
+<td width="95"><em>2 (3%)</em></td>
+<td width="92"><em>2/8 Revoked ID</em></td>
+<td width="101"><em>Staying undetected at least 4 months</em></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Please note that VT score is an indicator only, people usually fail to judge hardworking AVs by looking at VT score. We can never know if AV would detect those adwares live running whether or not. Also instead of Mughthesec, other adware use different loader names such as SearchWebSvc, TrustedSafeFinder, etc. I don’t think OSX/Mughthesec would be appropriate for the adware name. I suggest it would be OperatorMac because all campaign packages call a simple loader “mac” binary.</p>
+<p><strong>Conclusion</strong></p>
+<p>Be <strong>vigilant</strong>, no one needs Flash nowadays it’s dead. Apple Mac is not virus-free even with those fancy Apple protection XProtect, GateKeeper, Mac sandbox, code signing, etc, many security researchers already warned.</p>
+<p>It’s likely an affiliation advertising campaign, in which adware authors spent quite some money (~$800) for these 8 Apple developer certificates and only 2 of them are revoked. Some of dropped MachO executables are not signed, and we don’t know what if those can be really dangerous (like the unsigned MachO executable from APT32 Ocean Lotus campaign targeted Vietnamese organizations lately is really a sophisticated one). Based on timeline and periods of certificate registration, and money they have spent, I doubt these adware creators are making lots of money. Last, let me remind you some incidents happened recently and could be related to this campaign:</p>
+<ul>
+<li><a href="http://genk.vn/chuyen-gia-bao-mat-phat-hien-duong-day-chiem-doat-tai-khoan-ngan-hang-facebook-gmail-cuc-lon-o-viet-nam-ban-cung-co-the-la-nan-nhan-20170622230143671.chn">Malicious browser extension – fake IDM Downloader harvested around 5M cookies from popular websites, targeted Vietnamese netizens. </a></li>
+<li><a href="https://www.techsignin.com/tintuc/lua-dao-tu-viet-nam-kiem-hon-80-000-usdthang-tu-apple-store/">Fake App store AV app – making more than $80K per month. </a></li>
+</ul>
+<p><a href="https://twitter.com/phd_phuc">Phamus</a></p>
+<p><strong>P/S: </strong>I confronted one famous hacker in cyber pirate community – “Quoc Thinh” aka G4mm4, he seriously admitted he's behind the "crime". Not sure that’s true or he was just kidding 😏</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?ssl=1"><img data-attachment-id="704" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c77b2a0e82/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?fit=729%2C461&amp;ssl=1" data-orig-size="729,461" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c77b2a0e82" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?fit=300%2C190&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?fit=604%2C382&amp;ssl=1" class="alignnone size-full wp-image-704 " src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?w=604&#038;ssl=1" alt="" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?w=729&amp;ssl=1 729w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?resize=300%2C190&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p><strong>IOCs:</strong></p>
+<p><strong>appfastplay.com</strong></p>
+<p>Created</p>
+<table width="416">
+<tbody>
+<tr>
+<td>2017-04-08</td>
+<td>New</td>
+<td>-none-</td>
+<td>198.54.117.212</td>
+</tr>
+<tr>
+<td>2017-04-23</td>
+<td>Change</td>
+<td>198.54.117.212</td>
+<td>198.54.117.215</td>
+</tr>
+<tr>
+<td>2017-07-07</td>
+<td>Change</td>
+<td>198.54.117.215</td>
+<td>198.54.117.210</td>
+</tr>
+</tbody>
+</table>
+<p>Namecheap domain hosting @ USA.</p>
+<p><strong>mughthesec.com</strong></p>
+<p>198.54.117.210</p>
+<p><strong>SimplyEApps.com</strong><br />
+198.54.117.210</p>
+<p><strong>(api./dl./cdn.)dynacubeapps.com</strong></p>
+<p>198.54.117.210</p>
+<p><strong>(api./dl./cdn.)cloudmacfront.com</strong></p>
+<p><strong>(api./dl./cdn.)api.airautoupdates.com</strong></p>
+<p><strong>(api./dl./cdn.)osxessentials.com</strong></p>
+<p><strong>(api./dl./cdn.)api.vertizoom.com</strong></p>
+<p><strong>(api./dl./cdn.)macgabspan.com</strong></p>
+<p><strong>install.searchwebsvc.com</strong></p>
+<p><strong>install.trustedsafefinder.com</strong></p>
+<p><strong>searc.trustedsafefinder.com/h?_pg=XXXX-1234-67890</strong></p>
+<p><strong>searc.trustedsafefinder.com/s?q=@@@&amp;_pg=XXXX-1234-67890</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>~/Library/LaunchAgents/com.Mughthesec.plist</strong></p>
+<p><strong><span class="mono">~/Library/Application Support/com.Mughthesec</span></strong></p>
+<p><strong>~/Library/LaunchAgents/SearchWebSvc.plist</strong></p>
+<p><strong><span class="mono">~/Library/Application Support/SearchWebSvc</span></strong></p>
+<p><strong>~/Library/LaunchAgents/TrustedSafeFinder</strong></p>
+<p><strong><span class="mono">~/Library/Application Support/com.TrustedSafeFinder.plist</span></strong></p>
+<p>&nbsp;</p>
+<p><strong>~/Library/LaunchAgents/com.pcv.hlpramcn.plist  (Advanced Mac Cleaner)</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><em>phan anh 4f62cc7e6f923ffd3d01de7ed47c3a62593e8c245bfc6cb81783a70fb821ca3c</em></p>
+<p><em>9e72aea77562c7d85950076f8acef12580050d2bfd199de9500cd9a3cf18e5ba</em></p>
+<p><em>04343158bd4942f25f8ff4e39c5bc21fa08b2e98c9f4dd3391f017667a47e59e</em></p>
+<p><em>b31baed2592708d5fb8227fc7d18faa339f813ff1db1aa32580f54d0601b08f0</em></p>
+<p><em>5afe86f9ec0764f53721452199383a0732d262b679356f4e5c716ca5710502c8</em></p>
+<p><em>4dcde58b6bd4b415eae924b62b1f0ce4e0b8d11a714fbcf99c4da553a66751d7</em></p>
+<p><em>08f2dfa3d011aa90fa90f2a2fabeb9aff72ad0acde01378f8126a3ab6ce61b41</em></p>
+<p><em>7ceb92839c025760203fac5d0ad4ff63df9c92d409831b3536c99f0c7f0874c6</em></p>
+<p><em>e0606875fb61db097f618b5e2ea9c140e3e5dff733ec3a30719af8452ca06aab</em></p>
+<p><em>4b665b885db33498129a86b354f09b4067e51b7add4595cb231d0d0b7f8a8678</em></p>
+<p><em>22ca8d75544d061d3e8b986b0af3dc2a462d9acfa29a4be5a5589fa51282dedb</em></p>
+<p><em>0650ce68e2d3b1e9e53a72115f5da42120d6eff83a07aa309b1f04f11f55c1de</em></p>
+<p><em>4f62cc7e6f923ffd3d01de7ed47c3a62593e8c245bfc6cb81783a70fb821ca3c</em></p>
+<p><em>9e72aea77562c7d85950076f8acef12580050d2bfd199de9500cd9a3cf18e5ba</em></p>
+<p><em>cf63d5861eb654efcafef25d758ca5daf877e3c63888ee086bcd29f22e3f77ad</em></p>
+<p><em>04343158bd4942f25f8ff4e39c5bc21fa08b2e98c9f4dd3391f017667a47e59e</em></p>
+<p><em>b31baed2592708d5fb8227fc7d18faa339f813ff1db1aa32580f54d0601b08f0</em></p>
+<p><em>5afe86f9ec0764f53721452199383a0732d262b679356f4e5c716ca5710502c8</em></p>
+<p><em>4dcde58b6bd4b415eae924b62b1f0ce4e0b8d11a714fbcf99c4da553a66751d7</em></p>
+<p><em>08f2dfa3d011aa90fa90f2a2fabeb9aff72ad0acde01378f8126a3ab6ce61b41</em></p>
+<p><em>8690299992e9a1d8bf1b5184a3274619eb6c95c44a83b42f7ee455b419947d5d</em></p>
+<p><em>7ceb92839c025760203fac5d0ad4ff63df9c92d409831b3536c99f0c7f0874c6</em></p>
+<p><em>e0606875fb61db097f618b5e2ea9c140e3e5dff733ec3a30719af8452ca06aab</em></p>
+<p><em>f47246e7b4ae43d6aa284145292d67247d428d52f327c00a7f7af2dd65fb1c0b</em></p>
+<p><em>4b665b885db33498129a86b354f09b4067e51b7add4595cb231d0d0b7f8a8678</em></p>
+<p><em>22ca8d75544d061d3e8b986b0af3dc2a462d9acfa29a4be5a5589fa51282dedb</em></p>
+<p><em>0650ce68e2d3b1e9e53a72115f5da42120d6eff83a07aa309b1f04f11f55c1de</em></p>
+<p><em>52ac6206d109acb15547e8f655d1e522d28bbb39c9e40784126de5f27778f51c</em></p>
+<p><em>cd9c564799f88ad6efae4bd5acb047d5f0d5b39378965386925c171eec3977b5</em></p>
+<p><em>15d796bd76339a0fbb430bc8c6cc9bcbd6a21f3aef619d0cb81fe0069552a29d</em></p>
+<p><em>99c598ef5fe10347803296d20a37fb6c33d793f35443725dbcfc41382dbd9391</em></p>
+<p><em>34886986af88810585238c2ecf44924e48a08f775b25794e553689f0f2585899</em></p>
+<p><em>12effeff2bc280d144bd1432f9bbfae2efaae483731d20b6f0b061e8be505a0c</em></p>
+<p><em>3460877be00af3632895539567b57647ca1e07363213b4f93d52ac80b17454ee</em></p>
+<p><em>79b54c71b74112881a8c4b88ad36a9bae4c2eecedcba510e2b4f52c215a9ebac</em></p>
+<p>&nbsp;</p>
+<p><em>quoc thinh</em><br />
+<em> 9c4f74feff131fa93dd04175795f334649ee91ad7fce11dc661231254e1ebd84</em></p>
+<p><em>f5d76324cb8fcae7f00b6825e4c110ddfd6b32db452f1eca0f4cff958316869c</em></p>
+<p><em>63b9e81a0c3a57bcbaf2aac308ecc53035f7fff6a416a6752acf13f16352a94a</em></p>
+<p><em>431c30c1db1aefb87d5fa5485c0fd11e792ec94bb95fb401cc93ef0528ad41cb</em></p>
+<p><em>687def9ff3cd0fa8dab1a7d4da5fa04b0604292fa74a66f23a96fb1eb31cd2c2</em></p>
+<p>&nbsp;</p>
+<p><em>pham huong</em></p>
+<p><em>af1e6391dd48f84beac69fbd69dbbb20eefd7ca69d33c686ed4d5a85ba760254</em></p>
+<p><em>7ce4d0ec31dc334388d2461b65617ba5dbdebf935da2ed2a7d65d8a9cc14148c</em></p>
+<p><em>f995bd07e5f782cf823b45d226c63407695d4a1bfb06358f49621291f1629f60</em></p>
+<p><em>a2bd399d8087752776762fa9a805429de6973994f26e17bdac9ca4130dcb87fb</em></p>
+<p><em>bafe800c397e69e9e6859311c437e5c4b6cdd200f3ed832306e6c9f331eb6bae</em></p>
+<p>&nbsp;</p>
+<p><em>nhien nguyen</em></p>
+<p><em>3028aa7ece2f140f6fa28d348bf18156e6e4da4cb2f9208925d15ca7b564f35f</em></p>
+<p><em>fc89afe4f72c3e02dca3e998351e59684f5ad6a9000c9f2eaee3b7195d4f0fda</em></p>
+<p>&nbsp;</p>
+<p><em>minh duc</em></p>
+<p><em>17f39a0268ec97cf5528bcc9d871c7f7b428379a2549c3b01581440acd7ed8a5</em></p>
+<p><em>79e821bab2adbdb9a53e471b7a1937c8f0a1ba1ce0801b8d2eca49a7c9391e42</em></p>
+<p><em>dfc0b3618a3eb246ae6026c460596a102f45ff71660f7fdec39c5f105a3190cd</em></p>
+<p><em>90d825d481297def07771865a5e719c4e55ed1109008721744608bf94841d7cc</em></p>
+<p>&nbsp;</p>
+<p><em>tran phong</em></p>
+<p><em>8c1b1b2b997a11d8b408091e12d02960bf71bb83304a3b23c439056c4e9882ad</em></p>
+<p><em>9acb781d19d6ed4c6ac6e10448d113fca868bba21f95496f535013005fe2d29e</em></p>
+<p><em>f159c3dc2aa704d42a07f145985fa7b339cbd4bcdf7ff9783220b9dd3a9e097e</em></p>
+<p><em>a1dc898586e1697bd19d6c6ec8421e1871ac918132bcbcf89db9b523e199664d</em></p>
+<p><em>e537d868f9ab708e3c5a8427dd4036798570b7d6b55b3ef0e1be9775e64e9c9d</em></p>
+<p><em>f7468d3af9267e9a6325fb981a5bd734dafeea32265d0318cb4793bd1b52f112</em></p>
+<p>&nbsp;</p>
+<p><em>mai linh</em></p>
+<p>&nbsp;</p>
+<p><em>c7c11ae9fdaeef0c359621de06d4de5264cc3d62929d5e8a1e2c3d2c08290e2f</em></p>
+<p><em>202d7e5bd230c59051d5c21124e9af613f70576f3511a0a79c567f48844e5b45</em></p>
+<p>&nbsp;</p>
+<p><em>thanh thuy</em></p>
+<p><em>6494a2bd4e9da2f3000b0774a13682a3f9fcd17e7da8d0fd42bfa88d1dce14f5</em></p>
+<p><em>aa556a1b27356c35be3890f7c6f022c431d48ff7b5c15b2a0586609b15e5d5f6</em></p>
+<p><em>f86b4d24627d5dc9d806a3f89c03aea19aaa987bcedb44fc5635140bf9191d03</em></p>
+<p><em>387dddd9bb34fb1fa697f4f5c208ad425e14f6a37e943a3ddf73cca12356054b</em></p>
+<p><em>086ad9c053fc3a670db2954b120733ba97109e1eb845ca383e88d2623289ae66</em></p>
+<p><em>da329f9a9b2ea505fb5ffb4a8d08ff8755b3c960ce84c342c50ab7e808c835b5</em></p>
+<p><em>22179b6701cf203abfa94eee9152495d409bcb9f5293fb5aa87fe342f7285a18</em></p>
+<p><em>a60503e089b805ca7b99186c1b4014bbca98655eadd615f911a7379708b0405a</em></p>
+<p><em>b3be9a9b5b6cd97815a1a2a5c14713b761b664e195a6e1384219a701ccc12036</em></p>
+<p><em>22179b6701cf203abfa94eee9152495d409bcb9f5293fb5aa87fe342f7285a18</em></p>
+<p><em>a60503e089b805ca7b99186c1b4014bbca98655eadd615f911a7379708b0405a</em></p>
+<p><em>da329f9a9b2ea505fb5ffb4a8d08ff8755b3c960ce84c342c50ab7e808c835b5</em></p>
+<p><em>22179b6701cf203abfa94eee9152495d409bcb9f5293fb5aa87fe342f7285a18</em></p>
+<p><em>387dddd9bb34fb1fa697f4f5c208ad425e14f6a37e943a3ddf73cca12356054b</em></p>
+<p><em>5b4703281a185e81113b303277e546c5f87ae599fba4565932a2638b3d40b41f</em></p>
+<p><em>da329f9a9b2ea505fb5ffb4a8d08ff8755b3c960ce84c342c50ab7e808c835b5</em></p>
+<p><em>5b4703281a185e81113b303277e546c5f87ae599fba4565932a2638b3d40b41f</em></p>
+<p><em>5b4703281a185e81113b303277e546c5f87ae599fba4565932a2638b3d40b41f</em></p>
+<p><em>b3be9a9b5b6cd97815a1a2a5c14713b761b664e195a6e1384219a701ccc12036</em></p>
+<p><em>aa556a1b27356c35be3890f7c6f022c431d48ff7b5c15b2a0586609b15e5d5f6</em></p>
+<p><em>a60503e089b805ca7b99186c1b4014bbca98655eadd615f911a7379708b0405a</em></p>
+<p><em>da329f9a9b2ea505fb5ffb4a8d08ff8755b3c960ce84c342c50ab7e808c835b5</em></p>
+<p id="INlghhy"><em> </em></p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-687" class="share-twitter sd-button share-icon no-text" href="index.html%3Fshare=twitter.html" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-687" class="share-facebook sd-button share-icon no-text" href="index.html%3Fshare=facebook.html" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+					<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+
+			<a href="../../../07/27/meepwnctf-2017-injection/index.html" rel="prev"><span class="meta-nav">&larr;</span> MeepwnCTF 2017 - injection</a>			<a href="../../../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html" rel="next">MEEPWN CTF 2018 - PyCalx2 <span class="meta-nav">&rarr;</span></a>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+					
+<div id="comments" class="comments-area">
+
+	
+	
+</div><!-- #comments -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+	<div id="tertiary" class="sidebar-container" role="complementary">
+		<div class="sidebar-inner">
+			<div class="widget-area">
+						<aside id="recent-posts-6" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="../../../../2018/08/01/meepwn-ctf-2018-meepwn-contract/index.html">MEEPWN CTF 2018 - meepwn contract</a>
+									</li>
+											<li>
+					<a href="../../../../2018/07/17/meepwn-ctf-2018-xss/index.html">MEEPWN CTF 2018 - XSS</a>
+									</li>
+											<li>
+					<a href="../../../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html">MEEPWN CTF 2018 - PyCalx2</a>
+									</li>
+											<li>
+					<a href="index.html">What is SafeFinder/OperatorMac campaign?</a>
+									</li>
+											<li>
+					<a href="../../../07/27/meepwnctf-2017-injection/index.html">MeepwnCTF 2017 - injection</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">justcallmedude</span> on <a href="../../../../2016/11/24/hackyou-ctf-su-2016/index.html#comment-8120">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">zun</span> on <a href="../../../../2016/11/24/hackyou-ctf-su-2016/index.html#comment-7474">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">Tony</span> on <a href="../../../../2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html#comment-7218">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</a></li><li class="recentcomments"><span class="comment-author-link">john</span> on <a href="../../../../2016/09/11/whitehat-contest-11-pwn400/index.html#comment-7211">Whitehat Contest 12 - Pwn400</a></li><li class="recentcomments"><span class="comment-author-link"><a href='../../../../index.html' rel='external nofollow' class='url'>chuymichxinhdep</a></span> on <a href="../../../../2016/09/11/whitehat-contest-11-pwn400/index.html#comment-7210">Whitehat Contest 12 - Pwn400</a></li></ul></aside><aside id="archives-3" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+				<li><a href='../../../../2018/08/index.html'>August 2018</a></li>
+	<li><a href='../../../../2018/07/index.html'>July 2018</a></li>
+	<li><a href='../../index.html'>August 2017</a></li>
+	<li><a href='../../../07/index.html'>July 2017</a></li>
+	<li><a href='../../../05/index.html'>May 2017</a></li>
+	<li><a href='../../../../2016/11/index.html'>November 2016</a></li>
+	<li><a href='../../../../2016/09/index.html'>September 2016</a></li>
+	<li><a href='../../../../2016/07/index.html'>July 2016</a></li>
+	<li><a href='../../../../2016/04/index.html'>April 2016</a></li>
+	<li><a href='../../../../2016/03/index.html'>March 2016</a></li>
+	<li><a href='../../../../2015/10/index.html'>October 2015</a></li>
+	<li><a href='../../../../2015/09/index.html'>September 2015</a></li>
+	<li><a href='../../../../2015/05/index.html'>May 2015</a></li>
+	<li><a href='../../../../2015/04/index.html'>April 2015</a></li>
+	<li><a href='../../../../2015/02/index.html'>February 2015</a></li>
+	<li><a href='../../../../2015/01/index.html'>January 2015</a></li>
+		</ul>
+			</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+				<li class="cat-item cat-item-32"><a href="../../../../category/chuymich/index.html">chuymich</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../../../category/crypto/index.html">crypto</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="../../../../category/forensic/index.html">forensic</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../../../category/misc/index.html">misc</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../../../category/pwn/index.html">pwn</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../../../category/re/index.html">re</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="../../../../category/research/index.html">research</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="../../../../category/smartcontract/index.html">smartcontract</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../../../category/uncategorized/index.html">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../../../category/vietnamese/index.html">vietnamese</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../../../category/web/index.html">web</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="../../../../category/whitehat/index.html">whitehat</a>
+</li>
+		</ul>
+			</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="../../../../tag/2015/index.html" class="tag-cloud-link tag-link-36 tag-link-position-1" style="font-size: 8pt;" aria-label="2015 (1 item)">2015</a>
+<a href="../../../../tag/babyphd/index.html" class="tag-cloud-link tag-link-35 tag-link-position-2" style="font-size: 8pt;" aria-label="babyphd (1 item)">babyphd</a>
+<a href="../../../../tag/backdoorctf/index.html" class="tag-cloud-link tag-link-33 tag-link-position-3" style="font-size: 8pt;" aria-label="backdoorCTF (1 item)">backdoorCTF</a>
+<a href="../../../../tag/crypto/index.html" class="tag-cloud-link tag-link-14 tag-link-position-4" style="font-size: 22pt;" aria-label="crypto (3 items)">crypto</a>
+<a href="../../../../tag/css/index.html" class="tag-cloud-link tag-link-42 tag-link-position-5" style="font-size: 8pt;" aria-label="css (1 item)">css</a>
+<a href="../../../../tag/gaylord/index.html" class="tag-cloud-link tag-link-34 tag-link-position-6" style="font-size: 8pt;" aria-label="gaylord (1 item)">gaylord</a>
+<a href="../../../../tag/heap/index.html" class="tag-cloud-link tag-link-37 tag-link-position-7" style="font-size: 8pt;" aria-label="heap (1 item)">heap</a>
+<a href="../../../../tag/list-linked/index.html" class="tag-cloud-link tag-link-28 tag-link-position-8" style="font-size: 8pt;" aria-label="list-linked (1 item)">list-linked</a>
+<a href="../../../../tag/malware/index.html" class="tag-cloud-link tag-link-43 tag-link-position-9" style="font-size: 8pt;" aria-label="malware (1 item)">malware</a>
+<a href="../../../../tag/mughthesec/index.html" class="tag-cloud-link tag-link-45 tag-link-position-10" style="font-size: 8pt;" aria-label="Mughthesec (1 item)">Mughthesec</a>
+<a href="../../../../tag/operatormac/index.html" class="tag-cloud-link tag-link-44 tag-link-position-11" style="font-size: 8pt;" aria-label="OperatorMac (1 item)">OperatorMac</a>
+<a href="../../../../tag/pwn/index.html" class="tag-cloud-link tag-link-27 tag-link-position-12" style="font-size: 8pt;" aria-label="pwn (1 item)">pwn</a>
+<a href="../../../../tag/re/index.html" class="tag-cloud-link tag-link-26 tag-link-position-13" style="font-size: 8pt;" aria-label="re (1 item)">re</a>
+<a href="../../../../tag/side-channel/index.html" class="tag-cloud-link tag-link-29 tag-link-position-14" style="font-size: 8pt;" aria-label="side-channel (1 item)">side-channel</a>
+<a href="../../../../tag/sqli/index.html" class="tag-cloud-link tag-link-41 tag-link-position-15" style="font-size: 8pt;" aria-label="sqli (1 item)">sqli</a>
+<a href="../../../../tag/unserialize/index.html" class="tag-cloud-link tag-link-40 tag-link-position-16" style="font-size: 8pt;" aria-label="unserialize (1 item)">unserialize</a>
+<a href="../../../../tag/xss/index.html" class="tag-cloud-link tag-link-39 tag-link-position-17" style="font-size: 8pt;" aria-label="xss (1 item)">xss</a></div>
+</aside>			</div><!-- .widget-area -->
+		</div><!-- .sidebar-inner -->
+	</div><!-- #tertiary -->
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			
+			<div class="site-info">
+								<a href="https://wordpress.org/">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+		<div style="display:none">
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/babyphd.net\/2017\/08\/10\/wtf-is-safefinderoperatormac-campaign\/":687};
+	</script>
+				<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/photon/photon.min.js%3Fver=20190201'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202333'></script>
+<script type='text/javascript' src='../../../../wp-content/themes/twentythirteen/js/functions.js%3Fver=20160717'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/wp-embed.min.js%3Fver=5.2.2'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/spin.min.js%3Fver=1.3'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/jquery.spin.min.js%3Fver=1.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","nonce":"5cd6f523b0","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/babyphd.net\/wp-login.php?redirect_to=https%3A%2F%2Fbabyphd.net%2F2017%2F08%2F10%2Fwtf-is-safefinderoperatormac-campaign%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/carousel/jetpack-carousel.min.js%3Fver=20190102'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/shortcodes/js/gist.min.js%3Fver=7.5.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js%3Fver=7.5.2'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+<script type='text/javascript' src='https://stats.wp.com/e-202333.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.5.2',blog:'104079289',post:'687',tz:'0',srv:'babyphd.net'} ]);
+	_stq.push([ 'clickTrackerInit', '104079289', '687' ]);
+</script>
+</body>
+</html>

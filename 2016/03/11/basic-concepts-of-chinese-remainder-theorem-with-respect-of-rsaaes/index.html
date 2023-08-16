@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Basic concepts of Chinese Remainder Theorem with respect of RSA/AES | BabyPhD CTF Team</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://babyphd.net/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://babyphd.net/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<script type='text/javascript'>function ctSetCookie(c_name, value, def_value){document.cookie = c_name + '=' + escape(value) + '; path=/';}ctSetCookie('ct_checkjs', '1181016728', '0');</script><link rel='dns-prefetch' href='https://s0.wp.com/' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="BabyPhD CTF Team &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/babyphd.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.2"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='../../../../wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css%3Fver=3.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='../../../../wp-content/themes/twentythirteen/style.css%3Fver=2013-07-18.css' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='https://babyphd.net/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='../../../../wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css%3Fver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='../../../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=7.5.2.css' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js%3Fver=20190204'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctPublic = {"_ajax_nonce":"a204603c59","_ajax_url":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/cleantalk-spam-protect/js/apbct-public.min.js%3Fver=5.122'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ctNocache = {"ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","info_flag":"","set_cookies_flag":"","blog_home":"https:\/\/babyphd.net\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/cleantalk-spam-protect/js/cleantalk_nocache.min.js%3Fver=5.122'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Introduction to Threshold signature scheme' href='../../introduction-to-threshold-signature-scheme/index.html' />
+<link rel='next' title='Writeup for beginners - BoF Vulnerability Lab (Syracuse University)' href='../../12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html' />
+<meta name="generator" content="WordPress 5.2.2" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='https://wp.me/p72HMd-7v' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2016%252F03%252F11%252Fbasic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbabyphd.net%252F2016%252F03%252F11%252Fbasic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes%252F&amp;format=xml" />
+
+<link rel='dns-prefetch' href='https://v0.wordpress.com/'/>
+<link rel='dns-prefetch' href='https://i0.wp.com/'/>
+<link rel='dns-prefetch' href='https://i1.wp.com/'/>
+<link rel='dns-prefetch' href='https://i2.wp.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+			<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(../../../../wp-content/themes/twentythirteen/images/headers/star.png) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+		@media (max-width: 767px) {
+			.site-header {
+				background-size: 768px auto;
+			}
+		}
+		@media (max-width: 359px) {
+			.site-header {
+				background-size: 360px auto;
+			}
+		}
+		</style>
+	
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Basic concepts of Chinese Remainder Theorem with respect of RSA/AES" />
+<meta property="og:url" content="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/" />
+<meta property="og:description" content="&nbsp; Chinese Remainder Theorem ========================= Suppose \(n_{1},n_{2}, &#8230; , n_{k}\) are positive integers and coprime in pair. For any sequence of integers \(a_{1}, a_{2}, &#8230; ,…" />
+<meta property="article:published_time" content="2016-03-11T07:29:37+00:00" />
+<meta property="article:modified_time" content="2016-03-11T10:49:25+00:00" />
+<meta property="og:site_name" content="BabyPhD CTF Team" />
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="Basic concepts of Chinese Remainder Theorem with respect of RSA/AES" />
+<meta name="twitter:card" content="summary" />
+
+<!-- End Jetpack Open Graph Tags -->
+			<style type="text/css" id="wp-custom-css">
+				code {
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 2px;
+    color: #222;
+    background: #f2f4f5;
+}			</style>
+		</head>
+
+<body class="post-template-default single single-post postid-465 single-format-standard sidebar">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="../../../../index.html" title="BabyPhD CTF Team" rel="home">
+				<h1 class="site-title">BabyPhD CTF Team</h1>
+				<h2 class="site-description">Nói chung đây là một khái niệm vô cùng trừu tượng</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<button class="menu-toggle">Menu</button>
+					<a class="screen-reader-text skip-link" href="index.html#content" title="Skip to content">Skip to content</a>
+					<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-2"><a href="../../../../ctf-wtf/index.html">CTF</a></li>
+</ul></div>
+					<form role="search" method="get" class="search-form" action="../../../../index.html">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+						
+				
+<article id="post-465" class="post-465 post type-post status-publish format-standard hentry category-crypto tag-crypto">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">Basic concepts of Chinese Remainder Theorem with respect of RSA/AES</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="index.html" title="Permalink to Basic concepts of Chinese Remainder Theorem with respect of RSA/AES" rel="bookmark"><time class="entry-date" datetime="2016-03-11T07:29:37+00:00">March 11, 2016</time></a></span><span class="categories-links"><a href="../../../../category/crypto/index.html" rel="category tag">crypto</a></span><span class="tags-links"><a href="../../../../tag/crypto/index.html" rel="tag">crypto</a></span><span class="author vcard"><a class="url fn n" href="../../../../author/chuymichxinhdep/index.html" title="View all posts by chuymichxinhdep" rel="author">chuymichxinhdep</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>&nbsp;</p>
+<p><strong>Chinese Remainder Theorem</strong><br />
+=========================</p>
+<p>Suppose <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_6f65815f75a5b0addfb2fcbf314e7448.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> are positive integers and coprime in pair. For any sequence of integers <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_2e6af3c4b843457fb8f92cab80c4becd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:1px;' class='tex' alt="" data-recalc-dims="1" /></span>, there exists an integer x solving the following system of congruence equations:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_c08ae2e6f46d3cc4c6048c8c6efff3bd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span><br />
+There exists an unique modulo solution of the system of simultaneous congruences above:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_4a53df5368873e5db4c21d41fb345815.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>in which:<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_efdc335c017fa207c76d2e89a3ada645.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:2px;' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><span id="more-465"></span></p>
+<p>**<em>Example</em>**:<br />
+<span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_d05fe06da4390a753c6a6356e2982f58.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span><br />
+<strong>Solve</strong>: <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_81285716f0e377a469ca3e2cd13d41cb.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; padding-bottom:2px;' class='tex' alt="" data-recalc-dims="1" /></span><br />
+Therefore, <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_ba8bcb0646f18f216e41f1c03b1a0c0e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Hence, the solution of this simultaneous congruences is <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_15fce7133b87887b7aa927c811d53610.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> for all k are integers.</p>
+<p><strong>RSA using the Chinese remainder theorem</strong><br />
+=======================================</p>
+<p>In RSA scheme using the Chinese remainder theorem, the following values are precomputed and stored as a public key:<br />
+<span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_e1d860acb91450876d8d51909bada477.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Therefore, we can compute the message from given ciphertext more effienctly as follow:<br />
+<span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_ac7d1b7d1b40bf96431cd9823a05db12.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>This scheme is more efficient than computing <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_83b1bf433207a854fe45f0f9d3a7fc39.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> because these two modular exponentiations both use a smaller exponent and a smaller modulus.</p>
+<p>**<strong>Proof</strong>:**</p>
+<p>We know that: <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_f813d35f5f2190daea17180b7be9c472.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Note that the exponents are reduced module p-1 and q-1. This can be done using Fermat’s little theorem because p and q.Then, we recombine the; that is, we find a number m such that:<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_cd40e72c60749fa4e52e75a7d22e6caf.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Because of the Chinese Remainder Theorem (and because p and q are relatively prime), we can immediately deduce that: <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_097d34979b961d61d42d5b78d4cbc04e.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> which is exactly what we were trying to compute.</p>
+<p>Now, the questions in your comments appear to be asking about the details of this recombination step. It is actually fairly easy to see the correctness of the algorithm. To make the last step work, we need to show that we have come up with a value m such that: <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_43164028cde5a60697cdc129964fba81.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>As for the the first criteria <span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_480651f75f21f7373d026bcbfcd45722.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, well, that’s straight-forward; we know that <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_86a63a6f1b4f2486377299139782d7de.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_9a529af765aed258f237f010b45d22dd.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and so the smallest that m can be is <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_5484bf1b2d0764fb22c27a39acd860f7.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and the largest it can be is <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_608f1da7ae2749e00acd8a950385ced9.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>As for the third criteria, that’s also straight-forward;<br />
+<span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7bb612d443085a1083671478c8a79e1f.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><span class='MathJax_Preview'><img src='https://i2.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_8d0decc190b4b6070ec037760abae463.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p>Now, <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_654e1be0a27e48ef9b02cf0a297e4d1b.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> is defined to be the number that, when multiplied by q modulo p, results in 1, or <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_332063c27de33f547fdbe84757a46440.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>. Now, because the above equation is, in fact, computed modulo p, we can replace <span class='MathJax_Preview'><img src='https://i0.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_14bc04d33d047d6ed75ac3d318815d82.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span> with 1, which gives us:</p>
+<p><span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_f22a0c1c2fc0c3366866af37d07bd368.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span></p>
+<p><strong>Program for secure communication</strong><br />
+================================</p>
+<p>My following program was written using Python language. It includes 4 main parts:</p>
+<p>- Take user text input from the console and encrypt it using AES-128 using built-in library Crypto.Cipher</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?ssl=1" rel="attachment wp-att-475"><img data-attachment-id="475" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/aes_encrypt/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" data-orig-size="257,28" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="aes_encrypt" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?fit=257%2C28&amp;ssl=1" class="alignnone size-full wp-image-475" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_encrypt.png?resize=257%2C28&#038;ssl=1" alt="aes_encrypt" width="257" height="28" data-recalc-dims="1" /></a></p>
+<p>- Encrypt the AES key using RSA where prime p,q were generated<br />
+randomly with the length of 1024 bits</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?ssl=1" rel="attachment wp-att-476"><img data-attachment-id="476" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/rsa_encrypt/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=641%2C112&amp;ssl=1" data-orig-size="641,112" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="rsa_encrypt" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=300%2C52&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?fit=604%2C106&amp;ssl=1" class="alignnone size-medium wp-image-476" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?resize=300%2C52&#038;ssl=1" alt="rsa_encrypt" width="300" height="52" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?resize=300%2C52&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_encrypt.png?w=641&amp;ssl=1 641w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>- Decrypt the key</p>
+<p>- Using the normal RSA function</p>
+<pre class="lang:default decode:true">def decrypt(self, c,d,n):
+return pow(c,d,n)
+</pre>
+<p>&nbsp;</p>
+<p>- Using the CRT approach</p>
+<pre class="lang:default decode:true"> {frame="single"}
+def decryptCRT(self,c,p,q,d,dp,dq,qi):
+m1 = pow(c,dp,p)
+m2 = pow(c,dq,q)
+h = (qi*(m1-m2))%p
+m = m2+ h*q
+return m</pre>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?ssl=1" rel="attachment wp-att-477"><img data-attachment-id="477" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/rsa_decrypt/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" data-orig-size="256,14" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="rsa_decrypt" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?fit=256%2C14&amp;ssl=1" class="alignnone size-full wp-image-477" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2016/03/rsa_decrypt.png?resize=256%2C14&#038;ssl=1" alt="rsa_decrypt" width="256" height="14" data-recalc-dims="1" /></a></p>
+<p>- Decrypt the message using AES128 decryption and print it on<br />
+the screen.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?ssl=1" rel="attachment wp-att-478"><img data-attachment-id="478" data-permalink="https://babyphd.net/2016/03/11/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes/aes_decrypt/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" data-orig-size="194,14" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="aes_decrypt" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?fit=194%2C14&amp;ssl=1" class="alignnone size-full wp-image-478" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2016/03/aes_decrypt.png?resize=194%2C14&#038;ssl=1" alt="aes_decrypt" width="194" height="14" data-recalc-dims="1" /></a></p>
+<p><strong>Report of execution time</strong><br />
+========================</p>
+<p>Each execution of the encryption and decryption functions is too short. Therefore, I measure the average time of total 1000 executions to compare between each method. To ensure that the time measurement does not affect the process execution, this program used an external call based on Python’s ’timer’ library to calculate the difference between start and end of each run in milliseconds.</p>
+<p>&nbsp;</p>
+<pre class="lang:default decode:true">self.end = time.time()
+self.secs = self.end - self.start
+self.msecs = self.secs * 1000 # millisecs
+if self.verbose:
+print 'Elapsed time: %f ms' % self.msecs</pre>
+<p>**Functions** **1000 times (second)** **Average (second)**<br />
+-------------------- ------------------------- ----------------------<br />
+AES128 encryption                 0.015999794                 0.000016<br />
+AES128 decryption                 0.014999866                 0.000015<br />
+RSA encryption                       0.254999876                 0.000255<br />
+RSA decryption                       39.37100005                 0.039371<br />
+RSA CRT decryption                 12.02799988                 0.012028<br />
+Total                                          51.68499947                 0.051685</p>
+<p>Table <strong>time</strong> shows the execution time of RSA scheme is much larger than AES128 scheme. This result explains why RSA should being used in key exchange while parties encrypt their information using AES cryptosystem. Another significant result is that the RSA-CRT decryption method is approximately 3 times faster than normal RSA decryption.</p>
+<p><em>Hope this article can bring cryptography motivation to some Math/IT students and players who were exhausted in enjoying CTF challenges, or at least it can be a good reference for somebody.</em></p>
+<p><em>-chuymichxinhdep</em></p>
+<p><strong>Ref:</strong></p>
+<p>1&lt;https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29&gt;</p>
+<p>2 &lt;http://crypto.stackexchange.com/questions/2575/chinese-remainder-theorem-and-rsa&gt;</p>
+<p><strong>**APPENDIX**</strong></p>
+<pre class="lang:default decode:true">from Crypto.Cipher import AES
+import math,random
+from fractions import gcd
+from random import randrange
+from collections import namedtuple
+from math import log
+from binascii import hexlify, unhexlify
+from timer import Timer
+
+class RSA():
+def __init__(self):
+self.KeyPair = namedtuple('KeyPair', 'public private CRT')
+self.Key = namedtuple('Key', 'exponent modulus')
+self.KeyCRT = namedtuple('KeyCRT', 'p q')
+def is_prime(self,n, k=30):
+# Miller-Rabin Test
+if n &lt;= 3:
+return n == 2 or n == 3
+neg_one = n - 1
+
+# write n-1 as 2^s*d where d is odd
+s, d = 0, neg_one
+while not d &amp; 1:
+s, d = s+1, d&gt;&gt;1
+assert 2 ** s * d == neg_one and d &amp; 1
+
+for i in xrange(k):
+a = randrange(2, neg_one)
+x = pow(a, d, n)
+if x in (1, neg_one):
+continue
+for r in xrange(1, s):
+x = x ** 2 % n
+if x == 1:
+return False
+if x == neg_one:
+break
+else:
+return False
+return True
+
+def randprime(self,N=10**8):
+p = 1
+while not self.is_prime(p):
+p = randrange(N)
+return p
+
+def multinv(self,modulus, value):
+'''Multiplicative inverse in a given modulus
+'''
+# http://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
+x, lastx = 0, 1
+a, b = modulus, value
+while b:
+a, q, b = b, a // b, a % b
+x, lastx = lastx - q * x, x
+result = (1 - lastx * modulus) // value
+if result &lt; 0:
+result += modulus
+assert 0 &lt;= result &lt; modulus and value * result % modulus == 1
+return result
+
+def keygen(self,N, public=None):
+''' Generate public and private keys from primes up to N.
+Optionally, specify the public key exponent (65537 is popular choice).
+'''
+
+# http://en.wikipedia.org/wiki/RSA
+p = self.randprime(N)
+q = self.randprime(N)
+composite = p * q
+totient = (p - 1) * (q - 1)
+if public is None:
+while True:
+private = randrange(totient)
+if gcd(private, totient) == 1:
+break
+public = self.multinv(totient, private)
+else:
+private = self.multinv(totient, public)
+assert public * private % totient == gcd(public, totient) == gcd(private, totient) == 1
+return self.KeyPair(self.Key(public, composite), self.Key(private, composite), self.KeyCRT(p, q))
+def encrypt(self, m,e,n):
+return pow(m,e,n)
+def decrypt(self, c,d,n):
+return pow(c,d,n)
+def decryptCRT(self, c,p,q,d,dp,dq,qi):
+m1 = pow(c,dp,p)
+m2 = pow(c,dq,q)
+h = (qi*(m1-m2))%p
+m = m2+ h*q
+return m
+class PKCS7Encoder():
+"""
+Technique for padding a string as defined in RFC 2315, section 10.3,
+note #2
+"""
+class InvalidBlockSizeError(Exception):
+"""Raised for invalid block sizes"""
+pass
+
+def __init__(self, block_size=16):
+if block_size &lt; 2 or block_size &gt; 255:
+raise PKCS7Encoder.InvalidBlockSizeError('The block size must be ' \
+'between 2 and 255, inclusive')
+self.block_size = block_size
+
+def encode(self, text):
+text_length = len(text)
+amount_to_pad = self.block_size - (text_length % self.block_size)
+if amount_to_pad == 0:
+amount_to_pad = self.block_size
+pad = chr(amount_to_pad)
+return text + pad * amount_to_pad
+
+def decode(self, text):
+pad = ord(text[-1])
+return text[:-pad]
+iv = "this is iv123456"
+key = "this mus be a 16"
+
+def AES_encrypt(iv,key,message):
+obj = AES.new(key, AES.MODE_CBC, iv)
+pkcs7 = PKCS7Encoder()
+return obj.encrypt(pkcs7.encode(message)).encode("hex")
+
+def AES_decrypt(iv,key,cipherText):
+obj = AES.new(key, AES.MODE_CBC, iv)
+pkcs7 = PKCS7Encoder()
+return pkcs7.decode(obj.decrypt(cipherText.decode('hex')))
+
+message = raw_input("Input message:")
+with Timer() as t:
+cipherText = AES_encrypt(iv,key,message)
+
+print cipherText
+print "AES encrypt: %s s" % t.secs
+
+rsa = RSA()
+pk,sk,primes = rsa.keygen(2**1024, 65537)
+
+message = int(cipherText.encode("hex"),16)
+
+with Timer() as t:
+
+rsacipher = rsa.encrypt(message,pk.exponent, pk.modulus)
+
+print rsacipher
+
+print "RSA Encrypt: %s s" % t.secs
+with Timer() as t:
+
+messagersa = hex(rsa.decrypt(rsacipher, sk.exponent,sk.modulus)).replace("0x","").replace("L","").decode('hex')
+print "RSA Decrypt: %s s" % t.secs
+print messagersa
+#Pre compute RSA CRT
+p = primes.p
+q = primes.q
+dp = sk.exponent % (p-1)
+dq = sk.exponent % (q-1)
+qi = rsa.multinv(p,q)
+#RSA-CRT Decryption
+
+with Timer() as t:
+for i in xrange(1):
+messagersacrt = hex(rsa.decryptCRT(rsacipher,p,q,sk.exponent,dp,dq,qi)).replace("0x","").replace("L","").decode('hex')
+print "RSA Decrypt CRT : %s s" % t.secs
+print messagersacrt
+
+with Timer() as t:
+plainText = AES_decrypt(iv,key,messagersa)
+print "Decrypted message:", plainText
+print "AES decrypt: %s s" % t.secs
+```</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-465" class="share-twitter sd-button share-icon no-text" href="index.html%3Fshare=twitter.html" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-465" class="share-facebook sd-button share-icon no-text" href="index.html%3Fshare=facebook.html" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+					<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+
+			<a href="../../introduction-to-threshold-signature-scheme/index.html" rel="prev"><span class="meta-nav">&larr;</span> Introduction to Threshold signature scheme</a>			<a href="../../12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html" rel="next">Writeup for beginners - BoF Vulnerability Lab (Syracuse University) <span class="meta-nav">&rarr;</span></a>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+					
+<div id="comments" class="comments-area">
+
+	
+	
+</div><!-- #comments -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+	<div id="tertiary" class="sidebar-container" role="complementary">
+		<div class="sidebar-inner">
+			<div class="widget-area">
+						<aside id="recent-posts-6" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="../../../../2018/08/01/meepwn-ctf-2018-meepwn-contract/index.html">MEEPWN CTF 2018 - meepwn contract</a>
+									</li>
+											<li>
+					<a href="../../../../2018/07/17/meepwn-ctf-2018-xss/index.html">MEEPWN CTF 2018 - XSS</a>
+									</li>
+											<li>
+					<a href="../../../../2018/07/17/meepwn-ctf-2018-pycalx2/index.html">MEEPWN CTF 2018 - PyCalx2</a>
+									</li>
+											<li>
+					<a href="../../../../2017/08/10/wtf-is-safefinderoperatormac-campaign/index.html">What is SafeFinder/OperatorMac campaign?</a>
+									</li>
+											<li>
+					<a href="../../../../2017/07/27/meepwnctf-2017-injection/index.html">MeepwnCTF 2017 - injection</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">justcallmedude</span> on <a href="../../../11/24/hackyou-ctf-su-2016/index.html#comment-8120">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">zun</span> on <a href="../../../11/24/hackyou-ctf-su-2016/index.html#comment-7474">hackyou.ctf.su 2016</a></li><li class="recentcomments"><span class="comment-author-link">Tony</span> on <a href="../../12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/index.html#comment-7218">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</a></li><li class="recentcomments"><span class="comment-author-link">john</span> on <a href="../../../09/11/whitehat-contest-11-pwn400/index.html#comment-7211">Whitehat Contest 12 - Pwn400</a></li><li class="recentcomments"><span class="comment-author-link"><a href='../../../../index.html' rel='external nofollow' class='url'>chuymichxinhdep</a></span> on <a href="../../../09/11/whitehat-contest-11-pwn400/index.html#comment-7210">Whitehat Contest 12 - Pwn400</a></li></ul></aside><aside id="archives-3" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+				<li><a href='../../../../2018/08/index.html'>August 2018</a></li>
+	<li><a href='../../../../2018/07/index.html'>July 2018</a></li>
+	<li><a href='../../../../2017/08/index.html'>August 2017</a></li>
+	<li><a href='../../../../2017/07/index.html'>July 2017</a></li>
+	<li><a href='../../../../2017/05/index.html'>May 2017</a></li>
+	<li><a href='../../../11/index.html'>November 2016</a></li>
+	<li><a href='../../../09/index.html'>September 2016</a></li>
+	<li><a href='../../../07/index.html'>July 2016</a></li>
+	<li><a href='../../../04/index.html'>April 2016</a></li>
+	<li><a href='../../index.html'>March 2016</a></li>
+	<li><a href='../../../../2015/10/index.html'>October 2015</a></li>
+	<li><a href='../../../../2015/09/index.html'>September 2015</a></li>
+	<li><a href='../../../../2015/05/index.html'>May 2015</a></li>
+	<li><a href='../../../../2015/04/index.html'>April 2015</a></li>
+	<li><a href='../../../../2015/02/index.html'>February 2015</a></li>
+	<li><a href='../../../../2015/01/index.html'>January 2015</a></li>
+		</ul>
+			</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+				<li class="cat-item cat-item-32"><a href="../../../../category/chuymich/index.html">chuymich</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../../../category/crypto/index.html">crypto</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="../../../../category/forensic/index.html">forensic</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../../../category/misc/index.html">misc</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../../../category/pwn/index.html">pwn</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../../../category/re/index.html">re</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="../../../../category/research/index.html">research</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="../../../../category/smartcontract/index.html">smartcontract</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../../../category/uncategorized/index.html">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../../../category/vietnamese/index.html">vietnamese</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../../../category/web/index.html">web</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="../../../../category/whitehat/index.html">whitehat</a>
+</li>
+		</ul>
+			</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="../../../../tag/2015/index.html" class="tag-cloud-link tag-link-36 tag-link-position-1" style="font-size: 8pt;" aria-label="2015 (1 item)">2015</a>
+<a href="../../../../tag/babyphd/index.html" class="tag-cloud-link tag-link-35 tag-link-position-2" style="font-size: 8pt;" aria-label="babyphd (1 item)">babyphd</a>
+<a href="../../../../tag/backdoorctf/index.html" class="tag-cloud-link tag-link-33 tag-link-position-3" style="font-size: 8pt;" aria-label="backdoorCTF (1 item)">backdoorCTF</a>
+<a href="../../../../tag/crypto/index.html" class="tag-cloud-link tag-link-14 tag-link-position-4" style="font-size: 22pt;" aria-label="crypto (3 items)">crypto</a>
+<a href="../../../../tag/css/index.html" class="tag-cloud-link tag-link-42 tag-link-position-5" style="font-size: 8pt;" aria-label="css (1 item)">css</a>
+<a href="../../../../tag/gaylord/index.html" class="tag-cloud-link tag-link-34 tag-link-position-6" style="font-size: 8pt;" aria-label="gaylord (1 item)">gaylord</a>
+<a href="../../../../tag/heap/index.html" class="tag-cloud-link tag-link-37 tag-link-position-7" style="font-size: 8pt;" aria-label="heap (1 item)">heap</a>
+<a href="../../../../tag/list-linked/index.html" class="tag-cloud-link tag-link-28 tag-link-position-8" style="font-size: 8pt;" aria-label="list-linked (1 item)">list-linked</a>
+<a href="../../../../tag/malware/index.html" class="tag-cloud-link tag-link-43 tag-link-position-9" style="font-size: 8pt;" aria-label="malware (1 item)">malware</a>
+<a href="../../../../tag/mughthesec/index.html" class="tag-cloud-link tag-link-45 tag-link-position-10" style="font-size: 8pt;" aria-label="Mughthesec (1 item)">Mughthesec</a>
+<a href="../../../../tag/operatormac/index.html" class="tag-cloud-link tag-link-44 tag-link-position-11" style="font-size: 8pt;" aria-label="OperatorMac (1 item)">OperatorMac</a>
+<a href="../../../../tag/pwn/index.html" class="tag-cloud-link tag-link-27 tag-link-position-12" style="font-size: 8pt;" aria-label="pwn (1 item)">pwn</a>
+<a href="../../../../tag/re/index.html" class="tag-cloud-link tag-link-26 tag-link-position-13" style="font-size: 8pt;" aria-label="re (1 item)">re</a>
+<a href="../../../../tag/side-channel/index.html" class="tag-cloud-link tag-link-29 tag-link-position-14" style="font-size: 8pt;" aria-label="side-channel (1 item)">side-channel</a>
+<a href="../../../../tag/sqli/index.html" class="tag-cloud-link tag-link-41 tag-link-position-15" style="font-size: 8pt;" aria-label="sqli (1 item)">sqli</a>
+<a href="../../../../tag/unserialize/index.html" class="tag-cloud-link tag-link-40 tag-link-position-16" style="font-size: 8pt;" aria-label="unserialize (1 item)">unserialize</a>
+<a href="../../../../tag/xss/index.html" class="tag-cloud-link tag-link-39 tag-link-position-17" style="font-size: 8pt;" aria-label="xss (1 item)">xss</a></div>
+</aside>			</div><!-- .widget-area -->
+		</div><!-- .sidebar-inner -->
+	</div><!-- #tertiary -->
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			
+			<div class="site-info">
+								<a href="https://wordpress.org/">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+		<div style="display:none">
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/babyphd.net\/2016\/03\/11\/basic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes\/":465};
+	</script>
+				<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/photon/photon.min.js%3Fver=20190201'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202333'></script>
+<script type='text/javascript' src='../../../../wp-content/themes/twentythirteen/js/functions.js%3Fver=20160717'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/wp-embed.min.js%3Fver=5.2.2'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/spin.min.js%3Fver=1.3'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/jquery.spin.min.js%3Fver=1.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/babyphd.net\/wp-admin\/admin-ajax.php","nonce":"5cd6f523b0","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/babyphd.net\/wp-login.php?redirect_to=https%3A%2F%2Fbabyphd.net%2F2016%2F03%2F11%2Fbasic-concepts-of-chinese-remainder-theorem-with-respect-of-rsaaes%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/carousel/jetpack-carousel.min.js%3Fver=20190102'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js%3Fver=7.5.2'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+<script type='text/javascript' src='https://stats.wp.com/e-202333.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.5.2',blog:'104079289',post:'465',tz:'0',srv:'babyphd.net'} ]);
+	_stq.push([ 'clickTrackerInit', '104079289', '465' ]);
+</script>
+</body>
+</html>

